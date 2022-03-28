@@ -1,6 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>EFI数据类型[EFI Data Types]</title>
+    <url>/2022/03/28/EFI%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-EFI-Data-Types/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#77;&#x61;&#x6f;&#x75;&#x61;&#x69;&#50;&#51;&#x33;&#x40;&#x6f;&#x75;&#116;&#108;&#x6f;&#x6f;&#x6b;&#46;&#x63;&#x6f;&#x6d;">&#77;&#x61;&#x6f;&#x75;&#x61;&#x69;&#50;&#51;&#x33;&#x40;&#x6f;&#x75;&#116;&#108;&#x6f;&#x6f;&#x6b;&#46;&#x63;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的文化程度，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+<h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><table>
+<thead>
+<tr>
+<th>类</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EFI_STATUS</td>
+<td>状态码，有成功、错误和警告</td>
+</tr>
+</tbody></table>
+<h1 id="EFI-STATUS分条"><a href="#EFI-STATUS分条" class="headerlink" title="EFI_STATUS分条"></a>EFI_STATUS分条</h1><p>判断程序出错或打印Log必备：通常这样定义一个EFI_STATUS型变量，初始化为成功。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">EFI_STATUS Status = EFI_SUCCESS;</span><br></pre></td></tr></table></figure>
+
+<p>EDKII源代码中许多函数使用EFI_STATUS型，返回的值是EFI_STATUS型，所以可以使用以下来接收函数运行后返回的结果：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Status = Function();</span><br></pre></td></tr></table></figure>
+<p>也提供了专门来判断是否运行错误即返回错误代码的EFI_ERROR()，使用如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(EFI_ERROR(Status)) &#123;</span><br><span class="line">  <span class="keyword">return</span> Status;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>意思是如果之前定义的EFI_STATUS类型的Status是错误的结果，就执行大括号中的代码（这里直接返回Status，会回到EFI SHELL或者返回上一个调用此的函数），如果不是则跳过。</p>
+<p>它是可以后面手动更改值的：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Status = EFI_SUCCESS;</span><br></pre></td></tr></table></figure>
+
+<p>具体如下：</p>
+<h2 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h2><p>高位清除，无符号，没有负数的情况。</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EFI_SUCCESS</td>
+<td>0</td>
+<td>成功完成操作</td>
+</tr>
+</tbody></table>
+<h2 id="失败"><a href="#失败" class="headerlink" title="失败"></a>失败</h2><table>
+<thead>
+<tr>
+<th>类</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EFI_LOAD_ERROR</td>
+<td>1</td>
+<td>加载镜像Image失败</td>
+</tr>
+<tr>
+<td>EFI_INVALID_PARAMETER</td>
+<td>2</td>
+<td>参数不正确</td>
+</tr>
+<tr>
+<td>EFI_UNSUPPORTED</td>
+<td>3</td>
+<td>该操作不支持</td>
+</tr>
+<tr>
+<td>EFI_BAD_BUFFER_SIZE</td>
+<td>4</td>
+<td>缓冲区Buffer的大小不适用于请求</td>
+</tr>
+<tr>
+<td>EFI_BUFFER_TOO_SMALL</td>
+<td>5</td>
+<td>缓冲区不够大，无法容纳请求的数据</td>
+</tr>
+<tr>
+<td>EFI_NOT_READY</td>
+<td>6</td>
+<td>There is no data pending upon return</td>
+</tr>
+<tr>
+<td>EFI_DEVICE_ERROR</td>
+<td>7</td>
+<td>物理设备在尝试操作时报告错</td>
+</tr>
+<tr>
+<td>EFI_WRITE_PROTECTED</td>
+<td>8</td>
+<td>无法写入设备</td>
+</tr>
+<tr>
+<td>EFI_OUT_OF_RESOURCES</td>
+<td>9</td>
+<td>资源已用完</td>
+</tr>
+<tr>
+<td>EFI_VOLUME_CORRUPTED</td>
+<td>10</td>
+<td>在文件系统上检测到一个不稳定因素，而导致运行失败</td>
+</tr>
+<tr>
+<td>EFI_VOLUME_FULL</td>
+<td>11</td>
+<td>文件系统上没有更多空间</td>
+</tr>
+<tr>
+<td>EFI_NO_MEDIA</td>
+<td>12</td>
+<td>该设备不包含任何介质来执行操作</td>
+</tr>
+<tr>
+<td>EFI_MEDIA_CHANGED</td>
+<td>13</td>
+<td>自上次访问以来，设备中的介质已更改</td>
+</tr>
+<tr>
+<td>EFI_NOT_FOUND</td>
+<td>14</td>
+<td>未找到该Item项目</td>
+</tr>
+<tr>
+<td>EFI_ACCESS_DENIED</td>
+<td>15</td>
+<td>拒绝访问</td>
+</tr>
+<tr>
+<td>EFI_NO_RESPONSE</td>
+<td>16</td>
+<td>未找到服务器或未响应请求</td>
+</tr>
+<tr>
+<td>EFI_NO_MAPPING</td>
+<td>17</td>
+<td>到设备的映射不存在</td>
+</tr>
+<tr>
+<td>EFI_TIMEOUT</td>
+<td>18</td>
+<td>超时</td>
+</tr>
+<tr>
+<td>EFI_NOT_STARTED</td>
+<td>19</td>
+<td>Protocol尚未启动</td>
+</tr>
+<tr>
+<td>EFI_ALREADY_STARTED</td>
+<td>20</td>
+<td>Protocol已经启动</td>
+</tr>
+<tr>
+<td>EFI_ABORTED</td>
+<td>21</td>
+<td>操作被终止</td>
+</tr>
+<tr>
+<td>EFI_ICMP_ERROR</td>
+<td>22</td>
+<td>网络操作期间发生ICMP错误</td>
+</tr>
+<tr>
+<td>EFI_TFTP_ERROR</td>
+<td>23</td>
+<td>网络操作期间发生TFTP错误</td>
+</tr>
+<tr>
+<td>EFI_PROTOCOL_ERROR</td>
+<td>24</td>
+<td>网络操作期间发生Protocol错误</td>
+</tr>
+<tr>
+<td>EFI_INCOMPATIBLE_VERSION</td>
+<td>25</td>
+<td>The function encountered an internal version that was incompatible with a version requested by the caller</td>
+</tr>
+<tr>
+<td>EFI_SECURITY_VIOLATION</td>
+<td>26</td>
+<td>由于安全违规，该功能未执行</td>
+</tr>
+<tr>
+<td>EFI_CRC_ERROR</td>
+<td>27</td>
+<td>检测到CRC错误</td>
+</tr>
+<tr>
+<td>EFI_END_OF_MEDIA</td>
+<td>28</td>
+<td>已到达媒体的开头或结尾</td>
+</tr>
+<tr>
+<td>EFI_END_OF_FILE</td>
+<td>31</td>
+<td>已到达文件末尾</td>
+</tr>
+<tr>
+<td>EFI_INVALID_LANGUAGE</td>
+<td>32</td>
+<td>指定的语言无效</td>
+</tr>
+<tr>
+<td>EFI_COMPROMISED_DATA</td>
+<td>33</td>
+<td>数据的安全状态未知或受损，必须更新数据或替换数据以恢复有效的安全状态</td>
+</tr>
+<tr>
+<td>EFI_IP_ADDRESS_CONFLICT</td>
+<td>34</td>
+<td>There is an address conflict address allocation</td>
+</tr>
+<tr>
+<td>EFI_HTTP_ERROR</td>
+<td>35</td>
+<td>网络操作期间发生 HTTP 错误</td>
+</tr>
+</tbody></table>
+<h2 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h2><p>高位清除，无符号，没有负数的情况。</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EFI_WARN_UNKNOWN_GLYPH</td>
+<td>1</td>
+<td>该字符串包含了设备的一个或多个字符无法渲染并被跳过</td>
+</tr>
+<tr>
+<td>EFI_WARN_DELETE_FAILURE</td>
+<td>2</td>
+<td>Handle已关闭，但文件尚未删除</td>
+</tr>
+<tr>
+<td>EFI_WARN_WRITE_FAILURE</td>
+<td>3</td>
+<td>The handle was closed, but the data to the file was not flushed properly</td>
+</tr>
+<tr>
+<td>EFI_WARN_BUFFER_TOO_SMALL</td>
+<td>4</td>
+<td>存放结果的缓冲区太小，且数据被截断为缓冲区大小</td>
+</tr>
+<tr>
+<td>EFI_WARN_STALE_DATA</td>
+<td>5</td>
+<td>The data has not been updated within the timeframe set by local policy for this type of data</td>
+</tr>
+<tr>
+<td>EFI_WARN_FILE_SYSTEM</td>
+<td>6</td>
+<td>生成的缓冲区包含UEFI-compliant的文件系统</td>
+</tr>
+<tr>
+<td>EFI_WARN_RESET_REQUIRED</td>
+<td>7</td>
+<td>该操作将在系统重置后被处理</td>
+</tr>
+</tbody></table>
+<h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p>EDKII官方文档：<a href="https://uefi.org/sites/default/files/resources/UEFI_Spec_2_9_2021_03_18.pdf" >点此下载</a></p>
+]]></content>
+      <tags>
+        <tag>UEFI</tag>
+        <tag>EDKII</tag>
+        <tag>Bilibili</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一个Minecratf服务器自动配置脚本</title>
     <url>/2022/02/17/%E4%B8%80%E4%B8%AAMinecratf%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/</url>
     <content><![CDATA[<p>Welcome To my Pages!</p>
@@ -49,10 +319,10 @@
 <h2 id="2-原始代码仓库-Raw"><a href="#2-原始代码仓库-Raw" class="headerlink" title="2.原始代码仓库[Raw]"></a>2.原始代码仓库[Raw]</h2><p><strong>Https &#x3D;&gt; <a href="https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh">https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh</a></strong></p>
 ]]></content>
       <tags>
+        <tag>Bilibili</tag>
         <tag>Minecraft</tag>
         <tag>Linux</tag>
         <tag>脚本</tag>
-        <tag>Bilibili</tag>
         <tag>工具</tag>
       </tags>
   </entry>
@@ -122,8 +392,8 @@
 <h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p><strong>Busybox即FileSystem仓库 &#x3D;&#x3D;&gt; <a href="https://gitee.com/canyan233/qemu-ctrl-ready-repo">https://gitee.com/canyan233/qemu-ctrl-ready-repo</a></strong></p>
 ]]></content>
       <tags>
-        <tag>Linux</tag>
         <tag>Bilibili</tag>
+        <tag>Linux</tag>
         <tag>网站</tag>
         <tag>电视盒子</tag>
         <tag>资源</tag>
