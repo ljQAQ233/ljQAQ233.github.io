@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/28/EFI%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-EFI-Data-Types/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/20/UEFI%E5%9F%BA%E6%9C%AC%E5%AE%8F%E5%AE%9A%E4%B9%89-UEFI-Basic-Macros/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,120 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/28/EFI%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-EFI-Data-Types/" class="post-title-link" itemprop="url">EFI数据类型[EFI Data Types]</a>
+            <a href="/2022/08/20/UEFI%E5%9F%BA%E6%9C%AC%E5%AE%8F%E5%AE%9A%E4%B9%89-UEFI-Basic-Macros/" class="post-title-link" itemprop="url">UEFI基本宏定义-UEFI-Basic-Macros</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-08-20 22:16:13 / 修改时间：22:59:12" itemprop="dateCreated datePublished" datetime="2022-08-20T22:16:13+08:00">2022-08-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="说明性-人看的"><a href="#说明性-人看的" class="headerlink" title="说明性(人看的)"></a>说明性(人看的)</h1><p>为提高代码<strong>可读性</strong>等原因,需要有一些<strong>不加注释的注释</strong>……</p>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>描述</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OUT</td>
+<td>从函数返回的不限于执行状态(EFI_STATUS等)的值,可用于参数声明时</td>
+<td>空宏</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>向函数传的参数,主要强调进</td>
+<td>空宏</td>
+</tr>
+<tr>
+<td>OPTIONAL</td>
+<td>传入参数可选,如果标注此项,意味着在不需要传参时,可传入NULL填补</td>
+<td>空宏</td>
+</tr>
+</tbody></table>
+<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><p>比如声明常量或静态的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* File : MdePkg/Include/Base.h */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// 声明只读的类型</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONST     const</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// 声明静态</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATIC    static</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="有实值"><a href="#有实值" class="headerlink" title="有实值"></a>有实值</h1><h2 id="直接定义"><a href="#直接定义" class="headerlink" title="直接定义"></a>直接定义</h2><h3 id="NULL-amp-CHAR-NULL"><a href="#NULL-amp-CHAR-NULL" class="headerlink" title="NULL &amp; CHAR_NULL"></a>NULL &amp; CHAR_NULL</h3><p>C语言风格的定义,经典得很.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* File : MdePkg/Include/Base.h */</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// 指向 0 的VOID指针</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NULL                    ((VOID *) 0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// 其实就是&#x27;\0&#x27;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CHAR_NULL      0x0000</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><p>定义在 : <strong>MdePkg&#x2F;Include&#x2F;Base.h</strong></p>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>定义</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TRUE</td>
+<td>((BOOLEAN)(1&#x3D;&#x3D;1))</td>
+<td>布尔真,UEFI标准中定义它的值为1,但这种形式更加可靠</td>
+</tr>
+<tr>
+<td>FALSE</td>
+<td>((BOOLEAN)(0&#x3D;&#x3D;1))</td>
+<td>布尔假,UEFI标准中定义它的值为0,但这种形式更加可靠</td>
+</tr>
+</tbody></table>
+<h2 id="运算功能型"><a href="#运算功能型" class="headerlink" title="运算功能型"></a>运算功能型</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/28/UEFI%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-UEFI-Data-Types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maouai233">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maouai233的Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/28/UEFI%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-UEFI-Data-Types/" class="post-title-link" itemprop="url">UEFI数据类型[UEFI Data Types]</a>
         </h2>
 
         <div class="post-meta">
@@ -215,7 +328,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-29 15:34:57" itemprop="dateModified" datetime="2022-03-29T15:34:57+08:00">2022-03-29</time>
+                <time title="修改时间：2022-08-20 22:59:28" itemprop="dateModified" datetime="2022-08-20T22:59:28+08:00">2022-08-20</time>
               </span>
 
           
@@ -229,7 +342,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#97;&#x6f;&#117;&#x61;&#105;&#x32;&#51;&#x33;&#64;&#x6f;&#117;&#116;&#x6c;&#x6f;&#111;&#x6b;&#46;&#x63;&#111;&#x6d;">&#x4d;&#97;&#x6f;&#117;&#x61;&#105;&#x32;&#51;&#x33;&#64;&#x6f;&#117;&#116;&#x6c;&#x6f;&#111;&#x6b;&#46;&#x63;&#111;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#117;&#x61;&#105;&#50;&#x33;&#x33;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#x6d;">&#x4d;&#x61;&#x6f;&#117;&#x61;&#105;&#50;&#x33;&#x33;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
 <h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
 <thead>
 <tr>
@@ -243,35 +356,35 @@
 </tr>
 <tr>
 <td>UINT64</td>
-<td>8字节无符号值</td>
+<td>8字节无符号整型</td>
 </tr>
 <tr>
 <td>INT64</td>
-<td>8字节带符号值</td>
+<td>8字节带符号整型</td>
 </tr>
 <tr>
 <td>UINT32</td>
-<td>4字节无符号值</td>
+<td>4字节无符号整型</td>
 </tr>
 <tr>
 <td>INT32</td>
-<td>4字节带符号值</td>
+<td>4字节带符号整型</td>
 </tr>
 <tr>
 <td>UINT16</td>
-<td>2字节无符号值</td>
+<td>2字节无符号整型</td>
 </tr>
 <tr>
 <td>INT16</td>
-<td>2字节带符号值</td>
+<td>2字节带符号整型</td>
 </tr>
 <tr>
 <td>UINT8</td>
-<td>1字节无符号值</td>
+<td>1字节无符号整型</td>
 </tr>
 <tr>
 <td>INT8</td>
-<td>1字节带符号值</td>
+<td>1字节带符号整型</td>
 </tr>
 <tr>
 <td>CHAR16</td>
@@ -311,19 +424,36 @@
 <td>INT32</td>
 </tr>
 </tbody></table>
+<h1 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h1><table>
+<thead>
+<tr>
+<th>宏</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VOID</td>
+<td>void类型,指针”无敌”</td>
+</tr>
+</tbody></table>
 <h1 id="原类型"><a href="#原类型" class="headerlink" title="原类型"></a>原类型</h1><p> <strong>将以GCC &#x2F; Clang为代表</strong></p>
 <table>
 <thead>
 <tr>
 <th>类型</th>
 <th>原类型 X64 &#x2F; AARCH64</th>
-<th>原类型 Ia32 &#x2F; ARM</th>
+<th>原类型 Ia32 &#x2F; ARM32</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>EFI_STATUS</td>
+<td>RETURN_STATUS</td>
 <td>unsigned long long</td>
 <td>unsigned int</td>
+</tr>
+<tr>
+<td>EFI_STATUS</td>
+<td>RETURN_STATUS</td>
+<td>RETURN_STATUS</td>
 </tr>
 <tr>
 <td>UINTN</td>
@@ -387,6 +517,18 @@
 </tr>
 </tbody></table>
 <p> <strong>对于char，char是unsigned还是signed不确定，根据编译器的不同而不同。</strong></p>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>定义值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VOID</td>
+<td>void</td>
+</tr>
+</tbody></table>
 <h1 id="分条"><a href="#分条" class="headerlink" title="分条"></a>分条</h1><h2 id="EFI-STATUS分条"><a href="#EFI-STATUS分条" class="headerlink" title="EFI_STATUS分条"></a>EFI_STATUS分条</h2><h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* File : MdePkg/Include/Base.h */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> UINTN RETURN_STATUS;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* File : MdePkg/Include/Uefi/UefiBaseType.h */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> RETURN_STATUS             EFI_STATUS;</span><br></pre></td></tr></table></figure>
 
@@ -493,7 +635,7 @@
 <tr>
 <td>EFI_NOT_FOUND</td>
 <td>14</td>
-<td>未找到该Item项目</td>
+<td>未找到该项</td>
 </tr>
 <tr>
 <td>EFI_ACCESS_DENIED</td>
@@ -637,12 +779,17 @@
 </tr>
 </tbody></table>
 <h2 id="BOOLEAN分条"><a href="#BOOLEAN分条" class="headerlink" title="BOOLEAN分条"></a>BOOLEAN分条</h2><h3 id="头文件-1"><a href="#头文件-1" class="headerlink" title="头文件"></a>头文件</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* File : MdePkg/Include/?/ProcessorBind.h */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">char</span>       BOOLEAN;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* File : MdePkg/Include/Base.h */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> TRUE  ((BOOLEAN)(1==1))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FALSE ((BOOLEAN)(0==1))</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><p>布尔类型，1字节字符，值可以是FALSE和TRUE或者表达成0、1，可以用<strong>两种</strong>方式赋值，但不加单引号<br>定义一个BOOLEAN并设置为“真”有两种写法：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 第一种 */</span></span><br><span class="line">BOOLEAN TestBool = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 第二种 */</span></span><br><span class="line">NOOLEAN TestBool = TRUE;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 第一种 */</span></span><br><span class="line">BOOLEAN TestBool = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 第二种 */</span></span><br><span class="line">BOOLEAN TestBool = TRUE;</span><br></pre></td></tr></table></figure>
 <p>与此相反，“假”则是FLASE或者0</p>
 <p>可以直接使用if判断之前定义的值是否为真：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(TestBool) &#123;</span><br><span class="line">  Print(<span class="string">L&quot;TRUE\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!TestBool) &#123;</span><br><span class="line">  print(<span class="string">L&quot;FALSE\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p>EDKII官方文档：<a target="_blank" rel="noopener" href="https://uefi.org/sites/default/files/resources/UEFI_Spec_2_9_2021_03_18.pdf" >点此下载</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(TestBool) &#123;</span><br><span class="line">  Print(<span class="string">L&quot;TRUE\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!TestBool) &#123;</span><br><span class="line">  Print(<span class="string">L&quot;FALSE\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><p>顺便讲一下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* File : MdePkg/Include/Base.h */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CONST     const</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STATIC    static</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p>EDKII v2.9官方文档：<a target="_blank" rel="noopener" href="https://uefi.org/sites/default/files/resources/UEFI_Spec_2_9_2021_03_18.pdf" >点此下载</a></p>
 
       
     </div>
@@ -804,10 +951,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-02-17 10:38:29 / 修改时间：11:24:22" itemprop="dateCreated datePublished" datetime="2022-02-17T10:38:29+08:00">2022-02-17</time>
+              <time title="创建时间：2022-02-17 10:38:29" itemprop="dateCreated datePublished" datetime="2022-02-17T10:38:29+08:00">2022-02-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-20 22:22:54" itemprop="dateModified" datetime="2022-08-20T22:22:54+08:00">2022-08-20</time>
+              </span>
 
           
 
@@ -854,12 +1007,12 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#运行实录</span></span><br><span class="line">Create startup script...done</span><br><span class="line">The startup script has been created <span class="keyword">in</span> *$%@ <span class="comment">#是个变量，我总不可能用我的路径来迷惑你们吧？</span></span><br></pre></td></tr></table></figure>
 <p>回车之后请稍等，最终花费时间将取决于计算机性能……<del>像我计算机这么差的性能都可以28s过……</del><br>最后，看到如下信息就成功了哈</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#运行实录</span></span><br><span class="line">=============Ok=============</span><br></pre></td></tr></table></figure>
-<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="1-1-为什么不可以用”curl-wget-pO-URL-bash”命令执行？"><a href="#1-1-为什么不可以用”curl-wget-pO-URL-bash”命令执行？" class="headerlink" title="1.1 为什么不可以用”curl (wget -pO-) URL|bash”命令执行？"></a>1.1 为什么不可以用”curl (wget -pO-) URL|bash”命令执行？</h2><p><strong>A：不保存为文件，read命令直接被跳过，功能不能实现，无互动的功能.</strong></p>
+<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="1-1-为什么不可以用curl-wget-pO-URL-bash命令执行？"><a href="#1-1-为什么不可以用curl-wget-pO-URL-bash命令执行？" class="headerlink" title="1.1 为什么不可以用curl (wget -pO-) URL|bash命令执行？"></a>1.1 为什么不可以用<code>curl (wget -pO-) URL|bash</code>命令执行？</h2><p><strong>A：不保存为文件，read命令直接被跳过，功能不能实现，无互动的功能.</strong></p>
 <h2 id="1-2-E-无法定位软件包-default-jdk并找不到java命令"><a href="#1-2-E-无法定位软件包-default-jdk并找不到java命令" class="headerlink" title="1.2 E: 无法定位软件包 default-jdk并找不到java命令"></a>1.2 E: 无法定位软件包 default-jdk并找不到java命令</h2><p><strong>A: 手动安装java,这里只说一下OpenJDK安装</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt-cache search openjdk</span><br></pre></td></tr></table></figure>
 <p><strong>将会在输出中找到一下几行</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#差不多的运行结果</span></span><br><span class="line">openjdk-11-jdk - OpenJDK Development Kit (JDK)</span><br><span class="line">openjdk-11-jdk-headless - OpenJDK Development Kit (JDK) (headless)</span><br><span class="line">openjdk-11-jre - OpenJDK Java runtime, using Hotspot JIT</span><br><span class="line">openjdk-11-jre-headless - OpenJDK Java runtime, using Hotspot JIT (headless)</span><br></pre></td></tr></table></figure>
-<p><strong>你也可以在其中找到”openjdk-?-jdk”与”openjdk-?-jre”，并安装它</strong><br>sudo apt install openjdk-11-jre openjdk-11-jdk -y<br><strong>再运行脚本.</strong></p>
+<p><strong>你也可以在其中找到”openjdk-?-jdk”与”openjdk-?-jre”，并安装它</strong><br><code>sudo apt install openjdk-11-jre openjdk-11-jdk -y</code><br><strong>再运行脚本.</strong></p>
 <h1 id="视频演示"><a href="#视频演示" class="headerlink" title="视频演示"></a>视频演示</h1><iframe src="//player.bilibili.com/player.html?aid=759870508&bvid=BV1h64y1q7cH&cid=388857105&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 <h1 id="Git仓库"><a href="#Git仓库" class="headerlink" title="Git仓库"></a>Git仓库</h1><h2 id="项目仓库-Proj"><a href="#项目仓库-Proj" class="headerlink" title="项目仓库[Proj]"></a>项目仓库[Proj]</h2><p><strong>Https &#x3D;&gt; <a target="_blank" rel="noopener" href="https://gitee.com/canyan233/install_minecraft_server">https://gitee.com/canyan233/install_minecraft_server</a></strong></p>
@@ -945,14 +1098,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
