@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言(废话)最近(指这几个月…),在研究UEFI的GraphicsOutputProtocol的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章…… 注意本文章使用标准的、最常用的Bmp图像试验.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用  正文示例图像: (本文bedrock.bmp指此图文件名)   结构概览Overview在安装hexyl的前提下使用hexy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[#1] Bmp文件结构详解">
+<meta property="og:url" content="http://example.com/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Maouai233的Blog">
+<meta property="og:description" content="前言(废话)最近(指这几个月…),在研究UEFI的GraphicsOutputProtocol的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章…… 注意本文章使用标准的、最常用的Bmp图像试验.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用  正文示例图像: (本文bedrock.bmp指此图文件名)   结构概览Overview在安装hexyl的前提下使用hexy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/bedrock.bmp">
+<meta property="og:image" content="http://example.com/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/Hex.png">
+<meta property="article:published_time" content="2022-08-27T08:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-27T08:43:26.473Z">
+<meta property="article:author" content="Maouai233">
+<meta property="article:tag" content="UEFI">
+<meta property="article:tag" content="EDKII">
+<meta property="article:tag" content="Bilibili">
+<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="Bmp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/bedrock.bmp">
+
+<link rel="canonical" href="http://example.com/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>[#1] Bmp文件结构详解 | Maouai233的Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Maouai233的Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maouai233">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maouai233的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [#1] Bmp文件结构详解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-08-27 16:00:00 / 修改时间：16:43:26" itemprop="dateCreated datePublished" datetime="2022-08-27T16:00:00+08:00">2022-08-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>最近(指这几个月…),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章……</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>本文章使用标准的、最常用的Bmp图像试验.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
+<hr>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
+<img src="/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/bedrock.bmp" class="" title="bedrock.bmp">
+
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><h3 id="概览Overview"><a href="#概览Overview" class="headerlink" title="概览Overview"></a>概览Overview</h3><p>在安装<strong>hexyl</strong>的前提下使用<code>hexyl -c 54 bedrock.bmp</code>即可看到我们使用Bmp时不可或缺的数据——Bmp文件头(Bitmap File Header)和位图信息头(Bitmap Info Header) :</p>
+<img src="/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/Hex.png" class="" title="Hex.png">
+
+<p>在看这张表之前,先说明一下哈…我把<strong>像素数据</strong>的区域先抽象成一个以Bmp位图宽度(像素)、Bmp位图高度(像素)为列、行的一个<strong>二维数组</strong>.整型均以<strong>小端存储序</strong>存储.</p>
+<table>
+<thead>
+<tr>
+<th align="center">位置(相对文件开头偏移字节)</th>
+<th align="center">数据类型</th>
+<th align="center">大小(字节)</th>
+<th>作用</th>
+<th>默认值</th>
+<th>名称(可供C语言等参考)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">字符型</td>
+<td align="center">1</td>
+<td><strong>标识</strong>此图为Bmp位图文件</td>
+<td>0x42(ASCII即’B’)</td>
+<td>CharB</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">字符型</td>
+<td align="center">1</td>
+<td><strong>标识</strong>此图为Bmp位图文件</td>
+<td>0x4D(ASCII即’M’)</td>
+<td>CharM</td>
+</tr>
+<tr>
+<td align="center">3 ~ 6</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>Bmp整个<strong>文件的大小</strong>(包括Bmp File Header等)</td>
+<td></td>
+<td>Size</td>
+</tr>
+<tr>
+<td align="center">7 ~ 8</td>
+<td align="center">-</td>
+<td align="center">2</td>
+<td><strong>保留</strong></td>
+<td>视具体情况而定,一般为 0</td>
+<td>Reserved1</td>
+</tr>
+<tr>
+<td align="center">9 ~ 10</td>
+<td align="center">-</td>
+<td align="center">2</td>
+<td><strong>保留</strong></td>
+<td>视具体情况而定,一般为 0</td>
+<td>Reserved2</td>
+</tr>
+<tr>
+<td align="center">11 ~ 14</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>记录<strong>像素数据</strong>相对于整个文件开头的<strong>偏移字节</strong></td>
+<td>视具体情况而定,24bit位图一般为54</td>
+<td>ImageOffset</td>
+</tr>
+<tr>
+<td align="center">15 ~ 18</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>Bitmap Info Header</strong> 大小(字节)</td>
+<td>40</td>
+<td>HeaderSize</td>
+</tr>
+<tr>
+<td align="center">19 ~ 22</td>
+<td align="center">32位整型</td>
+<td align="center">4</td>
+<td>位图<strong>宽</strong>度(像素),但不可为负(正常情况下大多软件不支持包括ffplay)</td>
+<td>正整数值</td>
+<td>Width</td>
+</tr>
+<tr>
+<td align="center">23 ~ 26</td>
+<td align="center">32位整型</td>
+<td align="center">4</td>
+<td>位图<strong>高</strong>度(像素),如果为<strong>负数</strong>,则图像的起始点在<strong>像素数据数组</strong>的第一行,<strong>正数</strong>则<strong>反之</strong></td>
+<td></td>
+<td>Height</td>
+</tr>
+<tr>
+<td align="center">27 ~ 28</td>
+<td align="center">16位无符号整型</td>
+<td align="center">2</td>
+<td>必须是 1,Wiki上写的是<strong>色彩平面数</strong></td>
+<td>1</td>
+<td>Planes</td>
+</tr>
+<tr>
+<td align="center">29 ~ 30</td>
+<td align="center">16位无符号整型</td>
+<td align="center">2</td>
+<td>像素所占位数,也就是图像<strong>位深</strong>、<strong>色深</strong>,值可能为1、4、8、24、32.如32bit用4字节存储一个像素</td>
+<td></td>
+<td>ImageBits</td>
+</tr>
+<tr>
+<td align="center">31 ~ 34</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>压缩方式(<strong>本文</strong>不展开叙述)</td>
+<td>0</td>
+<td>CompressionType</td>
+</tr>
+<tr>
+<td align="center">35 ~ 38</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>ImageSize</td>
+<td>见下</td>
+<td>ImageSize</td>
+</tr>
+<tr>
+<td align="center">39 ~ 42</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>横</strong>向分辨率(像素&#x2F;米)</td>
+<td></td>
+<td>HorizontalResolution</td>
+</tr>
+<tr>
+<td align="center">43 ~ 46</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>竖</strong>向分辨率(像素&#x2F;米)</td>
+<td></td>
+<td>VerticalResolution</td>
+</tr>
+<tr>
+<td align="center">47 ~ 50</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>调色板颜色数</strong>,等于”2^位深”,即<strong>2的位深值的次方个</strong>, <strong>24</strong>Bit以上由于直接存储BGR(或BGRA)值,调色板个数为<strong>0</strong></td>
+<td>$2^{位深}$</td>
+<td>PaletteColorsNum</td>
+</tr>
+<tr>
+<td align="center">51 ~ 54</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>重要颜色数,为0则是全部颜色都很重要</td>
+<td>0</td>
+<td>ImportantColorsNum</td>
+</tr>
+</tbody></table>
+<h3 id="偏移ImageOffset"><a href="#偏移ImageOffset" class="headerlink" title="偏移ImageOffset"></a>偏移ImageOffset</h3><p>Bmp像素数据起始位置相对于文件起始处的偏移.一般的:</p>
+<p>$ImageOffset&#x3D;54+4\times PaletteColorsNum$</p>
+<p>假若bedrodk.bmp在内存中文件起始位置为<strong>BmpRaw</strong>,则像素数据起始位置为<strong>PixelStart &#x3D; BmpRaw + ImageOffset</strong></p>
+<h3 id="位深ImageBits"><a href="#位深ImageBits" class="headerlink" title="位深ImageBits"></a>位深ImageBits</h3><p>Bmp位深多少,即用多少各Bit存储一个像素.</p>
+<p>如1Bit使用0.125个字节存储一个像素,其余的按四字节对齐(不足的按四字节算).</p>
+<p>在一定范围内,位深越大,带给人的感受越真实.</p>
+<p>32Bit的Bmp位图,使用<strong>BGRA</strong>即[Blue,Green,Red,Alpha]进行对像素的存储,比24Bit位图的<strong>BGR</strong>多了一条Alpha通道.</p>
+<h3 id="调色板BmpColorMap"><a href="#调色板BmpColorMap" class="headerlink" title="调色板BmpColorMap"></a>调色板BmpColorMap</h3><p>每个调色板占用4个字节,存储格式为<strong>BGRR</strong>,即[Bule,Green,Red,Reserved],每个值都是<strong>8Bit无符号整型(即unsigned char)</strong>.下面C&#x2F;C++的定义应该更加直观.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">BMP_COLOR_MAP</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  UINT8   Blue;</span><br><span class="line">  UINT8   Green;</span><br><span class="line">  UINT8   Red;</span><br><span class="line">  UINT8   Reserved;</span><br><span class="line">&#125; BMP_COLOR_MAP;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>相当于一个<strong>索引</strong>,打个比方:</p>
+<p>在一张8Bit的Bmp位图中,使用8个Bit即1字节存储一个像素.那么一个像素需要一个字节存储,则一个字节可存储0 ~ 255的无符号整型数据.如果有一个字节存储的值是255,则对应的第255个调色板BGRR值为 [0xFF 0xFF 0xFF 0x00].</p>
+<p>一般情况下，需要”翻译”成24Bit或32Bit.具体见下文.</p>
+<p>一张24Bit或32Bit的Bmp位图不存在调色板,因为它们直接存储像素的具体BGR或BGRA值,则$PaletteColorsNum &#x3D; 0$</p>
+<h3 id="文件大小Size"><a href="#文件大小Size" class="headerlink" title="文件大小Size"></a>文件大小Size</h3><p>$Size &#x3D; 54 + ImageSize + PaletteColorsNum \times 4$</p>
+<p>其中,4指的是每个调色板占用的字节数,54指的是Bmp文件头和位图头的总大小.</p>
+<h3 id="调色板个数PaletteColorsNum"><a href="#调色板个数PaletteColorsNum" class="headerlink" title="调色板个数PaletteColorsNum"></a>调色板个数PaletteColorsNum</h3><p>在ImageBits不为24或32的情况下(具体见上文-调色板BmpColorMap):</p>
+<p>$PaletteColorsNum &#x3D; 2^{ImageBits}$</p>
+<p>为24或32时:</p>
+<p>$PaletteColorsNum &#x3D; 0$</p>
+<h3 id="对齐后像素数据大小ImageSize"><a href="#对齐后像素数据大小ImageSize" class="headerlink" title="对齐后像素数据大小ImageSize"></a>对齐后像素数据大小ImageSize</h3><p>用数学公式说有点迷糊(我也还没学MOD)</p>
+<p>要对齐时:</p>
+<p>$RowSize&#x3D;\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)  $</p>
+<p>不用对齐时:</p>
+<p>$RowSize &#x3D; \frac {Width\times ImageBits} {8}$</p>
+<p>对于所有情况,都有:</p>
+<p>$ImageSize&#x3D;Height\times RowSize$</p>
+<hr>
+<p><em>RowSize</em>即储存一行的像素数据所需要的字节数.</p>
+<p>ImageSIze代表一张Bmp图像储存像素区域所占的字节数.</p>
+<hr>
+<p>要对齐时的情况推导:</p>
+<p>Bmp图像在储存数据时,记录范围内的每个像素(或调色板信息),会进行四字节对齐(不满四字节按四字节算).</p>
+<p>则储存一行时不对齐情况下的字节数是:$\frac {ImageBits} 8\times Width$</p>
+<p>不考虑多出字节进行4字节对齐时,多出字节数为:$(\frac {ImageBits} 8\times Width) \mod 4$</p>
+<p>则考虑多出字节进行4字节对齐时,需补齐字节数为:$4-[(\frac {ImageBits} 8\times Width) \mod 4]$</p>
+<p>则一行占用:$RowSize&#x3D;\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)  $</p>
+<p>再回去想想就行了…(指去上文QwQ)</p>
+<h3 id="宽度Width-amp-高度Height"><a href="#宽度Width-amp-高度Height" class="headerlink" title="宽度Width &amp; 高度Height"></a>宽度Width &amp; 高度Height</h3><p>Width不可为负数.</p>
+<p>Height可为负数.影响见下文.</p>
+<h2 id="像素存储"><a href="#像素存储" class="headerlink" title="像素存储"></a>像素存储</h2><p>正常情况下,Bmp会形成一个$Width \times Height$大小的数组,这里称BmpRaw,存在对齐情况,实际描述为二维数组,但在存储或读取时大多使用线型.</p>
+<p>Height为正数时,实际平面内最左上角的数据起始位置在BmpRaw的最后行的第一列,即BmpRaw[(Height - 1)*Width + 1],为负数则在BmpRaw的第一行的第一列,即BmpRaw[0].</p>
+<h2 id="读取-amp-使用方案梗概"><a href="#读取-amp-使用方案梗概" class="headerlink" title="读取&amp;使用方案梗概"></a>读取&amp;使用方案梗概</h2><h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><p>可以把BmpFileHeader和BmpInfoHeader合并为一体,称<strong>BMP_IMAGE_HEADER</strong>,C&#x2F;C++可用结构体,较为方便.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack(1)</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  UINT8   Blue;</span><br><span class="line">  UINT8   Green;</span><br><span class="line">  UINT8   Red;</span><br><span class="line">  UINT8   Reserved;</span><br><span class="line">&#125; BMP_COLOR_MAP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">CHAR8	CharB;                                 <span class="comment">// BMP的标识符,必须为&#x27;B&#x27;</span></span><br><span class="line">CHAR8   CharM;                                 <span class="comment">// BMP的标识符,必须为&#x27;M&#x27;</span></span><br><span class="line">UINT32  Size;                                      <span class="comment">// BMP文件大小,Bety</span></span><br><span class="line">UINT16  Reserved1;                         <span class="comment">// 保留</span></span><br><span class="line">UINT16  Reserved2;                         <span class="comment">// 保留</span></span><br><span class="line">UINT32  ImageOffset;                     <span class="comment">// BMP图像像素起始位置相对于头部的偏移</span></span><br><span class="line">UINT32  HeaderSize;                       <span class="comment">// 此Bmp Info Header大小,40 B</span></span><br><span class="line">INT32     Width;                                   <span class="comment">// BMP图像宽</span></span><br><span class="line">INT32     Height;                                 <span class="comment">// BMP图像高</span></span><br><span class="line">UINT16  Planes;                                 <span class="comment">// 为 1</span></span><br><span class="line">UINT16  ImageBits;                          <span class="comment">// BMP图像位深</span></span><br><span class="line">UINT32  CompressionType;         <span class="comment">// 压缩方式</span></span><br><span class="line">UINT32  ImageSize;                         <span class="comment">// 图像对齐时像素数据大小</span></span><br><span class="line">UINT32  HorizontalResolution;  <span class="comment">// 横向分辨率</span></span><br><span class="line">UINT32   VerticalResolution;        <span class="comment">// 纵向分辨率</span></span><br><span class="line">UINT32   PaletteColorsNum;        <span class="comment">// 调色板颜色数</span></span><br><span class="line">UINT32   ImportantColorsNum;  <span class="comment">// 重要颜色数</span></span><br><span class="line">&#125; BMP_IMAGE_HEADER;</span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack()</span></span><br></pre></td></tr></table></figure>
+
+<p>可以通过两种方式读取:</p>
+<ol>
+<li><p>根据占用大小,依次读取数据放入结构体中.</p>
+</li>
+<li><p>直接读取进入结构体,这就是为什么加入预处理指令<code>#pragma pack(1)</code>和<code>#pragma pack()</code>使结构体不进行字节对齐.</p>
+</li>
+</ol>
+<h3 id="“翻译”"><a href="#“翻译”" class="headerlink" title="“翻译”"></a>“翻译”</h3><p>一般情况下,24Bit的像素数据或类似24Bit像素数据会比较通用.比如UEFI下Blt函数传输(EfiBufferToVideo,从缓冲区到屏幕)的BltBuffer,使用<strong>BGRR</strong>即[Blue,Green,Red,Reserved]的格式,32、24Bit以外的都不是直接存储像素RGB值,使用调色板翻译就是一件必不可少的工作.</p>
+<p>数据?拉来吧你!</p>
+<h1 id="资源附"><a href="#资源附" class="headerlink" title="资源附"></a>资源附</h1><p>16位深的转换等我写完才去研究…咕咕咕咕咕咕咕咕咕咕</p>
+<p>Bmp位图检查程序BmpChecker及源代码:        <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333">https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333</a> <br>Bmp位图位深转换工具(1,4,8 to 24)即源代码:</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/UEFI/" rel="tag"># UEFI</a>
+              <a href="/tags/EDKII/" rel="tag"># EDKII</a>
+              <a href="/tags/Bilibili/" rel="tag"># Bilibili</a>
+              <a href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag"># C语言</a>
+              <a href="/tags/Bmp/" rel="tag"># Bmp</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/20/UEFI%E5%9F%BA%E6%9C%AC%E5%AE%8F%E5%AE%9A%E4%B9%89-UEFI-Basic-Macros/" rel="prev" title="UEFI基本宏定义-UEFI-Basic-Macros">
+      <i class="fa fa-chevron-left"></i> UEFI基本宏定义-UEFI-Basic-Macros
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80-%E5%BA%9F%E8%AF%9D"><span class="nav-number">1.</span> <span class="nav-text">前言(废话)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">2.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-number">3.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%A7%88Overview"><span class="nav-number">3.1.1.</span> <span class="nav-text">概览Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E7%A7%BBImageOffset"><span class="nav-number">3.1.2.</span> <span class="nav-text">偏移ImageOffset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E6%B7%B1ImageBits"><span class="nav-number">3.1.3.</span> <span class="nav-text">位深ImageBits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%89%B2%E6%9D%BFBmpColorMap"><span class="nav-number">3.1.4.</span> <span class="nav-text">调色板BmpColorMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8FSize"><span class="nav-number">3.1.5.</span> <span class="nav-text">文件大小Size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%89%B2%E6%9D%BF%E4%B8%AA%E6%95%B0PaletteColorsNum"><span class="nav-number">3.1.6.</span> <span class="nav-text">调色板个数PaletteColorsNum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E9%BD%90%E5%90%8E%E5%83%8F%E7%B4%A0%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8FImageSize"><span class="nav-number">3.1.7.</span> <span class="nav-text">对齐后像素数据大小ImageSize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%BD%E5%BA%A6Width-amp-%E9%AB%98%E5%BA%A6Height"><span class="nav-number">3.1.8.</span> <span class="nav-text">宽度Width &amp; 高度Height</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%83%8F%E7%B4%A0%E5%AD%98%E5%82%A8"><span class="nav-number">3.2.</span> <span class="nav-text">像素存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96-amp-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%A1%88%E6%A2%97%E6%A6%82"><span class="nav-number">3.3.</span> <span class="nav-text">读取&amp;使用方案梗概</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96"><span class="nav-number">3.3.1.</span> <span class="nav-text">读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9C%E7%BF%BB%E8%AF%91%E2%80%9D"><span class="nav-number">3.3.2.</span> <span class="nav-text">“翻译”</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E9%99%84"><span class="nav-number">4.</span> <span class="nav-text">资源附</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Maouai233</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maouai233</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

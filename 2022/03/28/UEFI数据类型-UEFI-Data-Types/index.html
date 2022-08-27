@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言还未更新完欢迎更正：Bilibili : Maouai233Mail : &amp;#x4d;&amp;#x61;&amp;#x6f;&amp;#117;&amp;#x61;&amp;#105;&amp;#50;&amp;#x33;&amp;#x33;&amp;#64;&amp;#111;&amp;#x75;&amp;#x74;&amp;#108;&amp;#111;&amp;#111;&amp;#107;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII">
+  <meta name="description" content="前言还未更新完欢迎更正：Bilibili : Maouai233Mail : &amp;#x4d;&amp;#x61;&amp;#x6f;&amp;#x75;&amp;#x61;&amp;#105;&amp;#x32;&amp;#x33;&amp;#51;&amp;#x40;&amp;#x6f;&amp;#117;&amp;#116;&amp;#108;&amp;#x6f;&amp;#x6f;&amp;#107;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UEFI数据类型[UEFI Data Types]">
 <meta property="og:url" content="http://example.com/2022/03/28/UEFI%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-UEFI-Data-Types/index.html">
 <meta property="og:site_name" content="Maouai233的Blog">
-<meta property="og:description" content="前言还未更新完欢迎更正：Bilibili : Maouai233Mail : &amp;#x4d;&amp;#x61;&amp;#x6f;&amp;#117;&amp;#x61;&amp;#105;&amp;#50;&amp;#x33;&amp;#x33;&amp;#64;&amp;#111;&amp;#x75;&amp;#x74;&amp;#108;&amp;#111;&amp;#111;&amp;#107;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII">
+<meta property="og:description" content="前言还未更新完欢迎更正：Bilibili : Maouai233Mail : &amp;#x4d;&amp;#x61;&amp;#x6f;&amp;#x75;&amp;#x61;&amp;#105;&amp;#x32;&amp;#x33;&amp;#51;&amp;#x40;&amp;#x6f;&amp;#117;&amp;#116;&amp;#108;&amp;#x6f;&amp;#x6f;&amp;#107;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKI">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-28T07:01:17.000Z">
-<meta property="article:modified_time" content="2022-08-20T14:59:28.882Z">
+<meta property="article:modified_time" content="2022-08-21T06:19:05.434Z">
 <meta property="article:author" content="Maouai233">
 <meta property="article:tag" content="UEFI">
 <meta property="article:tag" content="EDKII">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-20 22:59:28" itemprop="dateModified" datetime="2022-08-20T22:59:28+08:00">2022-08-20</time>
+                <time title="修改时间：2022-08-21 14:19:05" itemprop="dateModified" datetime="2022-08-21T14:19:05+08:00">2022-08-21</time>
               </span>
 
           
@@ -237,7 +237,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#117;&#x61;&#105;&#50;&#x33;&#x33;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#x6d;">&#x4d;&#x61;&#x6f;&#117;&#x61;&#105;&#50;&#x33;&#x33;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#x6f;&#117;&#116;&#108;&#x6f;&#x6f;&#107;&#46;&#99;&#x6f;&#x6d;">&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#x6f;&#117;&#116;&#108;&#x6f;&#x6f;&#107;&#46;&#99;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
 <h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
 <thead>
 <tr>
@@ -454,7 +454,12 @@
 <td>成功完成操作</td>
 </tr>
 </tbody></table>
-<h4 id="失败"><a href="#失败" class="headerlink" title="失败"></a>失败</h4><table>
+<h4 id="失败"><a href="#失败" class="headerlink" title="失败"></a>失败</h4><p>不同架构机器下,失败的值可能不同.</p>
+<p>这里先将状态码定义成<strong>RETURN等</strong>后在UefiBaseType.h中将<strong>EFI等*定义到对应的</strong>RETURN**上.</p>
+<h5 id="辅助宏"><a href="#辅助宏" class="headerlink" title="辅助宏"></a>辅助宏</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* File : MdePkg/Incude/Base.h */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENCODE_WARNING(StatusCode)       ((RETURN_STATUS)(StatusCode))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENCODE_ERROR(StatusCode)         ((RETURN_STATUS)(MAX_BIT | (StatusCode)))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* File : MdePkg/Include/Uefi/UefiBaseType.h */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EFI_SUCCESS               RETURN_SUCCESS              </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EFI_LOAD_ERROR            RETURN_LOAD_ERROR</span></span><br><span class="line"><span class="comment">/* ...... */</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="值-amp-描述"><a href="#值-amp-描述" class="headerlink" title="值&amp;描述"></a>值&amp;描述</h5><p>具体见<strong>MdePkg&#x2F;Include&#x2F;Base.h</strong> &amp; <strong>MdePkg&#x2F;Include&#x2F;Uefi&#x2F;UefiBaseType.h</strong></p>
+<table>
 <thead>
 <tr>
 <th>类</th>
@@ -464,171 +469,171 @@
 </thead>
 <tbody><tr>
 <td>EFI_LOAD_ERROR</td>
-<td>1</td>
+<td>ENCODE_ERROR(1)</td>
 <td>加载镜像Image失败</td>
 </tr>
 <tr>
 <td>EFI_INVALID_PARAMETER</td>
-<td>2</td>
+<td>ENCODE_ERROR(2)</td>
 <td>参数不正确</td>
 </tr>
 <tr>
 <td>EFI_UNSUPPORTED</td>
-<td>3</td>
+<td>ENCODE_ERROR(3)</td>
 <td>该操作不支持</td>
 </tr>
 <tr>
 <td>EFI_BAD_BUFFER_SIZE</td>
-<td>4</td>
+<td>ENCODE_ERROR(4)</td>
 <td>缓冲区Buffer的大小不适用于请求</td>
 </tr>
 <tr>
 <td>EFI_BUFFER_TOO_SMALL</td>
-<td>5</td>
+<td>ENCODE_ERROR(5)</td>
 <td>缓冲区不够大，无法容纳请求的数据</td>
 </tr>
 <tr>
 <td>EFI_NOT_READY</td>
-<td>6</td>
+<td>ENCODE_ERROR(6)</td>
 <td>There is no data pending upon return</td>
 </tr>
 <tr>
 <td>EFI_DEVICE_ERROR</td>
-<td>7</td>
+<td>ENCODE_ERROR(7)</td>
 <td>物理设备在尝试操作时报告错</td>
 </tr>
 <tr>
 <td>EFI_WRITE_PROTECTED</td>
-<td>8</td>
+<td>ENCODE_ERROR(8)</td>
 <td>无法写入设备</td>
 </tr>
 <tr>
 <td>EFI_OUT_OF_RESOURCES</td>
-<td>9</td>
+<td>ENCODE_ERROR(9)</td>
 <td>资源已用完</td>
 </tr>
 <tr>
 <td>EFI_VOLUME_CORRUPTED</td>
-<td>10</td>
+<td>ENCODE_ERROR(10)</td>
 <td>在文件系统上检测到一个不稳定因素，而导致运行失败</td>
 </tr>
 <tr>
 <td>EFI_VOLUME_FULL</td>
-<td>11</td>
+<td>ENCODE_ERROR(11)</td>
 <td>文件系统上没有更多空间</td>
 </tr>
 <tr>
 <td>EFI_NO_MEDIA</td>
-<td>12</td>
+<td>ENCODE_ERROR(12)</td>
 <td>该设备不包含任何介质来执行操作</td>
 </tr>
 <tr>
 <td>EFI_MEDIA_CHANGED</td>
-<td>13</td>
+<td>ENCODE_ERROR(13)</td>
 <td>自上次访问以来，设备中的介质已更改</td>
 </tr>
 <tr>
 <td>EFI_NOT_FOUND</td>
-<td>14</td>
+<td>ENCODE_ERROR(14)</td>
 <td>未找到该项</td>
 </tr>
 <tr>
 <td>EFI_ACCESS_DENIED</td>
-<td>15</td>
+<td>ENCODE_ERROR(15)</td>
 <td>拒绝访问</td>
 </tr>
 <tr>
 <td>EFI_NO_RESPONSE</td>
-<td>16</td>
+<td>ENCODE_ERROR(16)</td>
 <td>未找到服务器或未响应请求</td>
 </tr>
 <tr>
 <td>EFI_NO_MAPPING</td>
-<td>17</td>
+<td>ENCODE_ERROR(17)</td>
 <td>到设备的映射不存在</td>
 </tr>
 <tr>
 <td>EFI_TIMEOUT</td>
-<td>18</td>
+<td>ENCODE_ERROR(18)</td>
 <td>超时</td>
 </tr>
 <tr>
 <td>EFI_NOT_STARTED</td>
-<td>19</td>
+<td>ENCODE_ERROR(19)</td>
 <td>Protocol尚未启动</td>
 </tr>
 <tr>
 <td>EFI_ALREADY_STARTED</td>
-<td>20</td>
+<td>ENCODE_ERROR(20)</td>
 <td>Protocol已经启动</td>
 </tr>
 <tr>
 <td>EFI_ABORTED</td>
-<td>21</td>
+<td>ENCODE_ERROR(21)</td>
 <td>操作被终止</td>
 </tr>
 <tr>
 <td>EFI_ICMP_ERROR</td>
-<td>22</td>
+<td>ENCODE_ERROR(22)</td>
 <td>网络操作期间发生ICMP错误</td>
 </tr>
 <tr>
 <td>EFI_TFTP_ERROR</td>
-<td>23</td>
+<td>ENCODE_ERROR(23)</td>
 <td>网络操作期间发生TFTP错误</td>
 </tr>
 <tr>
 <td>EFI_PROTOCOL_ERROR</td>
-<td>24</td>
+<td>ENCODE_ERROR(24)</td>
 <td>网络操作期间发生Protocol错误</td>
 </tr>
 <tr>
 <td>EFI_INCOMPATIBLE_VERSION</td>
-<td>25</td>
+<td>ENCODE_ERROR(25)</td>
 <td>The function encountered an internal version that was incompatible with a version requested by the caller</td>
 </tr>
 <tr>
 <td>EFI_SECURITY_VIOLATION</td>
-<td>26</td>
+<td>ENCODE_ERROR(26)</td>
 <td>由于安全违规，该功能未执行</td>
 </tr>
 <tr>
 <td>EFI_CRC_ERROR</td>
-<td>27</td>
+<td>ENCODE_ERROR(27)</td>
 <td>检测到CRC错误</td>
 </tr>
 <tr>
 <td>EFI_END_OF_MEDIA</td>
-<td>28</td>
-<td>已到达媒体的开头或结尾</td>
+<td>ENCODE_ERROR(28)</td>
+<td>已到达媒体介质的开头或结尾</td>
 </tr>
 <tr>
 <td>EFI_END_OF_FILE</td>
-<td>31</td>
+<td>ENCODE_ERROR(31)</td>
 <td>已到达文件末尾</td>
 </tr>
 <tr>
 <td>EFI_INVALID_LANGUAGE</td>
-<td>32</td>
+<td>ENCODE_ERROR(32)</td>
 <td>指定的语言无效</td>
 </tr>
 <tr>
 <td>EFI_COMPROMISED_DATA</td>
-<td>33</td>
+<td>ENCODE_ERROR(33)</td>
 <td>数据的安全状态未知或受损，必须更新数据或替换数据以恢复有效的安全状态</td>
 </tr>
 <tr>
 <td>EFI_IP_ADDRESS_CONFLICT</td>
-<td>34</td>
+<td>ENCODE_ERROR(34)</td>
 <td>There is an address conflict address allocation</td>
 </tr>
 <tr>
 <td>EFI_HTTP_ERROR</td>
-<td>35</td>
+<td>ENCODE_ERROR(35)</td>
 <td>网络操作期间发生 HTTP 错误</td>
 </tr>
 </tbody></table>
-<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>高位清除，无符号，没有负数的情况。</p>
+<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>高位清除，无符号，”没有”负数的情况。</p>
 <table>
 <thead>
 <tr>
@@ -639,37 +644,37 @@
 </thead>
 <tbody><tr>
 <td>EFI_WARN_UNKNOWN_GLYPH</td>
-<td>1</td>
+<td>ENCODE_WARNING(1)</td>
 <td>该字符串包含了设备的一个或多个字符无法渲染并被跳过</td>
 </tr>
 <tr>
 <td>EFI_WARN_DELETE_FAILURE</td>
-<td>2</td>
+<td>ENCODE_WARNING(2)</td>
 <td>Handle已关闭，但文件尚未删除</td>
 </tr>
 <tr>
 <td>EFI_WARN_WRITE_FAILURE</td>
-<td>3</td>
+<td>ENCODE_WARNING(3)</td>
 <td>The handle was closed, but the data to the file was not flushed properly</td>
 </tr>
 <tr>
 <td>EFI_WARN_BUFFER_TOO_SMALL</td>
-<td>4</td>
+<td>ENCODE_WARNING(4)</td>
 <td>存放结果的缓冲区太小，且数据被截断为缓冲区大小</td>
 </tr>
 <tr>
 <td>EFI_WARN_STALE_DATA</td>
-<td>5</td>
+<td>ENCODE_WARNING(5)</td>
 <td>The data has not been updated within the timeframe set by local policy for this type of data</td>
 </tr>
 <tr>
 <td>EFI_WARN_FILE_SYSTEM</td>
-<td>6</td>
+<td>ENCODE_WARNING(6)</td>
 <td>生成的缓冲区包含UEFI-compliant的文件系统</td>
 </tr>
 <tr>
 <td>EFI_WARN_RESET_REQUIRED</td>
-<td>7</td>
+<td>ENCODE_WARNING(7)</td>
 <td>该操作将在系统重置后被处理</td>
 </tr>
 </tbody></table>
@@ -771,7 +776,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81"><span class="nav-number">2.</span> <span class="nav-text">主要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E9%83%A8"><span class="nav-number">2.1.</span> <span class="nav-text">全部</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UINTN"><span class="nav-number">2.2.</span> <span class="nav-text">UINTN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8F"><span class="nav-number">3.</span> <span class="nav-text">宏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">原类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9D%A1"><span class="nav-number">5.</span> <span class="nav-text">分条</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EFI-STATUS%E5%88%86%E6%9D%A1"><span class="nav-number">5.1.</span> <span class="nav-text">EFI_STATUS分条</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">5.1.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">5.1.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93"><span class="nav-number">5.1.3.</span> <span class="nav-text">具体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%90%E5%8A%9F"><span class="nav-number">5.1.3.1.</span> <span class="nav-text">成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%B1%E8%B4%A5"><span class="nav-number">5.1.3.2.</span> <span class="nav-text">失败</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AD%A6%E5%91%8A"><span class="nav-number">5.1.3.3.</span> <span class="nav-text">警告</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BOOLEAN%E5%88%86%E6%9D%A1"><span class="nav-number">5.2.</span> <span class="nav-text">BOOLEAN分条</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6-1"><span class="nav-number">5.2.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%B3%95-1"><span class="nav-number">5.2.2.</span> <span class="nav-text">用法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">6.</span> <span class="nav-text">修饰符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%84%E6%BA%90"><span class="nav-number">7.</span> <span class="nav-text">资源</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81"><span class="nav-number">2.</span> <span class="nav-text">主要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E9%83%A8"><span class="nav-number">2.1.</span> <span class="nav-text">全部</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UINTN"><span class="nav-number">2.2.</span> <span class="nav-text">UINTN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8F"><span class="nav-number">3.</span> <span class="nav-text">宏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">原类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9D%A1"><span class="nav-number">5.</span> <span class="nav-text">分条</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EFI-STATUS%E5%88%86%E6%9D%A1"><span class="nav-number">5.1.</span> <span class="nav-text">EFI_STATUS分条</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">5.1.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">5.1.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93"><span class="nav-number">5.1.3.</span> <span class="nav-text">具体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%90%E5%8A%9F"><span class="nav-number">5.1.3.1.</span> <span class="nav-text">成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%B1%E8%B4%A5"><span class="nav-number">5.1.3.2.</span> <span class="nav-text">失败</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E5%AE%8F"><span class="nav-number">5.1.3.2.1.</span> <span class="nav-text">辅助宏</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%80%BC-amp-%E6%8F%8F%E8%BF%B0"><span class="nav-number">5.1.3.2.2.</span> <span class="nav-text">值&amp;描述</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AD%A6%E5%91%8A"><span class="nav-number">5.1.3.3.</span> <span class="nav-text">警告</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BOOLEAN%E5%88%86%E6%9D%A1"><span class="nav-number">5.2.</span> <span class="nav-text">BOOLEAN分条</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6-1"><span class="nav-number">5.2.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%B3%95-1"><span class="nav-number">5.2.2.</span> <span class="nav-text">用法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">6.</span> <span class="nav-text">修饰符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%84%E6%BA%90"><span class="nav-number">7.</span> <span class="nav-text">资源</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -785,14 +790,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -878,6 +883,8 @@
 
 
 
+
+  
 
   
 

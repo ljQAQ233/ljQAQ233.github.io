@@ -184,6 +184,280 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maouai233">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maouai233的Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">[#1] Bmp文件结构详解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-08-27 16:00:00 / 修改时间：16:43:26" itemprop="dateCreated datePublished" datetime="2022-08-27T16:00:00+08:00">2022-08-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>最近(指这几个月…),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章……</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>本文章使用标准的、最常用的Bmp图像试验.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
+<hr>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
+<img src="/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/bedrock.bmp" class="" title="bedrock.bmp">
+
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><h3 id="概览Overview"><a href="#概览Overview" class="headerlink" title="概览Overview"></a>概览Overview</h3><p>在安装<strong>hexyl</strong>的前提下使用<code>hexyl -c 54 bedrock.bmp</code>即可看到我们使用Bmp时不可或缺的数据——Bmp文件头(Bitmap File Header)和位图信息头(Bitmap Info Header) :</p>
+<img src="/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/Hex.png" class="" title="Hex.png">
+
+<p>在看这张表之前,先说明一下哈…我把<strong>像素数据</strong>的区域先抽象成一个以Bmp位图宽度(像素)、Bmp位图高度(像素)为列、行的一个<strong>二维数组</strong>.整型均以<strong>小端存储序</strong>存储.</p>
+<table>
+<thead>
+<tr>
+<th align="center">位置(相对文件开头偏移字节)</th>
+<th align="center">数据类型</th>
+<th align="center">大小(字节)</th>
+<th>作用</th>
+<th>默认值</th>
+<th>名称(可供C语言等参考)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">字符型</td>
+<td align="center">1</td>
+<td><strong>标识</strong>此图为Bmp位图文件</td>
+<td>0x42(ASCII即’B’)</td>
+<td>CharB</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">字符型</td>
+<td align="center">1</td>
+<td><strong>标识</strong>此图为Bmp位图文件</td>
+<td>0x4D(ASCII即’M’)</td>
+<td>CharM</td>
+</tr>
+<tr>
+<td align="center">3 ~ 6</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>Bmp整个<strong>文件的大小</strong>(包括Bmp File Header等)</td>
+<td></td>
+<td>Size</td>
+</tr>
+<tr>
+<td align="center">7 ~ 8</td>
+<td align="center">-</td>
+<td align="center">2</td>
+<td><strong>保留</strong></td>
+<td>视具体情况而定,一般为 0</td>
+<td>Reserved1</td>
+</tr>
+<tr>
+<td align="center">9 ~ 10</td>
+<td align="center">-</td>
+<td align="center">2</td>
+<td><strong>保留</strong></td>
+<td>视具体情况而定,一般为 0</td>
+<td>Reserved2</td>
+</tr>
+<tr>
+<td align="center">11 ~ 14</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>记录<strong>像素数据</strong>相对于整个文件开头的<strong>偏移字节</strong></td>
+<td>视具体情况而定,24bit位图一般为54</td>
+<td>ImageOffset</td>
+</tr>
+<tr>
+<td align="center">15 ~ 18</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>Bitmap Info Header</strong> 大小(字节)</td>
+<td>40</td>
+<td>HeaderSize</td>
+</tr>
+<tr>
+<td align="center">19 ~ 22</td>
+<td align="center">32位整型</td>
+<td align="center">4</td>
+<td>位图<strong>宽</strong>度(像素),但不可为负(正常情况下大多软件不支持包括ffplay)</td>
+<td>正整数值</td>
+<td>Width</td>
+</tr>
+<tr>
+<td align="center">23 ~ 26</td>
+<td align="center">32位整型</td>
+<td align="center">4</td>
+<td>位图<strong>高</strong>度(像素),如果为<strong>负数</strong>,则图像的起始点在<strong>像素数据数组</strong>的第一行,<strong>正数</strong>则<strong>反之</strong></td>
+<td></td>
+<td>Height</td>
+</tr>
+<tr>
+<td align="center">27 ~ 28</td>
+<td align="center">16位无符号整型</td>
+<td align="center">2</td>
+<td>必须是 1,Wiki上写的是<strong>色彩平面数</strong></td>
+<td>1</td>
+<td>Planes</td>
+</tr>
+<tr>
+<td align="center">29 ~ 30</td>
+<td align="center">16位无符号整型</td>
+<td align="center">2</td>
+<td>像素所占位数,也就是图像<strong>位深</strong>、<strong>色深</strong>,值可能为1、4、8、24、32.如32bit用4字节存储一个像素</td>
+<td></td>
+<td>ImageBits</td>
+</tr>
+<tr>
+<td align="center">31 ~ 34</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>压缩方式(<strong>本文</strong>不展开叙述)</td>
+<td>0</td>
+<td>CompressionType</td>
+</tr>
+<tr>
+<td align="center">35 ~ 38</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>ImageSize</td>
+<td>见下</td>
+<td>ImageSize</td>
+</tr>
+<tr>
+<td align="center">39 ~ 42</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>横</strong>向分辨率(像素&#x2F;米)</td>
+<td></td>
+<td>HorizontalResolution</td>
+</tr>
+<tr>
+<td align="center">43 ~ 46</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>竖</strong>向分辨率(像素&#x2F;米)</td>
+<td></td>
+<td>VerticalResolution</td>
+</tr>
+<tr>
+<td align="center">47 ~ 50</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>调色板颜色数</strong>,等于”2^位深”,即<strong>2的位深值的次方个</strong>, <strong>24</strong>Bit以上由于直接存储BGR(或BGRA)值,调色板个数为<strong>0</strong></td>
+<td>$2^{位深}$</td>
+<td>PaletteColorsNum</td>
+</tr>
+<tr>
+<td align="center">51 ~ 54</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>重要颜色数,为0则是全部颜色都很重要</td>
+<td>0</td>
+<td>ImportantColorsNum</td>
+</tr>
+</tbody></table>
+<h3 id="偏移ImageOffset"><a href="#偏移ImageOffset" class="headerlink" title="偏移ImageOffset"></a>偏移ImageOffset</h3><p>Bmp像素数据起始位置相对于文件起始处的偏移.一般的:</p>
+<p>$ImageOffset&#x3D;54+4\times PaletteColorsNum$</p>
+<p>假若bedrodk.bmp在内存中文件起始位置为<strong>BmpRaw</strong>,则像素数据起始位置为<strong>PixelStart &#x3D; BmpRaw + ImageOffset</strong></p>
+<h3 id="位深ImageBits"><a href="#位深ImageBits" class="headerlink" title="位深ImageBits"></a>位深ImageBits</h3><p>Bmp位深多少,即用多少各Bit存储一个像素.</p>
+<p>如1Bit使用0.125个字节存储一个像素,其余的按四字节对齐(不足的按四字节算).</p>
+<p>在一定范围内,位深越大,带给人的感受越真实.</p>
+<p>32Bit的Bmp位图,使用<strong>BGRA</strong>即[Blue,Green,Red,Alpha]进行对像素的存储,比24Bit位图的<strong>BGR</strong>多了一条Alpha通道.</p>
+<h3 id="调色板BmpColorMap"><a href="#调色板BmpColorMap" class="headerlink" title="调色板BmpColorMap"></a>调色板BmpColorMap</h3><p>每个调色板占用4个字节,存储格式为<strong>BGRR</strong>,即[Bule,Green,Red,Reserved],每个值都是<strong>8Bit无符号整型(即unsigned char)</strong>.下面C&#x2F;C++的定义应该更加直观.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">BMP_COLOR_MAP</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  UINT8   Blue;</span><br><span class="line">  UINT8   Green;</span><br><span class="line">  UINT8   Red;</span><br><span class="line">  UINT8   Reserved;</span><br><span class="line">&#125; BMP_COLOR_MAP;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>相当于一个<strong>索引</strong>,打个比方:</p>
+<p>在一张8Bit的Bmp位图中,使用8个Bit即1字节存储一个像素.那么一个像素需要一个字节存储,则一个字节可存储0 ~ 255的无符号整型数据.如果有一个字节存储的值是255,则对应的第255个调色板BGRR值为 [0xFF 0xFF 0xFF 0x00].</p>
+<p>一般情况下，需要”翻译”成24Bit或32Bit.具体见下文.</p>
+<p>一张24Bit或32Bit的Bmp位图不存在调色板,因为它们直接存储像素的具体BGR或BGRA值,则$PaletteColorsNum &#x3D; 0$</p>
+<h3 id="文件大小Size"><a href="#文件大小Size" class="headerlink" title="文件大小Size"></a>文件大小Size</h3><p>$Size &#x3D; 54 + ImageSize + PaletteColorsNum \times 4$</p>
+<p>其中,4指的是每个调色板占用的字节数,54指的是Bmp文件头和位图头的总大小.</p>
+<h3 id="调色板个数PaletteColorsNum"><a href="#调色板个数PaletteColorsNum" class="headerlink" title="调色板个数PaletteColorsNum"></a>调色板个数PaletteColorsNum</h3><p>在ImageBits不为24或32的情况下(具体见上文-调色板BmpColorMap):</p>
+<p>$PaletteColorsNum &#x3D; 2^{ImageBits}$</p>
+<p>为24或32时:</p>
+<p>$PaletteColorsNum &#x3D; 0$</p>
+<h3 id="对齐后像素数据大小ImageSize"><a href="#对齐后像素数据大小ImageSize" class="headerlink" title="对齐后像素数据大小ImageSize"></a>对齐后像素数据大小ImageSize</h3><p>用数学公式说有点迷糊(我也还没学MOD)</p>
+<p>要对齐时:</p>
+<p>$RowSize&#x3D;\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)  $</p>
+<p>不用对齐时:</p>
+<p>$RowSize &#x3D; \frac {Width\times ImageBits} {8}$</p>
+<p>对于所有情况,都有:</p>
+<p>$ImageSize&#x3D;Height\times RowSize$</p>
+<hr>
+<p><em>RowSize</em>即储存一行的像素数据所需要的字节数.</p>
+<p>ImageSIze代表一张Bmp图像储存像素区域所占的字节数.</p>
+<hr>
+<p>要对齐时的情况推导:</p>
+<p>Bmp图像在储存数据时,记录范围内的每个像素(或调色板信息),会进行四字节对齐(不满四字节按四字节算).</p>
+<p>则储存一行时不对齐情况下的字节数是:$\frac {ImageBits} 8\times Width$</p>
+<p>不考虑多出字节进行4字节对齐时,多出字节数为:$(\frac {ImageBits} 8\times Width) \mod 4$</p>
+<p>则考虑多出字节进行4字节对齐时,需补齐字节数为:$4-[(\frac {ImageBits} 8\times Width) \mod 4]$</p>
+<p>则一行占用:$RowSize&#x3D;\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)  $</p>
+<p>再回去想想就行了…(指去上文QwQ)</p>
+<h3 id="宽度Width-amp-高度Height"><a href="#宽度Width-amp-高度Height" class="headerlink" title="宽度Width &amp; 高度Height"></a>宽度Width &amp; 高度Height</h3><p>Width不可为负数.</p>
+<p>Height可为负数.影响见下文.</p>
+<h2 id="像素存储"><a href="#像素存储" class="headerlink" title="像素存储"></a>像素存储</h2><p>正常情况下,Bmp会形成一个$Width \times Height$大小的数组,这里称BmpRaw,存在对齐情况,实际描述为二维数组,但在存储或读取时大多使用线型.</p>
+<p>Height为正数时,实际平面内最左上角的数据起始位置在BmpRaw的最后行的第一列,即BmpRaw[(Height - 1)*Width + 1],为负数则在BmpRaw的第一行的第一列,即BmpRaw[0].</p>
+<h2 id="读取-amp-使用方案梗概"><a href="#读取-amp-使用方案梗概" class="headerlink" title="读取&amp;使用方案梗概"></a>读取&amp;使用方案梗概</h2><h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><p>可以把BmpFileHeader和BmpInfoHeader合并为一体,称<strong>BMP_IMAGE_HEADER</strong>,C&#x2F;C++可用结构体,较为方便.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack(1)</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  UINT8   Blue;</span><br><span class="line">  UINT8   Green;</span><br><span class="line">  UINT8   Red;</span><br><span class="line">  UINT8   Reserved;</span><br><span class="line">&#125; BMP_COLOR_MAP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">CHAR8	CharB;                                 <span class="comment">// BMP的标识符,必须为&#x27;B&#x27;</span></span><br><span class="line">CHAR8   CharM;                                 <span class="comment">// BMP的标识符,必须为&#x27;M&#x27;</span></span><br><span class="line">UINT32  Size;                                      <span class="comment">// BMP文件大小,Bety</span></span><br><span class="line">UINT16  Reserved1;                         <span class="comment">// 保留</span></span><br><span class="line">UINT16  Reserved2;                         <span class="comment">// 保留</span></span><br><span class="line">UINT32  ImageOffset;                     <span class="comment">// BMP图像像素起始位置相对于头部的偏移</span></span><br><span class="line">UINT32  HeaderSize;                       <span class="comment">// 此Bmp Info Header大小,40 B</span></span><br><span class="line">INT32     Width;                                   <span class="comment">// BMP图像宽</span></span><br><span class="line">INT32     Height;                                 <span class="comment">// BMP图像高</span></span><br><span class="line">UINT16  Planes;                                 <span class="comment">// 为 1</span></span><br><span class="line">UINT16  ImageBits;                          <span class="comment">// BMP图像位深</span></span><br><span class="line">UINT32  CompressionType;         <span class="comment">// 压缩方式</span></span><br><span class="line">UINT32  ImageSize;                         <span class="comment">// 图像对齐时像素数据大小</span></span><br><span class="line">UINT32  HorizontalResolution;  <span class="comment">// 横向分辨率</span></span><br><span class="line">UINT32   VerticalResolution;        <span class="comment">// 纵向分辨率</span></span><br><span class="line">UINT32   PaletteColorsNum;        <span class="comment">// 调色板颜色数</span></span><br><span class="line">UINT32   ImportantColorsNum;  <span class="comment">// 重要颜色数</span></span><br><span class="line">&#125; BMP_IMAGE_HEADER;</span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack()</span></span><br></pre></td></tr></table></figure>
+
+<p>可以通过两种方式读取:</p>
+<ol>
+<li><p>根据占用大小,依次读取数据放入结构体中.</p>
+</li>
+<li><p>直接读取进入结构体,这就是为什么加入预处理指令<code>#pragma pack(1)</code>和<code>#pragma pack()</code>使结构体不进行字节对齐.</p>
+</li>
+</ol>
+<h3 id="“翻译”"><a href="#“翻译”" class="headerlink" title="“翻译”"></a>“翻译”</h3><p>一般情况下,24Bit的像素数据或类似24Bit像素数据会比较通用.比如UEFI下Blt函数传输(EfiBufferToVideo,从缓冲区到屏幕)的BltBuffer,使用<strong>BGRR</strong>即[Blue,Green,Red,Reserved]的格式,32、24Bit以外的都不是直接存储像素RGB值,使用调色板翻译就是一件必不可少的工作.</p>
+<p>数据?拉来吧你!</p>
+<h1 id="资源附"><a href="#资源附" class="headerlink" title="资源附"></a>资源附</h1><p>16位深的转换等我写完才去研究…咕咕咕咕咕咕咕咕咕咕</p>
+<p>Bmp位图检查程序BmpChecker及源代码:        <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333">https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333</a> <br>Bmp位图位深转换工具(1,4,8 to 24)即源代码:</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/20/UEFI%E5%9F%BA%E6%9C%AC%E5%AE%8F%E5%AE%9A%E4%B9%89-UEFI-Basic-Macros/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -207,10 +481,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-08-20 22:16:13 / 修改时间：22:59:12" itemprop="dateCreated datePublished" datetime="2022-08-20T22:16:13+08:00">2022-08-20</time>
+              <time title="创建时间：2022-08-20 22:16:13" itemprop="dateCreated datePublished" datetime="2022-08-20T22:16:13+08:00">2022-08-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-21 07:14:28" itemprop="dateModified" datetime="2022-08-21T07:14:28+08:00">2022-08-21</time>
+              </span>
 
           
 
@@ -223,7 +503,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="说明性-人看的"><a href="#说明性-人看的" class="headerlink" title="说明性(人看的)"></a>说明性(人看的)</h1><p>为提高代码<strong>可读性</strong>等原因,需要有一些<strong>不加注释的注释</strong>……</p>
+          <h1 id="说明性"><a href="#说明性" class="headerlink" title="说明性"></a>说明性</h1><p>为提高代码<strong>可读性</strong>等原因,需要有一些<strong>不加注释的注释</strong>……</p>
 <table>
 <thead>
 <tr>
@@ -328,7 +608,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-20 22:59:28" itemprop="dateModified" datetime="2022-08-20T22:59:28+08:00">2022-08-20</time>
+                <time title="修改时间：2022-08-21 14:19:05" itemprop="dateModified" datetime="2022-08-21T14:19:05+08:00">2022-08-21</time>
               </span>
 
           
@@ -342,7 +622,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#117;&#x61;&#105;&#50;&#x33;&#x33;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#x6d;">&#x4d;&#x61;&#x6f;&#117;&#x61;&#105;&#50;&#x33;&#x33;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#x6f;&#117;&#116;&#108;&#x6f;&#x6f;&#107;&#46;&#99;&#x6f;&#x6d;">&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#x6f;&#117;&#116;&#108;&#x6f;&#x6f;&#107;&#46;&#99;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
 <h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
 <thead>
 <tr>
@@ -559,7 +839,12 @@
 <td>成功完成操作</td>
 </tr>
 </tbody></table>
-<h4 id="失败"><a href="#失败" class="headerlink" title="失败"></a>失败</h4><table>
+<h4 id="失败"><a href="#失败" class="headerlink" title="失败"></a>失败</h4><p>不同架构机器下,失败的值可能不同.</p>
+<p>这里先将状态码定义成<strong>RETURN等</strong>后在UefiBaseType.h中将<strong>EFI等*定义到对应的</strong>RETURN**上.</p>
+<h5 id="辅助宏"><a href="#辅助宏" class="headerlink" title="辅助宏"></a>辅助宏</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* File : MdePkg/Incude/Base.h */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENCODE_WARNING(StatusCode)       ((RETURN_STATUS)(StatusCode))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ENCODE_ERROR(StatusCode)         ((RETURN_STATUS)(MAX_BIT | (StatusCode)))</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* File : MdePkg/Include/Uefi/UefiBaseType.h */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EFI_SUCCESS               RETURN_SUCCESS              </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EFI_LOAD_ERROR            RETURN_LOAD_ERROR</span></span><br><span class="line"><span class="comment">/* ...... */</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="值-amp-描述"><a href="#值-amp-描述" class="headerlink" title="值&amp;描述"></a>值&amp;描述</h5><p>具体见<strong>MdePkg&#x2F;Include&#x2F;Base.h</strong> &amp; <strong>MdePkg&#x2F;Include&#x2F;Uefi&#x2F;UefiBaseType.h</strong></p>
+<table>
 <thead>
 <tr>
 <th>类</th>
@@ -569,171 +854,171 @@
 </thead>
 <tbody><tr>
 <td>EFI_LOAD_ERROR</td>
-<td>1</td>
+<td>ENCODE_ERROR(1)</td>
 <td>加载镜像Image失败</td>
 </tr>
 <tr>
 <td>EFI_INVALID_PARAMETER</td>
-<td>2</td>
+<td>ENCODE_ERROR(2)</td>
 <td>参数不正确</td>
 </tr>
 <tr>
 <td>EFI_UNSUPPORTED</td>
-<td>3</td>
+<td>ENCODE_ERROR(3)</td>
 <td>该操作不支持</td>
 </tr>
 <tr>
 <td>EFI_BAD_BUFFER_SIZE</td>
-<td>4</td>
+<td>ENCODE_ERROR(4)</td>
 <td>缓冲区Buffer的大小不适用于请求</td>
 </tr>
 <tr>
 <td>EFI_BUFFER_TOO_SMALL</td>
-<td>5</td>
+<td>ENCODE_ERROR(5)</td>
 <td>缓冲区不够大，无法容纳请求的数据</td>
 </tr>
 <tr>
 <td>EFI_NOT_READY</td>
-<td>6</td>
+<td>ENCODE_ERROR(6)</td>
 <td>There is no data pending upon return</td>
 </tr>
 <tr>
 <td>EFI_DEVICE_ERROR</td>
-<td>7</td>
+<td>ENCODE_ERROR(7)</td>
 <td>物理设备在尝试操作时报告错</td>
 </tr>
 <tr>
 <td>EFI_WRITE_PROTECTED</td>
-<td>8</td>
+<td>ENCODE_ERROR(8)</td>
 <td>无法写入设备</td>
 </tr>
 <tr>
 <td>EFI_OUT_OF_RESOURCES</td>
-<td>9</td>
+<td>ENCODE_ERROR(9)</td>
 <td>资源已用完</td>
 </tr>
 <tr>
 <td>EFI_VOLUME_CORRUPTED</td>
-<td>10</td>
+<td>ENCODE_ERROR(10)</td>
 <td>在文件系统上检测到一个不稳定因素，而导致运行失败</td>
 </tr>
 <tr>
 <td>EFI_VOLUME_FULL</td>
-<td>11</td>
+<td>ENCODE_ERROR(11)</td>
 <td>文件系统上没有更多空间</td>
 </tr>
 <tr>
 <td>EFI_NO_MEDIA</td>
-<td>12</td>
+<td>ENCODE_ERROR(12)</td>
 <td>该设备不包含任何介质来执行操作</td>
 </tr>
 <tr>
 <td>EFI_MEDIA_CHANGED</td>
-<td>13</td>
+<td>ENCODE_ERROR(13)</td>
 <td>自上次访问以来，设备中的介质已更改</td>
 </tr>
 <tr>
 <td>EFI_NOT_FOUND</td>
-<td>14</td>
+<td>ENCODE_ERROR(14)</td>
 <td>未找到该项</td>
 </tr>
 <tr>
 <td>EFI_ACCESS_DENIED</td>
-<td>15</td>
+<td>ENCODE_ERROR(15)</td>
 <td>拒绝访问</td>
 </tr>
 <tr>
 <td>EFI_NO_RESPONSE</td>
-<td>16</td>
+<td>ENCODE_ERROR(16)</td>
 <td>未找到服务器或未响应请求</td>
 </tr>
 <tr>
 <td>EFI_NO_MAPPING</td>
-<td>17</td>
+<td>ENCODE_ERROR(17)</td>
 <td>到设备的映射不存在</td>
 </tr>
 <tr>
 <td>EFI_TIMEOUT</td>
-<td>18</td>
+<td>ENCODE_ERROR(18)</td>
 <td>超时</td>
 </tr>
 <tr>
 <td>EFI_NOT_STARTED</td>
-<td>19</td>
+<td>ENCODE_ERROR(19)</td>
 <td>Protocol尚未启动</td>
 </tr>
 <tr>
 <td>EFI_ALREADY_STARTED</td>
-<td>20</td>
+<td>ENCODE_ERROR(20)</td>
 <td>Protocol已经启动</td>
 </tr>
 <tr>
 <td>EFI_ABORTED</td>
-<td>21</td>
+<td>ENCODE_ERROR(21)</td>
 <td>操作被终止</td>
 </tr>
 <tr>
 <td>EFI_ICMP_ERROR</td>
-<td>22</td>
+<td>ENCODE_ERROR(22)</td>
 <td>网络操作期间发生ICMP错误</td>
 </tr>
 <tr>
 <td>EFI_TFTP_ERROR</td>
-<td>23</td>
+<td>ENCODE_ERROR(23)</td>
 <td>网络操作期间发生TFTP错误</td>
 </tr>
 <tr>
 <td>EFI_PROTOCOL_ERROR</td>
-<td>24</td>
+<td>ENCODE_ERROR(24)</td>
 <td>网络操作期间发生Protocol错误</td>
 </tr>
 <tr>
 <td>EFI_INCOMPATIBLE_VERSION</td>
-<td>25</td>
+<td>ENCODE_ERROR(25)</td>
 <td>The function encountered an internal version that was incompatible with a version requested by the caller</td>
 </tr>
 <tr>
 <td>EFI_SECURITY_VIOLATION</td>
-<td>26</td>
+<td>ENCODE_ERROR(26)</td>
 <td>由于安全违规，该功能未执行</td>
 </tr>
 <tr>
 <td>EFI_CRC_ERROR</td>
-<td>27</td>
+<td>ENCODE_ERROR(27)</td>
 <td>检测到CRC错误</td>
 </tr>
 <tr>
 <td>EFI_END_OF_MEDIA</td>
-<td>28</td>
-<td>已到达媒体的开头或结尾</td>
+<td>ENCODE_ERROR(28)</td>
+<td>已到达媒体介质的开头或结尾</td>
 </tr>
 <tr>
 <td>EFI_END_OF_FILE</td>
-<td>31</td>
+<td>ENCODE_ERROR(31)</td>
 <td>已到达文件末尾</td>
 </tr>
 <tr>
 <td>EFI_INVALID_LANGUAGE</td>
-<td>32</td>
+<td>ENCODE_ERROR(32)</td>
 <td>指定的语言无效</td>
 </tr>
 <tr>
 <td>EFI_COMPROMISED_DATA</td>
-<td>33</td>
+<td>ENCODE_ERROR(33)</td>
 <td>数据的安全状态未知或受损，必须更新数据或替换数据以恢复有效的安全状态</td>
 </tr>
 <tr>
 <td>EFI_IP_ADDRESS_CONFLICT</td>
-<td>34</td>
+<td>ENCODE_ERROR(34)</td>
 <td>There is an address conflict address allocation</td>
 </tr>
 <tr>
 <td>EFI_HTTP_ERROR</td>
-<td>35</td>
+<td>ENCODE_ERROR(35)</td>
 <td>网络操作期间发生 HTTP 错误</td>
 </tr>
 </tbody></table>
-<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>高位清除，无符号，没有负数的情况。</p>
+<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>高位清除，无符号，”没有”负数的情况。</p>
 <table>
 <thead>
 <tr>
@@ -744,37 +1029,37 @@
 </thead>
 <tbody><tr>
 <td>EFI_WARN_UNKNOWN_GLYPH</td>
-<td>1</td>
+<td>ENCODE_WARNING(1)</td>
 <td>该字符串包含了设备的一个或多个字符无法渲染并被跳过</td>
 </tr>
 <tr>
 <td>EFI_WARN_DELETE_FAILURE</td>
-<td>2</td>
+<td>ENCODE_WARNING(2)</td>
 <td>Handle已关闭，但文件尚未删除</td>
 </tr>
 <tr>
 <td>EFI_WARN_WRITE_FAILURE</td>
-<td>3</td>
+<td>ENCODE_WARNING(3)</td>
 <td>The handle was closed, but the data to the file was not flushed properly</td>
 </tr>
 <tr>
 <td>EFI_WARN_BUFFER_TOO_SMALL</td>
-<td>4</td>
+<td>ENCODE_WARNING(4)</td>
 <td>存放结果的缓冲区太小，且数据被截断为缓冲区大小</td>
 </tr>
 <tr>
 <td>EFI_WARN_STALE_DATA</td>
-<td>5</td>
+<td>ENCODE_WARNING(5)</td>
 <td>The data has not been updated within the timeframe set by local policy for this type of data</td>
 </tr>
 <tr>
 <td>EFI_WARN_FILE_SYSTEM</td>
-<td>6</td>
+<td>ENCODE_WARNING(6)</td>
 <td>生成的缓冲区包含UEFI-compliant的文件系统</td>
 </tr>
 <tr>
 <td>EFI_WARN_RESET_REQUIRED</td>
-<td>7</td>
+<td>ENCODE_WARNING(7)</td>
 <td>该操作将在系统重置后被处理</td>
 </tr>
 </tbody></table>
@@ -959,7 +1244,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-20 22:22:54" itemprop="dateModified" datetime="2022-08-20T22:22:54+08:00">2022-08-20</time>
+                <time title="修改时间：2022-08-21 13:47:59" itemprop="dateModified" datetime="2022-08-21T13:47:59+08:00">2022-08-21</time>
               </span>
 
           
@@ -1098,14 +1383,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1193,6 +1478,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
