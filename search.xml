@@ -1,234 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>[#1] Bmp文件结构详解</title>
-    <url>/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>最近(指这几个月…),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章……</p>
-<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>本文章使用标准的、最常用的Bmp图像试验.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
-<hr>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
-<img src="/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/bedrock.bmp" class="" title="bedrock.bmp">
-
-<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><h3 id="概览Overview"><a href="#概览Overview" class="headerlink" title="概览Overview"></a>概览Overview</h3><p>在安装<strong>hexyl</strong>的前提下使用<code>hexyl -c 54 bedrock.bmp</code>即可看到我们使用Bmp时不可或缺的数据——Bmp文件头(Bitmap File Header)和位图信息头(Bitmap Info Header) :</p>
-<img src="/2022/08/27/1-Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/Hex.png" class="" title="Hex.png">
-
-<p>在看这张表之前,先说明一下哈…我把<strong>像素数据</strong>的区域先抽象成一个以Bmp位图宽度(像素)、Bmp位图高度(像素)为列、行的一个<strong>二维数组</strong>.整型均以<strong>小端存储序</strong>存储.</p>
-<table>
-<thead>
-<tr>
-<th align="center">位置(相对文件开头偏移字节)</th>
-<th align="center">数据类型</th>
-<th align="center">大小(字节)</th>
-<th>作用</th>
-<th>默认值</th>
-<th>名称(可供C语言等参考)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">字符型</td>
-<td align="center">1</td>
-<td><strong>标识</strong>此图为Bmp位图文件</td>
-<td>0x42(ASCII即’B’)</td>
-<td>CharB</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">字符型</td>
-<td align="center">1</td>
-<td><strong>标识</strong>此图为Bmp位图文件</td>
-<td>0x4D(ASCII即’M’)</td>
-<td>CharM</td>
-</tr>
-<tr>
-<td align="center">3 ~ 6</td>
-<td align="center">32位无符号整型</td>
-<td align="center">4</td>
-<td>Bmp整个<strong>文件的大小</strong>(包括Bmp File Header等)</td>
-<td></td>
-<td>Size</td>
-</tr>
-<tr>
-<td align="center">7 ~ 8</td>
-<td align="center">-</td>
-<td align="center">2</td>
-<td><strong>保留</strong></td>
-<td>视具体情况而定,一般为 0</td>
-<td>Reserved1</td>
-</tr>
-<tr>
-<td align="center">9 ~ 10</td>
-<td align="center">-</td>
-<td align="center">2</td>
-<td><strong>保留</strong></td>
-<td>视具体情况而定,一般为 0</td>
-<td>Reserved2</td>
-</tr>
-<tr>
-<td align="center">11 ~ 14</td>
-<td align="center">32位无符号整型</td>
-<td align="center">4</td>
-<td>记录<strong>像素数据</strong>相对于整个文件开头的<strong>偏移字节</strong></td>
-<td>视具体情况而定,24bit位图一般为54</td>
-<td>ImageOffset</td>
-</tr>
-<tr>
-<td align="center">15 ~ 18</td>
-<td align="center">32位无符号整型</td>
-<td align="center">4</td>
-<td><strong>Bitmap Info Header</strong> 大小(字节)</td>
-<td>40</td>
-<td>HeaderSize</td>
-</tr>
-<tr>
-<td align="center">19 ~ 22</td>
-<td align="center">32位整型</td>
-<td align="center">4</td>
-<td>位图<strong>宽</strong>度(像素),但不可为负(正常情况下大多软件不支持包括ffplay)</td>
-<td>正整数值</td>
-<td>Width</td>
-</tr>
-<tr>
-<td align="center">23 ~ 26</td>
-<td align="center">32位整型</td>
-<td align="center">4</td>
-<td>位图<strong>高</strong>度(像素),如果为<strong>负数</strong>,则图像的起始点在<strong>像素数据数组</strong>的第一行,<strong>正数</strong>则<strong>反之</strong></td>
-<td></td>
-<td>Height</td>
-</tr>
-<tr>
-<td align="center">27 ~ 28</td>
-<td align="center">16位无符号整型</td>
-<td align="center">2</td>
-<td>必须是 1,Wiki上写的是<strong>色彩平面数</strong></td>
-<td>1</td>
-<td>Planes</td>
-</tr>
-<tr>
-<td align="center">29 ~ 30</td>
-<td align="center">16位无符号整型</td>
-<td align="center">2</td>
-<td>像素所占位数,也就是图像<strong>位深</strong>、<strong>色深</strong>,值可能为1、4、8、24、32.如32bit用4字节存储一个像素</td>
-<td></td>
-<td>ImageBits</td>
-</tr>
-<tr>
-<td align="center">31 ~ 34</td>
-<td align="center">32位无符号整型</td>
-<td align="center">4</td>
-<td>压缩方式(<strong>本文</strong>不展开叙述)</td>
-<td>0</td>
-<td>CompressionType</td>
-</tr>
-<tr>
-<td align="center">35 ~ 38</td>
-<td align="center">32位无符号整型</td>
-<td align="center">4</td>
-<td>ImageSize</td>
-<td>见下</td>
-<td>ImageSize</td>
-</tr>
-<tr>
-<td align="center">39 ~ 42</td>
-<td align="center">32位无符号整型</td>
-<td align="center">4</td>
-<td><strong>横</strong>向分辨率(像素&#x2F;米)</td>
-<td></td>
-<td>HorizontalResolution</td>
-</tr>
-<tr>
-<td align="center">43 ~ 46</td>
-<td align="center">32位无符号整型</td>
-<td align="center">4</td>
-<td><strong>竖</strong>向分辨率(像素&#x2F;米)</td>
-<td></td>
-<td>VerticalResolution</td>
-</tr>
-<tr>
-<td align="center">47 ~ 50</td>
-<td align="center">32位无符号整型</td>
-<td align="center">4</td>
-<td><strong>调色板颜色数</strong>,等于”2^位深”,即<strong>2的位深值的次方个</strong>, <strong>24</strong>Bit以上由于直接存储BGR(或BGRA)值,调色板个数为<strong>0</strong></td>
-<td>$2^{位深}$</td>
-<td>PaletteColorsNum</td>
-</tr>
-<tr>
-<td align="center">51 ~ 54</td>
-<td align="center">32位无符号整型</td>
-<td align="center">4</td>
-<td>重要颜色数,为0则是全部颜色都很重要</td>
-<td>0</td>
-<td>ImportantColorsNum</td>
-</tr>
-</tbody></table>
-<h3 id="偏移ImageOffset"><a href="#偏移ImageOffset" class="headerlink" title="偏移ImageOffset"></a>偏移ImageOffset</h3><p>Bmp像素数据起始位置相对于文件起始处的偏移.一般的:</p>
-<p>$ImageOffset&#x3D;54+4\times PaletteColorsNum$</p>
-<p>假若bedrodk.bmp在内存中文件起始位置为<strong>BmpRaw</strong>,则像素数据起始位置为<strong>PixelStart &#x3D; BmpRaw + ImageOffset</strong></p>
-<h3 id="位深ImageBits"><a href="#位深ImageBits" class="headerlink" title="位深ImageBits"></a>位深ImageBits</h3><p>Bmp位深多少,即用多少各Bit存储一个像素.</p>
-<p>如1Bit使用0.125个字节存储一个像素,其余的按四字节对齐(不足的按四字节算).</p>
-<p>在一定范围内,位深越大,带给人的感受越真实.</p>
-<p>32Bit的Bmp位图,使用<strong>BGRA</strong>即[Blue,Green,Red,Alpha]进行对像素的存储,比24Bit位图的<strong>BGR</strong>多了一条Alpha通道.</p>
-<h3 id="调色板BmpColorMap"><a href="#调色板BmpColorMap" class="headerlink" title="调色板BmpColorMap"></a>调色板BmpColorMap</h3><p>每个调色板占用4个字节,存储格式为<strong>BGRR</strong>,即[Bule,Green,Red,Reserved],每个值都是<strong>8Bit无符号整型(即unsigned char)</strong>.下面C&#x2F;C++的定义应该更加直观.</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">BMP_COLOR_MAP</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  UINT8   Blue;</span><br><span class="line">  UINT8   Green;</span><br><span class="line">  UINT8   Red;</span><br><span class="line">  UINT8   Reserved;</span><br><span class="line">&#125; BMP_COLOR_MAP;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>相当于一个<strong>索引</strong>,打个比方:</p>
-<p>在一张8Bit的Bmp位图中,使用8个Bit即1字节存储一个像素.那么一个像素需要一个字节存储,则一个字节可存储0 ~ 255的无符号整型数据.如果有一个字节存储的值是255,则对应的第255个调色板BGRR值为 [0xFF 0xFF 0xFF 0x00].</p>
-<p>一般情况下，需要”翻译”成24Bit或32Bit.具体见下文.</p>
-<p>一张24Bit或32Bit的Bmp位图不存在调色板,因为它们直接存储像素的具体BGR或BGRA值,则$PaletteColorsNum &#x3D; 0$</p>
-<h3 id="文件大小Size"><a href="#文件大小Size" class="headerlink" title="文件大小Size"></a>文件大小Size</h3><p>$Size &#x3D; 54 + ImageSize + PaletteColorsNum \times 4$</p>
-<p>其中,4指的是每个调色板占用的字节数,54指的是Bmp文件头和位图头的总大小.</p>
-<h3 id="调色板个数PaletteColorsNum"><a href="#调色板个数PaletteColorsNum" class="headerlink" title="调色板个数PaletteColorsNum"></a>调色板个数PaletteColorsNum</h3><p>在ImageBits不为24或32的情况下(具体见上文-调色板BmpColorMap):</p>
-<p>$PaletteColorsNum &#x3D; 2^{ImageBits}$</p>
-<p>为24或32时:</p>
-<p>$PaletteColorsNum &#x3D; 0$</p>
-<h3 id="对齐后像素数据大小ImageSize"><a href="#对齐后像素数据大小ImageSize" class="headerlink" title="对齐后像素数据大小ImageSize"></a>对齐后像素数据大小ImageSize</h3><p>用数学公式说有点迷糊(我也还没学MOD)</p>
-<p>要对齐时:</p>
-<p>$RowSize&#x3D;\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)  $</p>
-<p>不用对齐时:</p>
-<p>$RowSize &#x3D; \frac {Width\times ImageBits} {8}$</p>
-<p>对于所有情况,都有:</p>
-<p>$ImageSize&#x3D;Height\times RowSize$</p>
-<hr>
-<p><em>RowSize</em>即储存一行的像素数据所需要的字节数.</p>
-<p>ImageSIze代表一张Bmp图像储存像素区域所占的字节数.</p>
-<hr>
-<p>要对齐时的情况推导:</p>
-<p>Bmp图像在储存数据时,记录范围内的每个像素(或调色板信息),会进行四字节对齐(不满四字节按四字节算).</p>
-<p>则储存一行时不对齐情况下的字节数是:$\frac {ImageBits} 8\times Width$</p>
-<p>不考虑多出字节进行4字节对齐时,多出字节数为:$(\frac {ImageBits} 8\times Width) \mod 4$</p>
-<p>则考虑多出字节进行4字节对齐时,需补齐字节数为:$4-[(\frac {ImageBits} 8\times Width) \mod 4]$</p>
-<p>则一行占用:$RowSize&#x3D;\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)  $</p>
-<p>再回去想想就行了…(指去上文QwQ)</p>
-<h3 id="宽度Width-amp-高度Height"><a href="#宽度Width-amp-高度Height" class="headerlink" title="宽度Width &amp; 高度Height"></a>宽度Width &amp; 高度Height</h3><p>Width不可为负数.</p>
-<p>Height可为负数.影响见下文.</p>
-<h2 id="像素存储"><a href="#像素存储" class="headerlink" title="像素存储"></a>像素存储</h2><p>正常情况下,Bmp会形成一个$Width \times Height$大小的数组,这里称BmpRaw,存在对齐情况,实际描述为二维数组,但在存储或读取时大多使用线型.</p>
-<p>Height为正数时,实际平面内最左上角的数据起始位置在BmpRaw的最后行的第一列,即BmpRaw[(Height - 1)*Width + 1],为负数则在BmpRaw的第一行的第一列,即BmpRaw[0].</p>
-<h2 id="读取-amp-使用方案梗概"><a href="#读取-amp-使用方案梗概" class="headerlink" title="读取&amp;使用方案梗概"></a>读取&amp;使用方案梗概</h2><h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><p>可以把BmpFileHeader和BmpInfoHeader合并为一体,称<strong>BMP_IMAGE_HEADER</strong>,C&#x2F;C++可用结构体,较为方便.</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack(1)</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  UINT8   Blue;</span><br><span class="line">  UINT8   Green;</span><br><span class="line">  UINT8   Red;</span><br><span class="line">  UINT8   Reserved;</span><br><span class="line">&#125; BMP_COLOR_MAP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">CHAR8	CharB;                                 <span class="comment">// BMP的标识符,必须为&#x27;B&#x27;</span></span><br><span class="line">CHAR8   CharM;                                 <span class="comment">// BMP的标识符,必须为&#x27;M&#x27;</span></span><br><span class="line">UINT32  Size;                                      <span class="comment">// BMP文件大小,Bety</span></span><br><span class="line">UINT16  Reserved1;                         <span class="comment">// 保留</span></span><br><span class="line">UINT16  Reserved2;                         <span class="comment">// 保留</span></span><br><span class="line">UINT32  ImageOffset;                     <span class="comment">// BMP图像像素起始位置相对于头部的偏移</span></span><br><span class="line">UINT32  HeaderSize;                       <span class="comment">// 此Bmp Info Header大小,40 B</span></span><br><span class="line">INT32     Width;                                   <span class="comment">// BMP图像宽</span></span><br><span class="line">INT32     Height;                                 <span class="comment">// BMP图像高</span></span><br><span class="line">UINT16  Planes;                                 <span class="comment">// 为 1</span></span><br><span class="line">UINT16  ImageBits;                          <span class="comment">// BMP图像位深</span></span><br><span class="line">UINT32  CompressionType;         <span class="comment">// 压缩方式</span></span><br><span class="line">UINT32  ImageSize;                         <span class="comment">// 图像对齐时像素数据大小</span></span><br><span class="line">UINT32  HorizontalResolution;  <span class="comment">// 横向分辨率</span></span><br><span class="line">UINT32   VerticalResolution;        <span class="comment">// 纵向分辨率</span></span><br><span class="line">UINT32   PaletteColorsNum;        <span class="comment">// 调色板颜色数</span></span><br><span class="line">UINT32   ImportantColorsNum;  <span class="comment">// 重要颜色数</span></span><br><span class="line">&#125; BMP_IMAGE_HEADER;</span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack()</span></span><br></pre></td></tr></table></figure>
-
-<p>可以通过两种方式读取:</p>
-<ol>
-<li><p>根据占用大小,依次读取数据放入结构体中.</p>
-</li>
-<li><p>直接读取进入结构体,这就是为什么加入预处理指令<code>#pragma pack(1)</code>和<code>#pragma pack()</code>使结构体不进行字节对齐.</p>
-</li>
-</ol>
-<h3 id="“翻译”"><a href="#“翻译”" class="headerlink" title="“翻译”"></a>“翻译”</h3><p>一般情况下,24Bit的像素数据或类似24Bit像素数据会比较通用.比如UEFI下Blt函数传输(EfiBufferToVideo,从缓冲区到屏幕)的BltBuffer,使用<strong>BGRR</strong>即[Blue,Green,Red,Reserved]的格式,32、24Bit以外的都不是直接存储像素RGB值,使用调色板翻译就是一件必不可少的工作.</p>
-<p>数据?拉来吧你!</p>
-<h1 id="资源附"><a href="#资源附" class="headerlink" title="资源附"></a>资源附</h1><p>16位深的转换等我写完才去研究…咕咕咕咕咕咕咕咕咕咕</p>
-<p>Bmp位图检查程序BmpChecker及源代码:        <a href="https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333">https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333</a> <br>Bmp位图位深转换工具(1,4,8 to 24)即源代码:</p>
-]]></content>
-      <tags>
-        <tag>UEFI</tag>
-        <tag>EDKII</tag>
-        <tag>Bilibili</tag>
-        <tag>C语言</tag>
-        <tag>Bmp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>UEFI基本宏定义-UEFI-Basic-Macros</title>
     <url>/2022/08/20/UEFI%E5%9F%BA%E6%9C%AC%E5%AE%8F%E5%AE%9A%E4%B9%89-UEFI-Basic-Macros/</url>
     <content><![CDATA[<h1 id="说明性"><a href="#说明性" class="headerlink" title="说明性"></a>说明性</h1><p>为提高代码<strong>可读性</strong>等原因,需要有一些<strong>不加注释的注释</strong>……</p>
@@ -297,7 +69,7 @@
   <entry>
     <title>UEFI数据类型[UEFI Data Types]</title>
     <url>/2022/03/28/UEFI%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-UEFI-Data-Types/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#x6f;&#117;&#116;&#108;&#x6f;&#x6f;&#107;&#46;&#99;&#x6f;&#x6d;">&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#x6f;&#117;&#116;&#108;&#x6f;&#x6f;&#107;&#46;&#99;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#77;&#x61;&#111;&#x75;&#x61;&#x69;&#x32;&#x33;&#51;&#64;&#111;&#117;&#x74;&#x6c;&#111;&#x6f;&#107;&#46;&#x63;&#x6f;&#x6d;">&#77;&#x61;&#111;&#x75;&#x61;&#x69;&#x32;&#x33;&#51;&#64;&#111;&#117;&#x74;&#x6c;&#111;&#x6f;&#107;&#46;&#x63;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
 <h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
 <thead>
 <tr>
@@ -885,6 +657,241 @@
         <tag>网站</tag>
         <tag>电视盒子</tag>
         <tag>资源</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[#0] Bmp文件结构详解</title>
+    <url>/2022/08/27/Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3-%E7%AC%AC0%E7%AB%A0/</url>
+    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#77;&#x61;&#x6f;&#117;&#97;&#105;&#50;&#51;&#51;&#x40;&#x6f;&#x75;&#116;&#x6c;&#111;&#111;&#107;&#46;&#99;&#x6f;&#109;">&#77;&#x61;&#x6f;&#117;&#97;&#105;&#50;&#51;&#51;&#x40;&#x6f;&#x75;&#116;&#x6c;&#111;&#111;&#107;&#46;&#99;&#x6f;&#109;</a></p>
+<p>最近(指这几个月…),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章……</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>本文章使用标准的、最通用的Bmp图像试验,位图信息头使用BITMAPINFOHEADER.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
+<img src="/2022/08/27/Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3-%E7%AC%AC0%E7%AB%A0/bedrock.bmp" class="" title="bedrock.bmp">
+
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><h3 id="概览Overview"><a href="#概览Overview" class="headerlink" title="概览Overview"></a>概览Overview</h3><p>在安装<strong>hexyl</strong>的前提下使用<code>hexyl -c 54 bedrock.bmp</code>即可看到我们使用Bmp时不可或缺的数据——位图文件头(Bitmap File Header)和位图信息头(Bitmap Info Header),它们共占54个字节(12 + 40):</p>
+<img src="/2022/08/27/Bmp%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3-%E7%AC%AC0%E7%AB%A0/Hex.png" class="" title="Hex.png">
+
+<p><strong>二维数组</strong>.整型均以<strong>小端存储序</strong>存储.</p>
+<table>
+<thead>
+<tr>
+<th align="center">位置(相对文件开头偏移字节)</th>
+<th align="center">数据类型</th>
+<th align="center">大小(字节)</th>
+<th>作用</th>
+<th>默认值</th>
+<th>名称(可供C语言等参考)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">字符型</td>
+<td align="center">1</td>
+<td><strong>标识</strong>此图为Bmp位图文件</td>
+<td>0x42(ASCII即’B’)</td>
+<td>CharB</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">字符型</td>
+<td align="center">1</td>
+<td><strong>标识</strong>此图为Bmp位图文件</td>
+<td>0x4D(ASCII即’M’)</td>
+<td>CharM</td>
+</tr>
+<tr>
+<td align="center">3 ~ 6</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>Bmp整个<strong>文件的大小</strong>(包括Bmp File Header等)</td>
+<td></td>
+<td>Size</td>
+</tr>
+<tr>
+<td align="center">7 ~ 8</td>
+<td align="center">-</td>
+<td align="center">2</td>
+<td><strong>保留</strong></td>
+<td>视具体情况而定,一般为 0</td>
+<td>Reserved1</td>
+</tr>
+<tr>
+<td align="center">9 ~ 10</td>
+<td align="center">-</td>
+<td align="center">2</td>
+<td><strong>保留</strong></td>
+<td>视具体情况而定,一般为 0</td>
+<td>Reserved2</td>
+</tr>
+<tr>
+<td align="center">11 ~ 14</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>记录<strong>像素数据</strong>相对于整个文件开头的<strong>偏移字节</strong></td>
+<td>视具体情况而定,24bit位图一般为54</td>
+<td>ImageOffset</td>
+</tr>
+<tr>
+<td align="center">15 ~ 18</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>Bitmap Info Header</strong> 大小(字节)</td>
+<td>40</td>
+<td>HeaderSize</td>
+</tr>
+<tr>
+<td align="center">19 ~ 22</td>
+<td align="center">32位整型</td>
+<td align="center">4</td>
+<td>位图<strong>宽</strong>度(像素),但不可为负(正常情况下大多软件不支持包括ffplay)</td>
+<td>正整数值</td>
+<td>Width</td>
+</tr>
+<tr>
+<td align="center">23 ~ 26</td>
+<td align="center">32位整型</td>
+<td align="center">4</td>
+<td>位图<strong>高</strong>度(像素),如果为<strong>负数</strong>,具体见下文”像素存储”…</td>
+<td></td>
+<td>Height</td>
+</tr>
+<tr>
+<td align="center">27 ~ 28</td>
+<td align="center">16位无符号整型</td>
+<td align="center">2</td>
+<td>必须是 1,Wiki上写的是<strong>色彩平面数</strong></td>
+<td>1</td>
+<td>Planes</td>
+</tr>
+<tr>
+<td align="center">29 ~ 30</td>
+<td align="center">16位无符号整型</td>
+<td align="center">2</td>
+<td>像素所占位数,也就是图像<strong>位深</strong>、<strong>色深</strong>,值可能为1、4、8、24、32.如32bit用4字节存储一个像素</td>
+<td></td>
+<td>ImageBits</td>
+</tr>
+<tr>
+<td align="center">31 ~ 34</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>压缩方式(<strong>本文</strong>不展开叙述)</td>
+<td>0</td>
+<td>CompressionType</td>
+</tr>
+<tr>
+<td align="center">35 ~ 38</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>ImageSize</td>
+<td>见下</td>
+<td>ImageSize</td>
+</tr>
+<tr>
+<td align="center">39 ~ 42</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>横</strong>向分辨率(像素&#x2F;米)</td>
+<td></td>
+<td>HorizontalResolution</td>
+</tr>
+<tr>
+<td align="center">43 ~ 46</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>竖</strong>向分辨率(像素&#x2F;米)</td>
+<td></td>
+<td>VerticalResolution</td>
+</tr>
+<tr>
+<td align="center">47 ~ 50</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td><strong>调色板颜色数</strong>,等于”2^位深”,即<strong>2的位深值的次方个</strong>, <strong>24</strong>Bit以上由于直接存储BGR(或BGRA)值,调色板个数为<strong>0</strong></td>
+<td>$2^{位深}$</td>
+<td>PaletteColorsNum</td>
+</tr>
+<tr>
+<td align="center">51 ~ 54</td>
+<td align="center">32位无符号整型</td>
+<td align="center">4</td>
+<td>重要颜色数,为0则是全部颜色都很重要</td>
+<td>0</td>
+<td>ImportantColorsNum</td>
+</tr>
+</tbody></table>
+<h3 id="偏移ImageOffset"><a href="#偏移ImageOffset" class="headerlink" title="偏移ImageOffset"></a>偏移ImageOffset</h3><p>Bmp像素数据起始位置相对于文件起始处的偏移.一般的:</p>
+<p>$ImageOffset&#x3D;54+4\times PaletteColorsNum$</p>
+<p>假若bedrodk.bmp在内存中文件起始位置为<strong>BmpRaw</strong>,则像素数据起始位置为<strong>PixelStart &#x3D; BmpRaw + ImageOffset</strong></p>
+<h3 id="位深ImageBits"><a href="#位深ImageBits" class="headerlink" title="位深ImageBits"></a>位深ImageBits</h3><p>Bmp位深多少,即用多少各Bit存储一个像素.</p>
+<p>如1Bit使用0.125个字节存储一个像素,其余的按四字节对齐(不足的按四字节算).</p>
+<p>在一定范围内,位深越大,带给人的感受越真实.</p>
+<p>32Bit的Bmp位图,使用<strong>BGRA</strong>即[Blue,Green,Red,Alpha]进行对像素的存储,比24Bit位图的<strong>BGR</strong>多了一条Alpha通道.</p>
+<h3 id="调色板BmpColorMap"><a href="#调色板BmpColorMap" class="headerlink" title="调色板BmpColorMap"></a>调色板BmpColorMap</h3><p>每个调色板占用4个字节,存储格式为<strong>BGRR</strong>,即[Bule,Green,Red,Reserved],每个值都是<strong>8Bit无符号整型(即unsigned char)</strong>.下面C&#x2F;C++的定义应该更加直观.</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">BMP_COLOR_MAP</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  UINT8   Blue;</span><br><span class="line">  UINT8   Green;</span><br><span class="line">  UINT8   Red;</span><br><span class="line">  UINT8   Reserved;</span><br><span class="line">&#125; BMP_COLOR_MAP;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>相当于一个<strong>索引</strong>,打个比方:</p>
+<p>在一张8Bit的Bmp位图中,使用8个Bit即1字节存储一个像素.那么一个像素需要一个字节存储,则一个字节可存储0 ~ 255的无符号整型数据.如果有一个字节存储的值是255,则对应的第255个调色板BGRR值为 [0xFF 0xFF 0xFF 0x00].</p>
+<p>一般情况下，需要”翻译”成24Bit或32Bit.具体见下文.</p>
+<p>一张24Bit或32Bit的Bmp位图不存在调色板,因为它们直接存储像素的具体BGR或BGRA值,则$PaletteColorsNum &#x3D; 0$</p>
+<h3 id="文件大小Size"><a href="#文件大小Size" class="headerlink" title="文件大小Size"></a>文件大小Size</h3><p>$Size &#x3D; 54 + ImageSize + PaletteColorsNum \times 4$</p>
+<p>其中,4指的是每个调色板占用的字节数,54指的是Bmp文件头和位图头的总大小.</p>
+<h3 id="调色板个数PaletteColorsNum"><a href="#调色板个数PaletteColorsNum" class="headerlink" title="调色板个数PaletteColorsNum"></a>调色板个数PaletteColorsNum</h3><p>在ImageBits不为24或32的情况下(具体见上文-调色板BmpColorMap):</p>
+<p>$PaletteColorsNum &#x3D; 2^{ImageBits}$</p>
+<p>为24或32时:</p>
+<p>$PaletteColorsNum &#x3D; 0$</p>
+<h3 id="对齐后像素数据大小ImageSize"><a href="#对齐后像素数据大小ImageSize" class="headerlink" title="对齐后像素数据大小ImageSize"></a>对齐后像素数据大小ImageSize</h3><p>用数学公式说有点迷糊(我也还没学MOD)</p>
+<p>要对齐时:</p>
+<p>$RowSize&#x3D;\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)  $</p>
+<p>不用对齐时:</p>
+<p>$RowSize &#x3D; \frac {Width\times ImageBits} {8}$</p>
+<p>对于所有情况,都有:</p>
+<p>$ImageSize&#x3D;Height\times RowSize$</p>
+<hr>
+<p><em>RowSize</em>即储存一行的像素数据所需要的字节数.</p>
+<p>ImageSIze代表一张Bmp图像储存像素区域所占的字节数.</p>
+<hr>
+<p>要对齐时的情况推导:</p>
+<p>Bmp图像在储存数据时,记录范围内的每个像素(或调色板信息),会进行四字节对齐(不满四字节按四字节算).</p>
+<p>则储存一行时不对齐情况下的字节数是:$\frac {ImageBits} 8\times Width$</p>
+<p>不考虑多出字节进行4字节对齐时,多出字节数为:$(\frac {ImageBits} 8\times Width) \mod 4$</p>
+<p>则考虑多出字节进行4字节对齐时,需补齐字节数为:$4-[(\frac {ImageBits} 8\times Width) \mod 4]$</p>
+<p>则一行占用:$RowSize&#x3D;\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)  $</p>
+<p>再回去想想就行了…(指去上文QwQ)</p>
+<h3 id="宽度Width-amp-高度Height"><a href="#宽度Width-amp-高度Height" class="headerlink" title="宽度Width &amp; 高度Height"></a>宽度Width &amp; 高度Height</h3><p>Width不可为负数.</p>
+<p>Height可为负数.影响见下文.</p>
+<h2 id="像素存储"><a href="#像素存储" class="headerlink" title="像素存储"></a>像素存储</h2><p>正常情况下,Bmp会形成一个$Width \times Height$大小的数组,这里称BmpRaw,存在对齐情况,实际描述为二维数组,但在存储或读取时大多使用线型.</p>
+<p>Height为正数时,实际平面内最左上角的数据起始位置在BmpRaw的最后行的第一列,即BmpRaw[(Height - 1)*Width + 1],为负数则在BmpRaw的第一行的第一列,即BmpRaw[0].</p>
+<h2 id="读取-amp-使用方案梗概"><a href="#读取-amp-使用方案梗概" class="headerlink" title="读取&amp;使用方案梗概"></a>读取&amp;使用方案梗概</h2><h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><p>可以把BmpFileHeader和BmpInfoHeader合并为一体,称<strong>BMP_IMAGE_HEADER</strong>,C&#x2F;C++可用结构体,较为方便.</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack(1)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  UINT8   Blue;</span><br><span class="line">  UINT8   Green;</span><br><span class="line">  UINT8   Red;</span><br><span class="line">  UINT8   Reserved;</span><br><span class="line">&#125; BMP_COLOR_MAP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">CHAR8	CharB;                                 <span class="comment">// BMP的标识符,必须为&#x27;B&#x27;</span></span><br><span class="line">CHAR8   CharM;                                 <span class="comment">// BMP的标识符,必须为&#x27;M&#x27;</span></span><br><span class="line">UINT32  Size;                                      <span class="comment">// BMP文件大小,Bety</span></span><br><span class="line">UINT16  Reserved1;                         <span class="comment">// 保留</span></span><br><span class="line">UINT16  Reserved2;                         <span class="comment">// 保留</span></span><br><span class="line">UINT32  ImageOffset;                     <span class="comment">// BMP图像像素起始位置相对于头部的偏移</span></span><br><span class="line">UINT32  HeaderSize;                       <span class="comment">// 此Bmp Info Header大小,40 B</span></span><br><span class="line">INT32     Width;                                   <span class="comment">// BMP图像宽</span></span><br><span class="line">INT32     Height;                                 <span class="comment">// BMP图像高</span></span><br><span class="line">UINT16  Planes;                                 <span class="comment">// 为 1</span></span><br><span class="line">UINT16  ImageBits;                          <span class="comment">// BMP图像位深</span></span><br><span class="line">UINT32  CompressionType;         <span class="comment">// 压缩方式</span></span><br><span class="line">UINT32  ImageSize;                         <span class="comment">// 图像对齐时像素数据大小</span></span><br><span class="line">UINT32  HorizontalResolution;  <span class="comment">// 横向分辨率</span></span><br><span class="line">UINT32   VerticalResolution;        <span class="comment">// 纵向分辨率</span></span><br><span class="line">UINT32   PaletteColorsNum;        <span class="comment">// 调色板颜色数</span></span><br><span class="line">UINT32   ImportantColorsNum;  <span class="comment">// 重要颜色数</span></span><br><span class="line">&#125; BMP_IMAGE_HEADER;</span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> pack()</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以通过两种方式读取:</p>
+<ol>
+<li><p>根据占用大小,依次读取数据放入结构体中.</p>
+</li>
+<li><p>直接读取进入结构体,这就是为什么加入预处理指令<code>#pragma pack(1)</code>和<code>#pragma pack()</code>使结构体不进行字节对齐.</p>
+</li>
+</ol>
+<h3 id="“翻译”"><a href="#“翻译”" class="headerlink" title="“翻译”"></a>“翻译”</h3><p>一般情况下,24Bit的像素数据或类似24Bit像素数据会比较通用.比如UEFI下Blt函数传输(EfiBufferToVideo,从缓冲区到屏幕)的BltBuffer,使用<strong>BGRR</strong>即[Blue,Green,Red,Reserved]的格式,32、24Bit以外的都不是直接存储像素RGB值,使用调色板翻译就是一件必不可少的工作.</p>
+<p>针对图像会倒转的问题,可以这样解决:</p>
+<ol>
+<li><p>在”翻译”阶段将数据根据实际情况进行摆放.</p>
+</li>
+<li><p>在”翻译”阶段跑完后对数据根据实际情况进行翻转.定义一个函数如:BmpTransform</p>
+</li>
+</ol>
+<p>数据?拿来吧你!</p>
+<h1 id="资源附"><a href="#资源附" class="headerlink" title="资源附"></a>资源附</h1><p>16位深的转换等我写完才去研究,其他的就等一下放我的Edk2项目的源码吧……咕咕咕咕咕咕咕咕咕咕咕咕咕咕咕咕咕咕</p>
+<p>[AARCH,ARM,X64,IA32] Bmp位图检查程序BmpChecker及源代码:        <a href="https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333">https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333</a><br>适用于UEFI的Bmp位深转换:  <a href="https://gist.github.com/ljQAQ233/5eaf1c600fcbb773749150efc73ab575">https://gist.github.com/ljQAQ233/5eaf1c600fcbb773749150efc73ab575</a></p>
+]]></content>
+      <tags>
+        <tag>UEFI</tag>
+        <tag>EDKII</tag>
+        <tag>Bilibili</tag>
+        <tag>C语言</tag>
+        <tag>Bmp</tag>
       </tags>
   </entry>
 </search>
