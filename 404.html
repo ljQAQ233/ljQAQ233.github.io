@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <script>
-            var i = 5;
-            var intervalid;   
-            intervalid = setInterval("cutdown()", 1000);   
-            function cutdown() {   
-                if (i == 0) {   
-                    window.location.href = "https://ljqaq233.github.io/"; 
-                    clearInterval(intervalid);   
-                }   
-                document.getElementById("mes").innerHTML = i;   
-                i--;
-            }
-            window.onload = cutdown;
-        </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>404 - Not Found</title>
+    <script>
+        var i = 5;
+        var intervalid;   
+        intervalid = setInterval("cutdown()", 1000);   
+        function cutdown() {   
+            if (i == 0) {   
+                window.location.href = "https://ljqaq233.github.io/"; 
+                clearInterval(intervalid);   
+            }   
+            document.getElementById("mes").innerHTML = i;   
+            i--;
+        }
+        window.onload = cutdown;
+    </script>
     <style>
         body {
             background-color: #0078D7;

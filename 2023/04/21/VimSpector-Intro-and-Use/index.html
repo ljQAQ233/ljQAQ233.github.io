@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Overview由于电脑实在是太拉了,我用不了vscode,所以我试着使用gdb命令行调试,但并不方便,我想着转向NeoVim,这就来折腾一下,也就有了这篇文章. 1console.log(&quot;Hello world&quot;) 简介在座的各位都用过VSCode调试C语言程序吧,那对cpptools一定不陌生. 我们的上古神奇Vim上也可以进行类似的可视化调试,使用VimSpector(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VimSpector 简介及使用">
+<meta property="og:url" content="http://example.com/2023/04/21/VimSpector-Intro-and-Use/index.html">
+<meta property="og:site_name" content="Maouai233的Blog">
+<meta property="og:description" content="Overview由于电脑实在是太拉了,我用不了vscode,所以我试着使用gdb命令行调试,但并不方便,我想着转向NeoVim,这就来折腾一下,也就有了这篇文章. 1console.log(&quot;Hello world&quot;) 简介在座的各位都用过VSCode调试C语言程序吧,那对cpptools一定不陌生. 我们的上古神奇Vim上也可以进行类似的可视化调试,使用VimSpector(">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-20T22:32:23.000Z">
+<meta property="article:modified_time" content="2023-04-22T09:43:45.682Z">
+<meta property="article:author" content="Maouai233">
+<meta property="article:tag" content="Bilibili">
+<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="调试">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/04/21/VimSpector-Intro-and-Use/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>VimSpector 简介及使用 | Maouai233的Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Maouai233的Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/21/VimSpector-Intro-and-Use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maouai233">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maouai233的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VimSpector 简介及使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-04-21 06:32:23" itemprop="dateCreated datePublished" datetime="2023-04-21T06:32:23+08:00">2023-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-22 17:43:45" itemprop="dateModified" datetime="2023-04-22T17:43:45+08:00">2023-04-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>由于电脑实在是太拉了,我用不了vscode,所以我试着使用gdb命令行调试,但并不方便,我想着转向NeoVim,这就来折腾一下,也就有了这篇文章.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello world&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在座的各位都用过VSCode调试C语言程序吧,那对cpptools一定不陌生.</p>
+<p>我们的上古神奇Vim上也可以进行类似的可视化调试,使用VimSpector(甚至一模一样……)</p>
+<p>如果是NeoVim,还可以选择使用<strong>nvim-dap</strong>,但它的配置较为繁琐,就不再介绍(暂时吧……)</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>使用<strong>vim-plug</strong>进行安装:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs viml"><br>call plug#begin(&quot;~/.config/nvim/plugged&quot;)<br><br> Plug &#x27;puremourning/vimspector&#x27;<br><br>call plug#end()<br><br></code></pre></td></tr></table></figure>
+
+<p>其他插件管理器执行类似操作.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs viml"><br>:PlugInstall<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="调试适配器"><a href="#调试适配器" class="headerlink" title="调试适配器"></a>调试适配器</h2><p>切换到我们安装的vimspector插件的目录,我这里是<code>plugged/vimspector</code></p>
+<p>可以看到简单的帮助,及一些语言</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./install_gadget.py --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure>
+
+<p>我们安装C语言的调试适配器,C++的也可.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./install_gadget.py --enable-c --verbose<br></code></pre></td></tr></table></figure>
+
+<p><code>--verbose</code>输出安装详细步骤.</p>
+<p>在这里,大多数人都会遇见下载速度过慢的问题:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs log">Installing vscode-cpptools@1.14.5...<br>Downloading https://github.com/Microsoft/vscode-cpptools/releases/download/v1.14.5/cpptools-linux.vsix to /home/maouai233/.config/nvim/plugged/vimspector/gadgets/linux/download/vscode-cpptools/1.14.5/cpptools-linux.vsix<br></code></pre></td></tr></table></figure>
+
+<p>当然你可以<strong>挂代理</strong>,我这里使用一个成本极低的方法.</p>
+<p>使用 <strong>axel</strong> 进行下载!<br>我们先将 <strong>install_gadget.py</strong> 停下来先</p>
+<p>将文件下载至它应该在的位置,完成<strong>install_gadget.py</strong>的部分使命……</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">axel -n 256 https://github.com/Microsoft/vscode-cpptools/releases/download/v1.14.5/cpptools-linux.vsix -o /home/maouai233/.config/nvim/plugged/vimspector/gadgets/linux/download/vscode-cpptools/1.14.5/cpptools-linux.vsix<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-n</code> 最大连接数</li>
+<li><code>-o</code> 输出文件至</li>
+</ul>
+<p>几次如此之后,我们的调试适配器就安装好了!</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>就如同 vscode 调试一样,调试需要 **launch.json **, vimspector 也不例外.</p>
+<h3 id="白嫖"><a href="#白嫖" class="headerlink" title="白嫖"></a>白嫖</h3><p>我们可以通过一个偷懒而又简单的方式获取一个配置文件.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs viml">:h vimspector<br></code></pre></td></tr></table></figure>
+
+<p>其实就是直接翻 vimspector 的** README.md** …… (同Github)</p>
+<p>或者看 <strong>vimspector&#x2F;docs&#x2F;configuration.md</strong> (同官网)</p>
+<p>将需要的复制粘贴到调试的根目录下的 <strong>.vimspector</strong> 中,并稍加修改.</p>
+<p>当然你可以自己手动编写,Let’s get higher!</p>
+<h3 id="自己动手-丰衣足食"><a href="#自己动手-丰衣足食" class="headerlink" title="自己动手,丰衣足食"></a>自己动手,丰衣足食</h3><p>以C语言为例,一个最简单的配置文件,在这里全部都是必须项!</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Launch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;adapter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vscode-cpptools&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;configuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;launch&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;path to binary&gt;&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 要调试的可执行文件路径</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>如你所见,它是和vscode一样,支持在配置文件中的注释的,形同C语言注释.</p>
+<blockquote>
+<p>The JSON configuration file allows C-style comments:</p>
+<ul>
+<li>‘&#x2F;&#x2F; comment to end of line …’</li>
+<li>‘&#x2F;* inline comment … *&#x2F;‘</li>
+</ul>
+</blockquote>
+<hr>
+<p><strong>configurations</strong> 允许有多个配置</p>
+<p>Format :</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;adapter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;adapter&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;filetypes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>...<span class="hljs-punctuation">]</span><br>    ...<br>    <span class="hljs-attr">&quot;configuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      ...<br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;adapter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;adapter&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;filetypes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>...<span class="hljs-punctuation">]</span><br>    ...<br>    <span class="hljs-attr">&quot;configuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      ...<br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>name</strong> 是该配置条目的名称,如果有多个配置,在启动时供用户选择.<br><strong>adapter</strong>指定了调试适配器</p>
+<hr>
+<h4 id="调试适配器-adapter"><a href="#调试适配器-adapter" class="headerlink" title="调试适配器 adapter"></a>调试适配器 adapter</h4><p>除了提供的我们还可以自己自定义,也可以在原有的adapter下建立</p>
+<h4 id="文件类型-filetypes"><a href="#文件类型-filetypes" class="headerlink" title="文件类型 filetypes"></a>文件类型 filetypes</h4><p>限制了该配置在当前打开文件<strong>为某种类型(后缀)时才可以启动debug</strong></p>
+<p>Example :</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;filetypes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-string">&quot;cpp&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;c&quot;</span> <span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="配置项-configuration"><a href="#配置项-configuration" class="headerlink" title="配置项 configuration"></a>配置项 configuration</h4><h5 id="request"><a href="#request" class="headerlink" title="request"></a>request</h5><p>可以为<code>launch</code>或<code>attach</code></p>
+<h5 id="program"><a href="#program" class="headerlink" title="program"></a>program</h5><p>要调试的可执行程序的路径,注意不必要的空格不允许出现!</p>
+<h5 id="stopOnEntry-x2F-stopAtEntry"><a href="#stopOnEntry-x2F-stopAtEntry" class="headerlink" title="stopOnEntry &#x2F; stopAtEntry"></a>stopOnEntry &#x2F; stopAtEntry</h5><p>这两个是等价的,在程序入口停止.</p>
+<h5 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h5><p>环境变量</p>
+<p>Example :</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;environment&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>  <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot; NAME1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;TEST1&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot; NAME2&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;TEST2&quot;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="args"><a href="#args" class="headerlink" title="args"></a>args</h5><p>启动参数</p>
+<p>Example :</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">args<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;arg1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;arg2&quot;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="externalConsole"><a href="#externalConsole" class="headerlink" title="externalConsole"></a>externalConsole</h5><p>外部终端.<br><del>貌似没有什么用</del></p>
+<h5 id="cwd"><a href="#cwd" class="headerlink" title="cwd"></a>cwd</h5><p>工作目录</p>
+<blockquote>
+<p><code>$&#123;cwd&#125;</code> - the current working directory of the active window on launch</p>
+</blockquote>
+<h5 id="setupCommands"><a href="#setupCommands" class="headerlink" title="setupCommands"></a>setupCommands</h5><p>Format :</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;描述&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;命令&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;ignoreFailures&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span> <span class="hljs-comment">// 执行错误是否可以忽略</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="customLaunchSetupCommands"><a href="#customLaunchSetupCommands" class="headerlink" title="customLaunchSetupCommands"></a>customLaunchSetupCommands</h5><p>如果此选项设置了,它将会替代默认的启动命令<br>但是,若直接这样可能会报错,因为我们并未指定架构,详见 <strong>targetArchitecture</strong>.</p>
+<p>Format : 同 setupCommands</p>
+<p>Example :</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;customLaunchSetupCommands&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>  <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Connect to qemu&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;-target-select remote :1234&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ignoreFailures&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="launchCompleteCommand"><a href="#launchCompleteCommand" class="headerlink" title="launchCompleteCommand"></a>launchCompleteCommand</h5><p>在调试器启动好后执行的命令,有限定:</p>
+<ul>
+<li><code>exec-run</code> (default)</li>
+<li><code>exec-continue</code></li>
+<li><code>None</code></li>
+</ul>
+<h5 id="targetArchitecture"><a href="#targetArchitecture" class="headerlink" title="targetArchitecture"></a>targetArchitecture</h5><ul>
+<li><code>x64</code></li>
+<li><code>x86</code></li>
+<li><code>amd64</code></li>
+<li><code>arm</code></li>
+<li><code>arm64</code></li>
+<li>…</li>
+</ul>
+<p>此选项可以<strong>占位</strong>使用,保证调试器的启动,在<strong>启动时使用命令设置成目标架构即可</strong>.</p>
+<h5 id="MIMode"><a href="#MIMode" class="headerlink" title="MIMode"></a>MIMode</h5><p>调试器</p>
+<p><code>lldb</code>或者<code>gdb</code></p>
+<h5 id="miDebuggerPath"><a href="#miDebuggerPath" class="headerlink" title="miDebuggerPath"></a>miDebuggerPath</h5><p>相应调试器的可执行程序路径,如果没有设置,则在环境变量中搜索.</p>
+<h5 id="miDebuggerArgs"><a href="#miDebuggerArgs" class="headerlink" title="miDebuggerArgs"></a>miDebuggerArgs</h5><p>调试器的附加启动参数</p>
+<blockquote>
+<p>“是退出时的冒泡罢了 QwQ”</p>
+<p><code>&quot;/usr/bin/gdb&quot; --interpreter=mi $&#123;在这里&#125; --tty=$&#123;DbgTerm&#125; 0&lt;&quot;/tmp/Microsoft-MIEngine-In-2aisxnef.g3f&quot;</code> </p>
+</blockquote>
+<h5 id="miDebuggerServerAddress"><a href="#miDebuggerServerAddress" class="headerlink" title="miDebuggerServerAddress"></a>miDebuggerServerAddress</h5><p>远程 remote 的地址,在这个选项设置后,调试器会尝试连接<br>就和我们平时调试时用的<code>target remote</code>一样</p>
+<p>它给调试带来了一些可能.</p>
+<h4 id="日志-logging"><a href="#日志-logging" class="headerlink" title="日志 logging"></a>日志 logging</h4><p>控制输出至 <strong>Debug Console</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;logging&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  ...<br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>engingLogging</code> 引擎日志 def-&gt; false</li>
+<li><code>exceptions</code> 异常 def-&gt; true</li>
+<li><code>moduleLoad</code> 模块加载 def-&gt; true</li>
+<li><code>programOutput</code> 被调试程序输出 def-&gt; true</li>
+<li><code>trace</code> def-&gt; false</li>
+<li><code>traceResponse</code> def-&gt; false</li>
+</ul>
+<h4 id="变量-variables"><a href="#变量-variables" class="headerlink" title="变量 variables"></a>变量 variables</h4><h5 id="预设变量"><a href="#预设变量" class="headerlink" title="预设变量"></a>预设变量</h5><ul>
+<li><code>$&#123;dollar&#125;</code> -&gt; <code>$</code></li>
+<li><code>$$</code> -&gt; <code>$</code></li>
+<li><code>$&#123;workspaceRoot&#125;</code> <code>.vimspector.json</code>所在位置</li>
+<li><code>$&#123;workspaceFolder&#125;</code> <code>.vimspector.json</code>所在的位置</li>
+<li><code>$&#123;gadgetDir&#125;</code> 调试适配器的路径 (<code>gadgets/&lt;OS&gt;</code>)</li>
+<li><code>$&#123;file&#125;</code> 当前打开的文件</li>
+<li><code>$&#123;relativeFile&#125;</code> 当前打开的文件相对于<code>$&#123;workspaceFolder&#125;</code>的路径</li>
+<li><code>$&#123;relativeFileDirname&#125;</code> 当前打开的文件所在目录相对于<code>$&#123;workspaceFolder&#125;</code>的路径</li>
+<li><code>$&#123;fileBasenameNoExtension&#125;</code> 当前打开的文件的名称,不带后缀</li>
+<li><code>$&#123;fileDirname&#125;</code> 当前打开的文件所在目录,绝对路径</li>
+<li><code>$&#123;fileExtname&#125;</code> 当前打开的文件的后缀名</li>
+<li><code>$&#123;cwd&#125;</code> 工作目录</li>
+<li><code>$&#123;unusedLocalPort&#125;</code> 一个没有使用的本地TCP端口号</li>
+</ul>
+<h5 id="自定义变量"><a href="#自定义变量" class="headerlink" title="自定义变量"></a>自定义变量</h5><p>于作用的配置的<code>name-&gt;variables</code>中定义,作用于作用的配置.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;varibales&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;Common&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Value&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;Shell&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;shell&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>...<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;value&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>Common 展示了如何定义一个普通变量.<br>Shell  展示了如何在调用shell进行变量值的获取,env可以设置环境变量.</p>
+<h5 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsonc">&#123; &quot;key&quot;: &quot;$&#123;value:default &#123;\\&#125; stuff&#125;&quot; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>当value已被定义,使用value的值.</p>
+<p>在这里的花括号中,要避免出现另一个花括号,否则将视其为结束,要对它进行转义,使用<code>\\</code></p>
+<p>Example :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configuration&quot;: &#123;<br>    &quot;program&quot;: &quot;$&#123;program:$&#123;file\\&#125;.out&#125;&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="未定义的变量"><a href="#未定义的变量" class="headerlink" title="未定义的变量"></a>未定义的变量</h5><p>未定义的变量在<code>.vimspector.json</code>某个地方使用,会要求用户手动输入</p>
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>想象一下,你如果要询问用户,是否在入口处暂停,如果你是这样写的:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configuration&quot;: &#123;<br>    &quot;program&quot;: &quot;$&#123;script:$&#123;file\\&#125;&#125;&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>那它并不会生效,WHY?<br>因为输入的是一个string,那么这个变量就”理所应当”地成了一个string…</p>
+<p>所以我们这样解决:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsonc">&quot;stopOnEntry#json&quot;: &quot;$&#123;stopOnEntry&#125;&quot;<br></code></pre></td></tr></table></figure>
+
+<p>加个默认值压压筋…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsonc">&quot;stopOnEntry#json&quot;: &quot;$&#123;stopOnEntry:true&#125;&quot;<br></code></pre></td></tr></table></figure>
+
+<p>同时还有一个鸡肋的问题,就是有人在变量后带<code>#json</code>,它就叫这个,非常的不友好,怎么办呢?</p>
+<p>在它后面添加<code>#s</code>就行了!告诉vimspector不是要进行类型转换,它本身就长这个样…</p>
+<h5 id="展开为数组"><a href="#展开为数组" class="headerlink" title="展开为数组"></a>展开为数组</h5><p>使用<code>*</code>(splat operator)将string展开为数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsonc">&quot;args&quot;: [ &quot;*$&#123;CommandLineArgs&#125;&quot; ]<br></code></pre></td></tr></table></figure>
+
+<p>就是这样: <code>arg1 arg2 &quot;This is a string&quot;</code> -&gt; <code>[&quot;arg1&quot;,&quot;arg2&quot;,&quot;This is a string&quot;]</code></p>
+<h4 id="断点-breakpoints"><a href="#断点-breakpoints" class="headerlink" title="断点 breakpoints"></a>断点 breakpoints</h4><h5 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h5><p>除<code>stopAtEntry / stopOnEntry</code>外,可以:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configurations&quot;: &#123;<br>    &quot;name&quot;: &#123;<br>      &quot;breakpoints&quot;: &#123;<br>        &quot;exception&quot;: &#123;<br>          &quot;cpp_throw&quot;: &quot;Y&quot;,   // 抛出异常<br>          &quot;cpp_catch&quot;: &quot;Y&quot;    // 捕获异常<br>        &#125;,<br>      &#125;,<br>      ...<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果将键值设为<code>&quot;&quot;</code>(<code>&quot;cpp_catch&quot;: &quot;&quot;</code>),跟随默认</p>
+<p>如果不设置,那它大概会在启动时给你抛出这个小可爱:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">cpp_throw: Break on C++: on throw (Y/N/default: Y)?<br>cpp_catch: Break on C++: on catch (Y/N/default: N)?<br></code></pre></td></tr></table></figure>
+
+<p>这个大概与我们的C语言没有太大关系</p>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>抛个<code>.vimspector.json</code>,是我用来调试<strong>操作系统内核</strong>和<strong>Uefi</strong>的</p>
+<p>这个操作系统的仓库在我将当前进度的代码全部整理好后才开放,当然你可以看到一点影子.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configurations&quot;: &#123;<br>    &quot;TextOS - Kernel debug&quot;: &#123;<br>      &quot;adapter&quot;: &quot;vscode-cpptools&quot;,<br>      &quot;filetypes&quot;: [ &quot;cpp&quot;, &quot;c&quot; ],<br>      &quot;configuration&quot;: &#123;<br>        &quot;request&quot;: &quot;launch&quot;,<br>        &quot;program&quot;: &quot;$&#123;workspaceRoot&#125;/Build/Kernel/Kernel.elf.symbol&quot;,<br>        &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,<br>        &quot;MIMode&quot;: &quot;gdb&quot;,<br>        &quot;miDebuggerServerAddress&quot;: &quot;localhost:1234&quot;,<br>        &quot;setupCommands&quot;: [<br>          &#123;<br>            &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,<br>            &quot;text&quot;: &quot;-enable-pretty-printing&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Set disassembly style for gdb&quot;,<br>            &quot;text&quot;: &quot;-gdb-set disassembly-flavor intel&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;<br>        ]<br>      &#125;<br>    &#125;,<br>    &quot;TextOS - Boot debug&quot;: &#123;<br>      &quot;adapter&quot;: &#123;<br>        &quot;extends&quot;: &quot;vscode-cpptools&quot;,<br>        &quot;delay&quot;: &quot;50000m&quot;<br>      &#125;,<br>      &quot;configuration&quot;: &#123;<br>        &quot;request&quot;: &quot;launch&quot;,<br>        &quot;program&quot;: &quot;$&#123;workspaceRoot&#125;/Build/Boot/DEBUG_GCC5/X64/SigmaBootPkg.debug&quot;,<br>        &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,<br>        &quot;MIMode&quot;: &quot;gdb&quot;,<br>        &quot;miDebuggerPath&quot;: &quot;/usr/bin/gdb&quot;,<br>        &quot;externalConsole&quot;: false,<br>        &quot;targetArchitecture&quot;: &quot;x64&quot;,<br>        &quot;customLaunchSetupCommands&quot;: [<br>          &#123;<br>            &quot;description&quot;: &quot;Connect to qemu&quot;,<br>            &quot;text&quot;: &quot;-target-select remote :1234&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Load script for uefi debugging&quot;,<br>            &quot;text&quot;: &quot;source $&#123;workspaceRoot&#125;/Src/Base/setup.gdb&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,<br>            &quot;text&quot;: &quot;-enable-pretty-printing&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Set disassembly style for gdb&quot;,<br>            &quot;text&quot;: &quot;-gdb-set disassembly-flavor intel&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;<br>        ],<br>        &quot;launchCompleteCommand&quot;: &quot;exec-continue&quot;,<br>        &quot;logging&quot;: &#123;<br>          &quot;engineLogging&quot;: true<br>        &#125;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="配置文件迁移-vscode-gt-vimspector"><a href="#配置文件迁移-vscode-gt-vimspector" class="headerlink" title="配置文件迁移 (vscode -&gt; vimspector)"></a>配置文件迁移 (vscode -&gt; vimspector)</h2><p>在vimspector的插件目录下的<code>support</code>下有个pyhthon脚本:<code>import_vscode_config</code>,但它不能直接对<code>launch.json</code>进行转换.<br>她针对笼统的配置，将<code>launch.json</code>等合并到一个文件,且不能转换带注释的config,于是我便自己写了个.</p>
+<p><a href="import_vscode_config.py">import_vscode_config.py | download</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./import_vscode_config launch.json<br></code></pre></td></tr></table></figure>
+
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="Visual-Studio-x2F-VSCode"><a href="#Visual-Studio-x2F-VSCode" class="headerlink" title="Visual Studio &#x2F; VSCode"></a>Visual Studio &#x2F; VSCode</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs viml">let g:vimspector_enable_mappings = &#x27;VISUAL_STUDIO&#x27;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Mapping</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorContinue</code></td>
+<td>When debugging, continue. Otherwise start debugging.</td>
+</tr>
+<tr>
+<td><code>Shift F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorStop</code></td>
+<td>Stop debugging.</td>
+</tr>
+<tr>
+<td><code>Ctrl Shift F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorRestart</code></td>
+<td>Restart debugging with the same configuration.</td>
+</tr>
+<tr>
+<td><code>F6</code></td>
+<td><code>&lt;Plug&gt;VimspectorPause</code></td>
+<td>Pause debuggee.</td>
+</tr>
+<tr>
+<td><code>F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorJumpToNextBreakpoint</code></td>
+<td>Jump to next breakpoint in the current file.</td>
+</tr>
+<tr>
+<td><code>Shift F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorJumpToPreviousBreakpoint</code></td>
+<td>Jump to previous breakpoint in the current file.</td>
+</tr>
+<tr>
+<td><code>F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorToggleBreakpoint</code></td>
+<td>Toggle line breakpoint on the current line.</td>
+</tr>
+<tr>
+<td><code>Shift F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorAddFunctionBreakpoint</code></td>
+<td>Add a function breakpoint for the expression under cursor</td>
+</tr>
+<tr>
+<td><code>F10</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOver</code></td>
+<td>Step Over</td>
+</tr>
+<tr>
+<td><code>F11</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepInto</code></td>
+<td>Step Into</td>
+</tr>
+<tr>
+<td><code>Shift F11</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOut</code></td>
+<td>Step out of current function scope</td>
+</tr>
+<tr>
+<td><code>Alt 8</code></td>
+<td><code>&lt;Plug&gt;VimspectorDisassemble</code></td>
+<td>Show disassembly</td>
+</tr>
+</tbody></table>
+<h3 id="Human-Mode"><a href="#Human-Mode" class="headerlink" title="Human Mode"></a>Human Mode</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs viml">let g:vimspector_enable_mappings = &#x27;HUMAN&#x27;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Mapping</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorContinue</code></td>
+<td>When debugging, continue. Otherwise start debugging.</td>
+</tr>
+<tr>
+<td><code>F3</code></td>
+<td><code>&lt;Plug&gt;VimspectorStop</code></td>
+<td>Stop debugging.</td>
+</tr>
+<tr>
+<td><code>F4</code></td>
+<td><code>&lt;Plug&gt;VimspectorRestart</code></td>
+<td>Restart debugging with the same configuration.</td>
+</tr>
+<tr>
+<td><code>F6</code></td>
+<td><code>&lt;Plug&gt;VimspectorPause</code></td>
+<td>Pause debuggee.</td>
+</tr>
+<tr>
+<td><code>F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorToggleBreakpoint</code></td>
+<td>Toggle line breakpoint on the current line.</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorToggleConditionalBreakpoint</code></td>
+<td>Toggle conditional line breakpoint or logpoint on the current line.</td>
+</tr>
+<tr>
+<td><code>F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorAddFunctionBreakpoint</code></td>
+<td>Add a function breakpoint for the expression under cursor</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorRunToCursor</code></td>
+<td>Run to Cursor</td>
+</tr>
+<tr>
+<td><code>F10</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOver</code></td>
+<td>Step Over</td>
+</tr>
+<tr>
+<td><code>F11</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepInto</code></td>
+<td>Step Into</td>
+</tr>
+<tr>
+<td><code>F12</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOut</code></td>
+<td>Step out of current function scope</td>
+</tr>
+</tbody></table>
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>个人喜好…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs viml">nnoremap &lt;C-S&gt; &lt;Plug&gt;VimspectorBalloonEval &quot; 浮动窗口显示变量值<br>nnoremap &lt;C-B&gt; &lt;Plug&gt;VimspectorBreakpoints &quot; 断点监测<br></code></pre></td></tr></table></figure>
+
+<h1 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/puremourning/vimspector">Vimspector | Github</a></li>
+<li><a target="_blank" rel="noopener" href="https://puremourning.github.io/vimspector-web/demo-setup.html">Setting up Vimspector | Vimspector</a></li>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/launch-json-reference">Configure launch.json for C&#x2F;C++ debugging in Visual Studio Code</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kongj/p/12831690.html">Vim最强调试插件: vimspector</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Bilibili/" rel="tag"># Bilibili</a>
+              <a href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag"># C语言</a>
+              <a href="/tags/%E8%B0%83%E8%AF%95/" rel="tag"># 调试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/04/UEFI_Bmp_1_TransAndDisplay/" rel="prev" title="[Bmp#1] Bmp位图转换与显示">
+      <i class="fa fa-chevron-left"></i> [Bmp#1] Bmp位图转换与显示
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E9%80%82%E9%85%8D%E5%99%A8"><span class="nav-number">3.2.</span> <span class="nav-text">调试适配器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.1.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BD%E5%AB%96"><span class="nav-number">4.1.1.</span> <span class="nav-text">白嫖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B-%E4%B8%B0%E8%A1%A3%E8%B6%B3%E9%A3%9F"><span class="nav-number">4.1.2.</span> <span class="nav-text">自己动手,丰衣足食</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E9%80%82%E9%85%8D%E5%99%A8-adapter"><span class="nav-number">4.1.2.1.</span> <span class="nav-text">调试适配器 adapter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B-filetypes"><span class="nav-number">4.1.2.2.</span> <span class="nav-text">文件类型 filetypes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%A1%B9-configuration"><span class="nav-number">4.1.2.3.</span> <span class="nav-text">配置项 configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#request"><span class="nav-number">4.1.2.3.1.</span> <span class="nav-text">request</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#program"><span class="nav-number">4.1.2.3.2.</span> <span class="nav-text">program</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#stopOnEntry-x2F-stopAtEntry"><span class="nav-number">4.1.2.3.3.</span> <span class="nav-text">stopOnEntry &#x2F; stopAtEntry</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#environment"><span class="nav-number">4.1.2.3.4.</span> <span class="nav-text">environment</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#args"><span class="nav-number">4.1.2.3.5.</span> <span class="nav-text">args</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#externalConsole"><span class="nav-number">4.1.2.3.6.</span> <span class="nav-text">externalConsole</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cwd"><span class="nav-number">4.1.2.3.7.</span> <span class="nav-text">cwd</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#setupCommands"><span class="nav-number">4.1.2.3.8.</span> <span class="nav-text">setupCommands</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#customLaunchSetupCommands"><span class="nav-number">4.1.2.3.9.</span> <span class="nav-text">customLaunchSetupCommands</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#launchCompleteCommand"><span class="nav-number">4.1.2.3.10.</span> <span class="nav-text">launchCompleteCommand</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#targetArchitecture"><span class="nav-number">4.1.2.3.11.</span> <span class="nav-text">targetArchitecture</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MIMode"><span class="nav-number">4.1.2.3.12.</span> <span class="nav-text">MIMode</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#miDebuggerPath"><span class="nav-number">4.1.2.3.13.</span> <span class="nav-text">miDebuggerPath</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#miDebuggerArgs"><span class="nav-number">4.1.2.3.14.</span> <span class="nav-text">miDebuggerArgs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#miDebuggerServerAddress"><span class="nav-number">4.1.2.3.15.</span> <span class="nav-text">miDebuggerServerAddress</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A5%E5%BF%97-logging"><span class="nav-number">4.1.2.4.</span> <span class="nav-text">日志 logging</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F-variables"><span class="nav-number">4.1.2.5.</span> <span class="nav-text">变量 variables</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%84%E8%AE%BE%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.2.5.1.</span> <span class="nav-text">预设变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.2.5.2.</span> <span class="nav-text">自定义变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-number">4.1.2.5.3.</span> <span class="nav-text">默认值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.2.5.4.</span> <span class="nav-text">未定义的变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">4.1.2.5.5.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B1%95%E5%BC%80%E4%B8%BA%E6%95%B0%E7%BB%84"><span class="nav-number">4.1.2.5.6.</span> <span class="nav-text">展开为数组</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%AD%E7%82%B9-breakpoints"><span class="nav-number">4.1.2.6.</span> <span class="nav-text">断点 breakpoints</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Exceptions"><span class="nav-number">4.1.2.6.1.</span> <span class="nav-text">Exceptions</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Demo"><span class="nav-number">5.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">6.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%BF%81%E7%A7%BB-vscode-gt-vimspector"><span class="nav-number">6.1.</span> <span class="nav-text">配置文件迁移 (vscode -&gt; vimspector)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">6.2.</span> <span class="nav-text">快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Studio-x2F-VSCode"><span class="nav-number">6.2.1.</span> <span class="nav-text">Visual Studio &#x2F; VSCode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Human-Mode"><span class="nav-number">6.2.2.</span> <span class="nav-text">Human Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84"><span class="nav-number">6.2.3.</span> <span class="nav-text">映射</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Links"><span class="nav-number">7.</span> <span class="nav-text">Links</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Maouai233</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maouai233</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

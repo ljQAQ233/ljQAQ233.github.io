@@ -240,56 +240,56 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>相信大家一定有搭建网站的“梦想”，这是一个探索，就是利用httpd来搭建一个不简单的静态网页，而httpd可以集成在Busybox当中，最大的困难，也就是交叉编译Busybox了。网络上使用GitHub Pages的网页大多是用Hexo做成的，它可以把MarkDown文档渲染成静态网页，我们的目标就是使用Httpd来运行Hexo渲染的网页，这也非常简单！</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>盒子是安卓系统，而安卓基于Linux，先查看盒子的架构，在安装相应的交叉编译工具，由于默认编译的busybox会在&#x2F;usr&#x2F;lib或&#x2F;lib下查找共享库文件，而安卓系统并不具备所有的条件，所以我们将以静态方式编译。使用adb工具把编译好的二进制可执行文件和静态网页上传到安卓上，使用“busybox httpd”启动即可。</p>
 <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="编译Busybox"><a href="#编译Busybox" class="headerlink" title="编译Busybox"></a>编译Busybox</h2><h3 id="查看架构"><a href="#查看架构" class="headerlink" title="查看架构"></a>查看架构</h3><p>我们需要使用adb连接到电视盒子，首先安装adb.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install android-tools-adb -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install android-tools-adb -y<br></code></pre></td></tr></table></figure>
 <p>我选择用网络连接盒子，需要查看盒子的ip地址，可以登录路由器后台查看：</p>
 <img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/2.png" class="" title="none">
 <p>我的是192.168.1.26<br>用adb命令连接它：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb connect 192.168.1.26</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb connect 192.168.1.26<br></code></pre></td></tr></table></figure>
 <p>运行后是这样的：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#运行后实录</span></span><br><span class="line">* daemon not running; starting now at tcp:5037</span><br><span class="line">* daemon started successfully</span><br><span class="line">connected to 192.168.1.26:5555</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行后实录</span><br>* daemon not running; starting now at tcp:5037<br>* daemon started successfully<br>connected to 192.168.1.26:5555<br></code></pre></td></tr></table></figure>
 <p>然后查看：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell <span class="built_in">uname</span> -a</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell <span class="hljs-built_in">uname</span> -a<br></code></pre></td></tr></table></figure>
 <p>这段是指，使用电视盒子下安卓系统上的默认终端执行”uname -a”<br>我的运行后是这样的，不同的机器可能不同：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux localhost 3.10.0_s40 <span class="comment">#1 SMP Thu May 28 18:02:20 CST 2020 armv7l GNU/Linux</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Linux localhost 3.10.0_s40 <span class="hljs-comment">#1 SMP Thu May 28 18:02:20 CST 2020 armv7l GNU/Linux</span><br></code></pre></td></tr></table></figure>
 <p>可以看到，这个盒子是armv7l的，可以说是arm32.那么交叉编译器就是arm开头，</p>
 <h3 id="安装交叉编译工具"><a href="#安装交叉编译工具" class="headerlink" title="安装交叉编译工具"></a>安装交叉编译工具</h3><p>但是，软件源中的gcc交叉编译工具一般是这种格式：gcc-arm-linux-gnueabi.安装这个是可以的，一般安装后可以自动转成：arm-linux-gnueabi-gcc.也可以直接下载交叉编译器的压缩包，解压并设置环境变量就好了（环境变量博客里专门有教程）.<br>输入这个，如果输出版本信息就ok：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arm-linux-gnueabi-gcc -v</span><br></pre></td></tr></table></figure>
-<h3 id="下载Busybox源码"><a href="#下载Busybox源码" class="headerlink" title="下载Busybox源码"></a>下载Busybox源码</h3><h4 id="对于wget"><a href="#对于wget" class="headerlink" title="对于wget"></a>对于wget</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install wget -y</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://busybox.net/downloads/busybox-1.35.0.tar.bz2</span><br></pre></td></tr></table></figure>
-<h4 id="对于curl"><a href="#对于curl" class="headerlink" title="对于curl"></a>对于curl</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install curl -y</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -O https://busybox.net/downloads/busybox-1.35.0.tar.bz2</span><br></pre></td></tr></table></figure>
-<h3 id="解压Busybox源码"><a href="#解压Busybox源码" class="headerlink" title="解压Busybox源码"></a>解压Busybox源码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf ./busybox-1.35.0.tar.bz2  </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">arm-linux-gnueabi-gcc -v<br></code></pre></td></tr></table></figure>
+<h3 id="下载Busybox源码"><a href="#下载Busybox源码" class="headerlink" title="下载Busybox源码"></a>下载Busybox源码</h3><h4 id="对于wget"><a href="#对于wget" class="headerlink" title="对于wget"></a>对于wget</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install wget -y<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://busybox.net/downloads/busybox-1.35.0.tar.bz2<br></code></pre></td></tr></table></figure>
+<h4 id="对于curl"><a href="#对于curl" class="headerlink" title="对于curl"></a>对于curl</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install curl -y<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -O https://busybox.net/downloads/busybox-1.35.0.tar.bz2<br></code></pre></td></tr></table></figure>
+<h3 id="解压Busybox源码"><a href="#解压Busybox源码" class="headerlink" title="解压Busybox源码"></a>解压Busybox源码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar xvf ./busybox-1.35.0.tar.bz2  <br></code></pre></td></tr></table></figure>
 <p>切换工作目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> busybox-1.35.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> busybox-1.35.0<br></code></pre></td></tr></table></figure>
 <h3 id="Busybox编译前配置"><a href="#Busybox编译前配置" class="headerlink" title="Busybox编译前配置"></a>Busybox编译前配置</h3><h4 id="安装make"><a href="#安装make" class="headerlink" title="安装make"></a>安装make</h4><p>既然要用makefile，必须要有make啊…</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt make -y</span><br></pre></td></tr></table></figure>
-<h4 id="正式配置"><a href="#正式配置" class="headerlink" title="正式配置"></a>正式配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm defconfig</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt make -y<br></code></pre></td></tr></table></figure>
+<h4 id="正式配置"><a href="#正式配置" class="headerlink" title="正式配置"></a>正式配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm defconfig<br></code></pre></td></tr></table></figure>
 <p>这里的”CROSS_COMPILE&#x3D;”指定交叉编译器，”arm-linux-gnueabi-“是我们要用到的交叉编译器前缀，简单来说就是arm-linux-gnueabi-gcc除掉gcc以外的部分，一般这是个变量，编译时需要交叉编译工具时，会在gcc或ld前自动加上arm-linux-gnueabi-，如果不指定，就是利用系统默认的gcc编译，编译获得的二进制文件的架构就是编译主机的架构.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm menuconfig</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm menuconfig<br></code></pre></td></tr></table></figure>
 <p>会启动一个“图形化菜单”，利用方向键以移动，enter键确定，空格键选中.</p>
 <img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/menu_!.png" class="" title="none">
 <p>Enter:<strong>Settings</strong></p>
 <img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/menu_!2.png" class="" title="none">
 <p>空格:<strong>[ ] Build static binary (no shared libs)</strong><br>然后ESC+ESC退出整个菜单，选择保存</p>
 <img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/menu_!3.png" class="" title="none">
-<h3 id="正式编译"><a href="#正式编译" class="headerlink" title="正式编译"></a>正式编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm</span><br></pre></td></tr></table></figure>
+<h3 id="正式编译"><a href="#正式编译" class="headerlink" title="正式编译"></a>正式编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm<br></code></pre></td></tr></table></figure>
 <h3 id="成功编译"><a href="#成功编译" class="headerlink" title="成功编译"></a>成功编译</h3><p>如果在目录下看到一个叫做busybox的可执行文件，就半成功了.<br>我们用file命令查看busybox的架构：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file ./busybox</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行后实录</span></span><br><span class="line">./busybox: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, <span class="keyword">for</span> GNU/Linux 3.2.0, BuildID[sha1]=9d5381f93c45bd41ce7b5a9a18b795b12652ab07, stripped</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">file ./busybox<br><br><span class="hljs-comment">#运行后实录</span><br>./busybox: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, <span class="hljs-keyword">for</span> GNU/Linux 3.2.0, BuildID[sha1]=9d5381f93c45bd41ce7b5a9a18b795b12652ab07, stripped<br></code></pre></td></tr></table></figure>
 <p>32位arm Soc，完全成功！</p>
-<h2 id="上传busybox"><a href="#上传busybox" class="headerlink" title="上传busybox"></a>上传busybox</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push ./busybox /sdcard</span><br></pre></td></tr></table></figure>
+<h2 id="上传busybox"><a href="#上传busybox" class="headerlink" title="上传busybox"></a>上传busybox</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb push ./busybox /sdcard<br></code></pre></td></tr></table></figure>
 <p>指的是：使用adb把当前目录下的busybox上传到安卓设备（电视盒子）的&#x2F;sdcard目录下</p>
 <h2 id="上传网页"><a href="#上传网页" class="headerlink" title="上传网页"></a>上传网页</h2><p>也可以自己写一个Html，我选择Hexo，简单且高效，关于Hexo的配置，我推荐官方文章：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs">https://hexo.io/zh-cn/docs</a><br>比如说我们已经有一个网站文件夹public，将它上传至&#x2F;sdcard</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push ./public /sdcard</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb push ./public /sdcard<br></code></pre></td></tr></table></figure>
 <p>没想到吧，也可以上传整个文件夹.<br>接下来就进入盒子的远程shell来配置吧.</p>
-<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br></pre></td></tr></table></figure>
+<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb shell<br></code></pre></td></tr></table></figure>
 <p>进入盒子shell</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /sdcard</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /sdcard<br></code></pre></td></tr></table></figure>
 <p>切换到上传文件所在目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x ./busybox</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x ./busybox<br></code></pre></td></tr></table></figure>
 <p>busybox有可能不可以执行，给它可执行权限.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./busybox</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./busybox<br></code></pre></td></tr></table></figure>
 <p>可以看到输出了一大堆命令.<br>使用以下命令开启httpd:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./busybox httpd -h public -p 8080</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./busybox httpd -h public -p 8080<br></code></pre></td></tr></table></figure>
 <p>httpd命令用法：httpd -h 网站根目录 -p 网站端口号，一般80，8080就是保险一点.<br>用浏览器访问”盒子ip:8080”，就可以看到网页了.</p>
 <h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="执行busybox时-”-x2F-system-x2F-bin-x2F-sh-x2F-busybox-not-executable-magic-7F45”"><a href="#执行busybox时-”-x2F-system-x2F-bin-x2F-sh-x2F-busybox-not-executable-magic-7F45”" class="headerlink" title="执行busybox时,”&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: not executable: magic 7F45”"></a>执行busybox时,”&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: not executable: magic 7F45”</h2><p><strong>编译错架构了，重新编译</strong></p>
 <h2 id="x2F-system-x2F-bin-x2F-sh-x2F-busybox-No-such-file-or-directory"><a href="#x2F-system-x2F-bin-x2F-sh-x2F-busybox-No-such-file-or-directory" class="headerlink" title="&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: No such file or directory"></a>&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: No such file or directory</h2><p><strong>没有上传或者编译配置时没有勾选静态编译</strong></p>
@@ -324,7 +324,7 @@
       <i class="fa fa-chevron-left"></i> 一个Minecratf服务器自动配置脚本
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/03/28/UEFI%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-UEFI-Data-Types/" rel="next" title="UEFI数据类型[UEFI Data Types]">
+    <a href="/2022/03/28/UEFI_DataTypes/" rel="next" title="UEFI数据类型[UEFI Data Types]">
       UEFI数据类型[UEFI Data Types] <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -399,14 +399,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -433,7 +433,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
