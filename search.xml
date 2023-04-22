@@ -1,75 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>UEFI基本宏定义-UEFI-Basic-Macros</title>
-    <url>/2022/08/20/UEFI_BasicMacros/</url>
-    <content><![CDATA[<h1 id="说明性"><a href="#说明性" class="headerlink" title="说明性"></a>说明性</h1><p>为提高代码<strong>可读性</strong>等原因,需要有一些<strong>不加注释的注释</strong>……</p>
-<table>
-<thead>
-<tr>
-<th>宏</th>
-<th>描述</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>OUT</td>
-<td>从函数返回的不限于执行状态(EFI_STATUS等)的值,可用于参数声明时</td>
-<td>空宏</td>
-</tr>
-<tr>
-<td>IN</td>
-<td>向函数传的参数,主要强调进</td>
-<td>空宏</td>
-</tr>
-<tr>
-<td>OPTIONAL</td>
-<td>传入参数可选,如果标注此项,意味着在不需要传参时,可传入NULL填补</td>
-<td>空宏</td>
-</tr>
-</tbody></table>
-<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><p>比如声明常量或静态的</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 声明只读的类型</span><br><span class="hljs-comment">//</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> CONST     const</span><br><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 声明静态</span><br><span class="hljs-comment">//</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATIC    static</span><br></code></pre></td></tr></table></figure>
-
-<h1 id="有实值"><a href="#有实值" class="headerlink" title="有实值"></a>有实值</h1><h2 id="直接定义"><a href="#直接定义" class="headerlink" title="直接定义"></a>直接定义</h2><h3 id="NULL-amp-CHAR-NULL"><a href="#NULL-amp-CHAR-NULL" class="headerlink" title="NULL &amp; CHAR_NULL"></a>NULL &amp; CHAR_NULL</h3><p>C语言风格的定义,经典得很.</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 指向 0 的VOID指针</span><br><span class="hljs-comment">//</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> NULL                    ((VOID *) 0)</span><br><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 其实就是&#x27;\0&#x27;</span><br><span class="hljs-comment">//</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> CHAR_NULL      0x0000</span><br></code></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><p>定义在 : <strong>MdePkg&#x2F;Include&#x2F;Base.h</strong></p>
-<table>
-<thead>
-<tr>
-<th>宏</th>
-<th>定义</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>TRUE</td>
-<td>((BOOLEAN)(1&#x3D;&#x3D;1))</td>
-<td>布尔真,UEFI标准中定义它的值为1,但这种形式更加可靠</td>
-</tr>
-<tr>
-<td>FALSE</td>
-<td>((BOOLEAN)(0&#x3D;&#x3D;1))</td>
-<td>布尔假,UEFI标准中定义它的值为0,但这种形式更加可靠</td>
-</tr>
-</tbody></table>
-<h2 id="运算功能型"><a href="#运算功能型" class="headerlink" title="运算功能型"></a>运算功能型</h2>]]></content>
-      <tags>
-        <tag>UEFI</tag>
-        <tag>EDKII</tag>
-        <tag>Bilibili</tag>
-        <tag>C语言</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[Bmp#0] Bmp文件结构详解</title>
     <url>/2022/08/27/UEFI_Bmp_0_Introduction/</url>
-    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#77;&#x61;&#111;&#x75;&#x61;&#x69;&#50;&#51;&#x33;&#64;&#x6f;&#117;&#x74;&#108;&#111;&#x6f;&#107;&#x2e;&#99;&#x6f;&#x6d;">&#77;&#x61;&#111;&#x75;&#x61;&#x69;&#50;&#51;&#x33;&#64;&#x6f;&#117;&#x74;&#108;&#111;&#x6f;&#107;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#97;&#111;&#117;&#x61;&#105;&#50;&#51;&#51;&#x40;&#x6f;&#117;&#x74;&#108;&#x6f;&#111;&#107;&#46;&#99;&#x6f;&#109;">&#x4d;&#97;&#111;&#117;&#x61;&#105;&#50;&#51;&#51;&#x40;&#x6f;&#117;&#x74;&#108;&#x6f;&#111;&#107;&#46;&#99;&#x6f;&#109;</a></p>
 <p>最近(指这几个月…),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章……</p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>本文章使用标准的、最通用的Bmp图像试验,位图信息头使用BITMAPINFOHEADER.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
@@ -329,9 +263,541 @@
       </tags>
   </entry>
   <entry>
+    <title>VimSpector 简介及使用</title>
+    <url>/2023/04/21/VimSpector_Intro_and_Use/</url>
+    <content><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>由于电脑实在是太拉了,我用不了vscode,所以我试着使用gdb命令行调试,但并不方便,我想着转向NeoVim,这就来折腾一下,也就有了这篇文章.</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在座的各位都用过VSCode调试C语言程序吧,那对cpptools一定不陌生.</p>
+<p>我们的上古神奇Vim上也可以进行类似的可视化调试,使用VimSpector(甚至一模一样……)</p>
+<p>如果是NeoVim,还可以选择使用 <strong>nvim-dap</strong> ,但它的配置较为繁琐,就不再介绍(暂时吧……)</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>使用 <strong>vim-plug</strong> 进行安装:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml"><br>call plug#begin(&quot;~/.config/nvim/plugged&quot;)<br><br> Plug &#x27;puremourning/vimspector&#x27;<br><br>call plug#end()<br><br></code></pre></td></tr></table></figure>
+
+<p>其他插件管理器执行类似操作.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml"><br>:PlugInstall<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="调试适配器"><a href="#调试适配器" class="headerlink" title="调试适配器"></a>调试适配器</h2><p>切换到我们安装的vimspector插件的目录,我这里是<code>plugged/vimspector</code></p>
+<p>可以看到简单的帮助,及一些语言</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">./install_gadget.py --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure>
+
+<p>我们安装C语言的调试适配器,C++的也可.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">./install_gadget.py --enable-c --verbose<br></code></pre></td></tr></table></figure>
+
+<p><code>--verbose</code>输出安装详细步骤.</p>
+<p>在这里,大多数人都会遇见下载速度过慢的问题:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs log">Installing vscode-cpptools@1.14.5...<br>Downloading https://github.com/Microsoft/vscode-cpptools/releases/download/v1.14.5/cpptools-linux.vsix to /home/maouai233/.config/nvim/plugged/vimspector/gadgets/linux/download/vscode-cpptools/1.14.5/cpptools-linux.vsix<br></code></pre></td></tr></table></figure>
+
+<p>当然你可以<strong>挂代理</strong>,我这里使用一个成本极低的方法.</p>
+<p>使用 <strong>axel</strong> 进行下载!<br>我们先将 <strong>install_gadget.py</strong> 停下来先</p>
+<p>将文件下载至它应该在的位置,完成<strong>install_gadget.py</strong>的部分使命……</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">axel -n 256 https://github.com/Microsoft/vscode-cpptools/releases/download/v1.14.5/cpptools-linux.vsix -o /home/maouai233/.config/nvim/plugged/vimspector/gadgets/linux/download/vscode-cpptools/1.14.5/cpptools-linux.vsix<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-n</code> 最大连接数</li>
+<li><code>-o</code> 输出文件至</li>
+</ul>
+<p>几次如此之后,我们的调试适配器就安装好了!</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>就如同 vscode 调试一样,调试需要 **launch.json **, vimspector 也不例外.</p>
+<h3 id="白嫖"><a href="#白嫖" class="headerlink" title="白嫖"></a>白嫖</h3><p>我们可以通过一个偷懒而又简单的方式获取一个配置文件.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml">:h vimspector<br></code></pre></td></tr></table></figure>
+
+<p>其实就是直接翻 vimspector 的** README.md** …… (同Github)</p>
+<p>或者看 <strong>vimspector&#x2F;docs&#x2F;configuration.md</strong> (同官网)</p>
+<p>将需要的复制粘贴到调试的根目录下的 <strong>.vimspector</strong> 中,并稍加修改.</p>
+<p>当然你可以自己手动编写,Let’s get higher!</p>
+<h3 id="自己动手-丰衣足食"><a href="#自己动手-丰衣足食" class="headerlink" title="自己动手,丰衣足食"></a>自己动手,丰衣足食</h3><p>以C语言为例,一个最简单的配置文件,在这里全部都是必须项!</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Launch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;adapter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vscode-cpptools&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;configuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;launch&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;path to binary&gt;&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 要调试的可执行文件路径</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>如你所见,它是和vscode一样,支持在配置文件中的注释的,形同C语言注释.</p>
+<blockquote>
+<p>The JSON configuration file allows C-style comments:</p>
+<ul>
+<li>‘&#x2F;&#x2F; comment to end of line …’</li>
+<li>‘&#x2F;* inline comment … *&#x2F;‘</li>
+</ul>
+</blockquote>
+<hr>
+<p><strong>configurations</strong> 允许有多个配置</p>
+<p>Format :</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;adapter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;adapter&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;filetypes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>...<span class="hljs-punctuation">]</span><br>    ...<br>    <span class="hljs-attr">&quot;configuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      ...<br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;adapter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;adapter&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;filetypes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>...<span class="hljs-punctuation">]</span><br>    ...<br>    <span class="hljs-attr">&quot;configuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      ...<br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>name</strong> 是该配置条目的名称,如果有多个配置,在启动时供用户选择.<br><strong>adapter</strong>指定了调试适配器</p>
+<hr>
+<h4 id="调试适配器-adapter"><a href="#调试适配器-adapter" class="headerlink" title="调试适配器 adapter"></a>调试适配器 adapter</h4><p>除了提供的我们还可以自己自定义,也可以在原有的adapter下建立</p>
+<h4 id="文件类型-filetypes"><a href="#文件类型-filetypes" class="headerlink" title="文件类型 filetypes"></a>文件类型 filetypes</h4><p>限制了该配置在当前打开文件<strong>为某种类型(后缀)时才可以启动debug</strong></p>
+<p>Example :</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;filetypes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-string">&quot;cpp&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;c&quot;</span> <span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="配置项-configuration"><a href="#配置项-configuration" class="headerlink" title="配置项 configuration"></a>配置项 configuration</h4><h5 id="request"><a href="#request" class="headerlink" title="request"></a>request</h5><p>可以为<code>launch</code>或<code>attach</code></p>
+<h5 id="program"><a href="#program" class="headerlink" title="program"></a>program</h5><p>要调试的可执行程序的路径,注意不必要的空格不允许出现!</p>
+<h5 id="stopOnEntry-x2F-stopAtEntry"><a href="#stopOnEntry-x2F-stopAtEntry" class="headerlink" title="stopOnEntry &#x2F; stopAtEntry"></a>stopOnEntry &#x2F; stopAtEntry</h5><p>这两个是等价的,在程序入口停止.</p>
+<h5 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h5><p>环境变量</p>
+<p>Example :</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;environment&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>  <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot; NAME1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;TEST1&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot; NAME2&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;TEST2&quot;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="args"><a href="#args" class="headerlink" title="args"></a>args</h5><p>启动参数</p>
+<p>Example :</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">args<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;arg1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;arg2&quot;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="externalConsole"><a href="#externalConsole" class="headerlink" title="externalConsole"></a>externalConsole</h5><p>外部终端.<br><del>貌似没有什么用</del></p>
+<h5 id="cwd"><a href="#cwd" class="headerlink" title="cwd"></a>cwd</h5><p>工作目录</p>
+<blockquote>
+<p><code>$&#123;cwd&#125;</code> - the current working directory of the active window on launch</p>
+</blockquote>
+<h5 id="setupCommands"><a href="#setupCommands" class="headerlink" title="setupCommands"></a>setupCommands</h5><p>Format :</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;描述&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;命令&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;ignoreFailures&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span> <span class="hljs-comment">// 执行错误是否可以忽略</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="customLaunchSetupCommands"><a href="#customLaunchSetupCommands" class="headerlink" title="customLaunchSetupCommands"></a>customLaunchSetupCommands</h5><p>如果此选项设置了,它将会替代默认的启动命令<br>但是,若直接这样可能会报错,因为我们并未指定架构,详见 <strong>targetArchitecture</strong>.</p>
+<p>Format : 同 setupCommands</p>
+<p>Example :</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;customLaunchSetupCommands&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>  <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Connect to qemu&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;-target-select remote :1234&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ignoreFailures&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="launchCompleteCommand"><a href="#launchCompleteCommand" class="headerlink" title="launchCompleteCommand"></a>launchCompleteCommand</h5><p>在调试器启动好后执行的命令,有限定:</p>
+<ul>
+<li><code>exec-run</code> (default)</li>
+<li><code>exec-continue</code></li>
+<li><code>None</code></li>
+</ul>
+<h5 id="targetArchitecture"><a href="#targetArchitecture" class="headerlink" title="targetArchitecture"></a>targetArchitecture</h5><ul>
+<li><code>x64</code></li>
+<li><code>x86</code></li>
+<li><code>amd64</code></li>
+<li><code>arm</code></li>
+<li><code>arm64</code></li>
+<li>…</li>
+</ul>
+<p>此选项可以<strong>占位</strong>使用,保证调试器的启动,在<strong>启动时使用命令设置成目标架构即可</strong>.</p>
+<h5 id="MIMode"><a href="#MIMode" class="headerlink" title="MIMode"></a>MIMode</h5><p>调试器</p>
+<p><code>lldb</code>或者<code>gdb</code></p>
+<h5 id="miDebuggerPath"><a href="#miDebuggerPath" class="headerlink" title="miDebuggerPath"></a>miDebuggerPath</h5><p>相应调试器的可执行程序路径,如果没有设置,则在环境变量中搜索.</p>
+<h5 id="miDebuggerArgs"><a href="#miDebuggerArgs" class="headerlink" title="miDebuggerArgs"></a>miDebuggerArgs</h5><p>调试器的附加启动参数</p>
+<blockquote>
+<p>“是退出时的冒泡罢了 QwQ”</p>
+<p><code>&quot;/usr/bin/gdb&quot; --interpreter=mi $&#123;在这里&#125; --tty=$&#123;DbgTerm&#125; 0&lt;&quot;/tmp/Microsoft-MIEngine-In-2aisxnef.g3f&quot;</code> </p>
+</blockquote>
+<h5 id="miDebuggerServerAddress"><a href="#miDebuggerServerAddress" class="headerlink" title="miDebuggerServerAddress"></a>miDebuggerServerAddress</h5><p>远程 remote 的地址,在这个选项设置后,调试器会尝试连接<br>就和我们平时调试时用的<code>target remote</code>一样</p>
+<p>它给调试带来了一些可能.</p>
+<h4 id="日志-logging"><a href="#日志-logging" class="headerlink" title="日志 logging"></a>日志 logging</h4><p>控制输出至 <strong>Debug Console</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;logging&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  ...<br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>engingLogging</code> 引擎日志 def-&gt; false</li>
+<li><code>exceptions</code> 异常 def-&gt; true</li>
+<li><code>moduleLoad</code> 模块加载 def-&gt; true</li>
+<li><code>programOutput</code> 被调试程序输出 def-&gt; true</li>
+<li><code>trace</code> def-&gt; false</li>
+<li><code>traceResponse</code> def-&gt; false</li>
+</ul>
+<h4 id="变量-variables"><a href="#变量-variables" class="headerlink" title="变量 variables"></a>变量 variables</h4><h5 id="预设变量"><a href="#预设变量" class="headerlink" title="预设变量"></a>预设变量</h5><ul>
+<li><code>$&#123;dollar&#125;</code> -&gt; <code>$</code></li>
+<li><code>$$</code> -&gt; <code>$</code></li>
+<li><code>$&#123;workspaceRoot&#125;</code> <code>.vimspector.json</code>所在位置</li>
+<li><code>$&#123;workspaceFolder&#125;</code> <code>.vimspector.json</code>所在的位置</li>
+<li><code>$&#123;gadgetDir&#125;</code> 调试适配器的路径 (<code>gadgets/&lt;OS&gt;</code>)</li>
+<li><code>$&#123;file&#125;</code> 当前打开的文件</li>
+<li><code>$&#123;relativeFile&#125;</code> 当前打开的文件相对于<code>$&#123;workspaceFolder&#125;</code>的路径</li>
+<li><code>$&#123;relativeFileDirname&#125;</code> 当前打开的文件所在目录相对于<code>$&#123;workspaceFolder&#125;</code>的路径</li>
+<li><code>$&#123;fileBasenameNoExtension&#125;</code> 当前打开的文件的名称,不带后缀</li>
+<li><code>$&#123;fileDirname&#125;</code> 当前打开的文件所在目录,绝对路径</li>
+<li><code>$&#123;fileExtname&#125;</code> 当前打开的文件的后缀名</li>
+<li><code>$&#123;cwd&#125;</code> 工作目录</li>
+<li><code>$&#123;unusedLocalPort&#125;</code> 一个没有使用的本地TCP端口号</li>
+</ul>
+<h5 id="自定义变量"><a href="#自定义变量" class="headerlink" title="自定义变量"></a>自定义变量</h5><p>于作用的配置的<code>name-&gt;variables</code>中定义,作用于作用的配置.</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;varibales&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;Common&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Value&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;Shell&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;shell&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>...<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;value&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>Common 展示了如何定义一个普通变量.<br>Shell  展示了如何在调用shell进行变量值的获取,env可以设置环境变量.</p>
+<h5 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123; &quot;key&quot;: &quot;$&#123;value:default &#123;\\&#125; stuff&#125;&quot; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>当value已被定义,使用value的值.</p>
+<p>在这里的花括号中,要避免出现另一个花括号,否则将视其为结束,要对它进行转义,使用<code>\\</code></p>
+<p>Example :</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configuration&quot;: &#123;<br>    &quot;program&quot;: &quot;$&#123;program:$&#123;file\\&#125;.out&#125;&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="未定义的变量"><a href="#未定义的变量" class="headerlink" title="未定义的变量"></a>未定义的变量</h5><p>未定义的变量在<code>.vimspector.json</code>某个地方使用,会要求用户手动输入</p>
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>想象一下,你如果要询问用户,是否在入口处暂停,如果你是这样写的:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configuration&quot;: &#123;<br>    &quot;program&quot;: &quot;$&#123;script:$&#123;file\\&#125;&#125;&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>那它并不会生效,WHY?<br>因为输入的是一个string,那么这个变量就”理所应当”地成了一个string…</p>
+<p>所以我们这样解决:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&quot;stopOnEntry#json&quot;: &quot;$&#123;stopOnEntry&#125;&quot;<br></code></pre></td></tr></table></figure>
+
+<p>加个默认值压压筋…</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&quot;stopOnEntry#json&quot;: &quot;$&#123;stopOnEntry:true&#125;&quot;<br></code></pre></td></tr></table></figure>
+
+<p>同时还有一个鸡肋的问题,就是有人在变量后带<code>#json</code>,它就叫这个,非常的不友好,怎么办呢?</p>
+<p>在它后面添加<code>#s</code>就行了!告诉vimspector不是要进行类型转换,它本身就长这个样…</p>
+<h5 id="展开为数组"><a href="#展开为数组" class="headerlink" title="展开为数组"></a>展开为数组</h5><p>使用<code>*</code>(splat operator)将string展开为数组</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&quot;args&quot;: [ &quot;*$&#123;CommandLineArgs&#125;&quot; ]<br></code></pre></td></tr></table></figure>
+
+<p>就是这样: <code>arg1 arg2 &quot;This is a string&quot;</code> -&gt; <code>[&quot;arg1&quot;,&quot;arg2&quot;,&quot;This is a string&quot;]</code></p>
+<h4 id="断点-breakpoints"><a href="#断点-breakpoints" class="headerlink" title="断点 breakpoints"></a>断点 breakpoints</h4><h5 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h5><p>除<code>stopAtEntry / stopOnEntry</code>外,可以:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configurations&quot;: &#123;<br>    &quot;name&quot;: &#123;<br>      &quot;breakpoints&quot;: &#123;<br>        &quot;exception&quot;: &#123;<br>          &quot;cpp_throw&quot;: &quot;Y&quot;,   // 抛出异常<br>          &quot;cpp_catch&quot;: &quot;Y&quot;    // 捕获异常<br>        &#125;,<br>      &#125;,<br>      ...<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果将键值设为<code>&quot;&quot;</code>(<code>&quot;cpp_catch&quot;: &quot;&quot;</code>),跟随默认</p>
+<p>如果不设置,那它大概会在启动时给你抛出这个小可爱:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">cpp_throw: Break on C++: on throw (Y/N/default: Y)?<br>cpp_catch: Break on C++: on catch (Y/N/default: N)?<br></code></pre></td></tr></table></figure>
+
+<p>这个大概与我们的C语言没有太大关系</p>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>抛个<code>.vimspector.json</code>,是我用来调试<strong>操作系统内核</strong>和<strong>Uefi</strong>的</p>
+<p>这个操作系统的仓库在我将当前进度的代码全部整理好后才开放,当然你可以看到一点影子.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configurations&quot;: &#123;<br>    &quot;TextOS - Kernel debug&quot;: &#123;<br>      &quot;adapter&quot;: &quot;vscode-cpptools&quot;,<br>      &quot;filetypes&quot;: [ &quot;cpp&quot;, &quot;c&quot; ],<br>      &quot;configuration&quot;: &#123;<br>        &quot;request&quot;: &quot;launch&quot;,<br>        &quot;program&quot;: &quot;$&#123;workspaceRoot&#125;/Build/Kernel/Kernel.elf.symbol&quot;,<br>        &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,<br>        &quot;MIMode&quot;: &quot;gdb&quot;,<br>        &quot;miDebuggerServerAddress&quot;: &quot;localhost:1234&quot;,<br>        &quot;setupCommands&quot;: [<br>          &#123;<br>            &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,<br>            &quot;text&quot;: &quot;-enable-pretty-printing&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Set disassembly style for gdb&quot;,<br>            &quot;text&quot;: &quot;-gdb-set disassembly-flavor intel&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;<br>        ]<br>      &#125;<br>    &#125;,<br>    &quot;TextOS - Boot debug&quot;: &#123;<br>      &quot;adapter&quot;: &#123;<br>        &quot;extends&quot;: &quot;vscode-cpptools&quot;,<br>        &quot;delay&quot;: &quot;50000m&quot;<br>      &#125;,<br>      &quot;configuration&quot;: &#123;<br>        &quot;request&quot;: &quot;launch&quot;,<br>        &quot;program&quot;: &quot;$&#123;workspaceRoot&#125;/Build/Boot/DEBUG_GCC5/X64/SigmaBootPkg.debug&quot;,<br>        &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,<br>        &quot;MIMode&quot;: &quot;gdb&quot;,<br>        &quot;miDebuggerPath&quot;: &quot;/usr/bin/gdb&quot;,<br>        &quot;externalConsole&quot;: false,<br>        &quot;targetArchitecture&quot;: &quot;x64&quot;,<br>        &quot;customLaunchSetupCommands&quot;: [<br>          &#123;<br>            &quot;description&quot;: &quot;Connect to qemu&quot;,<br>            &quot;text&quot;: &quot;-target-select remote :1234&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Load script for uefi debugging&quot;,<br>            &quot;text&quot;: &quot;source $&#123;workspaceRoot&#125;/Src/Base/setup.gdb&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,<br>            &quot;text&quot;: &quot;-enable-pretty-printing&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Set disassembly style for gdb&quot;,<br>            &quot;text&quot;: &quot;-gdb-set disassembly-flavor intel&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;<br>        ],<br>        &quot;launchCompleteCommand&quot;: &quot;exec-continue&quot;,<br>        &quot;logging&quot;: &#123;<br>          &quot;engineLogging&quot;: true<br>        &#125;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="配置文件迁移-vscode-gt-vimspector"><a href="#配置文件迁移-vscode-gt-vimspector" class="headerlink" title="配置文件迁移 (vscode -&gt; vimspector)"></a>配置文件迁移 (vscode -&gt; vimspector)</h2><p>在vimspector的插件目录下的<code>support</code>下有个pyhthon脚本:<code>import_vscode_config</code>,但它不能直接对<code>launch.json</code>进行转换.<br>她针对笼统的配置，将<code>launch.json</code>等合并到一个文件,且不能转换带注释的config,于是我便自己写了个.</p>
+<p><a href="import_vscode_config.py">import_vscode_config.py | download</a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">./import_vscode_config launch.json<br></code></pre></td></tr></table></figure>
+
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="Visual-Studio-x2F-VSCode"><a href="#Visual-Studio-x2F-VSCode" class="headerlink" title="Visual Studio &#x2F; VSCode"></a>Visual Studio &#x2F; VSCode</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml">let g:vimspector_enable_mappings = &#x27;VISUAL_STUDIO&#x27;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Mapping</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorContinue</code></td>
+<td>When debugging, continue. Otherwise start debugging.</td>
+</tr>
+<tr>
+<td><code>Shift F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorStop</code></td>
+<td>Stop debugging.</td>
+</tr>
+<tr>
+<td><code>Ctrl Shift F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorRestart</code></td>
+<td>Restart debugging with the same configuration.</td>
+</tr>
+<tr>
+<td><code>F6</code></td>
+<td><code>&lt;Plug&gt;VimspectorPause</code></td>
+<td>Pause debuggee.</td>
+</tr>
+<tr>
+<td><code>F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorJumpToNextBreakpoint</code></td>
+<td>Jump to next breakpoint in the current file.</td>
+</tr>
+<tr>
+<td><code>Shift F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorJumpToPreviousBreakpoint</code></td>
+<td>Jump to previous breakpoint in the current file.</td>
+</tr>
+<tr>
+<td><code>F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorToggleBreakpoint</code></td>
+<td>Toggle line breakpoint on the current line.</td>
+</tr>
+<tr>
+<td><code>Shift F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorAddFunctionBreakpoint</code></td>
+<td>Add a function breakpoint for the expression under cursor</td>
+</tr>
+<tr>
+<td><code>F10</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOver</code></td>
+<td>Step Over</td>
+</tr>
+<tr>
+<td><code>F11</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepInto</code></td>
+<td>Step Into</td>
+</tr>
+<tr>
+<td><code>Shift F11</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOut</code></td>
+<td>Step out of current function scope</td>
+</tr>
+<tr>
+<td><code>Alt 8</code></td>
+<td><code>&lt;Plug&gt;VimspectorDisassemble</code></td>
+<td>Show disassembly</td>
+</tr>
+</tbody></table>
+<h3 id="Human-Mode"><a href="#Human-Mode" class="headerlink" title="Human Mode"></a>Human Mode</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml">let g:vimspector_enable_mappings = &#x27;HUMAN&#x27;<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Mapping</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorContinue</code></td>
+<td>When debugging, continue. Otherwise start debugging.</td>
+</tr>
+<tr>
+<td><code>F3</code></td>
+<td><code>&lt;Plug&gt;VimspectorStop</code></td>
+<td>Stop debugging.</td>
+</tr>
+<tr>
+<td><code>F4</code></td>
+<td><code>&lt;Plug&gt;VimspectorRestart</code></td>
+<td>Restart debugging with the same configuration.</td>
+</tr>
+<tr>
+<td><code>F6</code></td>
+<td><code>&lt;Plug&gt;VimspectorPause</code></td>
+<td>Pause debuggee.</td>
+</tr>
+<tr>
+<td><code>F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorToggleBreakpoint</code></td>
+<td>Toggle line breakpoint on the current line.</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorToggleConditionalBreakpoint</code></td>
+<td>Toggle conditional line breakpoint or logpoint on the current line.</td>
+</tr>
+<tr>
+<td><code>F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorAddFunctionBreakpoint</code></td>
+<td>Add a function breakpoint for the expression under cursor</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorRunToCursor</code></td>
+<td>Run to Cursor</td>
+</tr>
+<tr>
+<td><code>F10</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOver</code></td>
+<td>Step Over</td>
+</tr>
+<tr>
+<td><code>F11</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepInto</code></td>
+<td>Step Into</td>
+</tr>
+<tr>
+<td><code>F12</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOut</code></td>
+<td>Step out of current function scope</td>
+</tr>
+</tbody></table>
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>个人喜好…</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml">nnoremap &lt;C-S&gt; &lt;Plug&gt;VimspectorBalloonEval &quot; 浮动窗口显示变量值<br>nnoremap &lt;C-B&gt; &lt;Plug&gt;VimspectorBreakpoints &quot; 断点监测<br></code></pre></td></tr></table></figure>
+
+<h1 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h1><ul>
+<li><a href="https://github.com/puremourning/vimspector">Vimspector | Github</a></li>
+<li><a href="https://puremourning.github.io/vimspector-web/demo-setup.html">Setting up Vimspector | Vimspector</a></li>
+<li><a href="https://code.visualstudio.com/docs/cpp/launch-json-reference">Configure launch.json for C&#x2F;C++ debugging in Visual Studio Code</a></li>
+<li><a href="https://www.cnblogs.com/kongj/p/12831690.html">Vim最强调试插件: vimspector</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Bilibili</tag>
+        <tag>C语言</tag>
+        <tag>调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一个Minecratf服务器自动配置脚本</title>
+    <url>/2022/02/17/%E4%B8%80%E4%B8%AAMinecratf%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<p>Welcome To my Pages!</p>
+<h1 id="下载并执行"><a href="#下载并执行" class="headerlink" title="下载并执行"></a>下载并执行</h1><h2 id="使用Git"><a href="#使用Git" class="headerlink" title="使用Git"></a>使用Git</h2><p>安装git:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt update<br>sudo apt install git -y<br></code></pre></td></tr></table></figure>
+<p>一般来说Ubuntu预装Git工具……<br>克隆仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://gitee.com/canyan233/install_minecraft_server.git<br></code></pre></td></tr></table></figure>
+<p>取出脚本:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> install_minecraft_server/install-McServer-finally.sh .<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo bash ./install-McServer-finally.sh<br></code></pre></td></tr></table></figure>
+<p><strong>一定不能用sh执行啊&gt;_&lt;</strong></p>
+<h2 id="使用curl"><a href="#使用curl" class="headerlink" title="使用curl"></a>使用curl</h2><p>还可以用更简单的方法的.<br>安装curl:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt update<br>sudo apt install curl -y<br></code></pre></td></tr></table></figure>
+<p>下载直接执行!</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo su -c <span class="hljs-string">&quot;bash &lt;(curl -s -S -L https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh)&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="使用Wget"><a href="#使用Wget" class="headerlink" title="使用Wget"></a>使用Wget</h2><p>这个也很硬核哈，等同于上文使用curl</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install wget -y<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo su -c <span class="hljs-string">&quot;bash &lt;(wget -qO- https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh)&quot;</span><br></code></pre></td></tr></table></figure>
+<h1 id="使用脚本进行配置"><a href="#使用脚本进行配置" class="headerlink" title="使用脚本进行配置"></a>使用脚本进行配置</h1><p>执行过命令后，脚本会自动更新软件列表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>命中:1 https://mirrors.tuna.tsinghua.edu.cn/ubuntu bionic InRelease<br>获取:2 https://mirrors.tuna.tsinghua.edu.cn/ubuntu bionic-updates InRelease [88.7 kB]<br>获取:3 https://mirrors.tuna.tsinghua.edu.cn/ubuntu bionic-backports InRelease [74.6 kB]<br>获取:4 https://mirrors.tuna.tsinghua.edu.cn/ubuntu bionic-security InRelease [88.7 kB]<br>已下载 252 kB，耗时 3秒 (74.4 kB/s)              <br>正在读取软件包列表... 完成<br>正在分析软件包的依赖关系树       <br>正在读取状态信息... 完成<br></code></pre></td></tr></table></figure>
+<p>并安装<strong>Java</strong>与<strong>iptables</strong>(默认是default-jdk，由于信息太大，将输出重定向到&#x2F;dev&#x2F;null以<strong>舍去</strong>哈).<br>将会在<strong>家</strong>创建一个目录<strong>tmp-mcserver</strong>存放临时文件.<br><strong>没有意外的话就下一步啦，但我们考虑到了意外QwQ……那就是安装的服务器目录下有另外一个叫”server.jar”的文件，也对此作出了解决.</strong><br>#运行实录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">It is detected that there is already a <span class="hljs-string">&quot;server.jar&quot;</span> file, please install it <span class="hljs-keyword">in</span> another directory<br>delete(d);<span class="hljs-built_in">exit</span>(e);Continue to install this Jar(c)|<br></code></pre></td></tr></table></figure>
+<p>如下解释：<br>输入d &#x3D;&gt; 删除server.jar文件<br>输入e &#x3D;&gt; 退出，你解不解决吧？<br>输入c &#x3D;&gt; 直接安装这个.我走啦哈.<br>不会吧，不会吧，这个应该没有人看不懂吧?<br><br><br>如果没有那个server.jar文件就可以选择了（或者有已经删除）,Okayyyy.选择时间！这里我选 1.7.10[服务端版本号].<br>接下来是没有以外的情况.这个好诶.JPG</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>--------------------------------<br>--------------------------------<br>1.17.1  1.17    1.16.5<br>1.16.4  1.16.3  1.16.2<br>1.16.1  1.15.2  1.15.1<br>1.15    1.14.4  1.14.3<br>1.14.2  1.14.1  1.14<br>1.13.2  1.13.1  1.13<br>1.12.2  1.12.1  1.12<br>1.11.2  1.11.1  1.10.2<br>1.10    1.9.4   1.9.2<br>1.9     1.8.8   1.8.7<br>1.8.6   1.8.5   1.8.4<br>1.8.3   1.8     1.7.10<br>1.7.9   1.7.8   1.7.5<br>1.7.2   1.6.4   1.6.2<br>1.5.2   1.5.1   1.4.7<br>1.4.6<br> Choose my Jar of Server(r)<br>--------------------------------<br>Enter the version you want to install:<br></code></pre></td></tr></table></figure>
+<p>之后是自动配置时间!将会安装screen工具以创建一个命令行终端在后台配置及运行Minecraft服务器.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>Installing screeen...done<br>Configuring server...................done<br></code></pre></td></tr></table></figure>
+<p>需要同意一下这个协议（eula.txt内容），我想没有人选Ctrl-C吧……</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>--------------------------------<br>By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).<br>2022-02-08 16:30:17<br>--------------------------------<br>Just so you know, by downloading any of the software on this page, you agree to theMinecraft End User License AgreementandPrivacy Policy.<br>--------------------------------<br>Angree(<span class="hljs-built_in">yes</span>)|<span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">This is 1.7.10+<br></code></pre></td></tr></table></figure>
+<p>接下来是一系列的配置<br>输入您希望的Minecraft服务器端口号.默认25565.必须要输入,不然我不给你过.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>Please enter the Server port number|<br></code></pre></td></tr></table></figure>
+<p>输入您希望的启动脚本所在位置(生成位置).</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>Please enter the generated startup script directory|For example: /root/ |<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>Create startup script...done<br>The startup script has been created <span class="hljs-keyword">in</span> *$%@ <span class="hljs-comment">#是个变量，我总不可能用我的路径来迷惑你们吧？</span><br></code></pre></td></tr></table></figure>
+<p>回车之后请稍等，最终花费时间将取决于计算机性能……<del>像我计算机这么差的性能都可以28s过……</del><br>最后，看到如下信息就成功了哈</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>=============Ok=============<br></code></pre></td></tr></table></figure>
+<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="1-1-为什么不可以用curl-wget-pO-URL-bash命令执行？"><a href="#1-1-为什么不可以用curl-wget-pO-URL-bash命令执行？" class="headerlink" title="1.1 为什么不可以用curl (wget -pO-) URL|bash命令执行？"></a>1.1 为什么不可以用<code>curl (wget -pO-) URL|bash</code>命令执行？</h2><p><strong>A：不保存为文件，read命令直接被跳过，功能不能实现，无互动的功能.</strong></p>
+<h2 id="1-2-E-无法定位软件包-default-jdk并找不到java命令"><a href="#1-2-E-无法定位软件包-default-jdk并找不到java命令" class="headerlink" title="1.2 E: 无法定位软件包 default-jdk并找不到java命令"></a>1.2 E: 无法定位软件包 default-jdk并找不到java命令</h2><p><strong>A: 手动安装java,这里只说一下OpenJDK安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt update<br>sudo apt-cache search openjdk<br></code></pre></td></tr></table></figure>
+<p><strong>将会在输出中找到一下几行</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#差不多的运行结果</span><br>openjdk-11-jdk - OpenJDK Development Kit (JDK)<br>openjdk-11-jdk-headless - OpenJDK Development Kit (JDK) (headless)<br>openjdk-11-jre - OpenJDK Java runtime, using Hotspot JIT<br>openjdk-11-jre-headless - OpenJDK Java runtime, using Hotspot JIT (headless)<br></code></pre></td></tr></table></figure>
+<p><strong>你也可以在其中找到”openjdk-?-jdk”与”openjdk-?-jre”，并安装它</strong><br><code>sudo apt install openjdk-11-jre openjdk-11-jdk -y</code><br><strong>再运行脚本.</strong></p>
+<h1 id="视频演示"><a href="#视频演示" class="headerlink" title="视频演示"></a>视频演示</h1><iframe src="//player.bilibili.com/player.html?aid=759870508&bvid=BV1h64y1q7cH&cid=388857105&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<h1 id="Git仓库"><a href="#Git仓库" class="headerlink" title="Git仓库"></a>Git仓库</h1><h2 id="项目仓库-Proj"><a href="#项目仓库-Proj" class="headerlink" title="项目仓库[Proj]"></a>项目仓库[Proj]</h2><p><strong>Https &#x3D;&gt; <a href="https://gitee.com/canyan233/install_minecraft_server">https://gitee.com/canyan233/install_minecraft_server</a></strong></p>
+<h2 id="2-原始代码仓库-Raw"><a href="#2-原始代码仓库-Raw" class="headerlink" title="2.原始代码仓库[Raw]"></a>2.原始代码仓库[Raw]</h2><p><strong>Https &#x3D;&gt; <a href="https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh">https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh</a></strong></p>
+]]></content>
+      <tags>
+        <tag>Bilibili</tag>
+        <tag>Minecraft</tag>
+        <tag>Linux</tag>
+        <tag>脚本</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>利用Busybox-httpd在电视盒子上搭建一个静态网站</title>
+    <url>/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>相信大家一定有搭建网站的“梦想”，这是一个探索，就是利用httpd来搭建一个不简单的静态网页，而httpd可以集成在Busybox当中，最大的困难，也就是交叉编译Busybox了。网络上使用GitHub Pages的网页大多是用Hexo做成的，它可以把MarkDown文档渲染成静态网页，我们的目标就是使用Httpd来运行Hexo渲染的网页，这也非常简单！</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>盒子是安卓系统，而安卓基于Linux，先查看盒子的架构，在安装相应的交叉编译工具，由于默认编译的busybox会在&#x2F;usr&#x2F;lib或&#x2F;lib下查找共享库文件，而安卓系统并不具备所有的条件，所以我们将以静态方式编译。使用adb工具把编译好的二进制可执行文件和静态网页上传到安卓上，使用“busybox httpd”启动即可。</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="编译Busybox"><a href="#编译Busybox" class="headerlink" title="编译Busybox"></a>编译Busybox</h2><h3 id="查看架构"><a href="#查看架构" class="headerlink" title="查看架构"></a>查看架构</h3><p>我们需要使用adb连接到电视盒子，首先安装adb.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install android-tools-adb -y<br></code></pre></td></tr></table></figure>
+<p>我选择用网络连接盒子，需要查看盒子的ip地址，可以登录路由器后台查看：</p>
+<img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/2.png" class="" title="none">
+<p>我的是192.168.1.26<br>用adb命令连接它：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb connect 192.168.1.26<br></code></pre></td></tr></table></figure>
+<p>运行后是这样的：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行后实录</span><br>* daemon not running; starting now at tcp:5037<br>* daemon started successfully<br>connected to 192.168.1.26:5555<br></code></pre></td></tr></table></figure>
+<p>然后查看：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb shell <span class="hljs-built_in">uname</span> -a<br></code></pre></td></tr></table></figure>
+<p>这段是指，使用电视盒子下安卓系统上的默认终端执行”uname -a”<br>我的运行后是这样的，不同的机器可能不同：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">Linux localhost 3.10.0_s40 <span class="hljs-comment">#1 SMP Thu May 28 18:02:20 CST 2020 armv7l GNU/Linux</span><br></code></pre></td></tr></table></figure>
+<p>可以看到，这个盒子是armv7l的，可以说是arm32.那么交叉编译器就是arm开头，</p>
+<h3 id="安装交叉编译工具"><a href="#安装交叉编译工具" class="headerlink" title="安装交叉编译工具"></a>安装交叉编译工具</h3><p>但是，软件源中的gcc交叉编译工具一般是这种格式：gcc-arm-linux-gnueabi.安装这个是可以的，一般安装后可以自动转成：arm-linux-gnueabi-gcc.也可以直接下载交叉编译器的压缩包，解压并设置环境变量就好了（环境变量博客里专门有教程）.<br>输入这个，如果输出版本信息就ok：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">arm-linux-gnueabi-gcc -v<br></code></pre></td></tr></table></figure>
+<h3 id="下载Busybox源码"><a href="#下载Busybox源码" class="headerlink" title="下载Busybox源码"></a>下载Busybox源码</h3><h4 id="对于wget"><a href="#对于wget" class="headerlink" title="对于wget"></a>对于wget</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install wget -y<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">wget https://busybox.net/downloads/busybox-1.35.0.tar.bz2<br></code></pre></td></tr></table></figure>
+<h4 id="对于curl"><a href="#对于curl" class="headerlink" title="对于curl"></a>对于curl</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install curl -y<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">curl -O https://busybox.net/downloads/busybox-1.35.0.tar.bz2<br></code></pre></td></tr></table></figure>
+<h3 id="解压Busybox源码"><a href="#解压Busybox源码" class="headerlink" title="解压Busybox源码"></a>解压Busybox源码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">tar xvf ./busybox-1.35.0.tar.bz2  <br></code></pre></td></tr></table></figure>
+<p>切换工作目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> busybox-1.35.0<br></code></pre></td></tr></table></figure>
+<h3 id="Busybox编译前配置"><a href="#Busybox编译前配置" class="headerlink" title="Busybox编译前配置"></a>Busybox编译前配置</h3><h4 id="安装make"><a href="#安装make" class="headerlink" title="安装make"></a>安装make</h4><p>既然要用makefile，必须要有make啊…</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt make -y<br></code></pre></td></tr></table></figure>
+<h4 id="正式配置"><a href="#正式配置" class="headerlink" title="正式配置"></a>正式配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm defconfig<br></code></pre></td></tr></table></figure>
+<p>这里的”CROSS_COMPILE&#x3D;”指定交叉编译器，”arm-linux-gnueabi-“是我们要用到的交叉编译器前缀，简单来说就是arm-linux-gnueabi-gcc除掉gcc以外的部分，一般这是个变量，编译时需要交叉编译工具时，会在gcc或ld前自动加上arm-linux-gnueabi-，如果不指定，就是利用系统默认的gcc编译，编译获得的二进制文件的架构就是编译主机的架构.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm menuconfig<br></code></pre></td></tr></table></figure>
+<p>会启动一个“图形化菜单”，利用方向键以移动，enter键确定，空格键选中.</p>
+<img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/menu_!.png" class="" title="none">
+<p>Enter:<strong>Settings</strong></p>
+<img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/menu_!2.png" class="" title="none">
+<p>空格:<strong>[ ] Build static binary (no shared libs)</strong><br>然后ESC+ESC退出整个菜单，选择保存</p>
+<img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/menu_!3.png" class="" title="none">
+<h3 id="正式编译"><a href="#正式编译" class="headerlink" title="正式编译"></a>正式编译</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm<br></code></pre></td></tr></table></figure>
+<h3 id="成功编译"><a href="#成功编译" class="headerlink" title="成功编译"></a>成功编译</h3><p>如果在目录下看到一个叫做busybox的可执行文件，就半成功了.<br>我们用file命令查看busybox的架构：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">file ./busybox<br><br><span class="hljs-comment">#运行后实录</span><br>./busybox: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, <span class="hljs-keyword">for</span> GNU/Linux 3.2.0, BuildID[sha1]=9d5381f93c45bd41ce7b5a9a18b795b12652ab07, stripped<br></code></pre></td></tr></table></figure>
+<p>32位arm Soc，完全成功！</p>
+<h2 id="上传busybox"><a href="#上传busybox" class="headerlink" title="上传busybox"></a>上传busybox</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb push ./busybox /sdcard<br></code></pre></td></tr></table></figure>
+<p>指的是：使用adb把当前目录下的busybox上传到安卓设备（电视盒子）的&#x2F;sdcard目录下</p>
+<h2 id="上传网页"><a href="#上传网页" class="headerlink" title="上传网页"></a>上传网页</h2><p>也可以自己写一个Html，我选择Hexo，简单且高效，关于Hexo的配置，我推荐官方文章：<a href="https://hexo.io/zh-cn/docs">https://hexo.io/zh-cn/docs</a><br>比如说我们已经有一个网站文件夹public，将它上传至&#x2F;sdcard</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb push ./public /sdcard<br></code></pre></td></tr></table></figure>
+<p>没想到吧，也可以上传整个文件夹.<br>接下来就进入盒子的远程shell来配置吧.</p>
+<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb shell<br></code></pre></td></tr></table></figure>
+<p>进入盒子shell</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /sdcard<br></code></pre></td></tr></table></figure>
+<p>切换到上传文件所在目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x ./busybox<br></code></pre></td></tr></table></figure>
+<p>busybox有可能不可以执行，给它可执行权限.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">./busybox<br></code></pre></td></tr></table></figure>
+<p>可以看到输出了一大堆命令.<br>使用以下命令开启httpd:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">./busybox httpd -h public -p 8080<br></code></pre></td></tr></table></figure>
+<p>httpd命令用法：httpd -h 网站根目录 -p 网站端口号，一般80，8080就是保险一点.<br>用浏览器访问”盒子ip:8080”，就可以看到网页了.</p>
+<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="执行busybox时-”-x2F-system-x2F-bin-x2F-sh-x2F-busybox-not-executable-magic-7F45”"><a href="#执行busybox时-”-x2F-system-x2F-bin-x2F-sh-x2F-busybox-not-executable-magic-7F45”" class="headerlink" title="执行busybox时,”&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: not executable: magic 7F45”"></a>执行busybox时,”&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: not executable: magic 7F45”</h2><p><strong>编译错架构了，重新编译</strong></p>
+<h2 id="x2F-system-x2F-bin-x2F-sh-x2F-busybox-No-such-file-or-directory"><a href="#x2F-system-x2F-bin-x2F-sh-x2F-busybox-No-such-file-or-directory" class="headerlink" title="&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: No such file or directory"></a>&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: No such file or directory</h2><p><strong>没有上传或者编译配置时没有勾选静态编译</strong></p>
+<h2 id="有没有偷懒的方法（不编译）"><a href="#有没有偷懒的方法（不编译）" class="headerlink" title="有没有偷懒的方法（不编译）"></a>有没有偷懒的方法（不编译）</h2><p><strong>直接去busybox.net&#x2F;downloads&#x2F;binaries&#x2F;找到相应架构的二进制文件下载上传</strong></p>
+<h1 id="视频演示"><a href="#视频演示" class="headerlink" title="视频演示"></a>视频演示</h1><iframe src="//player.bilibili.com/player.html?aid=679101618&bvid=BV11m4y1d7sx&cid=509689609&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p><strong>我会在在此发出使用于Qemu的busybox编译文件img.gz</strong></p>
+<h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p><strong>Busybox即FileSystem仓库 &#x3D;&#x3D;&gt; <a href="https://gitee.com/canyan233/qemu-ctrl-ready-repo">https://gitee.com/canyan233/qemu-ctrl-ready-repo</a></strong></p>
+]]></content>
+      <tags>
+        <tag>Bilibili</tag>
+        <tag>Linux</tag>
+        <tag>网站</tag>
+        <tag>电视盒子</tag>
+        <tag>资源</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UEFI基本宏定义-UEFI-Basic-Macros</title>
+    <url>/2022/08/20/UEFI_BasicMacros/</url>
+    <content><![CDATA[<h1 id="说明性"><a href="#说明性" class="headerlink" title="说明性"></a>说明性</h1><p>为提高代码<strong>可读性</strong>等原因,需要有一些<strong>不加注释的注释</strong>……</p>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>描述</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OUT</td>
+<td>从函数返回的不限于执行状态(EFI_STATUS等)的值,可用于参数声明时</td>
+<td>空宏</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>向函数传的参数,主要强调进</td>
+<td>空宏</td>
+</tr>
+<tr>
+<td>OPTIONAL</td>
+<td>传入参数可选,如果标注此项,意味着在不需要传参时,可传入NULL填补</td>
+<td>空宏</td>
+</tr>
+</tbody></table>
+<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><p>比如声明常量或静态的</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 声明只读的类型</span><br><span class="hljs-comment">//</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> CONST     const</span><br><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 声明静态</span><br><span class="hljs-comment">//</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATIC    static</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="有实值"><a href="#有实值" class="headerlink" title="有实值"></a>有实值</h1><h2 id="直接定义"><a href="#直接定义" class="headerlink" title="直接定义"></a>直接定义</h2><h3 id="NULL-amp-CHAR-NULL"><a href="#NULL-amp-CHAR-NULL" class="headerlink" title="NULL &amp; CHAR_NULL"></a>NULL &amp; CHAR_NULL</h3><p>C语言风格的定义,经典得很.</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 指向 0 的VOID指针</span><br><span class="hljs-comment">//</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> NULL                    ((VOID *) 0)</span><br><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 其实就是&#x27;\0&#x27;</span><br><span class="hljs-comment">//</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> CHAR_NULL      0x0000</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><p>定义在 : <strong>MdePkg&#x2F;Include&#x2F;Base.h</strong></p>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>定义</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TRUE</td>
+<td>((BOOLEAN)(1&#x3D;&#x3D;1))</td>
+<td>布尔真,UEFI标准中定义它的值为1,但这种形式更加可靠</td>
+</tr>
+<tr>
+<td>FALSE</td>
+<td>((BOOLEAN)(0&#x3D;&#x3D;1))</td>
+<td>布尔假,UEFI标准中定义它的值为0,但这种形式更加可靠</td>
+</tr>
+</tbody></table>
+<h2 id="运算功能型"><a href="#运算功能型" class="headerlink" title="运算功能型"></a>运算功能型</h2>]]></content>
+      <tags>
+        <tag>UEFI</tag>
+        <tag>EDKII</tag>
+        <tag>Bilibili</tag>
+        <tag>C语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UEFI数据类型[UEFI Data Types]</title>
     <url>/2022/03/28/UEFI_DataTypes/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#77;&#97;&#x6f;&#117;&#97;&#105;&#50;&#x33;&#x33;&#x40;&#111;&#x75;&#116;&#x6c;&#111;&#111;&#x6b;&#x2e;&#99;&#x6f;&#109;">&#77;&#97;&#x6f;&#117;&#97;&#105;&#50;&#x33;&#x33;&#x40;&#111;&#x75;&#116;&#x6c;&#111;&#111;&#x6b;&#x2e;&#99;&#x6f;&#109;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#117;&#97;&#105;&#50;&#51;&#51;&#x40;&#x6f;&#117;&#x74;&#x6c;&#111;&#111;&#x6b;&#46;&#99;&#111;&#109;">&#x4d;&#x61;&#x6f;&#117;&#97;&#105;&#50;&#51;&#51;&#x40;&#x6f;&#117;&#x74;&#x6c;&#111;&#111;&#x6b;&#46;&#99;&#111;&#109;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
 <h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
 <thead>
 <tr>
@@ -790,472 +1256,6 @@
         <tag>EDKII</tag>
         <tag>Bilibili</tag>
         <tag>C语言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VimSpector 简介及使用</title>
-    <url>/2023/04/21/VimSpector-Intro-and-Use/</url>
-    <content><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>由于电脑实在是太拉了,我用不了vscode,所以我试着使用gdb命令行调试,但并不方便,我想着转向NeoVim,这就来折腾一下,也就有了这篇文章.</p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在座的各位都用过VSCode调试C语言程序吧,那对cpptools一定不陌生.</p>
-<p>我们的上古神奇Vim上也可以进行类似的可视化调试,使用VimSpector(甚至一模一样……)</p>
-<p>如果是NeoVim,还可以选择使用<strong>nvim-dap</strong>,但它的配置较为繁琐,就不再介绍(暂时吧……)</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>使用<strong>vim-plug</strong>进行安装:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml"><br>call plug#begin(&quot;~/.config/nvim/plugged&quot;)<br><br> Plug &#x27;puremourning/vimspector&#x27;<br><br>call plug#end()<br><br></code></pre></td></tr></table></figure>
-
-<p>其他插件管理器执行类似操作.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml"><br>:PlugInstall<br><br></code></pre></td></tr></table></figure>
-
-<h2 id="调试适配器"><a href="#调试适配器" class="headerlink" title="调试适配器"></a>调试适配器</h2><p>切换到我们安装的vimspector插件的目录,我这里是<code>plugged/vimspector</code></p>
-<p>可以看到简单的帮助,及一些语言</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><code class="hljs sh">./install_gadget.py --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure>
-
-<p>我们安装C语言的调试适配器,C++的也可.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">./install_gadget.py --enable-c --verbose<br></code></pre></td></tr></table></figure>
-
-<p><code>--verbose</code>输出安装详细步骤.</p>
-<p>在这里,大多数人都会遇见下载速度过慢的问题:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs log">Installing vscode-cpptools@1.14.5...<br>Downloading https://github.com/Microsoft/vscode-cpptools/releases/download/v1.14.5/cpptools-linux.vsix to /home/maouai233/.config/nvim/plugged/vimspector/gadgets/linux/download/vscode-cpptools/1.14.5/cpptools-linux.vsix<br></code></pre></td></tr></table></figure>
-
-<p>当然你可以<strong>挂代理</strong>,我这里使用一个成本极低的方法.</p>
-<p>使用 <strong>axel</strong> 进行下载!<br>我们先将 <strong>install_gadget.py</strong> 停下来先</p>
-<p>将文件下载至它应该在的位置,完成<strong>install_gadget.py</strong>的部分使命……</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">axel -n 256 https://github.com/Microsoft/vscode-cpptools/releases/download/v1.14.5/cpptools-linux.vsix -o /home/maouai233/.config/nvim/plugged/vimspector/gadgets/linux/download/vscode-cpptools/1.14.5/cpptools-linux.vsix<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-n</code> 最大连接数</li>
-<li><code>-o</code> 输出文件至</li>
-</ul>
-<p>几次如此之后,我们的调试适配器就安装好了!</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>就如同 vscode 调试一样,调试需要 **launch.json **, vimspector 也不例外.</p>
-<h3 id="白嫖"><a href="#白嫖" class="headerlink" title="白嫖"></a>白嫖</h3><p>我们可以通过一个偷懒而又简单的方式获取一个配置文件.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml">:h vimspector<br></code></pre></td></tr></table></figure>
-
-<p>其实就是直接翻 vimspector 的** README.md** …… (同Github)</p>
-<p>或者看 <strong>vimspector&#x2F;docs&#x2F;configuration.md</strong> (同官网)</p>
-<p>将需要的复制粘贴到调试的根目录下的 <strong>.vimspector</strong> 中,并稍加修改.</p>
-<p>当然你可以自己手动编写,Let’s get higher!</p>
-<h3 id="自己动手-丰衣足食"><a href="#自己动手-丰衣足食" class="headerlink" title="自己动手,丰衣足食"></a>自己动手,丰衣足食</h3><p>以C语言为例,一个最简单的配置文件,在这里全部都是必须项!</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;Launch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;adapter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vscode-cpptools&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;configuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;launch&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;path to binary&gt;&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 要调试的可执行文件路径</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br><br></code></pre></td></tr></table></figure>
-
-<p>如你所见,它是和vscode一样,支持在配置文件中的注释的,形同C语言注释.</p>
-<blockquote>
-<p>The JSON configuration file allows C-style comments:</p>
-<ul>
-<li>‘&#x2F;&#x2F; comment to end of line …’</li>
-<li>‘&#x2F;* inline comment … *&#x2F;‘</li>
-</ul>
-</blockquote>
-<hr>
-<p><strong>configurations</strong> 允许有多个配置</p>
-<p>Format :</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;adapter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;adapter&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;filetypes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>...<span class="hljs-punctuation">]</span><br>    ...<br>    <span class="hljs-attr">&quot;configuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      ...<br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;adapter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;adapter&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;filetypes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>...<span class="hljs-punctuation">]</span><br>    ...<br>    <span class="hljs-attr">&quot;configuration&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      ...<br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>name</strong> 是该配置条目的名称,如果有多个配置,在启动时供用户选择.<br><strong>adapter</strong>指定了调试适配器</p>
-<hr>
-<h4 id="调试适配器-adapter"><a href="#调试适配器-adapter" class="headerlink" title="调试适配器 adapter"></a>调试适配器 adapter</h4><p>除了提供的我们还可以自己自定义,也可以在原有的adapter下建立</p>
-<h4 id="文件类型-filetypes"><a href="#文件类型-filetypes" class="headerlink" title="文件类型 filetypes"></a>文件类型 filetypes</h4><p>限制了该配置在当前打开文件<strong>为某种类型(后缀)时才可以启动debug</strong></p>
-<p>Example :</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;filetypes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-string">&quot;cpp&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;c&quot;</span> <span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="配置项-configuration"><a href="#配置项-configuration" class="headerlink" title="配置项 configuration"></a>配置项 configuration</h4><h5 id="request"><a href="#request" class="headerlink" title="request"></a>request</h5><p>可以为<code>launch</code>或<code>attach</code></p>
-<h5 id="program"><a href="#program" class="headerlink" title="program"></a>program</h5><p>要调试的可执行程序的路径,注意不必要的空格不允许出现!</p>
-<h5 id="stopOnEntry-x2F-stopAtEntry"><a href="#stopOnEntry-x2F-stopAtEntry" class="headerlink" title="stopOnEntry &#x2F; stopAtEntry"></a>stopOnEntry &#x2F; stopAtEntry</h5><p>这两个是等价的,在程序入口停止.</p>
-<h5 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h5><p>环境变量</p>
-<p>Example :</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;environment&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>  <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot; NAME1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;TEST1&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot; NAME2&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;TEST2&quot;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="args"><a href="#args" class="headerlink" title="args"></a>args</h5><p>启动参数</p>
-<p>Example :</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">args<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;arg1&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;arg2&quot;</span><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="externalConsole"><a href="#externalConsole" class="headerlink" title="externalConsole"></a>externalConsole</h5><p>外部终端.<br><del>貌似没有什么用</del></p>
-<h5 id="cwd"><a href="#cwd" class="headerlink" title="cwd"></a>cwd</h5><p>工作目录</p>
-<blockquote>
-<p><code>$&#123;cwd&#125;</code> - the current working directory of the active window on launch</p>
-</blockquote>
-<h5 id="setupCommands"><a href="#setupCommands" class="headerlink" title="setupCommands"></a>setupCommands</h5><p>Format :</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;描述&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;命令&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;ignoreFailures&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span> <span class="hljs-comment">// 执行错误是否可以忽略</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="customLaunchSetupCommands"><a href="#customLaunchSetupCommands" class="headerlink" title="customLaunchSetupCommands"></a>customLaunchSetupCommands</h5><p>如果此选项设置了,它将会替代默认的启动命令<br>但是,若直接这样可能会报错,因为我们并未指定架构,详见 <strong>targetArchitecture</strong>.</p>
-<p>Format : 同 setupCommands</p>
-<p>Example :</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;customLaunchSetupCommands&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>  <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Connect to qemu&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;-target-select remote :1234&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;ignoreFailures&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="launchCompleteCommand"><a href="#launchCompleteCommand" class="headerlink" title="launchCompleteCommand"></a>launchCompleteCommand</h5><p>在调试器启动好后执行的命令,有限定:</p>
-<ul>
-<li><code>exec-run</code> (default)</li>
-<li><code>exec-continue</code></li>
-<li><code>None</code></li>
-</ul>
-<h5 id="targetArchitecture"><a href="#targetArchitecture" class="headerlink" title="targetArchitecture"></a>targetArchitecture</h5><ul>
-<li><code>x64</code></li>
-<li><code>x86</code></li>
-<li><code>amd64</code></li>
-<li><code>arm</code></li>
-<li><code>arm64</code></li>
-<li>…</li>
-</ul>
-<p>此选项可以<strong>占位</strong>使用,保证调试器的启动,在<strong>启动时使用命令设置成目标架构即可</strong>.</p>
-<h5 id="MIMode"><a href="#MIMode" class="headerlink" title="MIMode"></a>MIMode</h5><p>调试器</p>
-<p><code>lldb</code>或者<code>gdb</code></p>
-<h5 id="miDebuggerPath"><a href="#miDebuggerPath" class="headerlink" title="miDebuggerPath"></a>miDebuggerPath</h5><p>相应调试器的可执行程序路径,如果没有设置,则在环境变量中搜索.</p>
-<h5 id="miDebuggerArgs"><a href="#miDebuggerArgs" class="headerlink" title="miDebuggerArgs"></a>miDebuggerArgs</h5><p>调试器的附加启动参数</p>
-<blockquote>
-<p>“是退出时的冒泡罢了 QwQ”</p>
-<p><code>&quot;/usr/bin/gdb&quot; --interpreter=mi $&#123;在这里&#125; --tty=$&#123;DbgTerm&#125; 0&lt;&quot;/tmp/Microsoft-MIEngine-In-2aisxnef.g3f&quot;</code> </p>
-</blockquote>
-<h5 id="miDebuggerServerAddress"><a href="#miDebuggerServerAddress" class="headerlink" title="miDebuggerServerAddress"></a>miDebuggerServerAddress</h5><p>远程 remote 的地址,在这个选项设置后,调试器会尝试连接<br>就和我们平时调试时用的<code>target remote</code>一样</p>
-<p>它给调试带来了一些可能.</p>
-<h4 id="日志-logging"><a href="#日志-logging" class="headerlink" title="日志 logging"></a>日志 logging</h4><p>控制输出至 <strong>Debug Console</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;logging&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  ...<br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li><code>engingLogging</code> 引擎日志 def-&gt; false</li>
-<li><code>exceptions</code> 异常 def-&gt; true</li>
-<li><code>moduleLoad</code> 模块加载 def-&gt; true</li>
-<li><code>programOutput</code> 被调试程序输出 def-&gt; true</li>
-<li><code>trace</code> def-&gt; false</li>
-<li><code>traceResponse</code> def-&gt; false</li>
-</ul>
-<h4 id="变量-variables"><a href="#变量-variables" class="headerlink" title="变量 variables"></a>变量 variables</h4><h5 id="预设变量"><a href="#预设变量" class="headerlink" title="预设变量"></a>预设变量</h5><ul>
-<li><code>$&#123;dollar&#125;</code> -&gt; <code>$</code></li>
-<li><code>$$</code> -&gt; <code>$</code></li>
-<li><code>$&#123;workspaceRoot&#125;</code> <code>.vimspector.json</code>所在位置</li>
-<li><code>$&#123;workspaceFolder&#125;</code> <code>.vimspector.json</code>所在的位置</li>
-<li><code>$&#123;gadgetDir&#125;</code> 调试适配器的路径 (<code>gadgets/&lt;OS&gt;</code>)</li>
-<li><code>$&#123;file&#125;</code> 当前打开的文件</li>
-<li><code>$&#123;relativeFile&#125;</code> 当前打开的文件相对于<code>$&#123;workspaceFolder&#125;</code>的路径</li>
-<li><code>$&#123;relativeFileDirname&#125;</code> 当前打开的文件所在目录相对于<code>$&#123;workspaceFolder&#125;</code>的路径</li>
-<li><code>$&#123;fileBasenameNoExtension&#125;</code> 当前打开的文件的名称,不带后缀</li>
-<li><code>$&#123;fileDirname&#125;</code> 当前打开的文件所在目录,绝对路径</li>
-<li><code>$&#123;fileExtname&#125;</code> 当前打开的文件的后缀名</li>
-<li><code>$&#123;cwd&#125;</code> 工作目录</li>
-<li><code>$&#123;unusedLocalPort&#125;</code> 一个没有使用的本地TCP端口号</li>
-</ul>
-<h5 id="自定义变量"><a href="#自定义变量" class="headerlink" title="自定义变量"></a>自定义变量</h5><p>于作用的配置的<code>name-&gt;variables</code>中定义,作用于作用的配置.</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;varibales&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;Common&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Value&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;Shell&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;shell&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>...<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;env&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;value&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
-
-<p>Common 展示了如何定义一个普通变量.<br>Shell  展示了如何在调用shell进行变量值的获取,env可以设置环境变量.</p>
-<h5 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123; &quot;key&quot;: &quot;$&#123;value:default &#123;\\&#125; stuff&#125;&quot; &#125;<br></code></pre></td></tr></table></figure>
-
-<p>当value已被定义,使用value的值.</p>
-<p>在这里的花括号中,要避免出现另一个花括号,否则将视其为结束,要对它进行转义,使用<code>\\</code></p>
-<p>Example :</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configuration&quot;: &#123;<br>    &quot;program&quot;: &quot;$&#123;program:$&#123;file\\&#125;.out&#125;&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h5 id="未定义的变量"><a href="#未定义的变量" class="headerlink" title="未定义的变量"></a>未定义的变量</h5><p>未定义的变量在<code>.vimspector.json</code>某个地方使用,会要求用户手动输入</p>
-<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>想象一下,你如果要询问用户,是否在入口处暂停,如果你是这样写的:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configuration&quot;: &#123;<br>    &quot;program&quot;: &quot;$&#123;script:$&#123;file\\&#125;&#125;&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>那它并不会生效,WHY?<br>因为输入的是一个string,那么这个变量就”理所应当”地成了一个string…</p>
-<p>所以我们这样解决:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&quot;stopOnEntry#json&quot;: &quot;$&#123;stopOnEntry&#125;&quot;<br></code></pre></td></tr></table></figure>
-
-<p>加个默认值压压筋…</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&quot;stopOnEntry#json&quot;: &quot;$&#123;stopOnEntry:true&#125;&quot;<br></code></pre></td></tr></table></figure>
-
-<p>同时还有一个鸡肋的问题,就是有人在变量后带<code>#json</code>,它就叫这个,非常的不友好,怎么办呢?</p>
-<p>在它后面添加<code>#s</code>就行了!告诉vimspector不是要进行类型转换,它本身就长这个样…</p>
-<h5 id="展开为数组"><a href="#展开为数组" class="headerlink" title="展开为数组"></a>展开为数组</h5><p>使用<code>*</code>(splat operator)将string展开为数组</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&quot;args&quot;: [ &quot;*$&#123;CommandLineArgs&#125;&quot; ]<br></code></pre></td></tr></table></figure>
-
-<p>就是这样: <code>arg1 arg2 &quot;This is a string&quot;</code> -&gt; <code>[&quot;arg1&quot;,&quot;arg2&quot;,&quot;This is a string&quot;]</code></p>
-<h4 id="断点-breakpoints"><a href="#断点-breakpoints" class="headerlink" title="断点 breakpoints"></a>断点 breakpoints</h4><h5 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h5><p>除<code>stopAtEntry / stopOnEntry</code>外,可以:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configurations&quot;: &#123;<br>    &quot;name&quot;: &#123;<br>      &quot;breakpoints&quot;: &#123;<br>        &quot;exception&quot;: &#123;<br>          &quot;cpp_throw&quot;: &quot;Y&quot;,   // 抛出异常<br>          &quot;cpp_catch&quot;: &quot;Y&quot;    // 捕获异常<br>        &#125;,<br>      &#125;,<br>      ...<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>如果将键值设为<code>&quot;&quot;</code>(<code>&quot;cpp_catch&quot;: &quot;&quot;</code>),跟随默认</p>
-<p>如果不设置,那它大概会在启动时给你抛出这个小可爱:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">cpp_throw: Break on C++: on throw (Y/N/default: Y)?<br>cpp_catch: Break on C++: on catch (Y/N/default: N)?<br></code></pre></td></tr></table></figure>
-
-<p>这个大概与我们的C语言没有太大关系</p>
-<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>抛个<code>.vimspector.json</code>,是我用来调试<strong>操作系统内核</strong>和<strong>Uefi</strong>的</p>
-<p>这个操作系统的仓库在我将当前进度的代码全部整理好后才开放,当然你可以看到一点影子.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configurations&quot;: &#123;<br>    &quot;TextOS - Kernel debug&quot;: &#123;<br>      &quot;adapter&quot;: &quot;vscode-cpptools&quot;,<br>      &quot;filetypes&quot;: [ &quot;cpp&quot;, &quot;c&quot; ],<br>      &quot;configuration&quot;: &#123;<br>        &quot;request&quot;: &quot;launch&quot;,<br>        &quot;program&quot;: &quot;$&#123;workspaceRoot&#125;/Build/Kernel/Kernel.elf.symbol&quot;,<br>        &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,<br>        &quot;MIMode&quot;: &quot;gdb&quot;,<br>        &quot;miDebuggerServerAddress&quot;: &quot;localhost:1234&quot;,<br>        &quot;setupCommands&quot;: [<br>          &#123;<br>            &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,<br>            &quot;text&quot;: &quot;-enable-pretty-printing&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Set disassembly style for gdb&quot;,<br>            &quot;text&quot;: &quot;-gdb-set disassembly-flavor intel&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;<br>        ]<br>      &#125;<br>    &#125;,<br>    &quot;TextOS - Boot debug&quot;: &#123;<br>      &quot;adapter&quot;: &#123;<br>        &quot;extends&quot;: &quot;vscode-cpptools&quot;,<br>        &quot;delay&quot;: &quot;50000m&quot;<br>      &#125;,<br>      &quot;configuration&quot;: &#123;<br>        &quot;request&quot;: &quot;launch&quot;,<br>        &quot;program&quot;: &quot;$&#123;workspaceRoot&#125;/Build/Boot/DEBUG_GCC5/X64/SigmaBootPkg.debug&quot;,<br>        &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,<br>        &quot;MIMode&quot;: &quot;gdb&quot;,<br>        &quot;miDebuggerPath&quot;: &quot;/usr/bin/gdb&quot;,<br>        &quot;externalConsole&quot;: false,<br>        &quot;targetArchitecture&quot;: &quot;x64&quot;,<br>        &quot;customLaunchSetupCommands&quot;: [<br>          &#123;<br>            &quot;description&quot;: &quot;Connect to qemu&quot;,<br>            &quot;text&quot;: &quot;-target-select remote :1234&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Load script for uefi debugging&quot;,<br>            &quot;text&quot;: &quot;source $&#123;workspaceRoot&#125;/Src/Base/setup.gdb&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,<br>            &quot;text&quot;: &quot;-enable-pretty-printing&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Set disassembly style for gdb&quot;,<br>            &quot;text&quot;: &quot;-gdb-set disassembly-flavor intel&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;<br>        ],<br>        &quot;launchCompleteCommand&quot;: &quot;exec-continue&quot;,<br>        &quot;logging&quot;: &#123;<br>          &quot;engineLogging&quot;: true<br>        &#125;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="配置文件迁移-vscode-gt-vimspector"><a href="#配置文件迁移-vscode-gt-vimspector" class="headerlink" title="配置文件迁移 (vscode -&gt; vimspector)"></a>配置文件迁移 (vscode -&gt; vimspector)</h2><p>在vimspector的插件目录下的<code>support</code>下有个pyhthon脚本:<code>import_vscode_config</code>,但它不能直接对<code>launch.json</code>进行转换.<br>她针对笼统的配置，将<code>launch.json</code>等合并到一个文件,且不能转换带注释的config,于是我便自己写了个.</p>
-<p><a href="import_vscode_config.py">import_vscode_config.py | download</a></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">./import_vscode_config launch.json<br></code></pre></td></tr></table></figure>
-
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="Visual-Studio-x2F-VSCode"><a href="#Visual-Studio-x2F-VSCode" class="headerlink" title="Visual Studio &#x2F; VSCode"></a>Visual Studio &#x2F; VSCode</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml">let g:vimspector_enable_mappings = &#x27;VISUAL_STUDIO&#x27;<br></code></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Mapping</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>F5</code></td>
-<td><code>&lt;Plug&gt;VimspectorContinue</code></td>
-<td>When debugging, continue. Otherwise start debugging.</td>
-</tr>
-<tr>
-<td><code>Shift F5</code></td>
-<td><code>&lt;Plug&gt;VimspectorStop</code></td>
-<td>Stop debugging.</td>
-</tr>
-<tr>
-<td><code>Ctrl Shift F5</code></td>
-<td><code>&lt;Plug&gt;VimspectorRestart</code></td>
-<td>Restart debugging with the same configuration.</td>
-</tr>
-<tr>
-<td><code>F6</code></td>
-<td><code>&lt;Plug&gt;VimspectorPause</code></td>
-<td>Pause debuggee.</td>
-</tr>
-<tr>
-<td><code>F8</code></td>
-<td><code>&lt;Plug&gt;VimspectorJumpToNextBreakpoint</code></td>
-<td>Jump to next breakpoint in the current file.</td>
-</tr>
-<tr>
-<td><code>Shift F8</code></td>
-<td><code>&lt;Plug&gt;VimspectorJumpToPreviousBreakpoint</code></td>
-<td>Jump to previous breakpoint in the current file.</td>
-</tr>
-<tr>
-<td><code>F9</code></td>
-<td><code>&lt;Plug&gt;VimspectorToggleBreakpoint</code></td>
-<td>Toggle line breakpoint on the current line.</td>
-</tr>
-<tr>
-<td><code>Shift F9</code></td>
-<td><code>&lt;Plug&gt;VimspectorAddFunctionBreakpoint</code></td>
-<td>Add a function breakpoint for the expression under cursor</td>
-</tr>
-<tr>
-<td><code>F10</code></td>
-<td><code>&lt;Plug&gt;VimspectorStepOver</code></td>
-<td>Step Over</td>
-</tr>
-<tr>
-<td><code>F11</code></td>
-<td><code>&lt;Plug&gt;VimspectorStepInto</code></td>
-<td>Step Into</td>
-</tr>
-<tr>
-<td><code>Shift F11</code></td>
-<td><code>&lt;Plug&gt;VimspectorStepOut</code></td>
-<td>Step out of current function scope</td>
-</tr>
-<tr>
-<td><code>Alt 8</code></td>
-<td><code>&lt;Plug&gt;VimspectorDisassemble</code></td>
-<td>Show disassembly</td>
-</tr>
-</tbody></table>
-<h3 id="Human-Mode"><a href="#Human-Mode" class="headerlink" title="Human Mode"></a>Human Mode</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml">let g:vimspector_enable_mappings = &#x27;HUMAN&#x27;<br></code></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Mapping</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>F5</code></td>
-<td><code>&lt;Plug&gt;VimspectorContinue</code></td>
-<td>When debugging, continue. Otherwise start debugging.</td>
-</tr>
-<tr>
-<td><code>F3</code></td>
-<td><code>&lt;Plug&gt;VimspectorStop</code></td>
-<td>Stop debugging.</td>
-</tr>
-<tr>
-<td><code>F4</code></td>
-<td><code>&lt;Plug&gt;VimspectorRestart</code></td>
-<td>Restart debugging with the same configuration.</td>
-</tr>
-<tr>
-<td><code>F6</code></td>
-<td><code>&lt;Plug&gt;VimspectorPause</code></td>
-<td>Pause debuggee.</td>
-</tr>
-<tr>
-<td><code>F9</code></td>
-<td><code>&lt;Plug&gt;VimspectorToggleBreakpoint</code></td>
-<td>Toggle line breakpoint on the current line.</td>
-</tr>
-<tr>
-<td><code>&lt;leader&gt;F9</code></td>
-<td><code>&lt;Plug&gt;VimspectorToggleConditionalBreakpoint</code></td>
-<td>Toggle conditional line breakpoint or logpoint on the current line.</td>
-</tr>
-<tr>
-<td><code>F8</code></td>
-<td><code>&lt;Plug&gt;VimspectorAddFunctionBreakpoint</code></td>
-<td>Add a function breakpoint for the expression under cursor</td>
-</tr>
-<tr>
-<td><code>&lt;leader&gt;F8</code></td>
-<td><code>&lt;Plug&gt;VimspectorRunToCursor</code></td>
-<td>Run to Cursor</td>
-</tr>
-<tr>
-<td><code>F10</code></td>
-<td><code>&lt;Plug&gt;VimspectorStepOver</code></td>
-<td>Step Over</td>
-</tr>
-<tr>
-<td><code>F11</code></td>
-<td><code>&lt;Plug&gt;VimspectorStepInto</code></td>
-<td>Step Into</td>
-</tr>
-<tr>
-<td><code>F12</code></td>
-<td><code>&lt;Plug&gt;VimspectorStepOut</code></td>
-<td>Step out of current function scope</td>
-</tr>
-</tbody></table>
-<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>个人喜好…</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml">nnoremap &lt;C-S&gt; &lt;Plug&gt;VimspectorBalloonEval &quot; 浮动窗口显示变量值<br>nnoremap &lt;C-B&gt; &lt;Plug&gt;VimspectorBreakpoints &quot; 断点监测<br></code></pre></td></tr></table></figure>
-
-<h1 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h1><ul>
-<li><a href="https://github.com/puremourning/vimspector">Vimspector | Github</a></li>
-<li><a href="https://puremourning.github.io/vimspector-web/demo-setup.html">Setting up Vimspector | Vimspector</a></li>
-<li><a href="https://code.visualstudio.com/docs/cpp/launch-json-reference">Configure launch.json for C&#x2F;C++ debugging in Visual Studio Code</a></li>
-<li><a href="https://www.cnblogs.com/kongj/p/12831690.html">Vim最强调试插件: vimspector</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Bilibili</tag>
-        <tag>C语言</tag>
-        <tag>调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一个Minecratf服务器自动配置脚本</title>
-    <url>/2022/02/17/%E4%B8%80%E4%B8%AAMinecratf%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<p>Welcome To my Pages!</p>
-<h1 id="下载并执行"><a href="#下载并执行" class="headerlink" title="下载并执行"></a>下载并执行</h1><h2 id="使用Git"><a href="#使用Git" class="headerlink" title="使用Git"></a>使用Git</h2><p>安装git:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt update<br>sudo apt install git -y<br></code></pre></td></tr></table></figure>
-<p>一般来说Ubuntu预装Git工具……<br>克隆仓库：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://gitee.com/canyan233/install_minecraft_server.git<br></code></pre></td></tr></table></figure>
-<p>取出脚本:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> install_minecraft_server/install-McServer-finally.sh .<br></code></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo bash ./install-McServer-finally.sh<br></code></pre></td></tr></table></figure>
-<p><strong>一定不能用sh执行啊&gt;_&lt;</strong></p>
-<h2 id="使用curl"><a href="#使用curl" class="headerlink" title="使用curl"></a>使用curl</h2><p>还可以用更简单的方法的.<br>安装curl:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt update<br>sudo apt install curl -y<br></code></pre></td></tr></table></figure>
-<p>下载直接执行!</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo su -c <span class="hljs-string">&quot;bash &lt;(curl -s -S -L https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh)&quot;</span><br></code></pre></td></tr></table></figure>
-<h2 id="使用Wget"><a href="#使用Wget" class="headerlink" title="使用Wget"></a>使用Wget</h2><p>这个也很硬核哈，等同于上文使用curl</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install wget -y<br></code></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo su -c <span class="hljs-string">&quot;bash &lt;(wget -qO- https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh)&quot;</span><br></code></pre></td></tr></table></figure>
-<h1 id="使用脚本进行配置"><a href="#使用脚本进行配置" class="headerlink" title="使用脚本进行配置"></a>使用脚本进行配置</h1><p>执行过命令后，脚本会自动更新软件列表</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>命中:1 https://mirrors.tuna.tsinghua.edu.cn/ubuntu bionic InRelease<br>获取:2 https://mirrors.tuna.tsinghua.edu.cn/ubuntu bionic-updates InRelease [88.7 kB]<br>获取:3 https://mirrors.tuna.tsinghua.edu.cn/ubuntu bionic-backports InRelease [74.6 kB]<br>获取:4 https://mirrors.tuna.tsinghua.edu.cn/ubuntu bionic-security InRelease [88.7 kB]<br>已下载 252 kB，耗时 3秒 (74.4 kB/s)              <br>正在读取软件包列表... 完成<br>正在分析软件包的依赖关系树       <br>正在读取状态信息... 完成<br></code></pre></td></tr></table></figure>
-<p>并安装<strong>Java</strong>与<strong>iptables</strong>(默认是default-jdk，由于信息太大，将输出重定向到&#x2F;dev&#x2F;null以<strong>舍去</strong>哈).<br>将会在<strong>家</strong>创建一个目录<strong>tmp-mcserver</strong>存放临时文件.<br><strong>没有意外的话就下一步啦，但我们考虑到了意外QwQ……那就是安装的服务器目录下有另外一个叫”server.jar”的文件，也对此作出了解决.</strong><br>#运行实录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">It is detected that there is already a <span class="hljs-string">&quot;server.jar&quot;</span> file, please install it <span class="hljs-keyword">in</span> another directory<br>delete(d);<span class="hljs-built_in">exit</span>(e);Continue to install this Jar(c)|<br></code></pre></td></tr></table></figure>
-<p>如下解释：<br>输入d &#x3D;&gt; 删除server.jar文件<br>输入e &#x3D;&gt; 退出，你解不解决吧？<br>输入c &#x3D;&gt; 直接安装这个.我走啦哈.<br>不会吧，不会吧，这个应该没有人看不懂吧?<br><br><br>如果没有那个server.jar文件就可以选择了（或者有已经删除）,Okayyyy.选择时间！这里我选 1.7.10[服务端版本号].<br>接下来是没有以外的情况.这个好诶.JPG</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>--------------------------------<br>--------------------------------<br>1.17.1  1.17    1.16.5<br>1.16.4  1.16.3  1.16.2<br>1.16.1  1.15.2  1.15.1<br>1.15    1.14.4  1.14.3<br>1.14.2  1.14.1  1.14<br>1.13.2  1.13.1  1.13<br>1.12.2  1.12.1  1.12<br>1.11.2  1.11.1  1.10.2<br>1.10    1.9.4   1.9.2<br>1.9     1.8.8   1.8.7<br>1.8.6   1.8.5   1.8.4<br>1.8.3   1.8     1.7.10<br>1.7.9   1.7.8   1.7.5<br>1.7.2   1.6.4   1.6.2<br>1.5.2   1.5.1   1.4.7<br>1.4.6<br> Choose my Jar of Server(r)<br>--------------------------------<br>Enter the version you want to install:<br></code></pre></td></tr></table></figure>
-<p>之后是自动配置时间!将会安装screen工具以创建一个命令行终端在后台配置及运行Minecraft服务器.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>Installing screeen...done<br>Configuring server...................done<br></code></pre></td></tr></table></figure>
-<p>需要同意一下这个协议（eula.txt内容），我想没有人选Ctrl-C吧……</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>--------------------------------<br>By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).<br>2022-02-08 16:30:17<br>--------------------------------<br>Just so you know, by downloading any of the software on this page, you agree to theMinecraft End User License AgreementandPrivacy Policy.<br>--------------------------------<br>Angree(<span class="hljs-built_in">yes</span>)|<span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">This is 1.7.10+<br></code></pre></td></tr></table></figure>
-<p>接下来是一系列的配置<br>输入您希望的Minecraft服务器端口号.默认25565.必须要输入,不然我不给你过.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>Please enter the Server port number|<br></code></pre></td></tr></table></figure>
-<p>输入您希望的启动脚本所在位置(生成位置).</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>Please enter the generated startup script directory|For example: /root/ |<br></code></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>Create startup script...done<br>The startup script has been created <span class="hljs-keyword">in</span> *$%@ <span class="hljs-comment">#是个变量，我总不可能用我的路径来迷惑你们吧？</span><br></code></pre></td></tr></table></figure>
-<p>回车之后请稍等，最终花费时间将取决于计算机性能……<del>像我计算机这么差的性能都可以28s过……</del><br>最后，看到如下信息就成功了哈</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行实录</span><br>=============Ok=============<br></code></pre></td></tr></table></figure>
-<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="1-1-为什么不可以用curl-wget-pO-URL-bash命令执行？"><a href="#1-1-为什么不可以用curl-wget-pO-URL-bash命令执行？" class="headerlink" title="1.1 为什么不可以用curl (wget -pO-) URL|bash命令执行？"></a>1.1 为什么不可以用<code>curl (wget -pO-) URL|bash</code>命令执行？</h2><p><strong>A：不保存为文件，read命令直接被跳过，功能不能实现，无互动的功能.</strong></p>
-<h2 id="1-2-E-无法定位软件包-default-jdk并找不到java命令"><a href="#1-2-E-无法定位软件包-default-jdk并找不到java命令" class="headerlink" title="1.2 E: 无法定位软件包 default-jdk并找不到java命令"></a>1.2 E: 无法定位软件包 default-jdk并找不到java命令</h2><p><strong>A: 手动安装java,这里只说一下OpenJDK安装</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt update<br>sudo apt-cache search openjdk<br></code></pre></td></tr></table></figure>
-<p><strong>将会在输出中找到一下几行</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#差不多的运行结果</span><br>openjdk-11-jdk - OpenJDK Development Kit (JDK)<br>openjdk-11-jdk-headless - OpenJDK Development Kit (JDK) (headless)<br>openjdk-11-jre - OpenJDK Java runtime, using Hotspot JIT<br>openjdk-11-jre-headless - OpenJDK Java runtime, using Hotspot JIT (headless)<br></code></pre></td></tr></table></figure>
-<p><strong>你也可以在其中找到”openjdk-?-jdk”与”openjdk-?-jre”，并安装它</strong><br><code>sudo apt install openjdk-11-jre openjdk-11-jdk -y</code><br><strong>再运行脚本.</strong></p>
-<h1 id="视频演示"><a href="#视频演示" class="headerlink" title="视频演示"></a>视频演示</h1><iframe src="//player.bilibili.com/player.html?aid=759870508&bvid=BV1h64y1q7cH&cid=388857105&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-<h1 id="Git仓库"><a href="#Git仓库" class="headerlink" title="Git仓库"></a>Git仓库</h1><h2 id="项目仓库-Proj"><a href="#项目仓库-Proj" class="headerlink" title="项目仓库[Proj]"></a>项目仓库[Proj]</h2><p><strong>Https &#x3D;&gt; <a href="https://gitee.com/canyan233/install_minecraft_server">https://gitee.com/canyan233/install_minecraft_server</a></strong></p>
-<h2 id="2-原始代码仓库-Raw"><a href="#2-原始代码仓库-Raw" class="headerlink" title="2.原始代码仓库[Raw]"></a>2.原始代码仓库[Raw]</h2><p><strong>Https &#x3D;&gt; <a href="https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh">https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh</a></strong></p>
-]]></content>
-      <tags>
-        <tag>Bilibili</tag>
-        <tag>Minecraft</tag>
-        <tag>Linux</tag>
-        <tag>脚本</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>利用Busybox-httpd在电视盒子上搭建一个静态网站</title>
-    <url>/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>相信大家一定有搭建网站的“梦想”，这是一个探索，就是利用httpd来搭建一个不简单的静态网页，而httpd可以集成在Busybox当中，最大的困难，也就是交叉编译Busybox了。网络上使用GitHub Pages的网页大多是用Hexo做成的，它可以把MarkDown文档渲染成静态网页，我们的目标就是使用Httpd来运行Hexo渲染的网页，这也非常简单！</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>盒子是安卓系统，而安卓基于Linux，先查看盒子的架构，在安装相应的交叉编译工具，由于默认编译的busybox会在&#x2F;usr&#x2F;lib或&#x2F;lib下查找共享库文件，而安卓系统并不具备所有的条件，所以我们将以静态方式编译。使用adb工具把编译好的二进制可执行文件和静态网页上传到安卓上，使用“busybox httpd”启动即可。</p>
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="编译Busybox"><a href="#编译Busybox" class="headerlink" title="编译Busybox"></a>编译Busybox</h2><h3 id="查看架构"><a href="#查看架构" class="headerlink" title="查看架构"></a>查看架构</h3><p>我们需要使用adb连接到电视盒子，首先安装adb.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install android-tools-adb -y<br></code></pre></td></tr></table></figure>
-<p>我选择用网络连接盒子，需要查看盒子的ip地址，可以登录路由器后台查看：</p>
-<img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/2.png" class="" title="none">
-<p>我的是192.168.1.26<br>用adb命令连接它：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb connect 192.168.1.26<br></code></pre></td></tr></table></figure>
-<p>运行后是这样的：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#运行后实录</span><br>* daemon not running; starting now at tcp:5037<br>* daemon started successfully<br>connected to 192.168.1.26:5555<br></code></pre></td></tr></table></figure>
-<p>然后查看：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb shell <span class="hljs-built_in">uname</span> -a<br></code></pre></td></tr></table></figure>
-<p>这段是指，使用电视盒子下安卓系统上的默认终端执行”uname -a”<br>我的运行后是这样的，不同的机器可能不同：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">Linux localhost 3.10.0_s40 <span class="hljs-comment">#1 SMP Thu May 28 18:02:20 CST 2020 armv7l GNU/Linux</span><br></code></pre></td></tr></table></figure>
-<p>可以看到，这个盒子是armv7l的，可以说是arm32.那么交叉编译器就是arm开头，</p>
-<h3 id="安装交叉编译工具"><a href="#安装交叉编译工具" class="headerlink" title="安装交叉编译工具"></a>安装交叉编译工具</h3><p>但是，软件源中的gcc交叉编译工具一般是这种格式：gcc-arm-linux-gnueabi.安装这个是可以的，一般安装后可以自动转成：arm-linux-gnueabi-gcc.也可以直接下载交叉编译器的压缩包，解压并设置环境变量就好了（环境变量博客里专门有教程）.<br>输入这个，如果输出版本信息就ok：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">arm-linux-gnueabi-gcc -v<br></code></pre></td></tr></table></figure>
-<h3 id="下载Busybox源码"><a href="#下载Busybox源码" class="headerlink" title="下载Busybox源码"></a>下载Busybox源码</h3><h4 id="对于wget"><a href="#对于wget" class="headerlink" title="对于wget"></a>对于wget</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install wget -y<br></code></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">wget https://busybox.net/downloads/busybox-1.35.0.tar.bz2<br></code></pre></td></tr></table></figure>
-<h4 id="对于curl"><a href="#对于curl" class="headerlink" title="对于curl"></a>对于curl</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt install curl -y<br></code></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">curl -O https://busybox.net/downloads/busybox-1.35.0.tar.bz2<br></code></pre></td></tr></table></figure>
-<h3 id="解压Busybox源码"><a href="#解压Busybox源码" class="headerlink" title="解压Busybox源码"></a>解压Busybox源码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">tar xvf ./busybox-1.35.0.tar.bz2  <br></code></pre></td></tr></table></figure>
-<p>切换工作目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> busybox-1.35.0<br></code></pre></td></tr></table></figure>
-<h3 id="Busybox编译前配置"><a href="#Busybox编译前配置" class="headerlink" title="Busybox编译前配置"></a>Busybox编译前配置</h3><h4 id="安装make"><a href="#安装make" class="headerlink" title="安装make"></a>安装make</h4><p>既然要用makefile，必须要有make啊…</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt make -y<br></code></pre></td></tr></table></figure>
-<h4 id="正式配置"><a href="#正式配置" class="headerlink" title="正式配置"></a>正式配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm defconfig<br></code></pre></td></tr></table></figure>
-<p>这里的”CROSS_COMPILE&#x3D;”指定交叉编译器，”arm-linux-gnueabi-“是我们要用到的交叉编译器前缀，简单来说就是arm-linux-gnueabi-gcc除掉gcc以外的部分，一般这是个变量，编译时需要交叉编译工具时，会在gcc或ld前自动加上arm-linux-gnueabi-，如果不指定，就是利用系统默认的gcc编译，编译获得的二进制文件的架构就是编译主机的架构.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm menuconfig<br></code></pre></td></tr></table></figure>
-<p>会启动一个“图形化菜单”，利用方向键以移动，enter键确定，空格键选中.</p>
-<img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/menu_!.png" class="" title="none">
-<p>Enter:<strong>Settings</strong></p>
-<img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/menu_!2.png" class="" title="none">
-<p>空格:<strong>[ ] Build static binary (no shared libs)</strong><br>然后ESC+ESC退出整个菜单，选择保存</p>
-<img src="/2022/02/17/%E5%88%A9%E7%94%A8Busybox-httpd%E5%9C%A8%E7%94%B5%E8%A7%86%E7%9B%92%E5%AD%90%E4%B8%8A%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/menu_!3.png" class="" title="none">
-<h3 id="正式编译"><a href="#正式编译" class="headerlink" title="正式编译"></a>正式编译</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm<br></code></pre></td></tr></table></figure>
-<h3 id="成功编译"><a href="#成功编译" class="headerlink" title="成功编译"></a>成功编译</h3><p>如果在目录下看到一个叫做busybox的可执行文件，就半成功了.<br>我们用file命令查看busybox的架构：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">file ./busybox<br><br><span class="hljs-comment">#运行后实录</span><br>./busybox: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, <span class="hljs-keyword">for</span> GNU/Linux 3.2.0, BuildID[sha1]=9d5381f93c45bd41ce7b5a9a18b795b12652ab07, stripped<br></code></pre></td></tr></table></figure>
-<p>32位arm Soc，完全成功！</p>
-<h2 id="上传busybox"><a href="#上传busybox" class="headerlink" title="上传busybox"></a>上传busybox</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb push ./busybox /sdcard<br></code></pre></td></tr></table></figure>
-<p>指的是：使用adb把当前目录下的busybox上传到安卓设备（电视盒子）的&#x2F;sdcard目录下</p>
-<h2 id="上传网页"><a href="#上传网页" class="headerlink" title="上传网页"></a>上传网页</h2><p>也可以自己写一个Html，我选择Hexo，简单且高效，关于Hexo的配置，我推荐官方文章：<a href="https://hexo.io/zh-cn/docs">https://hexo.io/zh-cn/docs</a><br>比如说我们已经有一个网站文件夹public，将它上传至&#x2F;sdcard</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb push ./public /sdcard<br></code></pre></td></tr></table></figure>
-<p>没想到吧，也可以上传整个文件夹.<br>接下来就进入盒子的远程shell来配置吧.</p>
-<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">adb shell<br></code></pre></td></tr></table></figure>
-<p>进入盒子shell</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /sdcard<br></code></pre></td></tr></table></figure>
-<p>切换到上传文件所在目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> +x ./busybox<br></code></pre></td></tr></table></figure>
-<p>busybox有可能不可以执行，给它可执行权限.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">./busybox<br></code></pre></td></tr></table></figure>
-<p>可以看到输出了一大堆命令.<br>使用以下命令开启httpd:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">./busybox httpd -h public -p 8080<br></code></pre></td></tr></table></figure>
-<p>httpd命令用法：httpd -h 网站根目录 -p 网站端口号，一般80，8080就是保险一点.<br>用浏览器访问”盒子ip:8080”，就可以看到网页了.</p>
-<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="执行busybox时-”-x2F-system-x2F-bin-x2F-sh-x2F-busybox-not-executable-magic-7F45”"><a href="#执行busybox时-”-x2F-system-x2F-bin-x2F-sh-x2F-busybox-not-executable-magic-7F45”" class="headerlink" title="执行busybox时,”&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: not executable: magic 7F45”"></a>执行busybox时,”&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: not executable: magic 7F45”</h2><p><strong>编译错架构了，重新编译</strong></p>
-<h2 id="x2F-system-x2F-bin-x2F-sh-x2F-busybox-No-such-file-or-directory"><a href="#x2F-system-x2F-bin-x2F-sh-x2F-busybox-No-such-file-or-directory" class="headerlink" title="&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: No such file or directory"></a>&#x2F;system&#x2F;bin&#x2F;sh: .&#x2F;busybox: No such file or directory</h2><p><strong>没有上传或者编译配置时没有勾选静态编译</strong></p>
-<h2 id="有没有偷懒的方法（不编译）"><a href="#有没有偷懒的方法（不编译）" class="headerlink" title="有没有偷懒的方法（不编译）"></a>有没有偷懒的方法（不编译）</h2><p><strong>直接去busybox.net&#x2F;downloads&#x2F;binaries&#x2F;找到相应架构的二进制文件下载上传</strong></p>
-<h1 id="视频演示"><a href="#视频演示" class="headerlink" title="视频演示"></a>视频演示</h1><iframe src="//player.bilibili.com/player.html?aid=679101618&bvid=BV11m4y1d7sx&cid=509689609&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p><strong>我会在在此发出使用于Qemu的busybox编译文件img.gz</strong></p>
-<h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p><strong>Busybox即FileSystem仓库 &#x3D;&#x3D;&gt; <a href="https://gitee.com/canyan233/qemu-ctrl-ready-repo">https://gitee.com/canyan233/qemu-ctrl-ready-repo</a></strong></p>
-]]></content>
-      <tags>
-        <tag>Bilibili</tag>
-        <tag>Linux</tag>
-        <tag>网站</tag>
-        <tag>电视盒子</tag>
-        <tag>资源</tag>
       </tags>
   </entry>
 </search>
