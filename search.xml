@@ -69,7 +69,7 @@
   <entry>
     <title>[Bmp#0] Bmp文件结构详解</title>
     <url>/2022/08/27/UEFI_Bmp_0_Introduction/</url>
-    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#77;&#97;&#x6f;&#x75;&#97;&#105;&#50;&#51;&#x33;&#64;&#111;&#117;&#116;&#108;&#111;&#x6f;&#107;&#x2e;&#99;&#111;&#x6d;">&#77;&#97;&#x6f;&#x75;&#97;&#105;&#50;&#51;&#x33;&#64;&#111;&#117;&#116;&#108;&#111;&#x6f;&#107;&#x2e;&#99;&#111;&#x6d;</a></p>
+    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#97;&#x6f;&#x75;&#97;&#105;&#x32;&#x33;&#x33;&#64;&#x6f;&#x75;&#116;&#108;&#111;&#111;&#107;&#x2e;&#99;&#111;&#109;">&#x4d;&#97;&#x6f;&#x75;&#97;&#105;&#x32;&#x33;&#x33;&#64;&#x6f;&#x75;&#116;&#108;&#111;&#111;&#107;&#x2e;&#99;&#111;&#109;</a></p>
 <p>最近(指这几个月…),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章……</p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>本文章使用标准的、最通用的Bmp图像试验,位图信息头使用BITMAPINFOHEADER.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
@@ -331,7 +331,7 @@
   <entry>
     <title>UEFI数据类型[UEFI Data Types]</title>
     <url>/2022/03/28/UEFI_DataTypes/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#97;&#111;&#x75;&#97;&#x69;&#x32;&#x33;&#51;&#64;&#x6f;&#117;&#116;&#108;&#x6f;&#x6f;&#x6b;&#46;&#99;&#x6f;&#x6d;">&#x4d;&#97;&#111;&#x75;&#97;&#x69;&#x32;&#x33;&#51;&#64;&#x6f;&#117;&#116;&#108;&#x6f;&#x6f;&#x6b;&#46;&#99;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#97;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#111;&#117;&#x74;&#108;&#x6f;&#x6f;&#107;&#46;&#x63;&#111;&#109;">&#x4d;&#97;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#111;&#117;&#x74;&#108;&#x6f;&#x6f;&#107;&#46;&#x63;&#111;&#109;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
 <h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
 <thead>
 <tr>
@@ -973,7 +973,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs jsonc">&#123;<br>  &quot;configurations&quot;: &#123;<br>    &quot;TextOS - Kernel debug&quot;: &#123;<br>      &quot;adapter&quot;: &quot;vscode-cpptools&quot;,<br>      &quot;filetypes&quot;: [ &quot;cpp&quot;, &quot;c&quot; ],<br>      &quot;configuration&quot;: &#123;<br>        &quot;request&quot;: &quot;launch&quot;,<br>        &quot;program&quot;: &quot;$&#123;workspaceRoot&#125;/Build/Kernel/Kernel.elf.symbol&quot;,<br>        &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,<br>        &quot;MIMode&quot;: &quot;gdb&quot;,<br>        &quot;miDebuggerServerAddress&quot;: &quot;localhost:1234&quot;,<br>        &quot;setupCommands&quot;: [<br>          &#123;<br>            &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,<br>            &quot;text&quot;: &quot;-enable-pretty-printing&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Set disassembly style for gdb&quot;,<br>            &quot;text&quot;: &quot;-gdb-set disassembly-flavor intel&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;<br>        ]<br>      &#125;<br>    &#125;,<br>    &quot;TextOS - Boot debug&quot;: &#123;<br>      &quot;adapter&quot;: &#123;<br>        &quot;extends&quot;: &quot;vscode-cpptools&quot;,<br>        &quot;delay&quot;: &quot;50000m&quot;<br>      &#125;,<br>      &quot;configuration&quot;: &#123;<br>        &quot;request&quot;: &quot;launch&quot;,<br>        &quot;program&quot;: &quot;$&#123;workspaceRoot&#125;/Build/Boot/DEBUG_GCC5/X64/SigmaBootPkg.debug&quot;,<br>        &quot;cwd&quot;: &quot;$&#123;workspaceRoot&#125;&quot;,<br>        &quot;MIMode&quot;: &quot;gdb&quot;,<br>        &quot;miDebuggerPath&quot;: &quot;/usr/bin/gdb&quot;,<br>        &quot;externalConsole&quot;: false,<br>        &quot;targetArchitecture&quot;: &quot;x64&quot;,<br>        &quot;customLaunchSetupCommands&quot;: [<br>          &#123;<br>            &quot;description&quot;: &quot;Connect to qemu&quot;,<br>            &quot;text&quot;: &quot;-target-select remote :1234&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Load script for uefi debugging&quot;,<br>            &quot;text&quot;: &quot;source $&#123;workspaceRoot&#125;/Src/Base/setup.gdb&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,<br>            &quot;text&quot;: &quot;-enable-pretty-printing&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;,<br>          &#123;<br>            &quot;description&quot;: &quot;Set disassembly style for gdb&quot;,<br>            &quot;text&quot;: &quot;-gdb-set disassembly-flavor intel&quot;,<br>            &quot;ignoreFailures&quot;: true<br>          &#125;<br>        ],<br>        &quot;launchCompleteCommand&quot;: &quot;exec-continue&quot;,<br>        &quot;logging&quot;: &#123;<br>          &quot;engineLogging&quot;: true<br>        &#125;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="配置文件迁移-vscode-gt-vimspector"><a href="#配置文件迁移-vscode-gt-vimspector" class="headerlink" title="配置文件迁移 (vscode -&gt; vimspector)"></a>配置文件迁移 (vscode -&gt; vimspector)</h2><p>在vimspector的插件目录下的<code>support</code>下有个pyhthon脚本:<code>import_vscode_config</code>,但它不能直接对<code>launch.json</code>进行转换.<br>她针对笼统的配置，将<code>launch.json</code>等合并到一个文件,且不能转换带注释的config,于是我便自己写了个.</p>
-<p><a href="import_vscode_config.py">import_vscode_config.py | download</a></p>
+<p><a href="https://gitee.com/canyan233/raw/raw/master/import_vscode_config.py">import_vscode_config.py | download</a></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">./import_vscode_config launch.json<br></code></pre></td></tr></table></figure>
 
 <h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="Visual-Studio-x2F-VSCode"><a href="#Visual-Studio-x2F-VSCode" class="headerlink" title="Visual Studio &#x2F; VSCode"></a>Visual Studio &#x2F; VSCode</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs viml">let g:vimspector_enable_mappings = &#x27;VISUAL_STUDIO&#x27;<br></code></pre></td></tr></table></figure>
@@ -1129,6 +1129,45 @@
         <tag>调试</tag>
         <tag>vim</tag>
         <tag>neovim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows 在 VScode 上显示图形窗口 (x11)</title>
+    <url>/2023/07/01/X11_remote_display_for_vscode/</url>
+    <content><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>在 vscode 的终端中运行某些图形化界面的应用时,比如说 qemu,此时如果没有设置就会出现以下结果:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">Could not initialize SDL(x11 not available) - exiting<br></code></pre></td></tr></table></figure>
+
+<h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><ul>
+<li><code>Remote X11</code></li>
+<li><code>Remote X11 (SSH)</code></li>
+</ul>
+<h1 id="Set-up"><a href="#Set-up" class="headerlink" title="Set up!"></a>Set up!</h1><p>首先,此插件目前只支持使用 <strong>数字签名</strong> 来进行登录,所以我们需要得到 <strong>本机的公钥</strong></p>
+<h2 id="生成-id-isa-pub"><a href="#生成-id-isa-pub" class="headerlink" title="生成 id_isa.pub"></a>生成 id_isa.pub</h2><h3 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h3><p>如果安装了 <strong>OpenSSH</strong> 的就可以跳过此环节了.</p>
+<p>我选择 <strong>git bash</strong>,它自带了 <code>ssh-keygen</code>.</p>
+<ul>
+<li>[<a href="https://git-scm.com/download/win]">https://git-scm.com/download/win]</a></li>
+</ul>
+<h3 id="生成并配置"><a href="#生成并配置" class="headerlink" title="生成并配置"></a>生成并配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">ssh-keygen -t rsa -C &quot;email@example.com&quot;<br></code></pre></td></tr></table></figure>
+
+<p>此上选择生成 rsa密钥.<br><code>-C</code> 后的是注释.</p>
+<p>将保存在用户目录的 <code>.ssh</code> 下:</p>
+<ul>
+<li><code>User/id_rsa</code> -&gt; 私钥</li>
+<li><code>User/id_rsa.pub</code> -&gt; 公钥</li>
+</ul>
+<hr>
+<p>然后需要将公钥存到 <strong>远程机</strong> 上.</p>
+<p>使用密码登录,并在 <code>~/ssh/authorized_keys</code> 后面追加我们的公钥.</p>
+<p>这样我们就可以 <strong>免密登录</strong> 了!</p>
+<h2 id="配置-sshd"><a href="#配置-sshd" class="headerlink" title="配置 sshd"></a>配置 sshd</h2><p>使用修改 <code>/etc/ssh/sshd_config</code>,将以下条目修改:</p>
+<ul>
+<li><code>X11Forwarding yes</code></li>
+<li><code>X11DisplayOffset 10</code></li>
+</ul>
+<p>第一项开启了 X11 转发<br>第二项相当于设置了 <strong>固定的</strong> DisplayNumber.</p>
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行!"></a>运行!</h1><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">xclock<br></code></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>VSCode</tag>
       </tags>
   </entry>
   <entry>
