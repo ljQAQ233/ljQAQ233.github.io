@@ -184,6 +184,122 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maouai233">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maouai233的Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2023</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-01-20 20:37:01 / 修改时间：21:51:25" itemprop="dateCreated datePublished" datetime="2024-01-20T20:37:01+08:00">2024-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="关于操作系统项目"><a href="#关于操作系统项目" class="headerlink" title="关于操作系统项目"></a>关于操作系统项目</h1><p>其实这个项目仓库正式地公布是在 <strong>2023&#x2F;04&#x2F;22</strong> 的 Gitee 但是由于各种原因, 大家看到的日期或早或迟, B站的视频的起源在 <strong>2023&#x2F;05&#x2F;20</strong>, 当时的我正在面临各种压力, 包括学业等. 也正是在这一天, 我拿着刚刚重构的代码, 兴冲冲地发出了这个视频.</p>
+<p>额, 不要问我声音为什么这么混浊, 首先我没有好的麦克风, 在则对于一个久久不会出门的 阿宅 来说不会说话也真的是抱歉呢.</p>
+<p>这一年结束, 我已经将项目推进到了 <strong>磁盘驱动</strong> 的部分了, 一月我争取完成虚拟文件系统.</p>
+<p>这一年结束了我还是卡在 Protocol 的一期视频的制作上, 主要是前面落下好多东西, 除了补充, <del>Protocol 的讲述也十分考验我的语文能力</del></p>
+<h2 id="我是如何入坑的"><a href="#我是如何入坑的" class="headerlink" title="我是如何入坑的"></a>我是如何入坑的</h2><blockquote>
+<p>本来没有打算进入这个领域的, 但是踏入了就感觉很有意思了</p>
+</blockquote>
+<p>我是这个系列最初的一个 “擦边” 视频 (<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ki4y1R79w/">BV1Ki4y1R79w</a>), 涉及到了操作系统的领域, 有人骂过我技术不行, 我那时确实就是一个萌新, 但是真的不是什么破手机编译, 如果他的条件跟我一样使用一台和我同岁的电脑, 也一定不会效率高. 也有人鼓励我, 真的很感谢他们:</p>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/comment_inspiring.jpeg" alt="一直支持我的人"></p>
+<p>我的 “老师” 是 <strong>谭玉刚</strong>, 是他的视频帮助我完成了 C 语言 以及 UEFI&#x2F;操作系统 的过渡. C语言我早就学完了, 是跟着 <strong>小甲鱼老师</strong> 学的, 他的讲解也许不是太好, 但是可帮了我大忙, 别人的教程用的是 Windows, 他使用的是 CentOS, 帮我打下了一定的基础.</p>
+<blockquote>
+<p>在此我还是发表一下我的 “暴论”</p>
+<blockquote>
+<p>Windows 环境的 C&#x2F;C++ 学习比不上 Linux, 这取决于 UP 主, 学习的环境应该是清爽的, 因此我大多不会看那些屏幕上繁杂的视频, 比如教程挂一个 QQ 什么的. 我感觉使用 Windows 环境, 处理得最好的就是 <strong>踌躇月光</strong> 的, 整个视频下来只看得到与内容相关的软件.<br>另外 Visual Studio 并不适合初学者, 使用 gcc 手动编译可以让我们更加了解一个程序的开发周期.<br>使用 Linux 的另一个原因是: 字符显示问题, 如果是市面上常见的 Linux 发行版, 大都可以开箱即用, 在显示中文这方面完全不需要人担心,即使是 Arch Linux, 进行必要的工作时候都可以很舒服地显示…<br>我想这需要人自己来权衡, Windows 可以用 <strong>WSL2 + VSCode</strong> 的形式来学习 C&#x2F;C++, 这是一种两全其美的方法</p>
+</blockquote>
+</blockquote>
+<h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范?"></a>代码规范?</h2><p>我的代码风格已经很明显了, 与常人不同, 好像不太讲究他人的代码美学, 当然不是不喜欢, 我只是想 给这个练手的操作系统极大的风格罢了, 既然来了, 就让别人印象深刻一点吧, 如果是 <strong>Pull Request</strong>, 大致有个驼峰就行了, 等我长大一点再出一个代码规范的 markdown</p>
+<p>如果是普通项目, 我尽力模范我喜欢的规范 (linux 内核的一套).</p>
+<h2 id="关于-PrintK"><a href="#关于-PrintK" class="headerlink" title="关于 PrintK"></a>关于 PrintK</h2><p>这是我挺引以为傲的了!!!</p>
+<h1 id="关于-Vim"><a href="#关于-Vim" class="headerlink" title="关于 Vim"></a>关于 Vim</h1><blockquote>
+<p>无他，惟手熟尔</p>
+</blockquote>
+<p>当然好多东西我都不会, 加油学吧!</p>
+<h1 id="关于-其他计算机方面"><a href="#关于-其他计算机方面" class="headerlink" title="关于 其他计算机方面"></a>关于 其他计算机方面</h1><ul>
+<li>2023&#x2F;12&#x2F;31 - 2024&#x2F;01&#x2F;01 - 七小时 速通 一言服务器 与零基础 安卓应用 开发<ul>
+<li>其实就是帮班级开发一个网站, 我选用的是 <a target="_blank" rel="noopener" href="https://www.mdclub.org/">MDClub</a> 的论坛系统, 但是由于没有备案支持, 我只能使用 ip 访问, 但是人家家长总不可能记 ip 吧, 为了方便, 我只能写一个安卓应用, 写死 ip 地址. 还是建议有能力的去备一下案呢, 我也是无奈啊, 又不好麻烦团委… 一言是我自己的打算, 用的是我的扫帚 Node.js …</li>
+</ul>
+</li>
+</ul>
+<h1 id="NOIP-2023"><a href="#NOIP-2023" class="headerlink" title="NOIP 2023"></a>NOIP 2023</h1><p>我这两个月一路 “狗爬”, 终于看到了久违的 <strong>NOIP 2023</strong></p>
+<blockquote>
+<p>我去的南宁, 人生中的第一次首府之旅</p>
+</blockquote>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome_far.jpg" alt="南宁二中的条条"></p>
+<blockquote>
+<p>这个垂下来的好好看!!!</p>
+</blockquote>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome1.jpg" alt="NOIP的横幅"></p>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/holo.jpg" alt="全息"></p>
+<blockquote>
+<p>这个全息投影从没在学校里见过</p>
+</blockquote>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/display.jpg"></p>
+<blockquote>
+<p>这是条条下面的东西, 好像是个展览</p>
+</blockquote>
+<h1 id="期考"><a href="#期考" class="headerlink" title="期考!"></a>期考!</h1><p>来到新学校的第一次超大考!</p>
+<h1 id="关于未来"><a href="#关于未来" class="headerlink" title="关于未来"></a>关于未来</h1><p><strong>TODO List for the new year!</strong></p>
+<ul>
+<li>学业进步!<ul>
+<li>了解微积分</li>
+<li>开阔视野</li>
+</ul>
+</li>
+<li>提升算法技能</li>
+<li>操作系统项目代码规范</li>
+<li>操作系统开发辅助工具</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/21/VimSpector_Intro_and_Use/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -693,7 +809,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#77;&#x61;&#111;&#117;&#x61;&#x69;&#x32;&#51;&#x33;&#64;&#111;&#x75;&#116;&#108;&#111;&#x6f;&#x6b;&#46;&#99;&#x6f;&#x6d;">&#77;&#x61;&#111;&#117;&#x61;&#x69;&#x32;&#51;&#x33;&#64;&#111;&#x75;&#116;&#108;&#111;&#x6f;&#x6b;&#46;&#99;&#x6f;&#x6d;</a></p>
+          <h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#x75;&#97;&#x69;&#x32;&#51;&#51;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#x63;&#x6f;&#x6d;">&#x4d;&#x61;&#x6f;&#x75;&#97;&#x69;&#x32;&#51;&#51;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#x63;&#x6f;&#x6d;</a></p>
 <p>最近(指这几个月…),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章……</p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>本文章使用标准的、最通用的Bmp图像试验,位图信息头使用BITMAPINFOHEADER.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
@@ -1099,7 +1215,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#51;&#51;&#64;&#x6f;&#x75;&#116;&#108;&#111;&#111;&#107;&#46;&#x63;&#111;&#x6d;">&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#51;&#51;&#64;&#x6f;&#x75;&#116;&#108;&#111;&#111;&#107;&#46;&#x63;&#111;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a target="_blank" rel="noopener" href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#97;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#111;&#117;&#116;&#108;&#x6f;&#111;&#107;&#x2e;&#99;&#111;&#x6d;">&#x4d;&#97;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#111;&#117;&#116;&#108;&#x6f;&#111;&#107;&#x2e;&#99;&#111;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
 <h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
 <thead>
 <tr>
@@ -1860,14 +1976,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1894,7 +2010,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

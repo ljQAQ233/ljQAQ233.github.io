@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="关于操作系统项目其实这个项目仓库正式地公布是在 2023&#x2F;04&#x2F;22 的 Gitee 但是由于各种原因, 大家看到的日期或早或迟, B站的视频的起源在 2023&#x2F;05&#x2F;20, 当时的我正在面临各种压力, 包括学业等. 也正是在这一天, 我拿着刚刚重构的代码, 兴冲冲地发出了这个视频. 额, 不要问我声音为什么这么混浊, 首先我没有好的麦克风, 在则对于一个久">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023">
+<meta property="og:url" content="http://example.com/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Maouai233的Blog">
+<meta property="og:description" content="关于操作系统项目其实这个项目仓库正式地公布是在 2023&#x2F;04&#x2F;22 的 Gitee 但是由于各种原因, 大家看到的日期或早或迟, B站的视频的起源在 2023&#x2F;05&#x2F;20, 当时的我正在面临各种压力, 包括学业等. 也正是在这一天, 我拿着刚刚重构的代码, 兴冲冲地发出了这个视频. 额, 不要问我声音为什么这么混浊, 首先我没有好的麦克风, 在则对于一个久">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/comment_inspiring.jpeg">
+<meta property="og:image" content="http://example.com/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome_far.jpg">
+<meta property="og:image" content="http://example.com/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome1.jpg">
+<meta property="og:image" content="http://example.com/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/holo.jpg">
+<meta property="og:image" content="http://example.com/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/display.jpg">
+<meta property="article:published_time" content="2024-01-20T12:37:01.000Z">
+<meta property="article:modified_time" content="2024-01-20T13:51:25.720Z">
+<meta property="article:author" content="Maouai233">
+<meta property="article:tag" content="年度总结">
+<meta property="article:tag" content="Bilibili">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/comment_inspiring.jpeg">
+
+<link rel="canonical" href="http://example.com/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2023 | Maouai233的Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Maouai233的Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Maouai233">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maouai233的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2023
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-01-20 20:37:01 / 修改时间：21:51:25" itemprop="dateCreated datePublished" datetime="2024-01-20T20:37:01+08:00">2024-01-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="关于操作系统项目"><a href="#关于操作系统项目" class="headerlink" title="关于操作系统项目"></a>关于操作系统项目</h1><p>其实这个项目仓库正式地公布是在 <strong>2023&#x2F;04&#x2F;22</strong> 的 Gitee 但是由于各种原因, 大家看到的日期或早或迟, B站的视频的起源在 <strong>2023&#x2F;05&#x2F;20</strong>, 当时的我正在面临各种压力, 包括学业等. 也正是在这一天, 我拿着刚刚重构的代码, 兴冲冲地发出了这个视频.</p>
+<p>额, 不要问我声音为什么这么混浊, 首先我没有好的麦克风, 在则对于一个久久不会出门的 阿宅 来说不会说话也真的是抱歉呢.</p>
+<p>这一年结束, 我已经将项目推进到了 <strong>磁盘驱动</strong> 的部分了, 一月我争取完成虚拟文件系统.</p>
+<p>这一年结束了我还是卡在 Protocol 的一期视频的制作上, 主要是前面落下好多东西, 除了补充, <del>Protocol 的讲述也十分考验我的语文能力</del></p>
+<h2 id="我是如何入坑的"><a href="#我是如何入坑的" class="headerlink" title="我是如何入坑的"></a>我是如何入坑的</h2><blockquote>
+<p>本来没有打算进入这个领域的, 但是踏入了就感觉很有意思了</p>
+</blockquote>
+<p>我是这个系列最初的一个 “擦边” 视频 (<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ki4y1R79w/">BV1Ki4y1R79w</a>), 涉及到了操作系统的领域, 有人骂过我技术不行, 我那时确实就是一个萌新, 但是真的不是什么破手机编译, 如果他的条件跟我一样使用一台和我同岁的电脑, 也一定不会效率高. 也有人鼓励我, 真的很感谢他们:</p>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/comment_inspiring.jpeg" alt="一直支持我的人"></p>
+<p>我的 “老师” 是 <strong>谭玉刚</strong>, 是他的视频帮助我完成了 C 语言 以及 UEFI&#x2F;操作系统 的过渡. C语言我早就学完了, 是跟着 <strong>小甲鱼老师</strong> 学的, 他的讲解也许不是太好, 但是可帮了我大忙, 别人的教程用的是 Windows, 他使用的是 CentOS, 帮我打下了一定的基础.</p>
+<blockquote>
+<p>在此我还是发表一下我的 “暴论”</p>
+<blockquote>
+<p>Windows 环境的 C&#x2F;C++ 学习比不上 Linux, 这取决于 UP 主, 学习的环境应该是清爽的, 因此我大多不会看那些屏幕上繁杂的视频, 比如教程挂一个 QQ 什么的. 我感觉使用 Windows 环境, 处理得最好的就是 <strong>踌躇月光</strong> 的, 整个视频下来只看得到与内容相关的软件.<br>另外 Visual Studio 并不适合初学者, 使用 gcc 手动编译可以让我们更加了解一个程序的开发周期.<br>使用 Linux 的另一个原因是: 字符显示问题, 如果是市面上常见的 Linux 发行版, 大都可以开箱即用, 在显示中文这方面完全不需要人担心,即使是 Arch Linux, 进行必要的工作时候都可以很舒服地显示…<br>我想这需要人自己来权衡, Windows 可以用 <strong>WSL2 + VSCode</strong> 的形式来学习 C&#x2F;C++, 这是一种两全其美的方法</p>
+</blockquote>
+</blockquote>
+<h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范?"></a>代码规范?</h2><p>我的代码风格已经很明显了, 与常人不同, 好像不太讲究他人的代码美学, 当然不是不喜欢, 我只是想 给这个练手的操作系统极大的风格罢了, 既然来了, 就让别人印象深刻一点吧, 如果是 <strong>Pull Request</strong>, 大致有个驼峰就行了, 等我长大一点再出一个代码规范的 markdown</p>
+<p>如果是普通项目, 我尽力模范我喜欢的规范 (linux 内核的一套).</p>
+<h2 id="关于-PrintK"><a href="#关于-PrintK" class="headerlink" title="关于 PrintK"></a>关于 PrintK</h2><p>这是我挺引以为傲的了!!!</p>
+<h1 id="关于-Vim"><a href="#关于-Vim" class="headerlink" title="关于 Vim"></a>关于 Vim</h1><blockquote>
+<p>无他，惟手熟尔</p>
+</blockquote>
+<p>当然好多东西我都不会, 加油学吧!</p>
+<h1 id="关于-其他计算机方面"><a href="#关于-其他计算机方面" class="headerlink" title="关于 其他计算机方面"></a>关于 其他计算机方面</h1><ul>
+<li>2023&#x2F;12&#x2F;31 - 2024&#x2F;01&#x2F;01 - 七小时 速通 一言服务器 与零基础 安卓应用 开发<ul>
+<li>其实就是帮班级开发一个网站, 我选用的是 <a target="_blank" rel="noopener" href="https://www.mdclub.org/">MDClub</a> 的论坛系统, 但是由于没有备案支持, 我只能使用 ip 访问, 但是人家家长总不可能记 ip 吧, 为了方便, 我只能写一个安卓应用, 写死 ip 地址. 还是建议有能力的去备一下案呢, 我也是无奈啊, 又不好麻烦团委… 一言是我自己的打算, 用的是我的扫帚 Node.js …</li>
+</ul>
+</li>
+</ul>
+<h1 id="NOIP-2023"><a href="#NOIP-2023" class="headerlink" title="NOIP 2023"></a>NOIP 2023</h1><p>我这两个月一路 “狗爬”, 终于看到了久违的 <strong>NOIP 2023</strong></p>
+<blockquote>
+<p>我去的南宁, 人生中的第一次首府之旅</p>
+</blockquote>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome_far.jpg" alt="南宁二中的条条"></p>
+<blockquote>
+<p>这个垂下来的好好看!!!</p>
+</blockquote>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome1.jpg" alt="NOIP的横幅"></p>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/holo.jpg" alt="全息"></p>
+<blockquote>
+<p>这个全息投影从没在学校里见过</p>
+</blockquote>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/display.jpg"></p>
+<blockquote>
+<p>这是条条下面的东西, 好像是个展览</p>
+</blockquote>
+<h1 id="期考"><a href="#期考" class="headerlink" title="期考!"></a>期考!</h1><p>来到新学校的第一次超大考!</p>
+<h1 id="关于未来"><a href="#关于未来" class="headerlink" title="关于未来"></a>关于未来</h1><p><strong>TODO List for the new year!</strong></p>
+<ul>
+<li>学业进步!<ul>
+<li>了解微积分</li>
+<li>开阔视野</li>
+</ul>
+</li>
+<li>提升算法技能</li>
+<li>操作系统项目代码规范</li>
+<li>操作系统开发辅助工具</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" rel="tag"># 年度总结</a>
+              <a href="/tags/Bilibili/" rel="tag"># Bilibili</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/04/21/VimSpector_Intro_and_Use/" rel="prev" title="VimSpector 简介及使用">
+      <i class="fa fa-chevron-left"></i> VimSpector 简介及使用
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">关于操作系统项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%85%A5%E5%9D%91%E7%9A%84"><span class="nav-number">1.1.</span> <span class="nav-text">我是如何入坑的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83"><span class="nav-number">1.2.</span> <span class="nav-text">代码规范?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-PrintK"><span class="nav-number">1.3.</span> <span class="nav-text">关于 PrintK</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-Vim"><span class="nav-number">2.</span> <span class="nav-text">关于 Vim</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-%E5%85%B6%E4%BB%96%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%96%B9%E9%9D%A2"><span class="nav-number">3.</span> <span class="nav-text">关于 其他计算机方面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIP-2023"><span class="nav-number">4.</span> <span class="nav-text">NOIP 2023</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%9F%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">期考!</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%9C%AA%E6%9D%A5"><span class="nav-number">6.</span> <span class="nav-text">关于未来</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Maouai233</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maouai233</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

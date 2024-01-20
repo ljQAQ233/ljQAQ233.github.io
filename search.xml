@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2023</title>
+    <url>/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="关于操作系统项目"><a href="#关于操作系统项目" class="headerlink" title="关于操作系统项目"></a>关于操作系统项目</h1><p>其实这个项目仓库正式地公布是在 <strong>2023&#x2F;04&#x2F;22</strong> 的 Gitee 但是由于各种原因, 大家看到的日期或早或迟, B站的视频的起源在 <strong>2023&#x2F;05&#x2F;20</strong>, 当时的我正在面临各种压力, 包括学业等. 也正是在这一天, 我拿着刚刚重构的代码, 兴冲冲地发出了这个视频.</p>
+<p>额, 不要问我声音为什么这么混浊, 首先我没有好的麦克风, 在则对于一个久久不会出门的 阿宅 来说不会说话也真的是抱歉呢.</p>
+<p>这一年结束, 我已经将项目推进到了 <strong>磁盘驱动</strong> 的部分了, 一月我争取完成虚拟文件系统.</p>
+<p>这一年结束了我还是卡在 Protocol 的一期视频的制作上, 主要是前面落下好多东西, 除了补充, <del>Protocol 的讲述也十分考验我的语文能力</del></p>
+<h2 id="我是如何入坑的"><a href="#我是如何入坑的" class="headerlink" title="我是如何入坑的"></a>我是如何入坑的</h2><blockquote>
+<p>本来没有打算进入这个领域的, 但是踏入了就感觉很有意思了</p>
+</blockquote>
+<p>我是这个系列最初的一个 “擦边” 视频 (<a href="https://www.bilibili.com/video/BV1Ki4y1R79w/">BV1Ki4y1R79w</a>), 涉及到了操作系统的领域, 有人骂过我技术不行, 我那时确实就是一个萌新, 但是真的不是什么破手机编译, 如果他的条件跟我一样使用一台和我同岁的电脑, 也一定不会效率高. 也有人鼓励我, 真的很感谢他们:</p>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/comment_inspiring.jpeg" alt="一直支持我的人"></p>
+<p>我的 “老师” 是 <strong>谭玉刚</strong>, 是他的视频帮助我完成了 C 语言 以及 UEFI&#x2F;操作系统 的过渡. C语言我早就学完了, 是跟着 <strong>小甲鱼老师</strong> 学的, 他的讲解也许不是太好, 但是可帮了我大忙, 别人的教程用的是 Windows, 他使用的是 CentOS, 帮我打下了一定的基础.</p>
+<blockquote>
+<p>在此我还是发表一下我的 “暴论”</p>
+<blockquote>
+<p>Windows 环境的 C&#x2F;C++ 学习比不上 Linux, 这取决于 UP 主, 学习的环境应该是清爽的, 因此我大多不会看那些屏幕上繁杂的视频, 比如教程挂一个 QQ 什么的. 我感觉使用 Windows 环境, 处理得最好的就是 <strong>踌躇月光</strong> 的, 整个视频下来只看得到与内容相关的软件.<br>另外 Visual Studio 并不适合初学者, 使用 gcc 手动编译可以让我们更加了解一个程序的开发周期.<br>使用 Linux 的另一个原因是: 字符显示问题, 如果是市面上常见的 Linux 发行版, 大都可以开箱即用, 在显示中文这方面完全不需要人担心,即使是 Arch Linux, 进行必要的工作时候都可以很舒服地显示…<br>我想这需要人自己来权衡, Windows 可以用 <strong>WSL2 + VSCode</strong> 的形式来学习 C&#x2F;C++, 这是一种两全其美的方法</p>
+</blockquote>
+</blockquote>
+<h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范?"></a>代码规范?</h2><p>我的代码风格已经很明显了, 与常人不同, 好像不太讲究他人的代码美学, 当然不是不喜欢, 我只是想 给这个练手的操作系统极大的风格罢了, 既然来了, 就让别人印象深刻一点吧, 如果是 <strong>Pull Request</strong>, 大致有个驼峰就行了, 等我长大一点再出一个代码规范的 markdown</p>
+<p>如果是普通项目, 我尽力模范我喜欢的规范 (linux 内核的一套).</p>
+<h2 id="关于-PrintK"><a href="#关于-PrintK" class="headerlink" title="关于 PrintK"></a>关于 PrintK</h2><p>这是我挺引以为傲的了!!!</p>
+<h1 id="关于-Vim"><a href="#关于-Vim" class="headerlink" title="关于 Vim"></a>关于 Vim</h1><blockquote>
+<p>无他，惟手熟尔</p>
+</blockquote>
+<p>当然好多东西我都不会, 加油学吧!</p>
+<h1 id="关于-其他计算机方面"><a href="#关于-其他计算机方面" class="headerlink" title="关于 其他计算机方面"></a>关于 其他计算机方面</h1><ul>
+<li>2023&#x2F;12&#x2F;31 - 2024&#x2F;01&#x2F;01 - 七小时 速通 一言服务器 与零基础 安卓应用 开发<ul>
+<li>其实就是帮班级开发一个网站, 我选用的是 <a href="https://www.mdclub.org/">MDClub</a> 的论坛系统, 但是由于没有备案支持, 我只能使用 ip 访问, 但是人家家长总不可能记 ip 吧, 为了方便, 我只能写一个安卓应用, 写死 ip 地址. 还是建议有能力的去备一下案呢, 我也是无奈啊, 又不好麻烦团委… 一言是我自己的打算, 用的是我的扫帚 Node.js …</li>
+</ul>
+</li>
+</ul>
+<h1 id="NOIP-2023"><a href="#NOIP-2023" class="headerlink" title="NOIP 2023"></a>NOIP 2023</h1><p>我这两个月一路 “狗爬”, 终于看到了久违的 <strong>NOIP 2023</strong></p>
+<blockquote>
+<p>我去的南宁, 人生中的第一次首府之旅</p>
+</blockquote>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome_far.jpg" alt="南宁二中的条条"></p>
+<blockquote>
+<p>这个垂下来的好好看!!!</p>
+</blockquote>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome1.jpg" alt="NOIP的横幅"></p>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/holo.jpg" alt="全息"></p>
+<blockquote>
+<p>这个全息投影从没在学校里见过</p>
+</blockquote>
+<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/display.jpg"></p>
+<blockquote>
+<p>这是条条下面的东西, 好像是个展览</p>
+</blockquote>
+<h1 id="期考"><a href="#期考" class="headerlink" title="期考!"></a>期考!</h1><p>来到新学校的第一次超大考!</p>
+<h1 id="关于未来"><a href="#关于未来" class="headerlink" title="关于未来"></a>关于未来</h1><p><strong>TODO List for the new year!</strong></p>
+<ul>
+<li>学业进步!<ul>
+<li>了解微积分</li>
+<li>开阔视野</li>
+</ul>
+</li>
+<li>提升算法技能</li>
+<li>操作系统项目代码规范</li>
+<li>操作系统开发辅助工具</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>年度总结</tag>
+        <tag>Bilibili</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>UEFI基本宏定义-UEFI-Basic-Macros</title>
     <url>/2022/08/20/UEFI_BasicMacros/</url>
     <content><![CDATA[<h1 id="说明性"><a href="#说明性" class="headerlink" title="说明性"></a>说明性</h1><p>为提高代码<strong>可读性</strong>等原因,需要有一些<strong>不加注释的注释</strong>……</p>
@@ -60,16 +127,16 @@
 </tbody></table>
 <h2 id="运算功能型"><a href="#运算功能型" class="headerlink" title="运算功能型"></a>运算功能型</h2>]]></content>
       <tags>
+        <tag>Bilibili</tag>
         <tag>UEFI</tag>
         <tag>EDKII</tag>
-        <tag>Bilibili</tag>
         <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
     <title>[Bmp#0] Bmp文件结构详解</title>
     <url>/2022/08/27/UEFI_Bmp_0_Introduction/</url>
-    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#77;&#x61;&#111;&#117;&#x61;&#x69;&#x32;&#51;&#x33;&#64;&#111;&#x75;&#116;&#108;&#111;&#x6f;&#x6b;&#46;&#99;&#x6f;&#x6d;">&#77;&#x61;&#111;&#117;&#x61;&#x69;&#x32;&#51;&#x33;&#64;&#111;&#x75;&#116;&#108;&#111;&#x6f;&#x6b;&#46;&#99;&#x6f;&#x6d;</a></p>
+    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#x75;&#97;&#x69;&#x32;&#51;&#51;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#x63;&#x6f;&#x6d;">&#x4d;&#x61;&#x6f;&#x75;&#97;&#x69;&#x32;&#51;&#51;&#64;&#111;&#x75;&#x74;&#108;&#111;&#111;&#107;&#46;&#x63;&#x6f;&#x6d;</a></p>
 <p>最近(指这几个月…),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章……</p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>本文章使用标准的、最通用的Bmp图像试验,位图信息头使用BITMAPINFOHEADER.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
@@ -294,9 +361,9 @@
 <p>[AARCH,ARM,X64,IA32] Bmp位图检查程序BmpChecker及源代码:        <a href="https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333">https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333</a><br>适用于UEFI的Bmp位深转换:  <a href="https://gist.github.com/ljQAQ233/5eaf1c600fcbb773749150efc73ab575">https://gist.github.com/ljQAQ233/5eaf1c600fcbb773749150efc73ab575</a></p>
 ]]></content>
       <tags>
+        <tag>Bilibili</tag>
         <tag>UEFI</tag>
         <tag>EDKII</tag>
-        <tag>Bilibili</tag>
         <tag>C语言</tag>
         <tag>Bmp</tag>
       </tags>
@@ -321,11 +388,475 @@
 
 ]]></content>
       <tags>
+        <tag>Bilibili</tag>
         <tag>UEFI</tag>
         <tag>EDKII</tag>
-        <tag>Bilibili</tag>
         <tag>C语言</tag>
         <tag>Bmp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UEFI数据类型[UEFI Data Types]</title>
+    <url>/2022/03/28/UEFI_DataTypes/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#97;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#111;&#117;&#116;&#108;&#x6f;&#111;&#107;&#x2e;&#99;&#111;&#x6d;">&#x4d;&#97;&#x6f;&#x75;&#x61;&#105;&#x32;&#x33;&#51;&#x40;&#111;&#117;&#116;&#108;&#x6f;&#111;&#107;&#x2e;&#99;&#111;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+<h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
+<thead>
+<tr>
+<th>类</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EFI_STATUS</td>
+<td>状态码，有成功、错误和警告</td>
+</tr>
+<tr>
+<td>UINT64</td>
+<td>8字节无符号整型</td>
+</tr>
+<tr>
+<td>INT64</td>
+<td>8字节带符号整型</td>
+</tr>
+<tr>
+<td>UINT32</td>
+<td>4字节无符号整型</td>
+</tr>
+<tr>
+<td>INT32</td>
+<td>4字节带符号整型</td>
+</tr>
+<tr>
+<td>UINT16</td>
+<td>2字节无符号整型</td>
+</tr>
+<tr>
+<td>INT16</td>
+<td>2字节带符号整型</td>
+</tr>
+<tr>
+<td>UINT8</td>
+<td>1字节无符号整型</td>
+</tr>
+<tr>
+<td>INT8</td>
+<td>1字节带符号整型</td>
+</tr>
+<tr>
+<td>CHAR16</td>
+<td>2字节字符</td>
+</tr>
+<tr>
+<td>CHAR8</td>
+<td>1字节字符</td>
+</tr>
+<tr>
+<td>BOOLEAN</td>
+<td>布尔类型，1字节字符，值可以是FALSE[0]和TRUE[1]，可以用两种方式赋值，但不加单引号</td>
+</tr>
+</tbody></table>
+<h2 id="UINTN"><a href="#UINTN" class="headerlink" title="UINTN"></a>UINTN</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>X64</th>
+<th>Ia32</th>
+<th>AARCH64</th>
+<th>ARM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UINTN</td>
+<td>UINT64</td>
+<td>UINT32</td>
+<td>UINT64</td>
+<td>UINT32</td>
+</tr>
+<tr>
+<td>INTN</td>
+<td>INT64</td>
+<td>INT32</td>
+<td>INT64</td>
+<td>INT32</td>
+</tr>
+</tbody></table>
+<h1 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h1><table>
+<thead>
+<tr>
+<th>宏</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VOID</td>
+<td>void类型,指针”无敌”</td>
+</tr>
+</tbody></table>
+<h1 id="原类型"><a href="#原类型" class="headerlink" title="原类型"></a>原类型</h1><p> <strong>将以GCC &#x2F; Clang为代表</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>原类型 X64 &#x2F; AARCH64</th>
+<th>原类型 Ia32 &#x2F; ARM32</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RETURN_STATUS</td>
+<td>unsigned long long</td>
+<td>unsigned int</td>
+</tr>
+<tr>
+<td>EFI_STATUS</td>
+<td>RETURN_STATUS</td>
+<td>RETURN_STATUS</td>
+</tr>
+<tr>
+<td>UINTN</td>
+<td>unsigned long long</td>
+<td>unsigned int</td>
+</tr>
+<tr>
+<td>INTN</td>
+<td>long long</td>
+<td>int</td>
+</tr>
+<tr>
+<td>UINT64</td>
+<td>unsigned long long</td>
+<td>unsigned long long</td>
+</tr>
+<tr>
+<td>INT64</td>
+<td>long long</td>
+<td>long long</td>
+</tr>
+<tr>
+<td>UINT32</td>
+<td>unsigned int</td>
+<td>unsigned int</td>
+</tr>
+<tr>
+<td>UINT16</td>
+<td>unsigned short</td>
+<td>unsigned short</td>
+</tr>
+<tr>
+<td>INT16</td>
+<td>short</td>
+<td>short</td>
+</tr>
+<tr>
+<td>UINT8</td>
+<td>unsigned char</td>
+<td>unsigned char</td>
+</tr>
+<tr>
+<td>INT8</td>
+<td>signed char</td>
+<td>signed char</td>
+</tr>
+<tr>
+<td>CHAR16</td>
+<td>unsigned short</td>
+<td>unsigned short</td>
+</tr>
+<tr>
+<td>CHAR8</td>
+<td>char</td>
+<td>char</td>
+</tr>
+<tr>
+<td>BOOLEAN</td>
+<td>unsigned char</td>
+<td>unsigned char</td>
+</tr>
+</tbody></table>
+<p> <strong>对于char，char是unsigned还是signed不确定，根据编译器的不同而不同。</strong></p>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>定义值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VOID</td>
+<td>void</td>
+</tr>
+</tbody></table>
+<h1 id="分条"><a href="#分条" class="headerlink" title="分条"></a>分条</h1><h2 id="EFI-STATUS分条"><a href="#EFI-STATUS分条" class="headerlink" title="EFI_STATUS分条"></a>EFI_STATUS分条</h2><h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><br><span class="hljs-keyword">typedef</span> UINTN RETURN_STATUS;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Uefi/UefiBaseType.h */</span><br><br><span class="hljs-keyword">typedef</span> RETURN_STATUS             EFI_STATUS;<br></code></pre></td></tr></table></figure>
+
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>判断程序出错或打印Log必备：通常这样定义一个EFI_STATUS型变量，初始化为成功。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">EFI_STATUS Status = EFI_SUCCESS;<br></code></pre></td></tr></table></figure>
+
+<p>EDKII源代码中许多函数使用EFI_STATUS型，返回的值是EFI_STATUS型，所以可以使用以下来接收函数运行后返回的结果(前提是函数的return的要是EFI_STATUS型)：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">Status = Function();<br></code></pre></td></tr></table></figure>
+<p>也提供了专门来判断是否运行错误即返回错误代码的EFI_ERROR()，使用如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(EFI_ERROR(Status)) &#123;<br>  <span class="hljs-keyword">return</span> Status;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>意思是如果之前定义的EFI_STATUS类型的Status是错误的结果，就执行大括号中的代码（这里直接返回Status，会回到EFI SHELL或者返回上一个调用此的函数），如果不是则跳过。</p>
+<p>它是可以后面手动更改值的：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">Status = EFI_SUCCESS;<br></code></pre></td></tr></table></figure>
+
+<p>具体如下：</p>
+<h3 id="具体"><a href="#具体" class="headerlink" title="具体"></a>具体</h3><h4 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h4><p>高位清除，无符号，没有负数的情况。</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EFI_SUCCESS</td>
+<td>0</td>
+<td>成功完成操作</td>
+</tr>
+</tbody></table>
+<h4 id="失败"><a href="#失败" class="headerlink" title="失败"></a>失败</h4><p>不同架构机器下,失败的值可能不同.</p>
+<p>这里先将状态码定义成<strong>RETURN等</strong>后在UefiBaseType.h中将<strong>EFI等*定义到对应的</strong>RETURN**上.</p>
+<h5 id="辅助宏"><a href="#辅助宏" class="headerlink" title="辅助宏"></a>辅助宏</h5><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Incude/Base.h */</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ENCODE_WARNING(StatusCode)       ((RETURN_STATUS)(StatusCode))</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ENCODE_ERROR(StatusCode)         ((RETURN_STATUS)(MAX_BIT | (StatusCode)))</span><br><br><span class="hljs-comment">/* File : MdePkg/Include/Uefi/UefiBaseType.h */</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> EFI_SUCCESS               RETURN_SUCCESS              </span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> EFI_LOAD_ERROR            RETURN_LOAD_ERROR</span><br><span class="hljs-comment">/* ...... */</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="值-amp-描述"><a href="#值-amp-描述" class="headerlink" title="值&amp;描述"></a>值&amp;描述</h5><p>具体见<strong>MdePkg&#x2F;Include&#x2F;Base.h</strong> &amp; <strong>MdePkg&#x2F;Include&#x2F;Uefi&#x2F;UefiBaseType.h</strong></p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EFI_LOAD_ERROR</td>
+<td>ENCODE_ERROR(1)</td>
+<td>加载镜像Image失败</td>
+</tr>
+<tr>
+<td>EFI_INVALID_PARAMETER</td>
+<td>ENCODE_ERROR(2)</td>
+<td>参数不正确</td>
+</tr>
+<tr>
+<td>EFI_UNSUPPORTED</td>
+<td>ENCODE_ERROR(3)</td>
+<td>该操作不支持</td>
+</tr>
+<tr>
+<td>EFI_BAD_BUFFER_SIZE</td>
+<td>ENCODE_ERROR(4)</td>
+<td>缓冲区Buffer的大小不适用于请求</td>
+</tr>
+<tr>
+<td>EFI_BUFFER_TOO_SMALL</td>
+<td>ENCODE_ERROR(5)</td>
+<td>缓冲区不够大，无法容纳请求的数据</td>
+</tr>
+<tr>
+<td>EFI_NOT_READY</td>
+<td>ENCODE_ERROR(6)</td>
+<td>There is no data pending upon return</td>
+</tr>
+<tr>
+<td>EFI_DEVICE_ERROR</td>
+<td>ENCODE_ERROR(7)</td>
+<td>物理设备在尝试操作时报告错</td>
+</tr>
+<tr>
+<td>EFI_WRITE_PROTECTED</td>
+<td>ENCODE_ERROR(8)</td>
+<td>无法写入设备</td>
+</tr>
+<tr>
+<td>EFI_OUT_OF_RESOURCES</td>
+<td>ENCODE_ERROR(9)</td>
+<td>资源已用完</td>
+</tr>
+<tr>
+<td>EFI_VOLUME_CORRUPTED</td>
+<td>ENCODE_ERROR(10)</td>
+<td>在文件系统上检测到一个不稳定因素，而导致运行失败</td>
+</tr>
+<tr>
+<td>EFI_VOLUME_FULL</td>
+<td>ENCODE_ERROR(11)</td>
+<td>文件系统上没有更多空间</td>
+</tr>
+<tr>
+<td>EFI_NO_MEDIA</td>
+<td>ENCODE_ERROR(12)</td>
+<td>该设备不包含任何介质来执行操作</td>
+</tr>
+<tr>
+<td>EFI_MEDIA_CHANGED</td>
+<td>ENCODE_ERROR(13)</td>
+<td>自上次访问以来，设备中的介质已更改</td>
+</tr>
+<tr>
+<td>EFI_NOT_FOUND</td>
+<td>ENCODE_ERROR(14)</td>
+<td>未找到该项</td>
+</tr>
+<tr>
+<td>EFI_ACCESS_DENIED</td>
+<td>ENCODE_ERROR(15)</td>
+<td>拒绝访问</td>
+</tr>
+<tr>
+<td>EFI_NO_RESPONSE</td>
+<td>ENCODE_ERROR(16)</td>
+<td>未找到服务器或未响应请求</td>
+</tr>
+<tr>
+<td>EFI_NO_MAPPING</td>
+<td>ENCODE_ERROR(17)</td>
+<td>到设备的映射不存在</td>
+</tr>
+<tr>
+<td>EFI_TIMEOUT</td>
+<td>ENCODE_ERROR(18)</td>
+<td>超时</td>
+</tr>
+<tr>
+<td>EFI_NOT_STARTED</td>
+<td>ENCODE_ERROR(19)</td>
+<td>Protocol尚未启动</td>
+</tr>
+<tr>
+<td>EFI_ALREADY_STARTED</td>
+<td>ENCODE_ERROR(20)</td>
+<td>Protocol已经启动</td>
+</tr>
+<tr>
+<td>EFI_ABORTED</td>
+<td>ENCODE_ERROR(21)</td>
+<td>操作被终止</td>
+</tr>
+<tr>
+<td>EFI_ICMP_ERROR</td>
+<td>ENCODE_ERROR(22)</td>
+<td>网络操作期间发生ICMP错误</td>
+</tr>
+<tr>
+<td>EFI_TFTP_ERROR</td>
+<td>ENCODE_ERROR(23)</td>
+<td>网络操作期间发生TFTP错误</td>
+</tr>
+<tr>
+<td>EFI_PROTOCOL_ERROR</td>
+<td>ENCODE_ERROR(24)</td>
+<td>网络操作期间发生Protocol错误</td>
+</tr>
+<tr>
+<td>EFI_INCOMPATIBLE_VERSION</td>
+<td>ENCODE_ERROR(25)</td>
+<td>The function encountered an internal version that was incompatible with a version requested by the caller</td>
+</tr>
+<tr>
+<td>EFI_SECURITY_VIOLATION</td>
+<td>ENCODE_ERROR(26)</td>
+<td>由于安全违规，该功能未执行</td>
+</tr>
+<tr>
+<td>EFI_CRC_ERROR</td>
+<td>ENCODE_ERROR(27)</td>
+<td>检测到CRC错误</td>
+</tr>
+<tr>
+<td>EFI_END_OF_MEDIA</td>
+<td>ENCODE_ERROR(28)</td>
+<td>已到达媒体介质的开头或结尾</td>
+</tr>
+<tr>
+<td>EFI_END_OF_FILE</td>
+<td>ENCODE_ERROR(31)</td>
+<td>已到达文件末尾</td>
+</tr>
+<tr>
+<td>EFI_INVALID_LANGUAGE</td>
+<td>ENCODE_ERROR(32)</td>
+<td>指定的语言无效</td>
+</tr>
+<tr>
+<td>EFI_COMPROMISED_DATA</td>
+<td>ENCODE_ERROR(33)</td>
+<td>数据的安全状态未知或受损，必须更新数据或替换数据以恢复有效的安全状态</td>
+</tr>
+<tr>
+<td>EFI_IP_ADDRESS_CONFLICT</td>
+<td>ENCODE_ERROR(34)</td>
+<td>There is an address conflict address allocation</td>
+</tr>
+<tr>
+<td>EFI_HTTP_ERROR</td>
+<td>ENCODE_ERROR(35)</td>
+<td>网络操作期间发生 HTTP 错误</td>
+</tr>
+</tbody></table>
+<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>高位清除，无符号，”没有”负数的情况。</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EFI_WARN_UNKNOWN_GLYPH</td>
+<td>ENCODE_WARNING(1)</td>
+<td>该字符串包含了设备的一个或多个字符无法渲染并被跳过</td>
+</tr>
+<tr>
+<td>EFI_WARN_DELETE_FAILURE</td>
+<td>ENCODE_WARNING(2)</td>
+<td>Handle已关闭，但文件尚未删除</td>
+</tr>
+<tr>
+<td>EFI_WARN_WRITE_FAILURE</td>
+<td>ENCODE_WARNING(3)</td>
+<td>The handle was closed, but the data to the file was not flushed properly</td>
+</tr>
+<tr>
+<td>EFI_WARN_BUFFER_TOO_SMALL</td>
+<td>ENCODE_WARNING(4)</td>
+<td>存放结果的缓冲区太小，且数据被截断为缓冲区大小</td>
+</tr>
+<tr>
+<td>EFI_WARN_STALE_DATA</td>
+<td>ENCODE_WARNING(5)</td>
+<td>The data has not been updated within the timeframe set by local policy for this type of data</td>
+</tr>
+<tr>
+<td>EFI_WARN_FILE_SYSTEM</td>
+<td>ENCODE_WARNING(6)</td>
+<td>生成的缓冲区包含UEFI-compliant的文件系统</td>
+</tr>
+<tr>
+<td>EFI_WARN_RESET_REQUIRED</td>
+<td>ENCODE_WARNING(7)</td>
+<td>该操作将在系统重置后被处理</td>
+</tr>
+</tbody></table>
+<h2 id="BOOLEAN分条"><a href="#BOOLEAN分条" class="headerlink" title="BOOLEAN分条"></a>BOOLEAN分条</h2><h3 id="头文件-1"><a href="#头文件-1" class="headerlink" title="头文件"></a>头文件</h3><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/?/ProcessorBind.h */</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>       BOOLEAN;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> TRUE  ((BOOLEAN)(1==1))</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> FALSE ((BOOLEAN)(0==1))</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><p>布尔类型，1字节字符，值可以是FALSE和TRUE或者表达成0、1，可以用<strong>两种</strong>方式赋值，但不加单引号<br>定义一个BOOLEAN并设置为“真”有两种写法：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* 第一种 */</span><br>BOOLEAN TestBool = <span class="hljs-number">1</span>;<br><br><span class="hljs-comment">/* 第二种 */</span><br>BOOLEAN TestBool = TRUE;<br></code></pre></td></tr></table></figure>
+<p>与此相反，“假”则是FLASE或者0</p>
+<p>可以直接使用if判断之前定义的值是否为真：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(TestBool) &#123;<br>  Print(<span class="hljs-string">L&quot;TRUE\n&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">if</span>(!TestBool) &#123;<br>  Print(<span class="hljs-string">L&quot;FALSE\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><p>顺便讲一下</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> CONST     const</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATIC    static</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p>EDKII v2.9官方文档：<a href="https://uefi.org/sites/default/files/resources/UEFI_Spec_2_9_2021_03_18.pdf" >点此下载</a></p>
+]]></content>
+      <tags>
+        <tag>Bilibili</tag>
+        <tag>UEFI</tag>
+        <tag>EDKII</tag>
+        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -794,470 +1325,6 @@
         <tag>网站</tag>
         <tag>电视盒子</tag>
         <tag>资源</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>UEFI数据类型[UEFI Data Types]</title>
-    <url>/2022/03/28/UEFI_DataTypes/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#51;&#51;&#64;&#x6f;&#x75;&#116;&#108;&#111;&#111;&#107;&#46;&#x63;&#111;&#x6d;">&#x4d;&#x61;&#x6f;&#x75;&#x61;&#105;&#x32;&#51;&#51;&#64;&#x6f;&#x75;&#116;&#108;&#111;&#111;&#107;&#46;&#x63;&#111;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
-<h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
-<thead>
-<tr>
-<th>类</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>EFI_STATUS</td>
-<td>状态码，有成功、错误和警告</td>
-</tr>
-<tr>
-<td>UINT64</td>
-<td>8字节无符号整型</td>
-</tr>
-<tr>
-<td>INT64</td>
-<td>8字节带符号整型</td>
-</tr>
-<tr>
-<td>UINT32</td>
-<td>4字节无符号整型</td>
-</tr>
-<tr>
-<td>INT32</td>
-<td>4字节带符号整型</td>
-</tr>
-<tr>
-<td>UINT16</td>
-<td>2字节无符号整型</td>
-</tr>
-<tr>
-<td>INT16</td>
-<td>2字节带符号整型</td>
-</tr>
-<tr>
-<td>UINT8</td>
-<td>1字节无符号整型</td>
-</tr>
-<tr>
-<td>INT8</td>
-<td>1字节带符号整型</td>
-</tr>
-<tr>
-<td>CHAR16</td>
-<td>2字节字符</td>
-</tr>
-<tr>
-<td>CHAR8</td>
-<td>1字节字符</td>
-</tr>
-<tr>
-<td>BOOLEAN</td>
-<td>布尔类型，1字节字符，值可以是FALSE[0]和TRUE[1]，可以用两种方式赋值，但不加单引号</td>
-</tr>
-</tbody></table>
-<h2 id="UINTN"><a href="#UINTN" class="headerlink" title="UINTN"></a>UINTN</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>X64</th>
-<th>Ia32</th>
-<th>AARCH64</th>
-<th>ARM</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>UINTN</td>
-<td>UINT64</td>
-<td>UINT32</td>
-<td>UINT64</td>
-<td>UINT32</td>
-</tr>
-<tr>
-<td>INTN</td>
-<td>INT64</td>
-<td>INT32</td>
-<td>INT64</td>
-<td>INT32</td>
-</tr>
-</tbody></table>
-<h1 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h1><table>
-<thead>
-<tr>
-<th>宏</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>VOID</td>
-<td>void类型,指针”无敌”</td>
-</tr>
-</tbody></table>
-<h1 id="原类型"><a href="#原类型" class="headerlink" title="原类型"></a>原类型</h1><p> <strong>将以GCC &#x2F; Clang为代表</strong></p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>原类型 X64 &#x2F; AARCH64</th>
-<th>原类型 Ia32 &#x2F; ARM32</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>RETURN_STATUS</td>
-<td>unsigned long long</td>
-<td>unsigned int</td>
-</tr>
-<tr>
-<td>EFI_STATUS</td>
-<td>RETURN_STATUS</td>
-<td>RETURN_STATUS</td>
-</tr>
-<tr>
-<td>UINTN</td>
-<td>unsigned long long</td>
-<td>unsigned int</td>
-</tr>
-<tr>
-<td>INTN</td>
-<td>long long</td>
-<td>int</td>
-</tr>
-<tr>
-<td>UINT64</td>
-<td>unsigned long long</td>
-<td>unsigned long long</td>
-</tr>
-<tr>
-<td>INT64</td>
-<td>long long</td>
-<td>long long</td>
-</tr>
-<tr>
-<td>UINT32</td>
-<td>unsigned int</td>
-<td>unsigned int</td>
-</tr>
-<tr>
-<td>UINT16</td>
-<td>unsigned short</td>
-<td>unsigned short</td>
-</tr>
-<tr>
-<td>INT16</td>
-<td>short</td>
-<td>short</td>
-</tr>
-<tr>
-<td>UINT8</td>
-<td>unsigned char</td>
-<td>unsigned char</td>
-</tr>
-<tr>
-<td>INT8</td>
-<td>signed char</td>
-<td>signed char</td>
-</tr>
-<tr>
-<td>CHAR16</td>
-<td>unsigned short</td>
-<td>unsigned short</td>
-</tr>
-<tr>
-<td>CHAR8</td>
-<td>char</td>
-<td>char</td>
-</tr>
-<tr>
-<td>BOOLEAN</td>
-<td>unsigned char</td>
-<td>unsigned char</td>
-</tr>
-</tbody></table>
-<p> <strong>对于char，char是unsigned还是signed不确定，根据编译器的不同而不同。</strong></p>
-<table>
-<thead>
-<tr>
-<th>宏</th>
-<th>定义值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>VOID</td>
-<td>void</td>
-</tr>
-</tbody></table>
-<h1 id="分条"><a href="#分条" class="headerlink" title="分条"></a>分条</h1><h2 id="EFI-STATUS分条"><a href="#EFI-STATUS分条" class="headerlink" title="EFI_STATUS分条"></a>EFI_STATUS分条</h2><h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><br><span class="hljs-keyword">typedef</span> UINTN RETURN_STATUS;<br></code></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Uefi/UefiBaseType.h */</span><br><br><span class="hljs-keyword">typedef</span> RETURN_STATUS             EFI_STATUS;<br></code></pre></td></tr></table></figure>
-
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>判断程序出错或打印Log必备：通常这样定义一个EFI_STATUS型变量，初始化为成功。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">EFI_STATUS Status = EFI_SUCCESS;<br></code></pre></td></tr></table></figure>
-
-<p>EDKII源代码中许多函数使用EFI_STATUS型，返回的值是EFI_STATUS型，所以可以使用以下来接收函数运行后返回的结果(前提是函数的return的要是EFI_STATUS型)：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">Status = Function();<br></code></pre></td></tr></table></figure>
-<p>也提供了专门来判断是否运行错误即返回错误代码的EFI_ERROR()，使用如下：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(EFI_ERROR(Status)) &#123;<br>  <span class="hljs-keyword">return</span> Status;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>意思是如果之前定义的EFI_STATUS类型的Status是错误的结果，就执行大括号中的代码（这里直接返回Status，会回到EFI SHELL或者返回上一个调用此的函数），如果不是则跳过。</p>
-<p>它是可以后面手动更改值的：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c">Status = EFI_SUCCESS;<br></code></pre></td></tr></table></figure>
-
-<p>具体如下：</p>
-<h3 id="具体"><a href="#具体" class="headerlink" title="具体"></a>具体</h3><h4 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h4><p>高位清除，无符号，没有负数的情况。</p>
-<table>
-<thead>
-<tr>
-<th>类</th>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>EFI_SUCCESS</td>
-<td>0</td>
-<td>成功完成操作</td>
-</tr>
-</tbody></table>
-<h4 id="失败"><a href="#失败" class="headerlink" title="失败"></a>失败</h4><p>不同架构机器下,失败的值可能不同.</p>
-<p>这里先将状态码定义成<strong>RETURN等</strong>后在UefiBaseType.h中将<strong>EFI等*定义到对应的</strong>RETURN**上.</p>
-<h5 id="辅助宏"><a href="#辅助宏" class="headerlink" title="辅助宏"></a>辅助宏</h5><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Incude/Base.h */</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ENCODE_WARNING(StatusCode)       ((RETURN_STATUS)(StatusCode))</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ENCODE_ERROR(StatusCode)         ((RETURN_STATUS)(MAX_BIT | (StatusCode)))</span><br><br><span class="hljs-comment">/* File : MdePkg/Include/Uefi/UefiBaseType.h */</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> EFI_SUCCESS               RETURN_SUCCESS              </span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> EFI_LOAD_ERROR            RETURN_LOAD_ERROR</span><br><span class="hljs-comment">/* ...... */</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="值-amp-描述"><a href="#值-amp-描述" class="headerlink" title="值&amp;描述"></a>值&amp;描述</h5><p>具体见<strong>MdePkg&#x2F;Include&#x2F;Base.h</strong> &amp; <strong>MdePkg&#x2F;Include&#x2F;Uefi&#x2F;UefiBaseType.h</strong></p>
-<table>
-<thead>
-<tr>
-<th>类</th>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>EFI_LOAD_ERROR</td>
-<td>ENCODE_ERROR(1)</td>
-<td>加载镜像Image失败</td>
-</tr>
-<tr>
-<td>EFI_INVALID_PARAMETER</td>
-<td>ENCODE_ERROR(2)</td>
-<td>参数不正确</td>
-</tr>
-<tr>
-<td>EFI_UNSUPPORTED</td>
-<td>ENCODE_ERROR(3)</td>
-<td>该操作不支持</td>
-</tr>
-<tr>
-<td>EFI_BAD_BUFFER_SIZE</td>
-<td>ENCODE_ERROR(4)</td>
-<td>缓冲区Buffer的大小不适用于请求</td>
-</tr>
-<tr>
-<td>EFI_BUFFER_TOO_SMALL</td>
-<td>ENCODE_ERROR(5)</td>
-<td>缓冲区不够大，无法容纳请求的数据</td>
-</tr>
-<tr>
-<td>EFI_NOT_READY</td>
-<td>ENCODE_ERROR(6)</td>
-<td>There is no data pending upon return</td>
-</tr>
-<tr>
-<td>EFI_DEVICE_ERROR</td>
-<td>ENCODE_ERROR(7)</td>
-<td>物理设备在尝试操作时报告错</td>
-</tr>
-<tr>
-<td>EFI_WRITE_PROTECTED</td>
-<td>ENCODE_ERROR(8)</td>
-<td>无法写入设备</td>
-</tr>
-<tr>
-<td>EFI_OUT_OF_RESOURCES</td>
-<td>ENCODE_ERROR(9)</td>
-<td>资源已用完</td>
-</tr>
-<tr>
-<td>EFI_VOLUME_CORRUPTED</td>
-<td>ENCODE_ERROR(10)</td>
-<td>在文件系统上检测到一个不稳定因素，而导致运行失败</td>
-</tr>
-<tr>
-<td>EFI_VOLUME_FULL</td>
-<td>ENCODE_ERROR(11)</td>
-<td>文件系统上没有更多空间</td>
-</tr>
-<tr>
-<td>EFI_NO_MEDIA</td>
-<td>ENCODE_ERROR(12)</td>
-<td>该设备不包含任何介质来执行操作</td>
-</tr>
-<tr>
-<td>EFI_MEDIA_CHANGED</td>
-<td>ENCODE_ERROR(13)</td>
-<td>自上次访问以来，设备中的介质已更改</td>
-</tr>
-<tr>
-<td>EFI_NOT_FOUND</td>
-<td>ENCODE_ERROR(14)</td>
-<td>未找到该项</td>
-</tr>
-<tr>
-<td>EFI_ACCESS_DENIED</td>
-<td>ENCODE_ERROR(15)</td>
-<td>拒绝访问</td>
-</tr>
-<tr>
-<td>EFI_NO_RESPONSE</td>
-<td>ENCODE_ERROR(16)</td>
-<td>未找到服务器或未响应请求</td>
-</tr>
-<tr>
-<td>EFI_NO_MAPPING</td>
-<td>ENCODE_ERROR(17)</td>
-<td>到设备的映射不存在</td>
-</tr>
-<tr>
-<td>EFI_TIMEOUT</td>
-<td>ENCODE_ERROR(18)</td>
-<td>超时</td>
-</tr>
-<tr>
-<td>EFI_NOT_STARTED</td>
-<td>ENCODE_ERROR(19)</td>
-<td>Protocol尚未启动</td>
-</tr>
-<tr>
-<td>EFI_ALREADY_STARTED</td>
-<td>ENCODE_ERROR(20)</td>
-<td>Protocol已经启动</td>
-</tr>
-<tr>
-<td>EFI_ABORTED</td>
-<td>ENCODE_ERROR(21)</td>
-<td>操作被终止</td>
-</tr>
-<tr>
-<td>EFI_ICMP_ERROR</td>
-<td>ENCODE_ERROR(22)</td>
-<td>网络操作期间发生ICMP错误</td>
-</tr>
-<tr>
-<td>EFI_TFTP_ERROR</td>
-<td>ENCODE_ERROR(23)</td>
-<td>网络操作期间发生TFTP错误</td>
-</tr>
-<tr>
-<td>EFI_PROTOCOL_ERROR</td>
-<td>ENCODE_ERROR(24)</td>
-<td>网络操作期间发生Protocol错误</td>
-</tr>
-<tr>
-<td>EFI_INCOMPATIBLE_VERSION</td>
-<td>ENCODE_ERROR(25)</td>
-<td>The function encountered an internal version that was incompatible with a version requested by the caller</td>
-</tr>
-<tr>
-<td>EFI_SECURITY_VIOLATION</td>
-<td>ENCODE_ERROR(26)</td>
-<td>由于安全违规，该功能未执行</td>
-</tr>
-<tr>
-<td>EFI_CRC_ERROR</td>
-<td>ENCODE_ERROR(27)</td>
-<td>检测到CRC错误</td>
-</tr>
-<tr>
-<td>EFI_END_OF_MEDIA</td>
-<td>ENCODE_ERROR(28)</td>
-<td>已到达媒体介质的开头或结尾</td>
-</tr>
-<tr>
-<td>EFI_END_OF_FILE</td>
-<td>ENCODE_ERROR(31)</td>
-<td>已到达文件末尾</td>
-</tr>
-<tr>
-<td>EFI_INVALID_LANGUAGE</td>
-<td>ENCODE_ERROR(32)</td>
-<td>指定的语言无效</td>
-</tr>
-<tr>
-<td>EFI_COMPROMISED_DATA</td>
-<td>ENCODE_ERROR(33)</td>
-<td>数据的安全状态未知或受损，必须更新数据或替换数据以恢复有效的安全状态</td>
-</tr>
-<tr>
-<td>EFI_IP_ADDRESS_CONFLICT</td>
-<td>ENCODE_ERROR(34)</td>
-<td>There is an address conflict address allocation</td>
-</tr>
-<tr>
-<td>EFI_HTTP_ERROR</td>
-<td>ENCODE_ERROR(35)</td>
-<td>网络操作期间发生 HTTP 错误</td>
-</tr>
-</tbody></table>
-<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>高位清除，无符号，”没有”负数的情况。</p>
-<table>
-<thead>
-<tr>
-<th>类</th>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>EFI_WARN_UNKNOWN_GLYPH</td>
-<td>ENCODE_WARNING(1)</td>
-<td>该字符串包含了设备的一个或多个字符无法渲染并被跳过</td>
-</tr>
-<tr>
-<td>EFI_WARN_DELETE_FAILURE</td>
-<td>ENCODE_WARNING(2)</td>
-<td>Handle已关闭，但文件尚未删除</td>
-</tr>
-<tr>
-<td>EFI_WARN_WRITE_FAILURE</td>
-<td>ENCODE_WARNING(3)</td>
-<td>The handle was closed, but the data to the file was not flushed properly</td>
-</tr>
-<tr>
-<td>EFI_WARN_BUFFER_TOO_SMALL</td>
-<td>ENCODE_WARNING(4)</td>
-<td>存放结果的缓冲区太小，且数据被截断为缓冲区大小</td>
-</tr>
-<tr>
-<td>EFI_WARN_STALE_DATA</td>
-<td>ENCODE_WARNING(5)</td>
-<td>The data has not been updated within the timeframe set by local policy for this type of data</td>
-</tr>
-<tr>
-<td>EFI_WARN_FILE_SYSTEM</td>
-<td>ENCODE_WARNING(6)</td>
-<td>生成的缓冲区包含UEFI-compliant的文件系统</td>
-</tr>
-<tr>
-<td>EFI_WARN_RESET_REQUIRED</td>
-<td>ENCODE_WARNING(7)</td>
-<td>该操作将在系统重置后被处理</td>
-</tr>
-</tbody></table>
-<h2 id="BOOLEAN分条"><a href="#BOOLEAN分条" class="headerlink" title="BOOLEAN分条"></a>BOOLEAN分条</h2><h3 id="头文件-1"><a href="#头文件-1" class="headerlink" title="头文件"></a>头文件</h3><figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/?/ProcessorBind.h */</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span>       BOOLEAN;<br></code></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> TRUE  ((BOOLEAN)(1==1))</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> FALSE ((BOOLEAN)(0==1))</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><p>布尔类型，1字节字符，值可以是FALSE和TRUE或者表达成0、1，可以用<strong>两种</strong>方式赋值，但不加单引号<br>定义一个BOOLEAN并设置为“真”有两种写法：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* 第一种 */</span><br>BOOLEAN TestBool = <span class="hljs-number">1</span>;<br><br><span class="hljs-comment">/* 第二种 */</span><br>BOOLEAN TestBool = TRUE;<br></code></pre></td></tr></table></figure>
-<p>与此相反，“假”则是FLASE或者0</p>
-<p>可以直接使用if判断之前定义的值是否为真：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(TestBool) &#123;<br>  Print(<span class="hljs-string">L&quot;TRUE\n&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">if</span>(!TestBool) &#123;<br>  Print(<span class="hljs-string">L&quot;FALSE\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><p>顺便讲一下</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* File : MdePkg/Include/Base.h */</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> CONST     const</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> STATIC    static</span><br></code></pre></td></tr></table></figure>
-
-<h1 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h1><p>EDKII v2.9官方文档：<a href="https://uefi.org/sites/default/files/resources/UEFI_Spec_2_9_2021_03_18.pdf" >点此下载</a></p>
-]]></content>
-      <tags>
-        <tag>UEFI</tag>
-        <tag>EDKII</tag>
-        <tag>Bilibili</tag>
-        <tag>C语言</tag>
       </tags>
   </entry>
 </search>
