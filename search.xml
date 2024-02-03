@@ -11,7 +11,8 @@
 <p>本来没有打算进入这个领域的, 但是踏入了就感觉很有意思了</p>
 </blockquote>
 <p>我是这个系列最初的一个 “擦边” 视频 (<a href="https://www.bilibili.com/video/BV1Ki4y1R79w/">BV1Ki4y1R79w</a>), 涉及到了操作系统的领域, 有人骂过我技术不行, 我那时确实就是一个萌新, 但是真的不是什么破手机编译, 如果他的条件跟我一样使用一台和我同岁的电脑, 也一定不会效率高. 也有人鼓励我, 真的很感谢他们:</p>
-<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/comment_inspiring.jpeg" alt="一直支持我的人"></p>
+<img src="/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/comment_inspiring.jpeg" class="" title="一直支持我的人">
+
 <p>我的 “老师” 是 <strong>谭玉刚</strong>, 是他的视频帮助我完成了 C 语言 以及 UEFI&#x2F;操作系统 的过渡. C语言我早就学完了, 是跟着 <strong>小甲鱼老师</strong> 学的, 他的讲解也许不是太好, 但是可帮了我大忙, 别人的教程用的是 Windows, 他使用的是 CentOS, 帮我打下了一定的基础.</p>
 <blockquote>
 <p>在此我还是发表一下我的 “暴论”</p>
@@ -36,16 +37,20 @@
 <blockquote>
 <p>我去的南宁, 人生中的第一次首府之旅</p>
 </blockquote>
-<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome_far.jpg" alt="南宁二中的条条"></p>
+<img src="/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome_far.jpg" class="" title="南宁二中的条条">
+
 <blockquote>
 <p>这个垂下来的好好看!!!</p>
 </blockquote>
-<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome1.jpg" alt="NOIP的横幅"></p>
-<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/holo.jpg" alt="全息"></p>
+<img src="/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/welcome1.jpg" class="NOIP的横幅">
+
+<img src="/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/holo.jpg" class="" title="全息">
+
 <blockquote>
 <p>这个全息投影从没在学校里见过</p>
 </blockquote>
-<p><img src="/./2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/display.jpg"></p>
+<img src="/2024/01/20/2023-%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/display.jpg" class="" title="none">
+
 <blockquote>
 <p>这是条条下面的东西, 好像是个展览</p>
 </blockquote>
@@ -136,7 +141,7 @@
   <entry>
     <title>[Bmp#0] Bmp文件结构详解</title>
     <url>/2022/08/27/UEFI_Bmp_0_Introduction/</url>
-    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#97;&#x6f;&#x75;&#97;&#x69;&#x32;&#x33;&#51;&#64;&#x6f;&#x75;&#116;&#x6c;&#x6f;&#111;&#x6b;&#46;&#99;&#111;&#109;">&#x4d;&#97;&#x6f;&#x75;&#97;&#x69;&#x32;&#x33;&#51;&#64;&#x6f;&#x75;&#116;&#x6c;&#x6f;&#111;&#x6b;&#46;&#99;&#111;&#109;</a></p>
+    <content><![CDATA[<h1 id="前言-废话"><a href="#前言-废话" class="headerlink" title="前言(废话)"></a>前言(废话)</h1><p>欢迎纠错:<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#77;&#97;&#x6f;&#x75;&#97;&#105;&#50;&#51;&#51;&#64;&#111;&#117;&#x74;&#x6c;&#111;&#x6f;&#x6b;&#x2e;&#99;&#111;&#x6d;">&#77;&#97;&#x6f;&#x75;&#97;&#105;&#50;&#51;&#51;&#64;&#111;&#117;&#x74;&#x6c;&#111;&#x6f;&#x6b;&#x2e;&#99;&#111;&#x6d;</a></p>
 <p>最近(指这几个月…),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章……</p>
 <h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p><strong>本文章使用标准的、最通用的Bmp图像试验,位图信息头使用BITMAPINFOHEADER.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
@@ -398,7 +403,7 @@
   <entry>
     <title>UEFI数据类型[UEFI Data Types]</title>
     <url>/2022/03/28/UEFI_DataTypes/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#x61;&#x6f;&#117;&#97;&#x69;&#x32;&#51;&#51;&#x40;&#x6f;&#x75;&#116;&#108;&#x6f;&#x6f;&#107;&#x2e;&#x63;&#x6f;&#109;">&#x4d;&#x61;&#x6f;&#117;&#97;&#x69;&#x32;&#51;&#51;&#x40;&#x6f;&#x75;&#116;&#108;&#x6f;&#x6f;&#107;&#x2e;&#x63;&#x6f;&#109;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>还未更新完</strong><br>欢迎更正：<br>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a><br>Mail : <a href="mailto:&#x4d;&#97;&#111;&#x75;&#x61;&#x69;&#50;&#51;&#51;&#x40;&#111;&#x75;&#x74;&#x6c;&#x6f;&#111;&#107;&#x2e;&#99;&#x6f;&#x6d;">&#x4d;&#97;&#111;&#x75;&#x61;&#x69;&#50;&#51;&#51;&#x40;&#111;&#x75;&#x74;&#x6c;&#x6f;&#111;&#107;&#x2e;&#99;&#x6f;&#x6d;</a><br>最初接触EDK2还是在最初的时候了，看谭老师的视频也有一些收获，对于EDKII的一些如<strong>UINTN、CHAR8、CHAR16</strong>不是太在意，后来就越看越奇怪了，去查阅了EDKII官方文档，一大片英文，这对于我并不友好，以我目前的知识，看了个大概，机器翻译再加上我个人的理解，就搞了这篇文章。<br>还有就是，封城了，停课了…</p>
 <h1 id="主要"><a href="#主要" class="headerlink" title="主要"></a>主要</h1><h2 id="全部"><a href="#全部" class="headerlink" title="全部"></a>全部</h2><table>
 <thead>
 <tr>
