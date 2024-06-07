@@ -1,0 +1,1202 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="maouai233">
+      
+      
+      
+        <link rel="prev" href="../uefi-macros/">
+      
+      
+        <link rel="next" href="../uefi-bmp1/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>Bmp文件结构详解 - maouai233 的个人网站</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bmp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="maouai233 的个人网站" class="md-header__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            maouai233 的个人网站
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bmp文件结构详解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/" class="md-tabs__link">
+          
+  
+  杂项
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  旧事
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../target/" class="md-tabs__link">
+        
+  
+    
+  
+  目标
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  关于
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../website/" class="md-tabs__link">
+        
+  
+    
+  
+  网站
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="maouai233 的个人网站" class="md-nav__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    maouai233 的个人网站
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    杂项
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            杂项
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    导言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/linux-bt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux 下使用蓝牙
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/linux-login/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux 自动登陆
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    旧事
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            旧事
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    正文
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            正文
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023 年度总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mc-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一个Minecratf服务器自动配置脚本
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim-debugs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VimSpector 简介及使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busybox-svr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    利用Busybox-httpd在电视盒子上搭建一个静态网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uefi-types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UEFI数据类型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uefi-macros/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UEFI基本宏定义
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Bmp文件结构详解
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uefi-bmp1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bmp位图转换与显示
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../target/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    目标
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../website/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="bmp">Bmp文件结构详解</h1>
+<ul>
+<li>2022/08/27 16:00:00</li>
+</ul>
+<h1 id="_1">前言(废话)</h1>
+<p>欢迎纠错: </p>
+<p>Bilibili : <a href="https://space.bilibili.com/503518259" >Maouai233</a></p>
+<p>Mail : Maouai233@outlook.com</p>
+<hr />
+<p>最近(指这几个月...),在研究UEFI的<strong>GraphicsOutputProtocol</strong>的时候,图像显示我一直是很蒙的,于是我刨根问底,还是刨出来了这篇文章......</p>
+<h1 id="_2">注意</h1>
+<p><strong>本文章使用标准的、最通用的Bmp图像试验,位图信息头使用BITMAPINFOHEADER.不经过如哈夫曼算法压缩像素数据的图像.也会说明调色板的使用</strong></p>
+<h1 id="_3">正文</h1>
+<p>示例图像: (本文<strong>bedrock.bmp</strong>指此图文件名)</p>
+<p><img alt="bedrock.bmp" src="bedrock.bmp" /></p>
+<h2 id="_4">结构</h2>
+<h3 id="overview">概览Overview</h3>
+<p>在安装<strong>hexyl</strong>的前提下使用<code>hexyl -c 54 bedrock.bmp</code>即可看到我们使用Bmp时不可或缺的数据——位图文件头(Bitmap File Header)和位图信息头(Bitmap Info Header),它们共占54个字节(12 + 40):</p>
+<p><img alt="Hex.png" src="Hex.png" /></p>
+<p><strong>二维数组</strong>.整型均以<strong>小端存储序</strong>存储.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">位置(相对文件开头偏移字节)</th>
+<th style="text-align: center;">数据类型</th>
+<th style="text-align: center;">大小(字节)</th>
+<th>作用</th>
+<th>默认值</th>
+<th>名称(可供C语言等参考)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">字符型</td>
+<td style="text-align: center;">1</td>
+<td><strong>标识</strong>此图为Bmp位图文件</td>
+<td>0x42(ASCII即'B')</td>
+<td>CharB</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">字符型</td>
+<td style="text-align: center;">1</td>
+<td><strong>标识</strong>此图为Bmp位图文件</td>
+<td>0x4D(ASCII即'M')</td>
+<td>CharM</td>
+</tr>
+<tr>
+<td style="text-align: center;">3 ~ 6</td>
+<td style="text-align: center;">32位无符号整型</td>
+<td style="text-align: center;">4</td>
+<td>Bmp整个<strong>文件的大小</strong>(包括Bmp File Header等)</td>
+<td></td>
+<td>Size</td>
+</tr>
+<tr>
+<td style="text-align: center;">7 ~ 8</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">2</td>
+<td><strong>保留</strong></td>
+<td>视具体情况而定,一般为 0</td>
+<td>Reserved1</td>
+</tr>
+<tr>
+<td style="text-align: center;">9 ~ 10</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">2</td>
+<td><strong>保留</strong></td>
+<td>视具体情况而定,一般为 0</td>
+<td>Reserved2</td>
+</tr>
+<tr>
+<td style="text-align: center;">11 ~ 14</td>
+<td style="text-align: center;">32位无符号整型</td>
+<td style="text-align: center;">4</td>
+<td>记录<strong>像素数据</strong>相对于整个文件开头的<strong>偏移字节</strong></td>
+<td>视具体情况而定,24bit位图一般为54</td>
+<td>ImageOffset</td>
+</tr>
+<tr>
+<td style="text-align: center;">15 ~ 18</td>
+<td style="text-align: center;">32位无符号整型</td>
+<td style="text-align: center;">4</td>
+<td><strong>Bitmap Info Header</strong> 大小(字节)</td>
+<td>40</td>
+<td>HeaderSize</td>
+</tr>
+<tr>
+<td style="text-align: center;">19 ~ 22</td>
+<td style="text-align: center;">32位整型</td>
+<td style="text-align: center;">4</td>
+<td>位图<strong>宽</strong>度(像素),但不可为负(正常情况下大多软件不支持包括ffplay)</td>
+<td>正整数值</td>
+<td>Width</td>
+</tr>
+<tr>
+<td style="text-align: center;">23 ~ 26</td>
+<td style="text-align: center;">32位整型</td>
+<td style="text-align: center;">4</td>
+<td>位图<strong>高</strong>度(像素),如果为<strong>负数</strong>,具体见下文"像素存储"...</td>
+<td></td>
+<td>Height</td>
+</tr>
+<tr>
+<td style="text-align: center;">27 ~ 28</td>
+<td style="text-align: center;">16位无符号整型</td>
+<td style="text-align: center;">2</td>
+<td>必须是 1,Wiki上写的是<strong>色彩平面数</strong></td>
+<td>1</td>
+<td>Planes</td>
+</tr>
+<tr>
+<td style="text-align: center;">29 ~ 30</td>
+<td style="text-align: center;">16位无符号整型</td>
+<td style="text-align: center;">2</td>
+<td>像素所占位数,也就是图像<strong>位深</strong>、<strong>色深</strong>,值可能为1、4、8、24、32.如32bit用4字节存储一个像素</td>
+<td></td>
+<td>ImageBits</td>
+</tr>
+<tr>
+<td style="text-align: center;">31 ~ 34</td>
+<td style="text-align: center;">32位无符号整型</td>
+<td style="text-align: center;">4</td>
+<td>压缩方式(<strong>本文</strong>不展开叙述)</td>
+<td>0</td>
+<td>CompressionType</td>
+</tr>
+<tr>
+<td style="text-align: center;">35 ~ 38</td>
+<td style="text-align: center;">32位无符号整型</td>
+<td style="text-align: center;">4</td>
+<td>ImageSize</td>
+<td>见下</td>
+<td>ImageSize</td>
+</tr>
+<tr>
+<td style="text-align: center;">39 ~ 42</td>
+<td style="text-align: center;">32位无符号整型</td>
+<td style="text-align: center;">4</td>
+<td><strong>横</strong>向分辨率(像素/米)</td>
+<td></td>
+<td>HorizontalResolution</td>
+</tr>
+<tr>
+<td style="text-align: center;">43 ~ 46</td>
+<td style="text-align: center;">32位无符号整型</td>
+<td style="text-align: center;">4</td>
+<td><strong>竖</strong>向分辨率(像素/米)</td>
+<td></td>
+<td>VerticalResolution</td>
+</tr>
+<tr>
+<td style="text-align: center;">47 ~ 50</td>
+<td style="text-align: center;">32位无符号整型</td>
+<td style="text-align: center;">4</td>
+<td><strong>调色板颜色数</strong>,等于"2^位深",即<strong>2的位深值的次方个</strong>, <strong>24</strong>Bit以上由于直接存储BGR(或BGRA)值,调色板个数为<strong>0</strong></td>
+<td><span class="arithmatex">\(2^{位深}\)</span></td>
+<td>PaletteColorsNum</td>
+</tr>
+<tr>
+<td style="text-align: center;">51 ~ 54</td>
+<td style="text-align: center;">32位无符号整型</td>
+<td style="text-align: center;">4</td>
+<td>重要颜色数,为0则是全部颜色都很重要</td>
+<td>0</td>
+<td>ImportantColorsNum</td>
+</tr>
+</tbody>
+</table>
+<h3 id="imageoffset">偏移ImageOffset</h3>
+<p>Bmp像素数据起始位置相对于文件起始处的偏移.一般的:</p>
+<p><span class="arithmatex">\(ImageOffset=54+4\times PaletteColorsNum\)</span></p>
+<p>假若bedrodk.bmp在内存中文件起始位置为<strong>BmpRaw</strong>,则像素数据起始位置为<strong>PixelStart = BmpRaw + ImageOffset</strong></p>
+<h3 id="imagebits">位深ImageBits</h3>
+<p>Bmp位深多少,即用多少各Bit存储一个像素.</p>
+<p>如1Bit使用0.125个字节存储一个像素,其余的按四字节对齐(不足的按四字节算).</p>
+<p>在一定范围内,位深越大,带给人的感受越真实.</p>
+<p>32Bit的Bmp位图,使用<strong>BGRA</strong>即[Blue,Green,Red,Alpha]进行对像素的存储,比24Bit位图的<strong>BGR</strong>多了一条Alpha通道.</p>
+<h3 id="bmpcolormap">调色板BmpColorMap</h3>
+<p>每个调色板占用4个字节,存储格式为<strong>BGRR</strong>,即[Bule,Green,Red,Reserved],每个值都是<strong>8Bit无符号整型(即unsigned char)</strong>.下面C/C++的定义应该更加直观.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_BMP_COLOR_MAP</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span><span class="n">UINT8</span><span class="w">   </span><span class="n">Blue</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="n">UINT8</span><span class="w">   </span><span class="n">Green</span><span class="p">;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="n">UINT8</span><span class="w">   </span><span class="n">Red</span><span class="p">;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">  </span><span class="n">UINT8</span><span class="w">   </span><span class="n">Reserved</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="p">}</span><span class="w"> </span><span class="n">BMP_COLOR_MAP</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>相当于一个<strong>索引</strong>,打个比方:</p>
+<p>在一张8Bit的Bmp位图中,使用8个Bit即1字节存储一个像素.那么一个像素需要一个字节存储,则一个字节可存储0 ~ 255的无符号整型数据.如果有一个字节存储的值是255,则对应的第255个调色板BGRR值为 [0xFF 0xFF 0xFF 0x00].</p>
+<p>一般情况下，需要"翻译"成24Bit或32Bit.具体见下文.</p>
+<p>一张24Bit或32Bit的Bmp位图不存在调色板,因为它们直接存储像素的具体BGR或BGRA值,则<span class="arithmatex">\(PaletteColorsNum = 0\)</span></p>
+<h3 id="size">文件大小Size</h3>
+<p><span class="arithmatex">\(Size = 54 + ImageSize + PaletteColorsNum \times 4\)</span></p>
+<p>其中,4指的是每个调色板占用的字节数,54指的是Bmp文件头和位图头的总大小.</p>
+<h3 id="palettecolorsnum">调色板个数PaletteColorsNum</h3>
+<p>在ImageBits不为24或32的情况下(具体见上文-调色板BmpColorMap):</p>
+<p><span class="arithmatex">\(PaletteColorsNum = 2^{ImageBits}\)</span></p>
+<p>为24或32时:</p>
+<p><span class="arithmatex">\(PaletteColorsNum = 0\)</span></p>
+<h3 id="imagesize">对齐后像素数据大小ImageSize</h3>
+<p>用数学公式说有点迷糊(我也还没学MOD)</p>
+<p>要对齐时:</p>
+<p><span class="arithmatex">\(RowSize=\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)\)</span></p>
+<p>不用对齐时:</p>
+<p><span class="arithmatex">\(RowSize = \frac {Width\times ImageBits} {8}\)</span></p>
+<p>对于所有情况,都有:</p>
+<p><span class="arithmatex">\(ImageSize=Height\times RowSize\)</span></p>
+<hr />
+<p><em>RowSize</em>即储存一行的像素数据所需要的字节数.</p>
+<p>ImageSIze代表一张Bmp图像储存像素区域所占的字节数.</p>
+<hr />
+<p>要对齐时的情况推导:</p>
+<p>Bmp图像在储存数据时,记录范围内的每个像素(或调色板信息),会进行四字节对齐(不满四字节按四字节算).</p>
+<p>则储存一行时不对齐情况下的字节数是:<span class="arithmatex">\(\frac {ImageBits} 8\times Width\)</span></p>
+<p>不考虑多出字节进行4字节对齐时,多出字节数为:<span class="arithmatex">\((\frac {ImageBits} 8\times Width) \mod 4\)</span></p>
+<p>则考虑多出字节进行4字节对齐时,需补齐字节数为:<span class="arithmatex">\(4-[(\frac {ImageBits} 8\times Width) \mod 4]\)</span></p>
+<p>则一行占用: <span class="arithmatex">\(RowSize=\frac {Width\times ImageBits} {8} +4 -  (\frac {Width\times ImageBits} {8} \mod 4)\)</span></p>
+<p>再回去想想就行了...(指去上文QwQ)</p>
+<h3 id="width-height">宽度Width &amp; 高度Height</h3>
+<p>Width不可为负数.</p>
+<p>Height可为负数.影响见下文.</p>
+<h2 id="_5">像素存储</h2>
+<p>正常情况下,Bmp会形成一个<span class="arithmatex">\(Width \times Height\)</span>大小的数组,这里称BmpRaw,存在对齐情况,实际描述为二维数组,但在存储或读取时大多使用线型.</p>
+<p>Height为正数时,实际平面内最左上角的数据起始位置在BmpRaw的最后行的第一列,即BmpRaw[(Height - 1)*Width + 1],为负数则在BmpRaw的第一行的第一列,即BmpRaw[0].</p>
+<h2 id="_6">读取&amp;使用方案梗概</h2>
+<h3 id="_7">读取</h3>
+<p>可以把BmpFileHeader和BmpInfoHeader合并为一体,称<strong>BMP_IMAGE_HEADER</strong>,C/C++可用结构体,较为方便.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cp">#pragma pack(1)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">  </span><span class="n">UINT8</span><span class="w">   </span><span class="n">Blue</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="n">UINT8</span><span class="w">   </span><span class="n">Green</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">  </span><span class="n">UINT8</span><span class="w">   </span><span class="n">Red</span><span class="p">;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">  </span><span class="n">UINT8</span><span class="w">   </span><span class="n">Reserved</span><span class="p">;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="p">}</span><span class="w"> </span><span class="n">BMP_COLOR_MAP</span><span class="p">;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">  </span><span class="n">CHAR8</span><span class="w">         </span><span class="n">CharB</span><span class="p">;</span><span class="w">                        </span><span class="c1">// BMP的标识符,必须为&#39;B&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">  </span><span class="n">CHAR8</span><span class="w">         </span><span class="n">CharM</span><span class="p">;</span><span class="w">                        </span><span class="c1">// BMP的标识符,必须为&#39;M&#39;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">  </span><span class="n">UINT32</span><span class="w">        </span><span class="n">Size</span><span class="p">;</span><span class="w">                         </span><span class="c1">// BMP文件大小,Byte</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">  </span><span class="n">UINT16</span><span class="w">        </span><span class="n">Reserved1</span><span class="p">;</span><span class="w">                    </span><span class="c1">// 保留</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">  </span><span class="n">UINT16</span><span class="w">        </span><span class="n">Reserved2</span><span class="p">;</span><span class="w">                    </span><span class="c1">// 保留</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">  </span><span class="n">UINT32</span><span class="w">        </span><span class="n">ImageOffset</span><span class="p">;</span><span class="w">                  </span><span class="c1">// BMP图像像素起始位置相对于头部的偏移</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">  </span><span class="n">UINT32</span><span class="w">        </span><span class="n">InfoHeaderSize</span><span class="p">;</span><span class="w">               </span><span class="c1">// Bmp Info Header大小,40 B</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">  </span><span class="n">INT32</span><span class="w">         </span><span class="n">Width</span><span class="p">;</span><span class="w">                        </span><span class="c1">// BMP图像宽</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">  </span><span class="n">INT32</span><span class="w">         </span><span class="n">Height</span><span class="p">;</span><span class="w">                       </span><span class="c1">// BMP图像高</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">  </span><span class="n">UINT16</span><span class="w">        </span><span class="n">Planes</span><span class="p">;</span><span class="w">                       </span><span class="c1">// 为 1</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">  </span><span class="n">UINT16</span><span class="w">        </span><span class="n">ImageBits</span><span class="p">;</span><span class="w">                    </span><span class="c1">// BMP图像位深</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">  </span><span class="n">UINT32</span><span class="w">        </span><span class="n">CompressionType</span><span class="p">;</span><span class="w">              </span><span class="c1">// 压缩方式</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">  </span><span class="n">UINT32</span><span class="w">        </span><span class="n">ImageSize</span><span class="p">;</span><span class="w">                    </span><span class="c1">// 图像对齐时像素数据大小</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">  </span><span class="n">UINT32</span><span class="w">        </span><span class="n">HorizontalResolution</span><span class="p">;</span><span class="w">         </span><span class="c1">// 横向分辨率</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">  </span><span class="n">UINT32</span><span class="w">        </span><span class="n">VerticalResolution</span><span class="p">;</span><span class="w">           </span><span class="c1">// 纵向分辨率</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">  </span><span class="n">UINT32</span><span class="w">        </span><span class="n">PaletteColorsNum</span><span class="p">;</span><span class="w">             </span><span class="c1">// 调色板颜色数</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="w">  </span><span class="n">UINT32</span><span class="w">        </span><span class="n">ImportantColorsNum</span><span class="p">;</span><span class="w">           </span><span class="c1">// 重要颜色数</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="p">}</span><span class="w"> </span><span class="n">BMP_IMAGE_HEADER</span><span class="p">;</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="cp">#pragma pack()</span>
+</code></pre></div></td></tr></table></div>
+<p>可以通过两种方式读取:</p>
+<ol>
+<li>
+<p>根据占用大小,依次读取数据放入结构体中.</p>
+</li>
+<li>
+<p>直接读取进入结构体,这就是为什么加入预处理指令<code>#pragma pack(1)</code>和<code>#pragma pack()</code>使结构体不进行字节对齐.</p>
+</li>
+</ol>
+<h3 id="_8">"翻译"</h3>
+<p>一般情况下,24Bit的像素数据或类似24Bit像素数据会比较通用.比如UEFI下Blt函数传输(EfiBufferToVideo,从缓冲区到屏幕)的BltBuffer,使用<strong>BGRR</strong>即[Blue,Green,Red,Reserved]的格式,32、24Bit以外的都不是直接存储像素RGB值,使用调色板翻译就是一件必不可少的工作.</p>
+<p>针对图像会倒转的问题,可以这样解决:
+1.   在"翻译"阶段将数据根据实际情况进行摆放.</p>
+<ol>
+<li>在"翻译"阶段跑完后对数据根据实际情况进行翻转.定义一个函数如:BmpTransform</li>
+</ol>
+<p>数据?拿来吧你!</p>
+<h1 id="_9">资源附</h1>
+<p>16位深的转换等我写完才去研究,其他的就等一下放我的Edk2项目的源码吧......咕咕咕咕咕咕咕咕咕咕咕咕咕咕咕咕咕咕</p>
+<p>[AARCH,ARM,X64,IA32] Bmp位图检查程序BmpChecker及源代码:        https://pan.baidu.com/s/1EUXCNEz7yGbVPIlCPng0Fw?pwd=2333
+适用于UEFI的Bmp位深转换:  https://gist.github.com/ljQAQ233/5eaf1c600fcbb773749150efc73ab575</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

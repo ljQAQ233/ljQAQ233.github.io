@@ -1,0 +1,1565 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="maouai233">
+      
+      
+      
+        <link rel="prev" href="../mc-server/">
+      
+      
+        <link rel="next" href="../busybox-svr/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>VimSpector 简介及使用 - maouai233 的个人网站</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vimspector" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="maouai233 的个人网站" class="md-header__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            maouai233 的个人网站
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VimSpector 简介及使用
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../misc/" class="md-tabs__link">
+          
+  
+  杂项
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  旧事
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../target/" class="md-tabs__link">
+        
+  
+    
+  
+  目标
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  关于
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../website/" class="md-tabs__link">
+        
+  
+    
+  
+  网站
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="maouai233 的个人网站" class="md-nav__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    maouai233 的个人网站
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    杂项
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            杂项
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    导言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/linux-bt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux 下使用蓝牙
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/linux-login/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux 自动登陆
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    旧事
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            旧事
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    正文
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            正文
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my-2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023 年度总结
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mc-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一个Minecratf服务器自动配置脚本
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    VimSpector 简介及使用
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busybox-svr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    利用Busybox-httpd在电视盒子上搭建一个静态网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uefi-types/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UEFI数据类型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uefi-macros/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UEFI基本宏定义
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uefi-bmp0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bmp文件结构详解
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uefi-bmp1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bmp位图转换与显示
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../target/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    目标
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../website/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="vimspector">VimSpector 简介及使用</h1>
+<ul>
+<li>2023/04/21 06:32:23</li>
+</ul>
+<hr />
+<h1 id="overview">Overview</h1>
+<p>由于电脑实在是太拉了,我用不了vscode,所以我试着使用gdb命令行调试,但并不方便,我想着转向NeoVim,这就来折腾一下,也就有了这篇文章.</p>
+<h1 id="_1">简介</h1>
+<p>在座的各位都用过VSCode调试C语言程序吧,那对cpptools一定不陌生.</p>
+<p>我们的上古神器Vim上也可以进行类似的可视化调试,使用VimSpector(甚至一模一样......)</p>
+<p>如果是NeoVim,还可以选择使用 <strong>nvim-dap</strong> ,但它的配置较为繁琐,就不再介绍(暂时吧......)</p>
+<h1 id="_2">安装</h1>
+<h2 id="_3">插件</h2>
+<p>使用 <strong>vim-plug</strong> 进行安装:</p>
+<!--- 这里原来用的是 vim, 但是 mkdocs 无法识别 --->
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">call</span> plug#begin<span class="p">(</span><span class="s2">&quot;~/.config/nvim/plugged&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a> Plug <span class="s1">&#39;puremourning/vimspector&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="k">call</span> plug#<span class="k">end</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>其他插件管理器执行类似操作.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">:</span>PlugInstall
+</code></pre></div></td></tr></table></div>
+<h2 id="_4">调试适配器</h2>
+<p>切换到我们安装的vimspector插件的目录,我这里是<code>plugged/vimspector</code></p>
+<p>可以看到简单的帮助,及一些语言</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>./install_gadget.py<span class="w"> </span>--help
+</code></pre></div></td></tr></table></div>
+<p>我们安装C语言的调试适配器,C++的也可.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>./install_gadget.py<span class="w"> </span>--enable-c<span class="w"> </span>--verbose
+</code></pre></div></td></tr></table></div>
+<p><code>--verbose</code>输出安装详细步骤.</p>
+<p>在这里,大多数人都会遇见下载速度过慢的问题:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>Installing vscode-cpptools@1.14.5...
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>Downloading https://github.com/Microsoft/vscode-cpptools/releases/download/v1.14.5/cpptools-linux.vsix to /home/maouai233/.config/nvim/plugged/vimspector/gadgets/linux/download/vscode-cpptools/1.14.5/cpptools-linux.vsix
+</code></pre></div></td></tr></table></div>
+<p>当然你可以<strong>挂代理</strong>,我这里使用一个成本极低的方法.</p>
+<p>使用 <strong>axel</strong> 进行下载!
+我们先将 <strong>install_gadget.py</strong> 停下来先</p>
+<p>将文件下载至它应该在的位置,完成<strong>install_gadget.py</strong>的部分使命......</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>axel -n 256 https://github.com/Microsoft/vscode-cpptools/releases/download/v1.14.5/cpptools-linux.vsix -o /home/maouai233/.config/nvim/plugged/vimspector/gadgets/linux/download/vscode-cpptools/1.14.5/cpptools-linux.vsix
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>-n</code> 最大连接数</li>
+<li><code>-o</code> 输出文件至</li>
+</ul>
+<p>几次如此之后,我们的调试适配器就安装好了!</p>
+<h1 id="_5">使用</h1>
+<h2 id="_6">配置文件</h2>
+<p>就如同 vscode 调试一样,调试需要 <strong>launch.json </strong>, vimspector 也不例外.</p>
+<h3 id="_7">白嫖</h3>
+<p>我们可以通过一个偷懒而又简单的方式获取一个配置文件.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="p">:</span><span class="k">h</span> vimspector
+</code></pre></div></td></tr></table></div>
+<p>其实就是直接翻 vimspector 的<strong> README.md</strong> ...... (同Github)</p>
+<p>或者看 <strong>vimspector/docs/configuration.md</strong> (同官网)</p>
+<p>将需要的复制粘贴到调试的根目录下的 <strong>.vimspector</strong> 中,并稍加修改.</p>
+<p>当然你可以自己手动编写,Let's get higher!</p>
+<h3 id="_8">自己动手,丰衣足食</h3>
+<p>以C语言为例,一个最简单的配置文件,在这里全部都是必须项!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="nt">&quot;Launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">      </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vscode-cpptools&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">        </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">        </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path to binary&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// 要调试的可执行文件路径</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>如你所见,它是和vscode一样,支持在配置文件中的注释的,形同C语言注释.</p>
+<blockquote>
+<p>The JSON configuration file allows C-style comments:</p>
+<ul>
+<li>'// comment to end of line ...'</li>
+<li>'/* inline comment ... */'</li>
+</ul>
+</blockquote>
+<hr />
+<p><strong>configurations</strong> 允许有多个配置</p>
+<p>Format :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;adapter&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">    </span><span class="nt">&quot;filetypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="err">...</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">      </span><span class="err">...</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;adapter&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">    </span><span class="nt">&quot;filetypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">    </span><span class="err">...</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="w">      </span><span class="err">...</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>name</strong> 是该配置条目的名称,如果有多个配置,在启动时供用户选择.
+<strong>adapter</strong>指定了调试适配器</p>
+<hr />
+<h4 id="adapter">调试适配器 adapter</h4>
+<p>除了提供的我们还可以自己自定义,也可以在原有的adapter下建立</p>
+<h4 id="filetypes">文件类型 filetypes</h4>
+<p>限制了该配置在当前打开文件<strong>为某种类型(后缀)时才可以启动debug</strong></p>
+<p>Example :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nt">&quot;filetypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;cpp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="configuration">配置项 configuration</h4>
+<h5 id="request">request</h5>
+<p>可以为<code>launch</code>或<code>attach</code></p>
+<h5 id="program">program</h5>
+<p>要调试的可执行程序的路径,注意不必要的空格不允许出现!</p>
+<h5 id="stoponentry-stopatentry">stopOnEntry / stopAtEntry</h5>
+<p>这两个是等价的,在程序入口停止.</p>
+<h5 id="environment">environment</h5>
+<p>环境变量</p>
+<p>Example :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot; NAME1&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;TEST1&quot;</span><span class="p">},</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot; NAME2&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;TEST2&quot;</span><span class="p">}</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<h5 id="args">args</h5>
+<p>启动参数</p>
+<p>Example :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="err">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;arg1&quot;</span><span class="p">,</span><span class="s2">&quot;arg2&quot;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<h5 id="externalconsole">externalConsole</h5>
+<p>外部终端.
+~~貌似没有什么用~~</p>
+<h5 id="cwd">cwd</h5>
+<p>工作目录</p>
+<blockquote>
+<p><code>${cwd}</code> - the current working directory of the active window on launch</p>
+</blockquote>
+<h5 id="setupcommands">setupCommands</h5>
+<p>Format :
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="p">{</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;描述&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">  </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;命令&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">  </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1">// 执行错误是否可以忽略</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<h5 id="customlaunchsetupcommands">customLaunchSetupCommands</h5>
+<p>如果此选项设置了,它将会替代默认的启动命令
+但是,若直接这样可能会报错,因为我们并未指定架构,详见 <strong>targetArchitecture</strong>.</p>
+<p>Format : 同 setupCommands</p>
+<p>Example :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span>
+<span class="normal"><a href="#__codelineno-13-6">6</a></span>
+<span class="normal"><a href="#__codelineno-13-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="nt">&quot;customLaunchSetupCommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Connect to qemu&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-target-select remote :1234&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">    </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<h5 id="launchcompletecommand">launchCompleteCommand</h5>
+<p>在调试器启动好后执行的命令,有限定:</p>
+<ul>
+<li><code>exec-run</code> (default)</li>
+<li><code>exec-continue</code></li>
+<li><code>None</code></li>
+</ul>
+<h5 id="targetarchitecture">targetArchitecture</h5>
+<ul>
+<li><code>x64</code></li>
+<li><code>x86</code></li>
+<li><code>amd64</code></li>
+<li><code>arm</code></li>
+<li><code>arm64</code></li>
+<li>...</li>
+</ul>
+<p>此选项可以<strong>占位</strong>使用,保证调试器的启动,在<strong>启动时使用命令设置成目标架构即可</strong>.</p>
+<h5 id="mimode">MIMode</h5>
+<p>调试器</p>
+<p><code>lldb</code>或者<code>gdb</code></p>
+<h5 id="midebuggerpath">miDebuggerPath</h5>
+<p>相应调试器的可执行程序路径,如果没有设置,则在环境变量中搜索.</p>
+<h5 id="midebuggerargs">miDebuggerArgs</h5>
+<p>调试器的附加启动参数</p>
+<blockquote>
+<p>"是退出时的冒泡罢了 QwQ"</p>
+<p><code>"/usr/bin/gdb" --interpreter=mi ${在这里} --tty=${DbgTerm} 0&lt;"/tmp/Microsoft-MIEngine-In-2aisxnef.g3f"</code> </p>
+</blockquote>
+<h5 id="midebuggerserveraddress">miDebuggerServerAddress</h5>
+<p>远程 remote 的地址,在这个选项设置后,调试器会尝试连接
+就和我们平时调试时用的<code>target remote</code>一样</p>
+<p>它给调试带来了一些可能.</p>
+<h4 id="logging">日志 logging</h4>
+<p>控制输出至 <strong>Debug Console</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="nt">&quot;logging&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">  </span><span class="err">...</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>engingLogging</code> 引擎日志 def-&gt; false</li>
+<li><code>exceptions</code> 异常 def-&gt; true</li>
+<li><code>moduleLoad</code> 模块加载 def-&gt; true</li>
+<li><code>programOutput</code> 被调试程序输出 def-&gt; true</li>
+<li><code>trace</code> def-&gt; false</li>
+<li><code>traceResponse</code> def-&gt; false</li>
+</ul>
+<h4 id="variables">变量 variables</h4>
+<h5 id="_9">预设变量</h5>
+<ul>
+<li><code>${dollar}</code> -&gt; <code>$</code></li>
+<li><code>$$</code> -&gt; <code>$</code></li>
+<li><code>${workspaceRoot}</code> <code>.vimspector.json</code>所在位置</li>
+<li><code>${workspaceFolder}</code> <code>.vimspector.json</code>所在的位置</li>
+<li><code>${gadgetDir}</code> 调试适配器的路径 (<code>gadgets/&lt;OS&gt;</code>)</li>
+<li><code>${file}</code> 当前打开的文件</li>
+<li><code>${relativeFile}</code> 当前打开的文件相对于<code>${workspaceFolder}</code>的路径</li>
+<li><code>${relativeFileDirname}</code> 当前打开的文件所在目录相对于<code>${workspaceFolder}</code>的路径</li>
+<li><code>${fileBasenameNoExtension}</code> 当前打开的文件的名称,不带后缀</li>
+<li><code>${fileDirname}</code> 当前打开的文件所在目录,绝对路径</li>
+<li><code>${fileExtname}</code> 当前打开的文件的后缀名</li>
+<li><code>${cwd}</code> 工作目录</li>
+<li><code>${unusedLocalPort}</code> 一个没有使用的本地TCP端口号</li>
+</ul>
+<h5 id="_10">自定义变量</h5>
+<p>于作用的配置的<code>name-&gt;variables</code>中定义,作用于作用的配置.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span>
+<span class="normal"><a href="#__codelineno-15-8">8</a></span>
+<span class="normal"><a href="#__codelineno-15-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nt">&quot;varibales&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span><span class="nt">&quot;Common&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">  </span><span class="nt">&quot;Shell&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">    </span><span class="nt">&quot;shell&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">    </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Common 展示了如何定义一个普通变量.
+Shell  展示了如何在调用shell进行变量值的获取,env可以设置环境变量.</p>
+<h5 id="_11">默认值</h5>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${value:default {\\} stuff}&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>当value已被定义,使用value的值.</p>
+<p>在这里的花括号中,要避免出现另一个花括号,否则将视其为结束,要对它进行转义,使用<code>\\</code></p>
+<p>Example :</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">      </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${program:${file\\}.out}&quot;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="w">  </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h5 id="_12">未定义的变量</h5>
+<p>未定义的变量在<code>.vimspector.json</code>某个地方使用,会要求用户手动输入</p>
+<h5 id="_13">类型转换</h5>
+<p>想象一下,你如果要询问用户,是否在入口处暂停,如果你是这样写的:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="w">  </span><span class="p">{</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="w">      </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${script:${file\\}}&quot;</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="w">  </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>那它并不会生效,WHY?
+因为输入的是一个string,那么这个变量就"理所应当"地成了一个string...</p>
+<p>所以我们这样解决:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="w">  </span><span class="nt">&quot;stopOnEntry#json&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${stopOnEntry}&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>加个默认值压压筋...</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="w">  </span><span class="nt">&quot;stopOnEntry#json&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${stopOnEntry:true}&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>同时还有一个鸡肋的问题,就是有人在变量后带<code>#json</code>,它就叫这个,非常的不友好,怎么办呢?</p>
+<p>在它后面添加<code>#s</code>就行了!告诉vimspector不是要进行类型转换,它本身就长这个样...</p>
+<h5 id="_14">展开为数组</h5>
+<p>使用<code>*</code>(splat operator)将string展开为数组</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="w">   </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;*${CommandLineArgs}&quot;</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>就是这样: <code>arg1 arg2 "This is a string"</code> -&gt; <code>["arg1","arg2","This is a string"]</code></p>
+<h4 id="breakpoints">断点 breakpoints</h4>
+<h5 id="exceptions">Exceptions</h5>
+<p>除<code>stopAtEntry / stopOnEntry</code>外,可以:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span>
+<span class="normal"><a href="#__codelineno-22-11">11</a></span>
+<span class="normal"><a href="#__codelineno-22-12">12</a></span>
+<span class="normal"><a href="#__codelineno-22-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="p">{</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="w">  </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="w">      </span><span class="nt">&quot;breakpoints&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="w">        </span><span class="nt">&quot;exception&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="w">          </span><span class="nt">&quot;cpp_throw&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Y&quot;</span><span class="p">,</span><span class="w">   </span><span class="c1">// 抛出异常</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="w">          </span><span class="nt">&quot;cpp_catch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Y&quot;</span><span class="w">    </span><span class="c1">// 捕获异常</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="w">      </span><span class="err">...</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>如果将键值设为<code>""</code>(<code>"cpp_catch": ""</code>),跟随默认</p>
+<p>如果不设置,那它大概会在启动时给你抛出这个小可爱:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>cpp_throw: Break on C++: on throw (Y/N/default: Y)?
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a>cpp_catch: Break on C++: on catch (Y/N/default: N)?
+</code></pre></div></td></tr></table></div>
+<p>这个大概与我们的C语言没有太大关系</p>
+<h1 id="demo">Demo</h1>
+<p>抛个<code>.vimspector.json</code>,是我用来调试<strong>操作系统内核</strong>和<strong>Uefi</strong>的</p>
+<p>这个操作系统的仓库在我将当前进度的代码全部整理好后才开放,当然你可以看到一点影子.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-24-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-24-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-24-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-24-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-24-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-24-10">10</a></span>
+<span class="normal"><a href="#__codelineno-24-11">11</a></span>
+<span class="normal"><a href="#__codelineno-24-12">12</a></span>
+<span class="normal"><a href="#__codelineno-24-13">13</a></span>
+<span class="normal"><a href="#__codelineno-24-14">14</a></span>
+<span class="normal"><a href="#__codelineno-24-15">15</a></span>
+<span class="normal"><a href="#__codelineno-24-16">16</a></span>
+<span class="normal"><a href="#__codelineno-24-17">17</a></span>
+<span class="normal"><a href="#__codelineno-24-18">18</a></span>
+<span class="normal"><a href="#__codelineno-24-19">19</a></span>
+<span class="normal"><a href="#__codelineno-24-20">20</a></span>
+<span class="normal"><a href="#__codelineno-24-21">21</a></span>
+<span class="normal"><a href="#__codelineno-24-22">22</a></span>
+<span class="normal"><a href="#__codelineno-24-23">23</a></span>
+<span class="normal"><a href="#__codelineno-24-24">24</a></span>
+<span class="normal"><a href="#__codelineno-24-25">25</a></span>
+<span class="normal"><a href="#__codelineno-24-26">26</a></span>
+<span class="normal"><a href="#__codelineno-24-27">27</a></span>
+<span class="normal"><a href="#__codelineno-24-28">28</a></span>
+<span class="normal"><a href="#__codelineno-24-29">29</a></span>
+<span class="normal"><a href="#__codelineno-24-30">30</a></span>
+<span class="normal"><a href="#__codelineno-24-31">31</a></span>
+<span class="normal"><a href="#__codelineno-24-32">32</a></span>
+<span class="normal"><a href="#__codelineno-24-33">33</a></span>
+<span class="normal"><a href="#__codelineno-24-34">34</a></span>
+<span class="normal"><a href="#__codelineno-24-35">35</a></span>
+<span class="normal"><a href="#__codelineno-24-36">36</a></span>
+<span class="normal"><a href="#__codelineno-24-37">37</a></span>
+<span class="normal"><a href="#__codelineno-24-38">38</a></span>
+<span class="normal"><a href="#__codelineno-24-39">39</a></span>
+<span class="normal"><a href="#__codelineno-24-40">40</a></span>
+<span class="normal"><a href="#__codelineno-24-41">41</a></span>
+<span class="normal"><a href="#__codelineno-24-42">42</a></span>
+<span class="normal"><a href="#__codelineno-24-43">43</a></span>
+<span class="normal"><a href="#__codelineno-24-44">44</a></span>
+<span class="normal"><a href="#__codelineno-24-45">45</a></span>
+<span class="normal"><a href="#__codelineno-24-46">46</a></span>
+<span class="normal"><a href="#__codelineno-24-47">47</a></span>
+<span class="normal"><a href="#__codelineno-24-48">48</a></span>
+<span class="normal"><a href="#__codelineno-24-49">49</a></span>
+<span class="normal"><a href="#__codelineno-24-50">50</a></span>
+<span class="normal"><a href="#__codelineno-24-51">51</a></span>
+<span class="normal"><a href="#__codelineno-24-52">52</a></span>
+<span class="normal"><a href="#__codelineno-24-53">53</a></span>
+<span class="normal"><a href="#__codelineno-24-54">54</a></span>
+<span class="normal"><a href="#__codelineno-24-55">55</a></span>
+<span class="normal"><a href="#__codelineno-24-56">56</a></span>
+<span class="normal"><a href="#__codelineno-24-57">57</a></span>
+<span class="normal"><a href="#__codelineno-24-58">58</a></span>
+<span class="normal"><a href="#__codelineno-24-59">59</a></span>
+<span class="normal"><a href="#__codelineno-24-60">60</a></span>
+<span class="normal"><a href="#__codelineno-24-61">61</a></span>
+<span class="normal"><a href="#__codelineno-24-62">62</a></span>
+<span class="normal"><a href="#__codelineno-24-63">63</a></span>
+<span class="normal"><a href="#__codelineno-24-64">64</a></span>
+<span class="normal"><a href="#__codelineno-24-65">65</a></span>
+<span class="normal"><a href="#__codelineno-24-66">66</a></span>
+<span class="normal"><a href="#__codelineno-24-67">67</a></span>
+<span class="normal"><a href="#__codelineno-24-68">68</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="p">{</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="w">  </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="w">    </span><span class="nt">&quot;TextOS - Kernel debug&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="w">      </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vscode-cpptools&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="w">      </span><span class="nt">&quot;filetypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;cpp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="w"> </span><span class="p">],</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="w">        </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="w">        </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}/Build/Kernel/Kernel.elf.symbol&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="w">        </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="w">        </span><span class="nt">&quot;MIMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="w">        </span><span class="nt">&quot;miDebuggerServerAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:1234&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="w">        </span><span class="nt">&quot;setupCommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13"></a><span class="w">          </span><span class="p">{</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17"></a><span class="w">          </span><span class="p">},</span>
+<a id="__codelineno-24-18" name="__codelineno-24-18"></a><span class="w">          </span><span class="p">{</span>
+<a id="__codelineno-24-19" name="__codelineno-24-19"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Set disassembly style for gdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-20" name="__codelineno-24-20"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-gdb-set disassembly-flavor intel&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-21" name="__codelineno-24-21"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-22" name="__codelineno-24-22"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-24-23" name="__codelineno-24-23"></a><span class="w">        </span><span class="p">]</span>
+<a id="__codelineno-24-24" name="__codelineno-24-24"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-24-25" name="__codelineno-24-25"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-24-26" name="__codelineno-24-26"></a><span class="w">    </span><span class="nt">&quot;TextOS - Boot debug&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-27" name="__codelineno-24-27"></a><span class="w">      </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-28" name="__codelineno-24-28"></a><span class="w">        </span><span class="nt">&quot;extends&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vscode-cpptools&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-29" name="__codelineno-24-29"></a><span class="w">        </span><span class="nt">&quot;delay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;50000m&quot;</span>
+<a id="__codelineno-24-30" name="__codelineno-24-30"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-24-31" name="__codelineno-24-31"></a><span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-32" name="__codelineno-24-32"></a><span class="w">        </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-33" name="__codelineno-24-33"></a><span class="w">        </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}/Build/Boot/DEBUG_GCC5/X64/SigmaBootPkg.debug&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-34" name="__codelineno-24-34"></a><span class="w">        </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-35" name="__codelineno-24-35"></a><span class="w">        </span><span class="nt">&quot;MIMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-36" name="__codelineno-24-36"></a><span class="w">        </span><span class="nt">&quot;miDebuggerPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/gdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-37" name="__codelineno-24-37"></a><span class="w">        </span><span class="nt">&quot;externalConsole&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-24-38" name="__codelineno-24-38"></a><span class="w">        </span><span class="nt">&quot;targetArchitecture&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x64&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-39" name="__codelineno-24-39"></a><span class="w">        </span><span class="nt">&quot;customLaunchSetupCommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-24-40" name="__codelineno-24-40"></a><span class="w">          </span><span class="p">{</span>
+<a id="__codelineno-24-41" name="__codelineno-24-41"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Connect to qemu&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-42" name="__codelineno-24-42"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-target-select remote :1234&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-43" name="__codelineno-24-43"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-44" name="__codelineno-24-44"></a><span class="w">          </span><span class="p">},</span>
+<a id="__codelineno-24-45" name="__codelineno-24-45"></a><span class="w">          </span><span class="p">{</span>
+<a id="__codelineno-24-46" name="__codelineno-24-46"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Load script for uefi debugging&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-47" name="__codelineno-24-47"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source ${workspaceRoot}/Src/Base/setup.gdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-48" name="__codelineno-24-48"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-49" name="__codelineno-24-49"></a><span class="w">          </span><span class="p">},</span>
+<a id="__codelineno-24-50" name="__codelineno-24-50"></a><span class="w">          </span><span class="p">{</span>
+<a id="__codelineno-24-51" name="__codelineno-24-51"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-52" name="__codelineno-24-52"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-53" name="__codelineno-24-53"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-54" name="__codelineno-24-54"></a><span class="w">          </span><span class="p">},</span>
+<a id="__codelineno-24-55" name="__codelineno-24-55"></a><span class="w">          </span><span class="p">{</span>
+<a id="__codelineno-24-56" name="__codelineno-24-56"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Set disassembly style for gdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-57" name="__codelineno-24-57"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-gdb-set disassembly-flavor intel&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-58" name="__codelineno-24-58"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-59" name="__codelineno-24-59"></a><span class="w">          </span><span class="p">}</span>
+<a id="__codelineno-24-60" name="__codelineno-24-60"></a><span class="w">        </span><span class="p">],</span>
+<a id="__codelineno-24-61" name="__codelineno-24-61"></a><span class="w">        </span><span class="nt">&quot;launchCompleteCommand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exec-continue&quot;</span><span class="p">,</span>
+<a id="__codelineno-24-62" name="__codelineno-24-62"></a><span class="w">        </span><span class="nt">&quot;logging&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-63" name="__codelineno-24-63"></a><span class="w">          </span><span class="nt">&quot;engineLogging&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-64" name="__codelineno-24-64"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-24-65" name="__codelineno-24-65"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-24-66" name="__codelineno-24-66"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-24-67" name="__codelineno-24-67"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-24-68" name="__codelineno-24-68"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h1 id="_15">补充</h1>
+<h2 id="vscode-vimspector">配置文件迁移 (vscode -&gt; vimspector)</h2>
+<p>在vimspector的插件目录下的<code>support</code>下有个pyhthon脚本:<code>import_vscode_config</code>,但它不能直接对<code>launch.json</code>进行转换.
+她针对笼统的配置，将<code>launch.json</code>等合并到一个文件,且不能转换带注释的config,于是我便自己写了个.</p>
+<p><a href="https://gitee.com/canyan233/raw/raw/master/import_vscode_config.py">import_vscode_config.py | download</a></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a>./import_vscode_config<span class="w"> </span>launch.json
+</code></pre></div></td></tr></table></div>
+<h2 id="_16">快捷键</h2>
+<h3 id="visual-studio-vscode">Visual Studio / VSCode</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="k">let</span> <span class="k">g</span>:vimspector_enable_mappings <span class="p">=</span> <span class="s1">&#39;VISUAL_STUDIO&#39;</span>
+</code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Mapping</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorContinue</code></td>
+<td>When debugging, continue. Otherwise start debugging.</td>
+</tr>
+<tr>
+<td><code>Shift F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorStop</code></td>
+<td>Stop debugging.</td>
+</tr>
+<tr>
+<td><code>Ctrl Shift F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorRestart</code></td>
+<td>Restart debugging with the same configuration.</td>
+</tr>
+<tr>
+<td><code>F6</code></td>
+<td><code>&lt;Plug&gt;VimspectorPause</code></td>
+<td>Pause debuggee.</td>
+</tr>
+<tr>
+<td><code>F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorJumpToNextBreakpoint</code></td>
+<td>Jump to next breakpoint in the current file.</td>
+</tr>
+<tr>
+<td><code>Shift F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorJumpToPreviousBreakpoint</code></td>
+<td>Jump to previous breakpoint in the current file.</td>
+</tr>
+<tr>
+<td><code>F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorToggleBreakpoint</code></td>
+<td>Toggle line breakpoint on the current line.</td>
+</tr>
+<tr>
+<td><code>Shift F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorAddFunctionBreakpoint</code></td>
+<td>Add a function breakpoint for the expression under cursor</td>
+</tr>
+<tr>
+<td><code>F10</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOver</code></td>
+<td>Step Over</td>
+</tr>
+<tr>
+<td><code>F11</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepInto</code></td>
+<td>Step Into</td>
+</tr>
+<tr>
+<td><code>Shift F11</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOut</code></td>
+<td>Step out of current function scope</td>
+</tr>
+<tr>
+<td><code>Alt 8</code></td>
+<td><code>&lt;Plug&gt;VimspectorDisassemble</code></td>
+<td>Show disassembly</td>
+</tr>
+</tbody>
+</table>
+<h3 id="human-mode">Human Mode</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="k">let</span> <span class="k">g</span>:vimspector_enable_mappings <span class="p">=</span> <span class="s1">&#39;HUMAN&#39;</span>
+</code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Mapping</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F5</code></td>
+<td><code>&lt;Plug&gt;VimspectorContinue</code></td>
+<td>When debugging, continue. Otherwise start debugging.</td>
+</tr>
+<tr>
+<td><code>F3</code></td>
+<td><code>&lt;Plug&gt;VimspectorStop</code></td>
+<td>Stop debugging.</td>
+</tr>
+<tr>
+<td><code>F4</code></td>
+<td><code>&lt;Plug&gt;VimspectorRestart</code></td>
+<td>Restart debugging with the same configuration.</td>
+</tr>
+<tr>
+<td><code>F6</code></td>
+<td><code>&lt;Plug&gt;VimspectorPause</code></td>
+<td>Pause debuggee.</td>
+</tr>
+<tr>
+<td><code>F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorToggleBreakpoint</code></td>
+<td>Toggle line breakpoint on the current line.</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;F9</code></td>
+<td><code>&lt;Plug&gt;VimspectorToggleConditionalBreakpoint</code></td>
+<td>Toggle conditional line breakpoint or logpoint on the current line.</td>
+</tr>
+<tr>
+<td><code>F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorAddFunctionBreakpoint</code></td>
+<td>Add a function breakpoint for the expression under cursor</td>
+</tr>
+<tr>
+<td><code>&lt;leader&gt;F8</code></td>
+<td><code>&lt;Plug&gt;VimspectorRunToCursor</code></td>
+<td>Run to Cursor</td>
+</tr>
+<tr>
+<td><code>F10</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOver</code></td>
+<td>Step Over</td>
+</tr>
+<tr>
+<td><code>F11</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepInto</code></td>
+<td>Step Into</td>
+</tr>
+<tr>
+<td><code>F12</code></td>
+<td><code>&lt;Plug&gt;VimspectorStepOut</code></td>
+<td>Step out of current function scope</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_17">映射</h3>
+<p>个人喜好...</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nb">nnoremap</span> <span class="p">&lt;</span>C<span class="p">-</span>S<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;</span>VimspectorBalloonEval <span class="c">&quot; 浮动窗口显示变量值</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="nb">nnoremap</span> <span class="p">&lt;</span>C<span class="p">-</span>B<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;</span>VimspectorBreakpoints <span class="c">&quot; 断点监测</span>
+</code></pre></div></td></tr></table></div>
+<h1 id="links">Links</h1>
+<ul>
+<li><a href="https://github.com/puremourning/vimspector">Vimspector | Github</a></li>
+<li><a href="https://puremourning.github.io/vimspector-web/demo-setup.html">Setting up Vimspector | Vimspector</a></li>
+<li><a href="https://code.visualstudio.com/docs/cpp/launch-json-reference">Configure launch.json for C/C++ debugging in Visual Studio Code</a></li>
+<li><a href="https://www.cnblogs.com/kongj/p/12831690.html">Vim最强调试插件: vimspector</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
