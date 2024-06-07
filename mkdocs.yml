@@ -3,6 +3,9 @@ site_author: maouai233
 
 nav:
   - "主页": "index.md"
+  - "随笔":
+    - "diary/index.md"
+    - "diary/2024-summer.md"
   - "杂项":
     - "misc/index.md"
     - "misc/linux-bt.md"
