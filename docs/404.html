@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>404 - Not Found</title>
+    <script>
+        var i = 5;
+        var intervalid;   
+        intervalid = setInterval("cutdown()", 1000);   
+        function cutdown() {   
+            if (i == 0) {   
+                window.location.href = "https://ljqaq233.github.io/"; 
+                clearInterval(intervalid);   
+            }   
+            document.getElementById("mes").innerHTML = i;   
+            i--;
+        }
+        window.onload = cutdown;
+    </script>
+    <style>
+        body {
+            background-color: #0078D7;
+            font-family: Microsoft Yahei, "Helvetica Neue", Helvetica, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+            margin-left: 10%;
+            color: #FFFFFF
+        } 
+        p {
+            font-size: 130%;  
+            line-height: 160%;
+        }
+        h1 {
+            margin-top: 2%;
+            font-size: 400%
+        }
+        img#image1{
+            width: 20%;
+            height: auto;
+            max-width: 100%;
+        }
+        div#divright {
+            float: right;
+            margin-right: 10%;
+        }
+        p#pdes {
+            font-size: 120%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="face">
+            <h1> Σ(っ °Д °;)っ</h1>
+        </div>
+        <p>你的电脑遇到问题，需要重新启动<br>我们只收集某些错误信息而不会解决，然后为你反复重新启动。<br>
+            将在<span id="mes"></span> 秒后为您重启，然后再重启。<br></p>
+    </div>
+        <img src="/404/qrCode.png" id=image1>
+    <div id=divright class="div-inline">
+        <p id="pdes">有关此问题的详细信息和解决方案请访问<br>https://www.bilibili.com<br>如果致电支持人员，请向他们提供以下信息：<br>I_AM_FREE</p>
+    </div>
+</body>
+</html>

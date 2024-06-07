@@ -1,0 +1,50 @@
+site_name: maouai233 的个人网站
+site_author: maouai233
+
+nav:
+  - "主页": "index.md"
+  - "杂项":
+    - "misc/index.md"
+    - "misc/linux-bt.md"
+    - "misc/linux-login.md"
+  - "旧事":
+    - "概览": "hexo/index.md"
+    - "正文":
+      - "hexo/my-2023.md"
+      - "hexo/mc-server.md"
+      - "hexo/vim-debugs.md"
+      - "hexo/busybox-svr.md"
+      - "hexo/uefi-types.md"
+      - "hexo/uefi-macros.md"
+      - "hexo/uefi-bmp0.md"
+      - "hexo/uefi-bmp1.md"
+  - 目标: "target.md"
+  - 关于: "about.md"
+  - 网站: "website.md"
+
+theme:
+  name:
+    material
+  features:
+    - content.code.copy 
+    - content.code.annotate 
+    - navigation.tabs
+    - navigation.tabs.sticky
+
+markdown_extensions:
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
