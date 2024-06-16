@@ -8,6 +8,7 @@ nav:
     - "diary/2024-summer.md"
   - "杂项":
     - "misc/index.md"
+    - "misc/ctags.md"
     - "misc/linux-bt.md"
     - "misc/linux-login.md"
   - "旧事":
