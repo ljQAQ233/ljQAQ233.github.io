@@ -5,3 +5,8 @@
 
 使用 `mkdocs` 以及 `material`, 我是受到了许多 up主 的启发.
 
+# 参考
+
+- [Material Theme](https://squidfunk.github.io/mkdocs-material/getting-started/)
+- [Mkdocs Material使用记录](https://shafish.cn/blog/mkdocs/#__tabbed_10_2)
+

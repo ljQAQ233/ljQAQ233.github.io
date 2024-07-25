@@ -9,8 +9,12 @@ nav:
   - "杂项":
     - "misc/index.md"
     - "misc/ctags.md"
+    - "misc/find.md"
     - "misc/linux-bt.md"
     - "misc/linux-login.md"
+    - "misc/time-sync.md"
+    - "misc/osdev-offline.md"
+    - "misc/pacman.md"
   - "旧事":
     - "概览": "hexo/index.md"
     - "正文":
@@ -22,6 +26,13 @@ nav:
       - "hexo/uefi-macros.md"
       - "hexo/uefi-bmp0.md"
       - "hexo/uefi-bmp1.md"
+  - "博客":
+    - "gdb":
+      - blog/gdb/basic.md
+      - blog/gdb/master.md
+      - blog/gdb/vscode.md
+    - "编程语言":
+      - "blog/lang/c/intro.md"
   - 目标: "target.md"
   - 关于: "about.md"
   - 网站: "website.md"
@@ -36,6 +47,9 @@ theme:
     - navigation.tabs.sticky
 
 markdown_extensions:
+  # 标题旁的锚点
+  - toc:
+      permalink: true
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true
@@ -48,7 +62,22 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 
+  # 花哨的提示
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+  # 脚注
+  - footnotes
+
+  # 批注
+  - pymdownx.critic
+
+  # 马克笔
+  - pymdownx.mark
+
+
 extra_javascript:
-  - javascripts/mathjax.js
+  - base/js/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
