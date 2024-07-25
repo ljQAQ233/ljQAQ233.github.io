@@ -9,10 +9,12 @@ jobs:
 
     steps:
     - name: checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     
     - name: prepare python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.x
 
     - name: prepare dependencies
       run: pip install mkdocs-material 
