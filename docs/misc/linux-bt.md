@@ -14,7 +14,7 @@ sudo systemctl enable bluetooth.service
 配置蓝牙:
 
 ```bash
-bluetooth
+bluetoothctl
 ```
 
 进入交互:
