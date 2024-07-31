@@ -11,22 +11,22 @@
       
       
       
-        <link rel="prev" href="../../../hexo/uefi-bmp1/">
+        <link rel="prev" href="../pacman/">
       
       
-        <link rel="next" href="../master/">
+        <link rel="next" href="../../hexo/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
     
     
       
-        <title>gdb 的基本使用 - maouai233 的个人网站</title>
+        <title>动态链接库缺失 - maouai233 的个人网站</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.3cba04c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
       
       
 
@@ -45,7 +45,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gdb" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -80,7 +80,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="maouai233 的个人网站" class="md-header__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+    <a href="../.." title="maouai233 的个人网站" class="md-header__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              gdb 的基本使用
+              动态链接库缺失
             
           </span>
         </div>
@@ -163,7 +163,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -182,7 +182,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../diary/" class="md-tabs__link">
+        <a href="../../diary/" class="md-tabs__link">
           
   
   随笔
@@ -196,11 +196,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../misc/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   杂项
@@ -218,7 +220,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../hexo/" class="md-tabs__link">
+        <a href="../../hexo/" class="md-tabs__link">
           
   
   旧事
@@ -232,21 +234,17 @@
         
   
   
-    
-  
   
     
     
       
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../blog/gdb/basic/" class="md-tabs__link">
           
   
   博客
@@ -265,7 +263,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../target/" class="md-tabs__link">
+      <a href="../../target/" class="md-tabs__link">
         
   
     
@@ -282,7 +280,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../about/" class="md-tabs__link">
+      <a href="../../about/" class="md-tabs__link">
         
   
     
@@ -299,7 +297,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../website/" class="md-tabs__link">
+      <a href="../../website/" class="md-tabs__link">
         
   
     
@@ -339,7 +337,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="maouai233 的个人网站" class="md-nav__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+    <a href="../.." title="maouai233 的个人网站" class="md-nav__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -357,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -415,7 +413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../diary/" class="md-nav__link">
+      <a href="../../diary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -436,7 +434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../diary/2024-summer/" class="md-nav__link">
+      <a href="../../diary/2024-summer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -461,23 +459,28 @@
       
   
   
+    
   
   
+  
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -488,7 +491,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             杂项
@@ -502,7 +505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -523,7 +526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/ctags/" class="md-nav__link">
+      <a href="../ctags/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -544,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/find/" class="md-nav__link">
+      <a href="../find/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -565,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/linux-bt/" class="md-nav__link">
+      <a href="../linux-bt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -586,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/linux-login/" class="md-nav__link">
+      <a href="../linux-login/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -607,7 +610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/time-sync/" class="md-nav__link">
+      <a href="../time-sync/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -628,7 +631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/osdev-offline/" class="md-nav__link">
+      <a href="../osdev-offline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -649,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/pacman/" class="md-nav__link">
+      <a href="../pacman/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -667,10 +670,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../misc/dynlibs/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -679,6 +691,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -736,7 +749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hexo/" class="md-nav__link">
+      <a href="../../hexo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -795,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hexo/my-2023/" class="md-nav__link">
+      <a href="../../hexo/my-2023/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -816,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hexo/mc-server/" class="md-nav__link">
+      <a href="../../hexo/mc-server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -837,7 +850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hexo/vim-debugs/" class="md-nav__link">
+      <a href="../../hexo/vim-debugs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -858,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hexo/busybox-svr/" class="md-nav__link">
+      <a href="../../hexo/busybox-svr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -879,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hexo/uefi-types/" class="md-nav__link">
+      <a href="../../hexo/uefi-types/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -900,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hexo/uefi-macros/" class="md-nav__link">
+      <a href="../../hexo/uefi-macros/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -921,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hexo/uefi-bmp0/" class="md-nav__link">
+      <a href="../../hexo/uefi-bmp0/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -942,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hexo/uefi-bmp1/" class="md-nav__link">
+      <a href="../../hexo/uefi-bmp1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -975,28 +988,23 @@
       
   
   
-    
   
   
-  
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1007,7 +1015,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             博客
@@ -1018,8 +1026,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1029,11 +1035,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
         
           
           <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
@@ -1047,7 +1053,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_1">
             <span class="md-nav__icon md-icon"></span>
             gdb
@@ -1058,30 +1064,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    gdb 的基本使用
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../blog/gdb/basic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1090,35 +1076,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#get-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      get started!
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1131,7 +1088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../master/" class="md-nav__link">
+      <a href="../../blog/gdb/master/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1152,7 +1109,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vscode/" class="md-nav__link">
+      <a href="../../blog/gdb/vscode/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1219,7 +1176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lang/c/intro/" class="md-nav__link">
+      <a href="../../blog/lang/c/intro/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1255,7 +1212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../target/" class="md-nav__link">
+      <a href="../../target/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1275,7 +1232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/" class="md-nav__link">
+      <a href="../../about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1295,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../website/" class="md-nav__link">
+      <a href="../../website/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1328,23 +1285,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#get-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      get started!
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1358,59 +1298,24 @@
                   
 
 
-<h1 id="gdb">gdb 的基本使用<a class="headerlink" href="#gdb" title="Permanent link">&para;</a></h1>
-<p>一般装了 <code>gcc</code> 的 linux 都会配备 gdb, 如果没有...</p>
-<h2 id="get-started">get started!<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h2>
-<p>调试一个文件, 首先确保它要存在调试信息</p>
-<blockquote>
-<p>gcc 在生成命令之后添加 <code>-g</code>, 那么生成的文件就会附带调试信息</p>
-</blockquote>
-<p>于是开始调试:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>gdb<span class="w"> </span>&lt;file&gt;
+<h1 id="_1">动态链接库缺失<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="yay">yay<a class="headerlink" href="#yay" title="Permanent link">&para;</a></h1>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>$ yay
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>yay: error while loading shared libraries: libalpm.so.13: cannot open shared object file: No such file or directory
 </code></pre></div></td></tr></table></div>
-<ul>
-<li>
-<p><code>start</code> - 开始执行</p>
-</li>
-<li>
-<p><code>n</code> / <code>next</code> - 下一步</p>
-</li>
-<li><code>s</code> / <code>step</code> - 进入函数</li>
-<li><code>c</code> / <code>continue</code> - 继续执行</li>
-<li><code>l</code> / <code>list</code> - 查看源代码</li>
-<li><code>finish</code> - 跳出函数</li>
-</ul>
+<p>看到 github 的一个回答瞬间绷不住了<sup id="fnref:yay0"><a class="footnote-ref" href="#fn:yay0">1</a></sup>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/usr/lib/libalpm.so.14<span class="w"> </span>/usr/lib/libalpm.so.13
+</code></pre></div></td></tr></table></div>
+<p>估计只是暂时可用</p>
+<div class="footnote">
 <hr />
-<ul>
-<li><code>p</code> / <code>print</code> - 打印符号信息(变量等)</li>
-</ul>
-<p><code>print</code> 是一个重头戏, 它后面可以接各种选项</p>
-<blockquote>
-<p>(gdb) help x</p>
-<p>FMT is a repeat count followed by a format letter and a size letter.
- Format letters are o(octal), x(hex), d(decimal), u(unsigned decimal),
- t(binary), f(float), a(address), i(instruction), c(char), s(string)
- and z(hex, zero padded on the left).</p>
-</blockquote>
-<p>e.g.
- - <code>print x</code> - 打印 x
- - <code>p /x x</code> - 十六进制
- - <code>p /t x</code> - 二进制
- - <code>p /o x</code> - 八进制</p>
-<hr />
-<ul>
-<li>
-<p><code>b</code> / <code>break</code> - 添加断点</p>
+<ol>
+<li id="fn:yay0">
+<p>https://github.com/Morganamilo/paru/issues/1155&#160;<a class="footnote-backref" href="#fnref:yay0" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li>
-<p><code>b</code></p>
-</li>
-</ul>
-<hr />
-<ul>
-<li><code>display</code> - 在每一次操作后打印符号的值</li>
-</ul>
-<hr />
+</ol>
+</div>
 
 
 
@@ -1457,12 +1362,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
-        <script src="../../../base/js/mathjax.js"></script>
+        <script src="../../base/js/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
