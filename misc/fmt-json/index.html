@@ -11,10 +11,6 @@
       
       
       
-        <link rel="prev" href="../">
-      
-      
-        <link rel="next" href="../find/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>ctags 提取函数名称 - maouai233 的个人网站</title>
+        <title>格式化 json - maouai233 的个人网站</title>
       
     
     
@@ -64,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ctags" class="md-skip">
+        <a href="#json" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ctags 提取函数名称
+              格式化 json
             
           </span>
         </div>
@@ -196,12 +192,10 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../" class="md-tabs__link">
           
   
@@ -459,28 +453,23 @@
       
   
   
-    
   
   
-  
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -491,7 +480,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             杂项
@@ -523,19 +512,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ctags/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -544,7 +524,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1285,6 +1264,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vim" class="md-nav__link">
+    <span class="md-ellipsis">
+      vim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#confromnvim" class="md-nav__link">
+    <span class="md-ellipsis">
+      confrom.nvim
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1298,23 +1303,46 @@
                   
 
 
-<h1 id="ctags">ctags 提取函数名称<a class="headerlink" href="#ctags" title="Permanent link">&para;</a></h1>
-<h1 id="pack">Pack!<a class="headerlink" href="#pack" title="Permanent link">&para;</a></h1>
-<p>将函数打包带走!</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span>
-<span class="normal"><a href="#__codelineno-0-4">4</a></span>
-<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>ctags<span class="w"> </span>-x<span class="w"> </span><span class="si">${</span><span class="nv">src_file</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="k">function</span><span class="w">  </span><span class="se">\</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-s<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w">      </span><span class="se">\</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f5-<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $0&quot;;&quot;}&#39;</span>
+<h1 id="json">格式化 json<a class="headerlink" href="#json" title="Permanent link">&para;</a></h1>
+<p>直接输出结果:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>jq<span class="w"> </span>&lt;<span class="w"> </span>file.json
 </code></pre></div></td></tr></table></div>
-<p>NOTE: 可能只能提取到定义的首行, 使用 <code>clang-format</code> 配合?</p>
-<hr />
-<p>参考:</p>
-<p><a href="https://zhuanlan.zhihu.com/p/165451452">Tools / 获取c文件函数名的几种方法</a></p>
+<h2 id="vim">vim<a class="headerlink" href="#vim" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">:</span>%<span class="p">!</span>jq
+</code></pre></div></td></tr></table></div>
+<h2 id="confromnvim">confrom.nvim<a class="headerlink" href="#confromnvim" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">-- 保存时格式化</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">vim</span><span class="p">.</span><span class="n">api</span><span class="p">.</span><span class="n">nvim_create_autocmd</span><span class="p">(</span><span class="s1">&#39;BufWritePre&#39;</span><span class="p">,</span> <span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>  <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>  <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;conform&#39;</span><span class="p">).</span><span class="n">format</span><span class="p">({</span> <span class="n">bufnr</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">buf</span> <span class="p">})</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>  <span class="kr">end</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p">})</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="c1">-- 配置 jq</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;conform&#39;</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>  <span class="n">formatters_by_ft</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>    <span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;jq&#39;</span> <span class="p">},</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>  <span class="p">},</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="p">})</span>
+</code></pre></div></td></tr></table></div>
+<h1 id="_1">参考<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="https://ganquan.org/posts/neovim/using-jq-format-JSON-in-neovim">https://ganquan.org/posts/neovim/using-jq-format-JSON-in-neovim</a></li>
+</ul>
 
 
 
