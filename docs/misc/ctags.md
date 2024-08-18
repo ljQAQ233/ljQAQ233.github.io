@@ -6,11 +6,13 @@
 
 ```shell
 ctags -x ${src_file} \
-    | grep function
-    | tr -s ' '
-    | cut -d' ' -f5-
+    | grep function  \
+    | tr -s ' '      \
+    | cut -d' ' -f5- \
     | awk '{print $0";"}'
 ```
+
+NOTE: 可能只能提取到定义的首行, 使用 `clang-format` 配合?
 
 ---
 
