@@ -1,6 +1,8 @@
 site_name: maouai233 的个人网站
 site_author: maouai233
 
+site_url: https://ljqaq233.github.io
+
 nav:
   - "主页": "index.md"
   - "随笔":
@@ -46,6 +48,7 @@ theme:
     - content.code.annotate 
     - navigation.tabs
     - navigation.tabs.sticky
+  custom_dir: mine
 
 markdown_extensions:
   # 标题旁的锚点

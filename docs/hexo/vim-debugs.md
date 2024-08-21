@@ -546,7 +546,7 @@ cpp_catch: Break on C++: on catch (Y/N/default: N)?
 ## 配置文件迁移 (vscode -> vimspector)
 
 在vimspector的插件目录下的`support`下有个pyhthon脚本:`import_vscode_config`,但它不能直接对`launch.json`进行转换.
-她针对笼统的配置，将`launch.json`等合并到一个文件,且不能转换带注释的config,于是我便自己写了个.
+她针对笼统的配置，将`launch.json`等合并到一个文件,且不能转换带注释的config,于是我便自己改了一下.
 
 [import_vscode_config.py | download](https://gitee.com/canyan233/raw/raw/master/import_vscode_config.py)
 
