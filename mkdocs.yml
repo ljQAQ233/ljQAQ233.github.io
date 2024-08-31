@@ -36,6 +36,8 @@ nav:
       - blog/gdb/vscode.md
     - "编程语言":
       - "blog/lang/c/intro.md"
+    - "视频":
+      - "blog/bili/005.md"
   - 目标: "target.md"
   - 关于: "about.md"
   - 网站: "website.md"
