@@ -8,6 +8,7 @@ nav:
   - "随笔":
     - "diary/index.md"
     - "diary/2024-summer.md"
+    - "diary/2024-autumn.md"
   - "杂项":
     - "misc/index.md"
     - "misc/ctags.md"
@@ -39,7 +40,6 @@ nav:
     - "视频":
       - "blog/bili/005.md"
   - 目标: "target.md"
-  - 关于: "about.md"
   - 网站: "website.md"
 
 theme:

@@ -4,28 +4,14 @@
 
 ## my own 2024
 
-- [ ] 矩阵
-    - [x] 基础
-    - [x] 递推
-    - [x] 高斯消元法
-- [x] 基础微积分
-- [ ] 再搞微积分
+### Game
 
-- [ ] mit 6.s081
-    - [x] lab 0
-    - [ ] lab 1
-    - [ ] lab 2
-    - [ ] lab 3
-    - [ ] lab 4
-    - [ ] lab 5
+- [ ] play to my heart's content
 
-- [x] 系统学习 OI (被掉打)
+### Dysthymia
 
-- [ ] blog
-  - [ ] fat32
-  - [ ] programming languages
-    - [ ] C
-      - [ ] intro
+- [ ] got
+- [ ] done
 
 ### TextOS
 
@@ -33,11 +19,18 @@
 - [x] fat32
 - [x] real-time clock
 - [x] usermode
-- [ ] syscall
-  - [ ] fork
-  - [x] write
+- [x] syscall
+    - [x] fork -> `deep-fork`
+    - [x] open / write / read
+    - [x] execve
+- [ ] stdlib
+    - [x] `_start`
+    - [ ] baselib
+- [ ] shell
+- [ ] pci
 
 ### todo's todo
 
 - [ ] CTF
+    - [x] RSA
 
