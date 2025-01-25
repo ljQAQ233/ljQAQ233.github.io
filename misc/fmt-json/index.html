@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
       
       
 
@@ -1378,18 +1378,18 @@
 <span class="normal"><a href="#__codelineno-2-12">12</a></span>
 <span class="normal"><a href="#__codelineno-2-13">13</a></span>
 <span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">-- 保存时格式化</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">vim</span><span class="p">.</span><span class="n">api</span><span class="p">.</span><span class="n">nvim_create_autocmd</span><span class="p">(</span><span class="s1">&#39;BufWritePre&#39;</span><span class="p">,</span> <span class="p">{</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a>  <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a>  <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;conform&#39;</span><span class="p">).</span><span class="n">format</span><span class="p">({</span> <span class="n">bufnr</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">buf</span> <span class="p">})</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6"></a>  <span class="kr">end</span><span class="p">,</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nv">vim</span><span class="p">.</span><span class="py">api</span><span class="p">.</span><span class="nf">nvim_create_autocmd</span><span class="p">(</span><span class="s1">&#39;BufWritePre&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="nv">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nv">callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="nv">args</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;conform&#39;</span><span class="p">).</span><span class="nf">format</span><span class="p">({</span><span class="w"> </span><span class="nv">bufnr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">args</span><span class="p">.</span><span class="py">buf</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="kr">end</span><span class="p">,</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p">})</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8"></a>
 <a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="c1">-- 配置 jq</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;conform&#39;</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11"></a>  <span class="n">formatters_by_ft</span> <span class="o">=</span> <span class="p">{</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12"></a>    <span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;jq&#39;</span> <span class="p">},</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13"></a>  <span class="p">},</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="nb">require</span><span class="p">(</span><span class="s1">&#39;conform&#39;</span><span class="p">).</span><span class="nf">setup</span><span class="p">({</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">  </span><span class="nv">formatters_by_ft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">    </span><span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;jq&#39;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">  </span><span class="p">},</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="p">})</span>
 </code></pre></div></td></tr></table></div>
 <h1 id="_1">参考<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
@@ -1442,10 +1442,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
       
         <script src="../../base/js/mathjax.js"></script>
       

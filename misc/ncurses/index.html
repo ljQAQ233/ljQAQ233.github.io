@@ -10,13 +10,9 @@
         <meta name="author" content="maouai233">
       
       
-        <link rel="canonical" href="https://ljqaq233.github.io/misc/linux-login/">
+        <link rel="canonical" href="https://ljqaq233.github.io/misc/ncurses/">
       
       
-        <link rel="prev" href="../linux-bt/">
-      
-      
-        <link rel="next" href="../time-sync/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +20,7 @@
     
     
       
-        <title>linux 自动登陆 - maouai233 的个人网站</title>
+        <title>nurses 无法找到 - maouai233 的个人网站</title>
       
     
     
@@ -66,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linux" class="md-skip">
+        <a href="#nurses" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              linux 自动登陆
+              nurses 无法找到
             
           </span>
         </div>
@@ -198,12 +194,10 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../" class="md-tabs__link">
           
   
@@ -465,28 +459,23 @@
       
   
   
-    
   
   
-  
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -497,7 +486,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             杂项
@@ -592,19 +581,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../linux-login/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -613,7 +593,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1351,11 +1330,54 @@
                   
 
 
-<h1 id="linux">linux 自动登陆<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p>from <strong>称呼我C先生</strong> <a href="https://www.bilibili.com/video/BV1Gt4y1n7GF">BV1Gt4y1n7GF - bilibili</a></p>
-</blockquote>
-<p><img alt="comment" src="../images/linux-login.png" /></p>
+<h1 id="nurses">nurses 无法找到<a class="headerlink" href="#nurses" title="Permanent link">&para;</a></h1>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a> *** Unable to find the ncurses libraries or the
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a> *** required header files.
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a> *** &#39;make menuconfig&#39; requires the ncurses libraries.
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a> ***
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a> *** Install ncurses (ncurses-devel) and try again.
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a> ***
+</code></pre></div></td></tr></table></div>
+<hr />
+<p>情景: <code>busybox-1.37.0</code></p>
+<p>首先如果 <code>whereis ncurses.h</code> 有结果就说明已安装 ncurses</p>
+<p>其次, 它告诉我没找到, 就可以扒它的检测代码了, 在 <code>scripts/kconfig/lxdialog/check-lxdialog.sh</code> 中</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>check<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="nv">$cc</span><span class="w"> </span>-x<span class="w"> </span>c<span class="w"> </span>-<span class="w"> </span>-o<span class="w"> </span><span class="nv">$tmp</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="s">#include CURSES_LOC</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="s">main() {}</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="s">EOF</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; *** Unable to find the ncurses libraries or the&quot;</span><span class="w">       </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; *** required header files.&quot;</span><span class="w">                            </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; *** &#39;make menuconfig&#39; requires the ncurses libraries.&quot;</span><span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; *** &quot;</span><span class="w">                                                  </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; *** Install ncurses (ncurses-devel) and try again.&quot;</span><span class="w">    </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; *** &quot;</span><span class="w">                                                  </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="k">fi</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="o">}</span>
+</code></pre></div></td></tr></table></div>
+<p>把 <code>2&gt;/dev/null</code> 去掉看 gcc 输出发现不是找不到头文件, 而是 <code>main()</code> 的返回类型出错. 加上 <code>int</code> 就可以了</p>
 
 
 
