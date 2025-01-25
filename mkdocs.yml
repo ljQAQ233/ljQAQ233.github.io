@@ -19,6 +19,7 @@ nav:
     - "misc/osdev-offline.md"
     - "misc/pacman.md"
     - "misc/dynlibs.md"
+    - "misc/ncurses.md"
   - "旧事":
     - "概览": "hexo/index.md"
     - "正文":
