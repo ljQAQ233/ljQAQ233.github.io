@@ -10,7 +10,7 @@
 
 ### Dysthymia
 
-- [ ] got
+- [x] got
 - [ ] done
 
 ### TextOS
@@ -27,7 +27,7 @@
     - [x] `_start`
     - [ ] baselib
 - [ ] shell
-- [ ] pci
+- [x] pci
 
 ### todo's todo
 
