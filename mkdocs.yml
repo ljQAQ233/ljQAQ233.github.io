@@ -85,6 +85,8 @@ markdown_extensions:
   # 马克笔
   - pymdownx.mark
 
+extra_css:
+  - base/css/hr.css
 
 extra_javascript:
   - base/js/mathjax.js
