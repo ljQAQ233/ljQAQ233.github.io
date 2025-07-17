@@ -13,6 +13,7 @@ nav:
     - "diary/2025-summer.md"
   - "杂项":
     - "misc/index.md"
+    - "misc/bin86.md"
     - "misc/ctags.md"
     - "misc/find.md"
     - "misc/linux-bt.md"
