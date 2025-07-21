@@ -43,6 +43,7 @@ nav:
       - "blog/lang/c/intro.md"
     - "视频":
       - "blog/bili/005.md"
+      - "blog/bili/edk2-liba.md"
   - 目标: "target.md"
   - 网站: "website.md"
 
