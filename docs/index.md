@@ -15,6 +15,7 @@ MC高玩 ♂ / 二刺猿 / 音游人🥬 / I use arch btw / C语言带师 🇨 /
 
 - [`TextOS`](https://github.com/ljQAQ233/textos-dev) - 一个使用 uefi 引导的 64 位操作系统项目
 - [`tiny-httpd`](https://github.com/ljQAQ233/tiny-httpd) - 一个简单的 http 服务器
+- [`musl-learn`](https://github.com/ljQAQ233/musl-learn) - 解析 musl libc, 因为最近在移植 textos 的 libc
 
 ---
 
