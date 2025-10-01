@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
       
 
@@ -1846,17 +1846,6 @@
 <p>TODO...</p>
 <h2 id="20250930">2025/09/30<a class="headerlink" href="#20250930" title="Permanent link">&para;</a></h2>
 <p>最后一天了呢~</p>
-<hr />
-<p>好吧, 我好蠢啊啊啊. 但是确实也是发现, 也许是我消息有点闭塞吧.</p>
-<p>最近在尝试支持 gdb 对 我自己写的 ldso 的调试的支持, 但是哪里也不对. 于是今天晚上我翻了一下 gdb 的源码</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">version</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">lmo</span><span class="o">-&gt;</span><span class="n">r_ldsomap_offset</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span><span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-<p>气笑了... 原来不支持 <code>r_version = 1</code> 了啊. 我用的 <code>musl</code> 源码没有跟上来, <code>uClib-0.9.33</code> 也是</p>
-<p><strong>也就是说自己写 loader 如果要支持 gdb 调试就要用 <code>extended</code> 的版本了</strong></p>
 
 
 
