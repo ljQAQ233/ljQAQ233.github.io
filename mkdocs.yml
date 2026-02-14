@@ -36,6 +36,8 @@ nav:
       - "hexo/uefi-bmp0.md"
       - "hexo/uefi-bmp1.md"
   - "博客":
+    - "NixOS":
+      - blog/nixos/fcitx.md
     - "gdb":
       - blog/gdb/basic.md
       - blog/gdb/master.md
