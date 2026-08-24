@@ -1978,11 +1978,11 @@
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
 <span class="normal"><a href="#__codelineno-0-3">3</a></span>
 <span class="normal"><a href="#__codelineno-0-4">4</a></span>
-<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">call</span> plug#begin<span class="p">(</span><span class="s2">&quot;~/.config/nvim/plugged&quot;</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">call</span> plug#begin<span class="p">(</span><span class="s2">"~/.config/nvim/plugged"</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a> Plug <span class="s1">&#39;puremourning/vimspector&#39;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a> Plug <span class="s1">'puremourning/vimspector'</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="k">call</span> plug#<span class="k">end</span><span class="p">()</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="k">call</span> plug#end<span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 <p>其他插件管理器执行类似操作.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">:</span>PlugInstall
@@ -2017,7 +2017,7 @@
 <p>就如同 vscode 调试一样,调试需要 <strong>launch.json </strong>, vimspector 也不例外.</p>
 <h3 id="_7">白嫖<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>我们可以通过一个偷懒而又简单的方式获取一个配置文件.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="p">:</span><span class="k">h</span> vimspector
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="p">:</span>h vimspector
 </code></pre></div></td></tr></table></div>
 <p>其实就是直接翻 vimspector 的<strong> README.md</strong> ...... (同Github)</p>
 <p>或者看 <strong>vimspector/docs/configuration.md</strong> (同官网)</p>
@@ -2036,12 +2036,12 @@
 <span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-7-10">10</a></span>
 <span class="normal"><a href="#__codelineno-7-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="nt">&quot;Launch&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">      </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vscode-cpptools&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">        </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">        </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path to binary&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// 要调试的可执行文件路径</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="nt">"configurations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="nt">"Launch"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">      </span><span class="nt">"adapter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vscode-cpptools"</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">      </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">        </span><span class="nt">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">        </span><span class="nt">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;path to binary&gt;"</span><span class="p">,</span><span class="w"> </span><span class="c1">// 要调试的可执行文件路径</span>
 <a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">      </span><span class="p">}</span>
 <a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">  </span><span class="p">}</span>
@@ -2075,20 +2075,20 @@
 <span class="normal"><a href="#__codelineno-8-15">15</a></span>
 <span class="normal"><a href="#__codelineno-8-16">16</a></span>
 <span class="normal"><a href="#__codelineno-8-17">17</a></span>
-<span class="normal"><a href="#__codelineno-8-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;adapter&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">    </span><span class="nt">&quot;filetypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nt">"configurations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="nt">"adapter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adapter"</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">    </span><span class="nt">"filetypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span>
 <a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="err">...</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">      </span><span class="err">...</span>
 <a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;adapter&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">    </span><span class="nt">&quot;filetypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="nt">"adapter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adapter"</span><span class="p">,</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">    </span><span class="nt">"filetypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span>
 <a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">    </span><span class="err">...</span>
-<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">    </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="w">      </span><span class="err">...</span>
 <a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">  </span><span class="p">}</span>
@@ -2102,7 +2102,7 @@
 <h4 id="filetypes">文件类型 filetypes<a class="headerlink" href="#filetypes" title="Permanent link">&para;</a></h4>
 <p>限制了该配置在当前打开文件<strong>为某种类型(后缀)时才可以启动debug</strong></p>
 <p>Example :</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nt">&quot;filetypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;cpp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="w"> </span><span class="p">]</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nt">"filetypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"cpp"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="w"> </span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <h4 id="configuration">配置项 configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h4>
 <h5 id="request">request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h5>
@@ -2117,15 +2117,15 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
 <span class="normal"><a href="#__codelineno-10-2">2</a></span>
 <span class="normal"><a href="#__codelineno-10-3">3</a></span>
-<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot; NAME1&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;TEST1&quot;</span><span class="p">},</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">  </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot; NAME2&quot;</span><span class="p">,</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;TEST2&quot;</span><span class="p">}</span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nt">"environment"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">  </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">" NAME1"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"TEST1"</span><span class="p">},</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">  </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">" NAME2"</span><span class="p">,</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"TEST2"</span><span class="p">}</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <h5 id="args">args<a class="headerlink" href="#args" title="Permanent link">&para;</a></h5>
 <p>启动参数</p>
 <p>Example :</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="err">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;arg1&quot;</span><span class="p">,</span><span class="s2">&quot;arg2&quot;</span><span class="p">]</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="err">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"arg1"</span><span class="p">,</span><span class="s2">"arg2"</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <h5 id="externalconsole">externalConsole<a class="headerlink" href="#externalconsole" title="Permanent link">&para;</a></h5>
 <p>外部终端.
@@ -2142,9 +2142,9 @@
 <span class="normal"><a href="#__codelineno-12-3">3</a></span>
 <span class="normal"><a href="#__codelineno-12-4">4</a></span>
 <span class="normal"><a href="#__codelineno-12-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="p">{</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;描述&quot;</span><span class="p">,</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">  </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;命令&quot;</span><span class="p">,</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">  </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1">// 执行错误是否可以忽略</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"描述"</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">  </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"命令"</span><span class="p">,</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">  </span><span class="nt">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1">// 执行错误是否可以忽略</span>
 <a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div></p>
 <h5 id="customlaunchsetupcommands">customLaunchSetupCommands<a class="headerlink" href="#customlaunchsetupcommands" title="Permanent link">&para;</a></h5>
@@ -2158,11 +2158,11 @@
 <span class="normal"><a href="#__codelineno-13-4">4</a></span>
 <span class="normal"><a href="#__codelineno-13-5">5</a></span>
 <span class="normal"><a href="#__codelineno-13-6">6</a></span>
-<span class="normal"><a href="#__codelineno-13-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="nt">&quot;customLaunchSetupCommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="normal"><a href="#__codelineno-13-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="nt">"customLaunchSetupCommands"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">  </span><span class="p">{</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Connect to qemu&quot;</span><span class="p">,</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-target-select remote :1234&quot;</span><span class="p">,</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">    </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Connect to qemu"</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-target-select remote :1234"</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">    </span><span class="nt">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
@@ -2202,7 +2202,7 @@
 <p>控制输出至 <strong>Debug Console</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
 <span class="normal"><a href="#__codelineno-14-2">2</a></span>
-<span class="normal"><a href="#__codelineno-14-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="nt">&quot;logging&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="nt">"logging"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">  </span><span class="err">...</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
@@ -2241,12 +2241,12 @@
 <span class="normal"><a href="#__codelineno-15-6">6</a></span>
 <span class="normal"><a href="#__codelineno-15-7">7</a></span>
 <span class="normal"><a href="#__codelineno-15-8">8</a></span>
-<span class="normal"><a href="#__codelineno-15-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nt">&quot;varibales&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span><span class="nt">&quot;Common&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Value&quot;</span><span class="p">,</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">  </span><span class="nt">&quot;Shell&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">    </span><span class="nt">&quot;shell&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">    </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
+<span class="normal"><a href="#__codelineno-15-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nt">"varibales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span><span class="nt">"Common"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Value"</span><span class="p">,</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">  </span><span class="nt">"Shell"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">    </span><span class="nt">"shell"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">    </span><span class="nt">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span>
 <a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="p">}</span>
@@ -2254,7 +2254,7 @@
 <p>Common 展示了如何定义一个普通变量.
 Shell  展示了如何在调用shell进行变量值的获取,env可以设置环境变量.</p>
 <h5 id="_11">默认值<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h5>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${value:default {\\} stuff}&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${value:default {\\} stuff}"</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>当value已被定义,使用value的值.</p>
 <p>在这里的花括号中,要避免出现另一个花括号,否则将视其为结束,要对它进行转义,使用<code>\\</code></p>
@@ -2264,8 +2264,8 @@ Shell  展示了如何在调用shell进行变量值的获取,env可以设置环�
 <span class="normal"><a href="#__codelineno-17-3">3</a></span>
 <span class="normal"><a href="#__codelineno-17-4">4</a></span>
 <span class="normal"><a href="#__codelineno-17-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="w">  </span><span class="p">{</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">      </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${program:${file\\}.out}&quot;</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="w">    </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">      </span><span class="nt">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${program:${file\\}.out}"</span>
 <a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="w">  </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
@@ -2278,24 +2278,24 @@ Shell  展示了如何在调用shell进行变量值的获取,env可以设置环�
 <span class="normal"><a href="#__codelineno-18-3">3</a></span>
 <span class="normal"><a href="#__codelineno-18-4">4</a></span>
 <span class="normal"><a href="#__codelineno-18-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="w">  </span><span class="p">{</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="w">    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="w">      </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${script:${file\\}}&quot;</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="w">    </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="w">      </span><span class="nt">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${script:${file\\}}"</span>
 <a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="w">  </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>那它并不会生效,WHY?
 因为输入的是一个string,那么这个变量就"理所应当"地成了一个string...</p>
 <p>所以我们这样解决:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="w">  </span><span class="nt">&quot;stopOnEntry#json&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${stopOnEntry}&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="w">  </span><span class="nt">"stopOnEntry#json"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${stopOnEntry}"</span>
 </code></pre></div></td></tr></table></div>
 <p>加个默认值压压筋...</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="w">  </span><span class="nt">&quot;stopOnEntry#json&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${stopOnEntry:true}&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="w">  </span><span class="nt">"stopOnEntry#json"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${stopOnEntry:true}"</span>
 </code></pre></div></td></tr></table></div>
 <p>同时还有一个鸡肋的问题,就是有人在变量后带<code>#json</code>,它就叫这个,非常的不友好,怎么办呢?</p>
 <p>在它后面添加<code>#s</code>就行了!告诉vimspector不是要进行类型转换,它本身就长这个样...</p>
 <h5 id="_14">展开为数组<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h5>
 <p>使用<code>*</code>(splat operator)将string展开为数组</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="w">   </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;*${CommandLineArgs}&quot;</span><span class="w"> </span><span class="p">]</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="w">   </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"*${CommandLineArgs}"</span><span class="w"> </span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <p>就是这样: <code>arg1 arg2 "This is a string"</code> -&gt; <code>["arg1","arg2","This is a string"]</code></p>
 <h4 id="breakpoints">断点 breakpoints<a class="headerlink" href="#breakpoints" title="Permanent link">&para;</a></h4>
@@ -2314,12 +2314,12 @@ Shell  展示了如何在调用shell进行变量值的获取,env可以设置环�
 <span class="normal"><a href="#__codelineno-22-11">11</a></span>
 <span class="normal"><a href="#__codelineno-22-12">12</a></span>
 <span class="normal"><a href="#__codelineno-22-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="p">{</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="w">  </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="w">      </span><span class="nt">&quot;breakpoints&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="w">        </span><span class="nt">&quot;exception&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="w">          </span><span class="nt">&quot;cpp_throw&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Y&quot;</span><span class="p">,</span><span class="w">   </span><span class="c1">// 抛出异常</span>
-<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="w">          </span><span class="nt">&quot;cpp_catch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Y&quot;</span><span class="w">    </span><span class="c1">// 捕获异常</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="w">  </span><span class="nt">"configurations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="w">      </span><span class="nt">"breakpoints"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="w">        </span><span class="nt">"exception"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="w">          </span><span class="nt">"cpp_throw"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">   </span><span class="c1">// 抛出异常</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="w">          </span><span class="nt">"cpp_catch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="w">    </span><span class="c1">// 捕获异常</span>
 <a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="w">        </span><span class="p">},</span>
 <a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="w">      </span><span class="p">},</span>
 <a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="w">      </span><span class="err">...</span>
@@ -2405,68 +2405,68 @@ Shell  展示了如何在调用shell进行变量值的获取,env可以设置环�
 <span class="normal"><a href="#__codelineno-24-66">66</a></span>
 <span class="normal"><a href="#__codelineno-24-67">67</a></span>
 <span class="normal"><a href="#__codelineno-24-68">68</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="p">{</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="w">  </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="w">    </span><span class="nt">&quot;TextOS - Kernel debug&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="w">      </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vscode-cpptools&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="w">      </span><span class="nt">&quot;filetypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;cpp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="w"> </span><span class="p">],</span>
-<a id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="w">        </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="w">        </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}/Build/Kernel/Kernel.elf.symbol&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="w">        </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="w">        </span><span class="nt">&quot;MIMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="w">        </span><span class="nt">&quot;miDebuggerServerAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:1234&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="w">        </span><span class="nt">&quot;setupCommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="w">  </span><span class="nt">"configurations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="w">    </span><span class="nt">"TextOS - Kernel debug"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="w">      </span><span class="nt">"adapter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vscode-cpptools"</span><span class="p">,</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="w">      </span><span class="nt">"filetypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"cpp"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="w"> </span><span class="p">],</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="w">      </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="w">        </span><span class="nt">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="w">        </span><span class="nt">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${workspaceRoot}/Build/Kernel/Kernel.elf.symbol"</span><span class="p">,</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="w">        </span><span class="nt">"cwd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${workspaceRoot}"</span><span class="p">,</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="w">        </span><span class="nt">"MIMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdb"</span><span class="p">,</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="w">        </span><span class="nt">"miDebuggerServerAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localhost:1234"</span><span class="p">,</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="w">        </span><span class="nt">"setupCommands"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-24-13" name="__codelineno-24-13"></a><span class="w">          </span><span class="p">{</span>
-<a id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-15" name="__codelineno-24-15"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="w">            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enable pretty-printing for gdb"</span><span class="p">,</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15"></a><span class="w">            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-enable-pretty-printing"</span><span class="p">,</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="w">            </span><span class="nt">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-24-17" name="__codelineno-24-17"></a><span class="w">          </span><span class="p">},</span>
 <a id="__codelineno-24-18" name="__codelineno-24-18"></a><span class="w">          </span><span class="p">{</span>
-<a id="__codelineno-24-19" name="__codelineno-24-19"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Set disassembly style for gdb&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-20" name="__codelineno-24-20"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-gdb-set disassembly-flavor intel&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-21" name="__codelineno-24-21"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-19" name="__codelineno-24-19"></a><span class="w">            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Set disassembly style for gdb"</span><span class="p">,</span>
+<a id="__codelineno-24-20" name="__codelineno-24-20"></a><span class="w">            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-gdb-set disassembly-flavor intel"</span><span class="p">,</span>
+<a id="__codelineno-24-21" name="__codelineno-24-21"></a><span class="w">            </span><span class="nt">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-24-22" name="__codelineno-24-22"></a><span class="w">          </span><span class="p">}</span>
 <a id="__codelineno-24-23" name="__codelineno-24-23"></a><span class="w">        </span><span class="p">]</span>
 <a id="__codelineno-24-24" name="__codelineno-24-24"></a><span class="w">      </span><span class="p">}</span>
 <a id="__codelineno-24-25" name="__codelineno-24-25"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-24-26" name="__codelineno-24-26"></a><span class="w">    </span><span class="nt">&quot;TextOS - Boot debug&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-24-27" name="__codelineno-24-27"></a><span class="w">      </span><span class="nt">&quot;adapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-24-28" name="__codelineno-24-28"></a><span class="w">        </span><span class="nt">&quot;extends&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vscode-cpptools&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-29" name="__codelineno-24-29"></a><span class="w">        </span><span class="nt">&quot;delay&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;50000m&quot;</span>
+<a id="__codelineno-24-26" name="__codelineno-24-26"></a><span class="w">    </span><span class="nt">"TextOS - Boot debug"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-27" name="__codelineno-24-27"></a><span class="w">      </span><span class="nt">"adapter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-28" name="__codelineno-24-28"></a><span class="w">        </span><span class="nt">"extends"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vscode-cpptools"</span><span class="p">,</span>
+<a id="__codelineno-24-29" name="__codelineno-24-29"></a><span class="w">        </span><span class="nt">"delay"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000m"</span>
 <a id="__codelineno-24-30" name="__codelineno-24-30"></a><span class="w">      </span><span class="p">},</span>
-<a id="__codelineno-24-31" name="__codelineno-24-31"></a><span class="w">      </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-24-32" name="__codelineno-24-32"></a><span class="w">        </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-33" name="__codelineno-24-33"></a><span class="w">        </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}/Build/Boot/DEBUG_GCC5/X64/SigmaBootPkg.debug&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-34" name="__codelineno-24-34"></a><span class="w">        </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-35" name="__codelineno-24-35"></a><span class="w">        </span><span class="nt">&quot;MIMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-36" name="__codelineno-24-36"></a><span class="w">        </span><span class="nt">&quot;miDebuggerPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/gdb&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-37" name="__codelineno-24-37"></a><span class="w">        </span><span class="nt">&quot;externalConsole&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-24-38" name="__codelineno-24-38"></a><span class="w">        </span><span class="nt">&quot;targetArchitecture&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x64&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-39" name="__codelineno-24-39"></a><span class="w">        </span><span class="nt">&quot;customLaunchSetupCommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-24-31" name="__codelineno-24-31"></a><span class="w">      </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-32" name="__codelineno-24-32"></a><span class="w">        </span><span class="nt">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span>
+<a id="__codelineno-24-33" name="__codelineno-24-33"></a><span class="w">        </span><span class="nt">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${workspaceRoot}/Build/Boot/DEBUG_GCC5/X64/SigmaBootPkg.debug"</span><span class="p">,</span>
+<a id="__codelineno-24-34" name="__codelineno-24-34"></a><span class="w">        </span><span class="nt">"cwd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${workspaceRoot}"</span><span class="p">,</span>
+<a id="__codelineno-24-35" name="__codelineno-24-35"></a><span class="w">        </span><span class="nt">"MIMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdb"</span><span class="p">,</span>
+<a id="__codelineno-24-36" name="__codelineno-24-36"></a><span class="w">        </span><span class="nt">"miDebuggerPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/usr/bin/gdb"</span><span class="p">,</span>
+<a id="__codelineno-24-37" name="__codelineno-24-37"></a><span class="w">        </span><span class="nt">"externalConsole"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-24-38" name="__codelineno-24-38"></a><span class="w">        </span><span class="nt">"targetArchitecture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x64"</span><span class="p">,</span>
+<a id="__codelineno-24-39" name="__codelineno-24-39"></a><span class="w">        </span><span class="nt">"customLaunchSetupCommands"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <a id="__codelineno-24-40" name="__codelineno-24-40"></a><span class="w">          </span><span class="p">{</span>
-<a id="__codelineno-24-41" name="__codelineno-24-41"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Connect to qemu&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-42" name="__codelineno-24-42"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-target-select remote :1234&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-43" name="__codelineno-24-43"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-41" name="__codelineno-24-41"></a><span class="w">            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Connect to qemu"</span><span class="p">,</span>
+<a id="__codelineno-24-42" name="__codelineno-24-42"></a><span class="w">            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-target-select remote :1234"</span><span class="p">,</span>
+<a id="__codelineno-24-43" name="__codelineno-24-43"></a><span class="w">            </span><span class="nt">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-24-44" name="__codelineno-24-44"></a><span class="w">          </span><span class="p">},</span>
 <a id="__codelineno-24-45" name="__codelineno-24-45"></a><span class="w">          </span><span class="p">{</span>
-<a id="__codelineno-24-46" name="__codelineno-24-46"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Load script for uefi debugging&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-47" name="__codelineno-24-47"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source ${workspaceRoot}/Src/Base/setup.gdb&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-48" name="__codelineno-24-48"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-46" name="__codelineno-24-46"></a><span class="w">            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Load script for uefi debugging"</span><span class="p">,</span>
+<a id="__codelineno-24-47" name="__codelineno-24-47"></a><span class="w">            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source ${workspaceRoot}/Src/Base/setup.gdb"</span><span class="p">,</span>
+<a id="__codelineno-24-48" name="__codelineno-24-48"></a><span class="w">            </span><span class="nt">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-24-49" name="__codelineno-24-49"></a><span class="w">          </span><span class="p">},</span>
 <a id="__codelineno-24-50" name="__codelineno-24-50"></a><span class="w">          </span><span class="p">{</span>
-<a id="__codelineno-24-51" name="__codelineno-24-51"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Enable pretty-printing for gdb&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-52" name="__codelineno-24-52"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-enable-pretty-printing&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-53" name="__codelineno-24-53"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-51" name="__codelineno-24-51"></a><span class="w">            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enable pretty-printing for gdb"</span><span class="p">,</span>
+<a id="__codelineno-24-52" name="__codelineno-24-52"></a><span class="w">            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-enable-pretty-printing"</span><span class="p">,</span>
+<a id="__codelineno-24-53" name="__codelineno-24-53"></a><span class="w">            </span><span class="nt">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-24-54" name="__codelineno-24-54"></a><span class="w">          </span><span class="p">},</span>
 <a id="__codelineno-24-55" name="__codelineno-24-55"></a><span class="w">          </span><span class="p">{</span>
-<a id="__codelineno-24-56" name="__codelineno-24-56"></a><span class="w">            </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Set disassembly style for gdb&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-57" name="__codelineno-24-57"></a><span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-gdb-set disassembly-flavor intel&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-58" name="__codelineno-24-58"></a><span class="w">            </span><span class="nt">&quot;ignoreFailures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-56" name="__codelineno-24-56"></a><span class="w">            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Set disassembly style for gdb"</span><span class="p">,</span>
+<a id="__codelineno-24-57" name="__codelineno-24-57"></a><span class="w">            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-gdb-set disassembly-flavor intel"</span><span class="p">,</span>
+<a id="__codelineno-24-58" name="__codelineno-24-58"></a><span class="w">            </span><span class="nt">"ignoreFailures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-24-59" name="__codelineno-24-59"></a><span class="w">          </span><span class="p">}</span>
 <a id="__codelineno-24-60" name="__codelineno-24-60"></a><span class="w">        </span><span class="p">],</span>
-<a id="__codelineno-24-61" name="__codelineno-24-61"></a><span class="w">        </span><span class="nt">&quot;launchCompleteCommand&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exec-continue&quot;</span><span class="p">,</span>
-<a id="__codelineno-24-62" name="__codelineno-24-62"></a><span class="w">        </span><span class="nt">&quot;logging&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-24-63" name="__codelineno-24-63"></a><span class="w">          </span><span class="nt">&quot;engineLogging&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-24-61" name="__codelineno-24-61"></a><span class="w">        </span><span class="nt">"launchCompleteCommand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exec-continue"</span><span class="p">,</span>
+<a id="__codelineno-24-62" name="__codelineno-24-62"></a><span class="w">        </span><span class="nt">"logging"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-63" name="__codelineno-24-63"></a><span class="w">          </span><span class="nt">"engineLogging"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <a id="__codelineno-24-64" name="__codelineno-24-64"></a><span class="w">        </span><span class="p">}</span>
 <a id="__codelineno-24-65" name="__codelineno-24-65"></a><span class="w">      </span><span class="p">}</span>
 <a id="__codelineno-24-66" name="__codelineno-24-66"></a><span class="w">    </span><span class="p">}</span>
@@ -2482,7 +2482,7 @@ Shell  展示了如何在调用shell进行变量值的获取,env可以设置环�
 </code></pre></div></td></tr></table></div>
 <h2 id="_16">快捷键<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
 <h3 id="visual-studio-vscode">Visual Studio / VSCode<a class="headerlink" href="#visual-studio-vscode" title="Permanent link">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="k">let</span> <span class="k">g</span>:vimspector_enable_mappings <span class="p">=</span> <span class="s1">&#39;VISUAL_STUDIO&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="k">let</span> <span class="k">g</span>:vimspector_enable_mappings <span class="p">=</span> <span class="s1">'VISUAL_STUDIO'</span>
 </code></pre></div></td></tr></table></div>
 <table>
 <thead>
@@ -2556,7 +2556,7 @@ Shell  展示了如何在调用shell进行变量值的获取,env可以设置环�
 </tbody>
 </table>
 <h3 id="human-mode">Human Mode<a class="headerlink" href="#human-mode" title="Permanent link">&para;</a></h3>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="k">let</span> <span class="k">g</span>:vimspector_enable_mappings <span class="p">=</span> <span class="s1">&#39;HUMAN&#39;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="k">let</span> <span class="k">g</span>:vimspector_enable_mappings <span class="p">=</span> <span class="s1">'HUMAN'</span>
 </code></pre></div></td></tr></table></div>
 <table>
 <thead>
@@ -2627,8 +2627,8 @@ Shell  展示了如何在调用shell进行变量值的获取,env可以设置环�
 <h3 id="_17">映射<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
 <p>个人喜好...</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
-<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nb">nnoremap</span> <span class="p">&lt;</span>C<span class="p">-</span>S<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;</span>VimspectorBalloonEval <span class="c">&quot; 浮动窗口显示变量值</span>
-<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="nb">nnoremap</span> <span class="p">&lt;</span>C<span class="p">-</span>B<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;</span>VimspectorBreakpoints <span class="c">&quot; 断点监测</span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="k">nnoremap</span> <span class="p">&lt;</span>C<span class="p">-</span>S<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;</span>VimspectorBalloonEval <span class="c">" 浮动窗口显示变量值</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="k">nnoremap</span> <span class="p">&lt;</span>C<span class="p">-</span>B<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;</span>VimspectorBreakpoints <span class="c">" 断点监测</span>
 </code></pre></div></td></tr></table></div>
 <h1 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h1>
 <ul>
@@ -2695,8 +2695,6 @@ Shell  展示了如何在调用shell进行变量值的获取,env可以设置环�
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../base/js/mathjax.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

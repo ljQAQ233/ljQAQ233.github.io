@@ -1988,13 +1988,13 @@
 <a id="__codelineno-4-2" name="__codelineno-4-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl<span class="w"> </span>-y
 </code></pre></div></td></tr></table></div>
 下载直接执行!</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>sudo<span class="w"> </span>su<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;bash &lt;(curl -s -S -L https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh)&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>sudo<span class="w"> </span>su<span class="w"> </span>-c<span class="w"> </span><span class="s2">"bash &lt;(curl -s -S -L https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh)"</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="wget">使用Wget<a class="headerlink" href="#wget" title="Permanent link">&para;</a></h2>
 <p>这个也很硬核哈，等同于上文使用curl</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>wget<span class="w"> </span>-y
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>sudo<span class="w"> </span>su<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;bash &lt;(wget -qO- https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh)&quot;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>sudo<span class="w"> </span>su<span class="w"> </span>-c<span class="w"> </span><span class="s2">"bash &lt;(wget -qO- https://gitee.com/canyan233/raw/raw/master/install-McServer-finally.sh)"</span>
 </code></pre></div></td></tr></table></div>
 <h1 id="_2">使用脚本进行配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <p>执行过命令后，脚本会自动更新软件列表</p>
@@ -2021,7 +2021,7 @@
 <strong>没有意外的话就下一步啦，但我们考虑到了意外QwQ……那就是安装的服务器目录下有另外一个叫"server.jar"的文件，也对此作出了解决.</strong></p>
 <h1 id="_3">运行实录<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
-<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>It<span class="w"> </span>is<span class="w"> </span>detected<span class="w"> </span>that<span class="w"> </span>there<span class="w"> </span>is<span class="w"> </span>already<span class="w"> </span>a<span class="w"> </span><span class="s2">&quot;server.jar&quot;</span><span class="w"> </span>file,<span class="w"> </span>please<span class="w"> </span>install<span class="w"> </span>it<span class="w"> </span><span class="k">in</span><span class="w"> </span>another<span class="w"> </span>directory
+<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>It<span class="w"> </span>is<span class="w"> </span>detected<span class="w"> </span>that<span class="w"> </span>there<span class="w"> </span>is<span class="w"> </span>already<span class="w"> </span>a<span class="w"> </span><span class="s2">"server.jar"</span><span class="w"> </span>file,<span class="w"> </span>please<span class="w"> </span>install<span class="w"> </span>it<span class="w"> </span><span class="k">in</span><span class="w"> </span>another<span class="w"> </span>directory
 <a id="__codelineno-9-2" name="__codelineno-9-2"></a>delete<span class="o">(</span>d<span class="o">)</span><span class="p">;</span>exit<span class="o">(</span>e<span class="o">)</span><span class="p">;</span>Continue<span class="w"> </span>to<span class="w"> </span>install<span class="w"> </span>this<span class="w"> </span>Jar<span class="o">(</span>c<span class="o">)</span><span class="p">|</span>
 </code></pre></div></td></tr></table></div>
 <p>如下解释：
@@ -2214,8 +2214,6 @@
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../base/js/mathjax.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

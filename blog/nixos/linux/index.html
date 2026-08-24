@@ -2016,7 +2016,7 @@
 <a id="__codelineno-0-12" name="__codelineno-0-12"></a>      |          ^~~~~~~~
 </code></pre></div></td></tr></table></div>
 <p>所以先:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>export PKG_CONFIG_PATH=&quot;${pkgs.elfutils.dev}/lib/pkgconfig&quot;
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>export PKG_CONFIG_PATH="${pkgs.elfutils.dev}/lib/pkgconfig"
 </code></pre></div></td></tr></table></div>
 <h2 id="round-3-fhs">round 3 - FHS 问题<a class="headerlink" href="#round-3-fhs" title="Permanent link">&para;</a></h2>
 <div class="admonition drop">
@@ -2082,8 +2082,6 @@
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../base/js/mathjax.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

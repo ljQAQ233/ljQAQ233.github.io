@@ -1965,9 +1965,9 @@
 <span class="normal"><a href="#__codelineno-0-4">4</a></span>
 <span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>ctags<span class="w"> </span>-x<span class="w"> </span><span class="si">${</span><span class="nv">src_file</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="k">function</span><span class="w">  </span><span class="se">\</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-s<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w">      </span><span class="se">\</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f5-<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $0&quot;;&quot;}&#39;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-s<span class="w"> </span><span class="s1">' '</span><span class="w">      </span><span class="se">\</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">' '</span><span class="w"> </span>-f5-<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{print $0";"}'</span>
 </code></pre></div></td></tr></table></div>
 <p>NOTE: 可能只能提取到定义的首行, 使用 <code>clang-format</code> 配合?</p>
 <hr />
@@ -2028,8 +2028,6 @@
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../base/js/mathjax.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
