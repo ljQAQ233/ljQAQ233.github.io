@@ -1,66 +1,67 @@
 site_name: maouai233 的个人网站
 site_author: maouai233
-
 site_url: https://ljqaq233.github.io
-
 nav:
   - "主页": "index.md"
   - "随笔":
-    - "diary/index.md"
-    - "diary/2024-summer.md"
-    - "diary/2024-autumn.md"
-    - "diary/2025-spring.md"
-    - "diary/2025-summer.md"
-    - "diary/2025-autumn.md"
+      - "diary/index.md"
+      - "diary/2024-summer.md"
+      - "diary/2024-autumn.md"
+      - "diary/2025-spring.md"
+      - "diary/2025-summer.md"
+      - "diary/2025-autumn.md"
   - "杂项":
-    - "misc/index.md"
-    - "misc/bin86.md"
-    - "misc/ctags.md"
-    - "misc/find.md"
-    - "misc/linux-bt.md"
-    - "misc/linux-login.md"
-    - "misc/time-sync.md"
-    - "misc/osdev-offline.md"
-    - "misc/pacman.md"
-    - "misc/dynlibs.md"
-    - "misc/ncurses.md"
+      - "misc/index.md"
+      - "misc/bin86.md"
+      - "misc/ctags.md"
+      - "misc/find.md"
+      - "misc/linux-bt.md"
+      - "misc/linux-login.md"
+      - "misc/time-sync.md"
+      - "misc/osdev-offline.md"
+      - "misc/pacman.md"
+      - "misc/dynlibs.md"
+      - "misc/ncurses.md"
   - "旧事":
-    - "概览": "hexo/index.md"
-    - "正文":
-      - "hexo/my-2023.md"
-      - "hexo/mc-server.md"
-      - "hexo/vim-debugs.md"
-      - "hexo/busybox-svr.md"
-      - "hexo/uefi-types.md"
-      - "hexo/uefi-macros.md"
-      - "hexo/uefi-bmp0.md"
-      - "hexo/uefi-bmp1.md"
+      - "概览": "hexo/index.md"
+      - "正文":
+          - "hexo/my-2023.md"
+          - "hexo/mc-server.md"
+          - "hexo/vim-debugs.md"
+          - "hexo/busybox-svr.md"
+          - "hexo/uefi-types.md"
+          - "hexo/uefi-macros.md"
+          - "hexo/uefi-bmp0.md"
+          - "hexo/uefi-bmp1.md"
   - "博客":
-    - "NixOS":
-      - blog/nixos/gist.md
-      - blog/nixos/fcitx.md
-    - "gdb":
-      - blog/gdb/basic.md
-      - blog/gdb/master.md
-      - blog/gdb/vscode.md
-    - "编程语言":
-      - "blog/lang/c/intro.md"
-    - "视频":
-      - "blog/bili/005.md"
-      - "blog/bili/edk2-liba.md"
+      - "NixOS":
+          - blog/nixos/gist.md
+          - blog/nixos/fcitx.md
+      - "gdb":
+          - blog/gdb/basic.md
+          - blog/gdb/master.md
+          - blog/gdb/vscode.md
+      - "编程语言":
+          - "blog/lang/c/intro.md"
+          - "Nim":
+              - "blog/lang/nim/intro.md"
+              - "blog/lang/nim/01.md"
+              - "blog/lang/nim/02.md"
+              - "blog/lang/nim/03.md"
+              - "blog/lang/nim/04.md"
+      - "视频":
+          - "blog/bili/005.md"
+          - "blog/bili/edk2-liba.md"
   - 目标: "target.md"
   - 网站: "website.md"
-
 theme:
-  name:
-    material
+  name: material
   features:
-    - content.code.copy 
-    - content.code.annotate 
+    - content.code.copy
+    - content.code.annotate
     - navigation.tabs
     - navigation.tabs.sticky
   custom_dir: mine
-
 markdown_extensions:
   # 标题旁的锚点
   - toc:
@@ -76,24 +77,18 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
-
   # 花哨的提示
   - admonition
   - pymdownx.details
   - pymdownx.superfences
-
   # 脚注
   - footnotes
-
   # 批注
   - pymdownx.critic
-
   # 马克笔
   - pymdownx.mark
-
 extra_css:
   - base/css/hr.css
-
 extra_javascript:
   - base/js/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
