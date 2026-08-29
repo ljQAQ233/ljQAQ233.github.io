@@ -48,6 +48,10 @@ nav:
               - "blog/lang/nim/02.md"
               - "blog/lang/nim/03.md"
               - "blog/lang/nim/04.md"
+              - "blog/lang/nim/05.md"
+              - "blog/lang/nim/06.md"
+              - "blog/lang/nim/07.md"
+              - "blog/lang/nim/08.md"
       - "视频":
           - "blog/bili/005.md"
           - "blog/bili/edk2-liba.md"
