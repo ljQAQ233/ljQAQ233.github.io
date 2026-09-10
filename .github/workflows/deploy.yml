@@ -1,23 +1,30 @@
 name: deploy
-
 on: push
-
 jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
-
     steps:
     - name: checkout
       uses: actions/checkout@v4
-    
+
     - name: prepare python
       uses: actions/setup-python@v4
       with:
         python-version: 3.x
 
+    - name: fetch textos-dev docs
+      uses: ./.github/actions/fetch-extern
+      with:
+        repository: ljQAQ233/textos-dev
+        name: textos-dev
+        src: docs
+
     - name: prepare dependencies
-      run: pip install mkdocs-material 
+      run: pip install mkdocs-material pyyaml
+
+    - name: generate extern nav
+      run: python mkextern.py
 
     - name: build docs
       run: mkdocs build
@@ -27,4 +34,3 @@ jobs:
       with:
         branch: gh-pages
         folder: site
-

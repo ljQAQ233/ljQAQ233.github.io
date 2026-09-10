@@ -1,0 +1,29 @@
+# author: opencode (deepseek-v4-pro)
+name: fetch extern docs
+description: clone a repo's docs folder into extern
+inputs:
+  repository:
+    description: owner/repo to clone
+    required: true
+  name:
+    description: target folder name under extern
+    required: true
+  src:
+    description: source folder inside the repo to move
+    required: false
+    default: docs
+runs:
+  using: composite
+  steps:
+    - name: clone ${{ inputs.repository }}
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ inputs.repository }}
+        path: ${{ inputs.name }}
+    - name: move docs into extern
+      shell: bash
+      run: |
+        mkdir -p docs/extern
+        rm -rf docs/extern/${{ inputs.name }}
+        mv ${{ inputs.name }}/${{ inputs.src }} docs/extern/${{ inputs.name }}
+        rm -rf ${{ inputs.name }}
