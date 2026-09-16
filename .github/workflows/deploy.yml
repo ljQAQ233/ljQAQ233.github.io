@@ -19,6 +19,13 @@ jobs:
         repository: ljQAQ233/textos-dev
         name: textos-dev
         src: docs
+    
+    - name: fetch newlib docs
+      uses: ./.github/actions/fetch-extern
+      with:
+        repository: ljQAQ233/newlib
+        name: newlib
+        src: docs
 
     - name: prepare dependencies
       run: pip install mkdocs-material pyyaml
