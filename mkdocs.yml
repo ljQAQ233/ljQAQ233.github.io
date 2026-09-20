@@ -17,6 +17,7 @@ nav:
       - "misc/find.md"
       - "misc/linux-bt.md"
       - "misc/linux-login.md"
+      - "misc/linux-mfs-disk.md"
       - "misc/time-sync.md"
       - "misc/osdev-offline.md"
       - "misc/pacman.md"
