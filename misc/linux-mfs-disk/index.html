@@ -10,28 +10,28 @@
         <meta name="author" content="maouai233">
       
       
-        <link rel="canonical" href="https://ljqaq233.github.io/extern/textos-dev/boot/runtime/barebone-asmkern/">
+        <link rel="canonical" href="https://ljqaq233.github.io/misc/linux-mfs-disk/">
       
       
-        <link rel="prev" href="../../protocol/struct/">
+        <link rel="prev" href="../linux-login/">
       
       
-        <link rel="next" href="../bootsrv-mata/">
+        <link rel="next" href="../time-sync/">
       
       
         
       
       
-      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>一个汇编内核的裸机加载运行 - maouai233 的个人网站</title>
+        <title>linux 内核无 initrd 从 minixfs 启动 - maouai233 的个人网站</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -50,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../base/css/hr.css">
+      <link rel="stylesheet" href="../../base/css/hr.css">
     
-    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#linux-initrd-minixfs" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../.." title="maouai233 的个人网站" class="md-header__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+    <a href="../.." title="maouai233 的个人网站" class="md-header__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              一个汇编内核的裸机加载运行
+              linux 内核无 initrd 从 minixfs 启动
             
           </span>
         </div>
@@ -173,7 +173,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -194,7 +194,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../diary/" class="md-tabs__link">
+        <a href="../../diary/" class="md-tabs__link">
           
   
   
@@ -210,11 +210,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../../misc/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -234,7 +236,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../hexo/" class="md-tabs__link">
+        <a href="../../hexo/" class="md-tabs__link">
           
   
   
@@ -261,7 +263,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../blog/nixos/gist/" class="md-tabs__link">
+        <a href="../../blog/nixos/gist/" class="md-tabs__link">
           
   
   
@@ -282,7 +284,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../website/" class="md-tabs__link">
+      <a href="../../website/" class="md-tabs__link">
         
   
   
@@ -299,8 +301,6 @@
   
   
   
-    
-  
   
     
     
@@ -308,13 +308,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../../newlib/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../extern/newlib/" class="md-tabs__link">
           
   
   
@@ -357,7 +355,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../.." title="maouai233 的个人网站" class="md-nav__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+    <a href="../.." title="maouai233 的个人网站" class="md-nav__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -375,7 +373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -452,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/" class="md-nav__link">
+      <a href="../../diary/" class="md-nav__link">
         
   
   
@@ -480,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2024-summer/" class="md-nav__link">
+      <a href="../../diary/2024-summer/" class="md-nav__link">
         
   
   
@@ -508,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2024-autumn/" class="md-nav__link">
+      <a href="../../diary/2024-autumn/" class="md-nav__link">
         
   
   
@@ -536,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2025-spring/" class="md-nav__link">
+      <a href="../../diary/2025-spring/" class="md-nav__link">
         
   
   
@@ -564,7 +562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2025-summer/" class="md-nav__link">
+      <a href="../../diary/2025-summer/" class="md-nav__link">
         
   
   
@@ -592,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2025-autumn/" class="md-nav__link">
+      <a href="../../diary/2025-autumn/" class="md-nav__link">
         
   
   
@@ -624,24 +622,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -659,7 +662,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -677,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -705,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/bin86/" class="md-nav__link">
+      <a href="../bin86/" class="md-nav__link">
         
   
   
@@ -733,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/ctags/" class="md-nav__link">
+      <a href="../ctags/" class="md-nav__link">
         
   
   
@@ -761,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/find/" class="md-nav__link">
+      <a href="../find/" class="md-nav__link">
         
   
   
@@ -789,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/linux-bt/" class="md-nav__link">
+      <a href="../linux-bt/" class="md-nav__link">
         
   
   
@@ -817,7 +820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/linux-login/" class="md-nav__link">
+      <a href="../linux-login/" class="md-nav__link">
         
   
   
@@ -842,10 +845,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../../misc/linux-mfs-disk/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    linux 内核无 initrd 从 minixfs 启动
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -861,6 +891,120 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        init
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        镜像
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        启动
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="启动">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -kernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bootloader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -873,7 +1017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/time-sync/" class="md-nav__link">
+      <a href="../time-sync/" class="md-nav__link">
         
   
   
@@ -901,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/osdev-offline/" class="md-nav__link">
+      <a href="../osdev-offline/" class="md-nav__link">
         
   
   
@@ -929,7 +1073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/pacman/" class="md-nav__link">
+      <a href="../pacman/" class="md-nav__link">
         
   
   
@@ -957,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/dynlibs/" class="md-nav__link">
+      <a href="../dynlibs/" class="md-nav__link">
         
   
   
@@ -985,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/ncurses/" class="md-nav__link">
+      <a href="../ncurses/" class="md-nav__link">
         
   
   
@@ -1070,7 +1214,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/" class="md-nav__link">
+      <a href="../../hexo/" class="md-nav__link">
         
   
   
@@ -1148,7 +1292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/my-2023/" class="md-nav__link">
+      <a href="../../hexo/my-2023/" class="md-nav__link">
         
   
   
@@ -1176,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/mc-server/" class="md-nav__link">
+      <a href="../../hexo/mc-server/" class="md-nav__link">
         
   
   
@@ -1204,7 +1348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/vim-debugs/" class="md-nav__link">
+      <a href="../../hexo/vim-debugs/" class="md-nav__link">
         
   
   
@@ -1232,7 +1376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/busybox-svr/" class="md-nav__link">
+      <a href="../../hexo/busybox-svr/" class="md-nav__link">
         
   
   
@@ -1260,7 +1404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/uefi-types/" class="md-nav__link">
+      <a href="../../hexo/uefi-types/" class="md-nav__link">
         
   
   
@@ -1288,7 +1432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/uefi-macros/" class="md-nav__link">
+      <a href="../../hexo/uefi-macros/" class="md-nav__link">
         
   
   
@@ -1316,7 +1460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/uefi-bmp0/" class="md-nav__link">
+      <a href="../../hexo/uefi-bmp0/" class="md-nav__link">
         
   
   
@@ -1344,7 +1488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/uefi-bmp1/" class="md-nav__link">
+      <a href="../../hexo/uefi-bmp1/" class="md-nav__link">
         
   
   
@@ -1487,7 +1631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/nixos/gist/" class="md-nav__link">
+      <a href="../../blog/nixos/gist/" class="md-nav__link">
         
   
   
@@ -1515,7 +1659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/nixos/fcitx/" class="md-nav__link">
+      <a href="../../blog/nixos/fcitx/" class="md-nav__link">
         
   
   
@@ -1601,7 +1745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/gdb/basic/" class="md-nav__link">
+      <a href="../../blog/gdb/basic/" class="md-nav__link">
         
   
   
@@ -1629,7 +1773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/gdb/master/" class="md-nav__link">
+      <a href="../../blog/gdb/master/" class="md-nav__link">
         
   
   
@@ -1657,7 +1801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/gdb/vscode/" class="md-nav__link">
+      <a href="../../blog/gdb/vscode/" class="md-nav__link">
         
   
   
@@ -1793,7 +1937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/intro/" class="md-nav__link">
+      <a href="../../blog/lang/nim/intro/" class="md-nav__link">
         
   
   
@@ -1821,7 +1965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/01/" class="md-nav__link">
+      <a href="../../blog/lang/nim/01/" class="md-nav__link">
         
   
   
@@ -1849,7 +1993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/02/" class="md-nav__link">
+      <a href="../../blog/lang/nim/02/" class="md-nav__link">
         
   
   
@@ -1877,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/03/" class="md-nav__link">
+      <a href="../../blog/lang/nim/03/" class="md-nav__link">
         
   
   
@@ -1905,7 +2049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/04/" class="md-nav__link">
+      <a href="../../blog/lang/nim/04/" class="md-nav__link">
         
   
   
@@ -1933,7 +2077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/05/" class="md-nav__link">
+      <a href="../../blog/lang/nim/05/" class="md-nav__link">
         
   
   
@@ -1961,7 +2105,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/06/" class="md-nav__link">
+      <a href="../../blog/lang/nim/06/" class="md-nav__link">
         
   
   
@@ -1989,7 +2133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/07/" class="md-nav__link">
+      <a href="../../blog/lang/nim/07/" class="md-nav__link">
         
   
   
@@ -2017,7 +2161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/08/" class="md-nav__link">
+      <a href="../../blog/lang/nim/08/" class="md-nav__link">
         
   
   
@@ -2111,7 +2255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/bili/005/" class="md-nav__link">
+      <a href="../../blog/bili/005/" class="md-nav__link">
         
   
   
@@ -2139,7 +2283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/bili/edk2-liba/" class="md-nav__link">
+      <a href="../../blog/bili/edk2-liba/" class="md-nav__link">
         
   
   
@@ -2182,7 +2326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../website/" class="md-nav__link">
+      <a href="../../website/" class="md-nav__link">
         
   
   
@@ -2206,29 +2350,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
   
@@ -2246,7 +2385,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2314,7 +2453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../newlib/" class="md-nav__link">
+      <a href="../../extern/newlib/" class="md-nav__link">
         
   
   
@@ -2342,7 +2481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../newlib/porting/" class="md-nav__link">
+      <a href="../../extern/newlib/porting/" class="md-nav__link">
         
   
   
@@ -2370,7 +2509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../newlib/start/" class="md-nav__link">
+      <a href="../../extern/newlib/start/" class="md-nav__link">
         
   
   
@@ -2448,7 +2587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../newlib/aigc/autotools/" class="md-nav__link">
+      <a href="../../extern/newlib/aigc/autotools/" class="md-nav__link">
         
   
   
@@ -2476,7 +2615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../newlib/aigc/build/" class="md-nav__link">
+      <a href="../../extern/newlib/aigc/build/" class="md-nav__link">
         
   
   
@@ -2504,7 +2643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../newlib/aigc/buildsys/" class="md-nav__link">
+      <a href="../../extern/newlib/aigc/buildsys/" class="md-nav__link">
         
   
   
@@ -2532,7 +2671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../newlib/aigc/libc/" class="md-nav__link">
+      <a href="../../extern/newlib/aigc/libc/" class="md-nav__link">
         
   
   
@@ -2560,7 +2699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../newlib/aigc/overview/" class="md-nav__link">
+      <a href="../../extern/newlib/aigc/overview/" class="md-nav__link">
         
   
   
@@ -2601,8 +2740,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2613,11 +2750,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
         
           
           <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
@@ -2638,7 +2775,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2656,7 +2793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../bili/" class="md-nav__link">
+      <a href="../../extern/textos-dev/bili/" class="md-nav__link">
         
   
   
@@ -2684,7 +2821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../history/" class="md-nav__link">
+      <a href="../../extern/textos-dev/history/" class="md-nav__link">
         
   
   
@@ -2712,7 +2849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../origin/" class="md-nav__link">
+      <a href="../../extern/textos-dev/origin/" class="md-nav__link">
         
   
   
@@ -2740,7 +2877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../tidyup/" class="md-nav__link">
+      <a href="../../extern/textos-dev/tidyup/" class="md-nav__link">
         
   
   
@@ -2818,7 +2955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/debug/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/debug/" class="md-nav__link">
         
   
   
@@ -2846,7 +2983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/organization/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/organization/" class="md-nav__link">
         
   
   
@@ -2874,7 +3011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/pagetable/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/pagetable/" class="md-nav__link">
         
   
   
@@ -2902,7 +3039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/params/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/params/" class="md-nav__link">
         
   
   
@@ -2980,7 +3117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/network/arp/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/network/arp/" class="md-nav__link">
         
   
   
@@ -3008,7 +3145,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/network/e1000/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/network/e1000/" class="md-nav__link">
         
   
   
@@ -3036,7 +3173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/network/tcp/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/network/tcp/" class="md-nav__link">
         
   
   
@@ -3122,7 +3259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/filesystem/Api/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/filesystem/Api/" class="md-nav__link">
         
   
   
@@ -3150,7 +3287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/filesystem/analysis-01/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/filesystem/analysis-01/" class="md-nav__link">
         
   
   
@@ -3178,7 +3315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/filesystem/analysis-02/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/filesystem/analysis-02/" class="md-nav__link">
         
   
   
@@ -3206,7 +3343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/filesystem/pipe/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/filesystem/pipe/" class="md-nav__link">
         
   
   
@@ -3234,7 +3371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/filesystem/vfs-and-fat32/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/filesystem/vfs-and-fat32/" class="md-nav__link">
         
   
   
@@ -3262,7 +3399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/filesystem/%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/filesystem/%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81/" class="md-nav__link">
         
   
   
@@ -3290,7 +3427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/filesystem/%E7%9B%AE%E5%BD%95%E8%AF%BB%E5%8F%96/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/filesystem/%E7%9B%AE%E5%BD%95%E8%AF%BB%E5%8F%96/" class="md-nav__link">
         
   
   
@@ -3376,7 +3513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/multiproc/mycpu/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/multiproc/mycpu/" class="md-nav__link">
         
   
   
@@ -3462,7 +3599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/graphics/basic/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/graphics/basic/" class="md-nav__link">
         
   
   
@@ -3490,7 +3627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/graphics/font/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/graphics/font/" class="md-nav__link">
         
   
   
@@ -3576,7 +3713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/task/task/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/task/task/" class="md-nav__link">
         
   
   
@@ -3662,7 +3799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/memory/glob-desc-tab/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/memory/glob-desc-tab/" class="md-nav__link">
         
   
   
@@ -3690,7 +3827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/memory/kernel-heap/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/memory/kernel-heap/" class="md-nav__link">
         
   
   
@@ -3718,7 +3855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/memory/kernel-remap/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/memory/kernel-remap/" class="md-nav__link">
         
   
   
@@ -3746,7 +3883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/memory/virt-mem-map/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/memory/virt-mem-map/" class="md-nav__link">
         
   
   
@@ -3832,7 +3969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/interrupt/apic-acpi/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/interrupt/apic-acpi/" class="md-nav__link">
         
   
   
@@ -3860,7 +3997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/interrupt/apic-timer/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/interrupt/apic-timer/" class="md-nav__link">
         
   
   
@@ -3888,7 +4025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/interrupt/intr-x86/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/interrupt/intr-x86/" class="md-nav__link">
         
   
   
@@ -3974,7 +4111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/device/clock/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/device/clock/" class="md-nav__link">
         
   
   
@@ -4002,7 +4139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/device/console/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/device/console/" class="md-nav__link">
         
   
   
@@ -4030,7 +4167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/device/lai/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/device/lai/" class="md-nav__link">
         
   
   
@@ -4058,7 +4195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/device/serial/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/device/serial/" class="md-nav__link">
         
   
   
@@ -4086,7 +4223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/device/xyz%20fpu/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/device/xyz%20fpu/" class="md-nav__link">
         
   
   
@@ -4172,7 +4309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/userspace/elf/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/userspace/elf/" class="md-nav__link">
         
   
   
@@ -4200,7 +4337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/userspace/rights/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/userspace/rights/" class="md-nav__link">
         
   
   
@@ -4228,7 +4365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/userspace/syscall/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/userspace/syscall/" class="md-nav__link">
         
   
   
@@ -4256,7 +4393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/userspace/user-ids-rights/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/userspace/user-ids-rights/" class="md-nav__link">
         
   
   
@@ -4284,7 +4421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/userspace/user-manager/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/userspace/user-manager/" class="md-nav__link">
         
   
   
@@ -4312,7 +4449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kernel/userspace/userspace/" class="md-nav__link">
+      <a href="../../extern/textos-dev/kernel/userspace/userspace/" class="md-nav__link">
         
   
   
@@ -4406,7 +4543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/buffer/" class="md-nav__link">
+      <a href="../../extern/textos-dev/lang/buffer/" class="md-nav__link">
         
   
   
@@ -4434,7 +4571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/errno/" class="md-nav__link">
+      <a href="../../extern/textos-dev/lang/errno/" class="md-nav__link">
         
   
   
@@ -4462,7 +4599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/static-assert/" class="md-nav__link">
+      <a href="../../extern/textos-dev/lang/static-assert/" class="md-nav__link">
         
   
   
@@ -4490,7 +4627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/vaargs/" class="md-nav__link">
+      <a href="../../extern/textos-dev/lang/vaargs/" class="md-nav__link">
         
   
   
@@ -4568,7 +4705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lang/sysv/call/" class="md-nav__link">
+      <a href="../../extern/textos-dev/lang/sysv/call/" class="md-nav__link">
         
   
   
@@ -4609,8 +4746,6 @@
                 
   
   
-    
-  
   
   
     
@@ -4621,11 +4756,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_7" >
         
           
           <label class="md-nav__link" for="__nav_7_2_7" id="__nav_7_2_7_label" tabindex="0">
@@ -4646,7 +4781,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_2_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -4714,7 +4849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../debug/macros/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/debug/macros/" class="md-nav__link">
         
   
   
@@ -4742,7 +4877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../debug/udkscript/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/debug/udkscript/" class="md-nav__link">
         
   
   
@@ -4770,7 +4905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../debug/visual/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/debug/visual/" class="md-nav__link">
         
   
   
@@ -4856,7 +4991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file/close-rm-override/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/file/close-rm-override/" class="md-nav__link">
         
   
   
@@ -4884,7 +5019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file/info-of-file/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/file/info-of-file/" class="md-nav__link">
         
   
   
@@ -4912,7 +5047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file/open-rw-wind/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/file/open-rw-wind/" class="md-nav__link">
         
   
   
@@ -4998,7 +5133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../graphics/bmp-show/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/graphics/bmp-show/" class="md-nav__link">
         
   
   
@@ -5026,7 +5161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../graphics/cls/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/graphics/cls/" class="md-nav__link">
         
   
   
@@ -5054,7 +5189,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../graphics/intro-example/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/graphics/intro-example/" class="md-nav__link">
         
   
   
@@ -5082,7 +5217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../graphics/logo-show/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/graphics/logo-show/" class="md-nav__link">
         
   
   
@@ -5110,7 +5245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../graphics/operations/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/graphics/operations/" class="md-nav__link">
         
   
   
@@ -5138,7 +5273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../graphics/resolution/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/graphics/resolution/" class="md-nav__link">
         
   
   
@@ -5224,7 +5359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/config/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/config/config/" class="md-nav__link">
         
   
   
@@ -5310,7 +5445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/debug/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/core/debug/" class="md-nav__link">
         
   
   
@@ -5396,7 +5531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../protocol/protocol/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/protocol/protocol/" class="md-nav__link">
         
   
   
@@ -5424,7 +5559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../protocol/sfs/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/protocol/sfs/" class="md-nav__link">
         
   
   
@@ -5452,7 +5587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../protocol/struct/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/protocol/struct/" class="md-nav__link">
         
   
   
@@ -5485,8 +5620,6 @@
                 
   
   
-    
-  
   
   
     
@@ -5497,11 +5630,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_7_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_7_7" >
         
           
           <label class="md-nav__link" for="__nav_7_2_7_7" id="__nav_7_2_7_7_label" tabindex="0">
@@ -5522,7 +5655,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_7_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_7_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_2_7_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -5537,19 +5670,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../extern/textos-dev/boot/runtime/barebone-asmkern/" class="md-nav__link">
         
   
   
@@ -5565,7 +5689,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -5578,7 +5701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bootsrv-mata/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/runtime/bootsrv-mata/" class="md-nav__link">
         
   
   
@@ -5606,7 +5729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-and-kernel/" class="md-nav__link">
+      <a href="../../extern/textos-dev/boot/runtime/elf-and-kernel/" class="md-nav__link">
         
   
   
@@ -5700,7 +5823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/bug-syscall/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/bug-syscall/" class="md-nav__link">
         
   
   
@@ -5728,7 +5851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/kern-performance/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/kern-performance/" class="md-nav__link">
         
   
   
@@ -5756,7 +5879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/qemu-fw/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/qemu-fw/" class="md-nav__link">
         
   
   
@@ -5784,7 +5907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/qemu-rtc/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/qemu-rtc/" class="md-nav__link">
         
   
   
@@ -5862,7 +5985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/make/subdir/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/make/subdir/" class="md-nav__link">
         
   
   
@@ -5948,7 +6071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/fp/float/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/fp/float/" class="md-nav__link">
         
   
   
@@ -5976,7 +6099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/fp/tofloat/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/fp/tofloat/" class="md-nav__link">
         
   
   
@@ -6062,7 +6185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/fs/minix1/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/fs/minix1/" class="md-nav__link">
         
   
   
@@ -6090,7 +6213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/fs/minix_d/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/fs/minix_d/" class="md-nav__link">
         
   
   
@@ -6118,7 +6241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/fs/minix_i/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/fs/minix_i/" class="md-nav__link">
         
   
   
@@ -6146,7 +6269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../misc/fs/minix_s/" class="md-nav__link">
+      <a href="../../extern/textos-dev/misc/fs/minix_s/" class="md-nav__link">
         
   
   
@@ -6218,6 +6341,108 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        init
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        镜像
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        启动
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="启动">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -kernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bootloader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -6233,16 +6458,121 @@
 
 
 
-<h1 id="_1">一个汇编内核的裸机加载运行<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
-<p>为什么?</p>
-<p>因为它要为以后的操作做一些铺垫...</p>
-<p>那为什么选汇编?</p>
-<p>因为使用的是 <strong>.bin</strong> 可以直接加载并跳转, 无需做解析.</p>
-<h1 id="kernelload">KernelLoad<a class="headerlink" href="#kernelload" title="Permanent link">&para;</a></h1>
-<p>将我们的汇编程序加载到内存. 并返回入口地址.</p>
-<h1 id="_2">运行<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
-<p>将返回的地址强制转成函数指针.</p>
+<h1 id="linux-initrd-minixfs">linux 内核无 initrd 从 minixfs 启动<a class="headerlink" href="#linux-initrd-minixfs" title="Permanent link">&para;</a></h1>
+<p>主要探索 linux 在没有 initrd 时候的启动机制, 也就是直接从磁盘启动</p>
+<p>这里使用 <strong>minix v3 fs</strong> 来作为 <code>rootfs</code> 的文件系统, 而不是其他常见的比如 <strong>ext4</strong></p>
+<h2 id="_1">前置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>首先安装软件包, 我用 nixos 就是这些包, 其他 linux 可以安装对应的包:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>nix-shell<span class="w"> </span>-p<span class="w"> </span>glibc.static<span class="w"> </span>ncurses<span class="w"> </span>flex<span class="w"> </span>bison<span class="w"> </span>bc<span class="w"> </span>elfutils<span class="w"> </span>pkg-config<span class="w"> </span>openssl<span class="w"> </span>perl
+</code></pre></div></td></tr></table></div>
+<p>其他还有的包比较常见, 这里不赘述</p>
+<h2 id="_2">配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>需要自己编译 kernel <strong>来支持 minixfs</strong>, 对于常见的 文件系统, 你当然可以偷个懒, 可以网络上下载, 或者直接使用本系统的 kernel ۹(ÒہÓ)۶</p>
+<p>吃个默认配置先 (σ´-ω-`)σ</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>make<span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>x86_64<span class="w"> </span>defconfig
+</code></pre></div></td></tr></table></div>
+<p>依旧是 tui 配置!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>make<span class="w"> </span>menuconfig
+</code></pre></div></td></tr></table></div>
+<p>在这个路径下把 minixfs 给启用:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a> Symbol: MINIX_FS [=y]
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>   Type  : tristate
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>   Defined at fs/minix/Kconfig:2
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>     Prompt: Minix file system support
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>     Depends on: MISC_FILESYSTEMS [=y] &amp;&amp; BLOCK [=y]
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>     Location:
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>       -&gt; File systems
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>         -&gt; Miscellaneous filesystems (MISC_FILESYSTEMS [=y])
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>   (1)     -&gt; Minix file system support (MINIX_FS [=y])
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>   Selects: BUFFER_HEAD [=y]
+</code></pre></div></td></tr></table></div>
+<p>接着直接编译</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+</code></pre></div></td></tr></table></div>
+<p>它最后会告知 kernel 的路径</p>
+<p><code>x86_64</code> 的 <code>bzImage</code> 位于 <code>arch/x86_64/boot/bzImage -&gt; ../../x86/boot/bzImage</code></p>
+<h2 id="init">init<a class="headerlink" href="#init" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>不用 正经的 init 也可以 (；￣ー￣A</p>
+</blockquote>
+<p>init 也可以是一个普通的 <code>hello world</code> (我就不写了)</p>
+<p>这里为了不拷贝动态链接库 就直接静态编译了</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>gcc<span class="w"> </span>init.c<span class="w"> </span>-o<span class="w"> </span>init<span class="w"> </span>-static
+</code></pre></div></td></tr></table></div>
+<h2 id="_3">镜像<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>给个大的, 64M 磁盘:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/zero<span class="w"> </span><span class="nv">of</span><span class="o">=</span>linux.img<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>4M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">16</span>
+</code></pre></div></td></tr></table></div>
+<p>分个区先:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">",,81"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sfdisk<span class="w"> </span>linux.img
+</code></pre></div></td></tr></table></div>
+<details class="tip sfdisk 用法">
+<summary>Tip</summary>
+<p>sfdisk 作为 fdisk 的姊妹工具, 它提供了一个程序友好的方式来操作磁盘, fdisk 是给人类用的
+sfdisk 这里 从 <code>stdin</code> 读取操作, <code>&lt;start&gt;,&lt;size&gt;,&lt;type&gt;,&lt;bootable&gt;</code> 按照这样的规则来操作
+如果保持 <strong>空</strong> 的话, 就表示默认, <code>81</code> 是 <code>Minix / Old Linux</code> 文件系统类型的 hex</p>
+</details>
+<p>losetup 将这个文件作为一个设备:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>losetup<span class="w"> </span>-f<span class="w"> </span>linux.img<span class="w"> </span>--show<span class="w"> </span>--partscan
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>/dev/loop0
+</code></pre></div></td></tr></table></div>
+<details class="tip losetup 用法">
+<summary>Tip</summary>
+<p><code>-f</code> 表示寻找一个可用的 loop 文件, 看看 <code>/dev</code> 就可能有很多 <code>loopX</code> 文件, 这一些可能是已经被吃上的
+<code>--show</code> 告诉你这个文件对应的 loop dev
+<code>--partscan</code> 顾名思义, 扫描分区. 如果不加, 可能就看不到分区设备像 <code>loopXpY</code>
+<code>-d</code> / <code>--detach</code> 就是取消这个 loop dev</p>
+</details>
+<p>挂载, 拷贝文件:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>sudo<span class="w"> </span>mount<span class="w"> </span>/dev/loop0p1<span class="w"> </span>/mnt
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/sbin
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>sudo<span class="w"> </span>cp<span class="w"> </span>./init<span class="w"> </span>/mnt/sbin
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>sudo<span class="w"> </span>umount<span class="w"> </span>/mnt
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>sudo<span class="w"> </span>losetup<span class="w"> </span>-d<span class="w"> </span>/dev/loop0
+</code></pre></div></td></tr></table></div>
+<h2 id="_4">启动<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>使用 QEMU <code>-kernel</code> 可以去除掉 <strong>bootloader</strong>, 所以作为两个章节讨论</p>
+<h3 id="-kernel"><code>-kernel</code><a class="headerlink" href="#-kernel" title="Permanent link">&para;</a></h3>
+<p>我是用 <strong>grub2 (2.14)</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>qemu-system-x86_64<span class="w"> </span>-kernel<span class="w"> </span>arch/x86/boot/bzImage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">  </span>-append<span class="w"> </span><span class="s2">"root=/dev/sda1"</span><span class="w"> </span>-hda<span class="w"> </span>linux.img
+</code></pre></div></td></tr></table></div>
+<h3 id="bootloader"><code>bootloader</code><a class="headerlink" href="#bootloader" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>sudo<span class="w"> </span>grub-install<span class="w"> </span>--boot-directory<span class="o">=</span>/mnt/boot<span class="w"> </span>--target<span class="o">=</span>i386-pc<span class="w"> </span>/dev/loop0
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF | sudo tee /mnt/boot/grub/grub.cfg     </span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="s">menuentry "Linux" {</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="s">    insmod minix</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="s">    insmod minix3</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="s">    linux /bzImage root=/dev/sda1</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="s">}</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="s">EOF</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_5">参考<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.gnu.org/software/grub/manual/grub/grub.html">https://www.gnu.org/software/grub/manual/grub/grub.html</a></li>
+</ul>
 
 
 
@@ -6292,12 +6622,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="../../../../../base/js/mathjax.js"></script>
+        <script src="../../base/js/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
