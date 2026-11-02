@@ -26,6 +26,13 @@ jobs:
         repository: ljQAQ233/newlib
         name: newlib
         src: docs
+    
+    - name: fetch labs docs
+      uses: ./.github/actions/fetch-extern
+      with:
+        repository: ljQAQ233/labs
+        name: labs
+        src: .
 
     - name: prepare dependencies
       run: pip install mkdocs-material pyyaml

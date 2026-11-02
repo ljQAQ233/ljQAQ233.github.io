@@ -25,5 +25,5 @@ runs:
       run: |
         mkdir -p docs/extern
         rm -rf docs/extern/${{ inputs.name }}
-        mv ${{ inputs.name }}/${{ inputs.src }} docs/extern/${{ inputs.name }}
+        mv `realpath ${{ inputs.name }}/${{ inputs.src }}` docs/extern/${{ inputs.name }}
         rm -rf ${{ inputs.name }}
