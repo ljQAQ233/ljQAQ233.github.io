@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@slidev/cli": "^52.9.1",
+    "@slidev/theme-seriph": "latest",
+    "slidev-addon-difflang": "file:addons/slidev-addon-difflang"
+  },
+  "workspaces": [
+    "elf/*"
+  ]
+}
