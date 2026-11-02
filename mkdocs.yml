@@ -23,6 +23,7 @@ nav:
       - "misc/pacman.md"
       - "misc/dynlibs.md"
       - "misc/ncurses.md"
+      - "misc/ssh-win.md"
   - "旧事":
       - "概览": "hexo/index.md"
       - "正文":
