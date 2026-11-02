@@ -10,13 +10,13 @@
         <meta name="author" content="maouai233">
       
       
-        <link rel="canonical" href="https://ljqaq233.github.io/extern/newlib/elf/elf-02/">
+        <link rel="canonical" href="https://ljqaq233.github.io/extern/newlib/aigc/buildsys/">
       
       
-        <link rel="prev" href="../../../textos-dev/misc/fp/tofloat/">
+        <link rel="prev" href="../build/">
       
       
-        <link rel="next" href="slides/">
+        <link rel="next" href="../libc/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>statically-linked elf loader - maouai233 的个人网站</title>
+        <title>构建系统组成 - maouai233 的个人网站</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#statically-linked-elf-loader" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              statically-linked elf loader
+              构建系统组成
             
           </span>
         </div>
@@ -6003,33 +6003,17 @@
                 
   
   
-    
   
   
-  
-    
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_7_2_1" id="__nav_7_2_1_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
     
   
-    elf
+    newlib
   
 
     
@@ -6037,19 +6021,67 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7_2_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    elf
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../porting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    porting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -6071,17 +6103,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_7_2_1_1" id="__nav_7_2_1_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_2_4" id="__nav_7_2_4_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    elf-02
+    aigc
   
 
     
@@ -6092,16 +6124,72 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_1_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7_2_1_1">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    elf-02
+    aigc
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autotools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    autoconf / automake 简单入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    如何编译
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -6119,7 +6207,389 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统组成
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统组成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#newlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        newlib
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="newlib">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autoconf-automake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成脚本 (autoconf / automake 的输入)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        per-target 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        源文件清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成物
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cygwin-winsup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cygwin (winsup)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        构建流程
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    libc 结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3_1" id="__nav_7_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    elf
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    elf
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3_1_1" id="__nav_7_3_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    elf-02
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    elf-02
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../labs/elf/elf-02/" class="md-nav__link">
         
   
   
@@ -6135,7 +6605,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -6148,7 +6617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="slides/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-02/slides/" class="md-nav__link">
         
   
   
@@ -6195,10 +6664,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_2" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_1_2" id="__nav_7_2_1_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_1_2" id="__nav_7_3_1_2_label" tabindex="0">
             
   
   
@@ -6216,8 +6685,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_1_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_1_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6234,7 +6703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-03/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-03/" class="md-nav__link">
         
   
   
@@ -6262,7 +6731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-03/slides/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-03/slides/" class="md-nav__link">
         
   
   
@@ -6309,10 +6778,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_3" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_1_3" id="__nav_7_2_1_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_1_3" id="__nav_7_3_1_3_label" tabindex="0">
             
   
   
@@ -6330,8 +6799,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_1_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_1_3">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6348,7 +6817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-01/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-01/" class="md-nav__link">
         
   
   
@@ -6376,7 +6845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-01/slides/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-01/slides/" class="md-nav__link">
         
   
   
@@ -6404,7 +6873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-01/slidex/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-01/slidex/" class="md-nav__link">
         
   
   
@@ -6459,10 +6928,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_2" id="__nav_7_2_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
             
   
   
@@ -6480,8 +6949,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6509,10 +6978,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2_1" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_2_1" id="__nav_7_2_2_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_2_1" id="__nav_7_3_2_1_label" tabindex="0">
             
   
   
@@ -6530,8 +6999,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_2_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_2_1">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_2_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6548,7 +7017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/slidev-addon-difflang/" class="md-nav__link">
+      <a href="../../../labs/addons/slidev-addon-difflang/" class="md-nav__link">
         
   
   
@@ -6576,7 +7045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/slidev-addon-difflang/example/" class="md-nav__link">
+      <a href="../../../labs/addons/slidev-addon-difflang/example/" class="md-nav__link">
         
   
   
@@ -6648,6 +7117,108 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#newlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        newlib
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="newlib">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autoconf-automake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成脚本 (autoconf / automake 的输入)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        per-target 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        源文件清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成物
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cygwin-winsup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cygwin (winsup)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        构建流程
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -6663,15 +7234,60 @@
 
 
 
-<h1 id="statically-linked-elf-loader">statically-linked elf loader<a class="headerlink" href="#statically-linked-elf-loader" title="Permanent link">&para;</a></h1>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> static-pie elf supported</li>
+<h1 id="_1">构建系统组成<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>这个仓库的构建系统分两层: 顶层是一个 GNU 组合树的 <code>configure</code> (与 GCC 共享), 它负责把 <code>--target</code> 分发给下面的子项目; 每个子项目 (newlib, libgloss, Cygwin) 又有自己的一套 autoconf/automake 脚本.</p>
+<h2 id="_2">顶层<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>根目录的 <code>configure</code>, <code>configure.ac</code>, <code>Makefile.in</code> 是 GNU 工具链的组合树脚本, 与 GCC 仓库保持一致 (改动要通知 binutils/gdb, 见 <code>MAINTAINERS</code>). 它的作用是根据 <code>--target</code> 决定递归配置哪些子目录: <code>newlib/</code>, <code>libgloss/</code>, 以及目标为 Cygwin 时的 <code>winsup/</code>.</p>
+<p>配套的 <code>config.sub</code> 和 <code>config.guess</code> 也是 GNU 共享文件, 负责校验和规范化目标三元组. 新 OS 名要先加进 <code>config.sub</code> 才会被接受.</p>
+<h2 id="newlib">newlib<a class="headerlink" href="#newlib" title="Permanent link">&para;</a></h2>
+<p>newlib 的构建输入是三类文件, 分工如下:</p>
+<h3 id="autoconf-automake">生成脚本 (autoconf / automake 的输入)<a class="headerlink" href="#autoconf-automake" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>newlib/configure.ac</code> - 顶层 autoconf 脚本, 由 autoconf 2.69 生成 <code>configure</code></li>
+<li><code>newlib/acinclude.m4</code> - newlib 自己的 autoconf 宏, 核心是 <code>NEWLIB_CONFIGURE</code>, 它调用 <code>AC_CANONICAL_HOST</code> 并 source <code>configure.host</code></li>
+<li><code>newlib/Makefile.am</code> - 顶层 automake 模板, 由 automake 1.15.1 生成 <code>Makefile.in</code></li>
 </ul>
-<p>to test:</p>
+<h3 id="per-target">per-target 配置<a class="headerlink" href="#per-target" title="Permanent link">&para;</a></h3>
+<p><code>newlib/configure.host</code> 是一个纯 shell 脚本, 在 configure 运行时被直接 source (不是生成物). 它按目标三元组设置变量, 决定构建哪些目录:</p>
+<ul>
+<li><code>machine_dir</code> / <code>libm_machine_dir</code> - 架构相关目录</li>
+<li><code>sys_dir</code> - 系统层目录</li>
+<li><code>syscall_dir</code> - 是否构建 connector</li>
+<li><code>newlib_cflags</code> - 目标特性开关</li>
+</ul>
+<p>因为它是纯 shell, 改动它不用重新运行 autoconf, 立即生效.</p>
+<h3 id="_3">源文件清单<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>各目录的 <code>Makefile.inc</code> 声明要编译的源文件, 被顶层 <code>Makefile.am</code> 通过 <code>include</code> 拉进来. 例如:</p>
+<ul>
+<li><code>newlib/libc/Makefile.inc</code> 和 <code>newlib/libm/Makefile.inc</code> - libc/libm 主体</li>
+<li><code>newlib/libc/sys/Makefile.inc</code> - 汇总各 OS 目录, 用 <code>if HAVE_LIBC_SYS_XXX_DIR</code> 条件包含</li>
+<li><code>newlib/libc/sys/&lt;os&gt;/Makefile.inc</code> - 单个 OS 的源文件 (<code>libc_a_SOURCES += ...</code>)</li>
+<li><code>newlib/libc/machine/&lt;arch&gt;/Makefile.inc</code> - 单个架构的源文件</li>
+</ul>
+<p><code>newlib/libc/acinclude.m4</code> 里有一张 <code>SYS_DIR</code> 和 <code>MACHINE</code> 的列表, 用 <code>m4_foreach_w</code> 为每个目录生成一个 <code>AM_CONDITIONAL</code> (即 <code>HAVE_LIBC_SYS_XXX_DIR</code> 之类的条件). 新增一个 OS 或架构目录要同时改这张列表和对应的 <code>Makefile.inc</code>.</p>
+<h3 id="_4">生成物<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><code>newlib/configure</code>, <code>newlib/Makefile.in</code>, <code>newlib/aclocal.m4</code> 是生成物, 但会提交进 git. 改完上面任意输入后, 在 <code>newlib/</code> 目录里跑 <code>autoreconf</code> (autoconf 2.69 + automake 1.15.1) 重新生成.</p>
+<h2 id="cygwin-winsup">Cygwin (winsup)<a class="headerlink" href="#cygwin-winsup" title="Permanent link">&para;</a></h2>
+<p>Cygwin 与 newlib 走不同的生成方式:</p>
+<ul>
+<li><code>winsup/configure.ac</code> 是 autoconf 输入</li>
+<li><code>winsup/autogen.sh</code> 硬编码调用 <code>/usr/bin/aclocal</code>, <code>autoconf -f</code>, <code>automake -ac</code></li>
+<li><code>winsup/Makefile.am</code> 及各子目录的 <code>Makefile.am</code> 声明目标</li>
+</ul>
+<p>与 newlib 相反, Cygwin 的生成物 (<code>winsup/configure</code>, <code>winsup/**/Makefile.in</code>, <code>winsup/aclocal.m4</code>) 被 gitignore, 不提交. 修改后跑 <code>winsup/autogen.sh</code> 本地重新生成.</p>
+<h2 id="_5">构建流程<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>构建在源码树外进行:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>make<span class="w"> </span>-f<span class="w"> </span>../makefile
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>./elf.out<span class="w"> </span>./asm.out
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>mkdir build &amp;&amp; cd build
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>../configure --target=&lt;triple&gt; --prefix=$PWD/install
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>make
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>make install
 </code></pre></div></td></tr></table></div>
+<p>顶层 <code>configure</code> 探测目标工具链 (gcc, ar, as, ld 等), 递归配置子目录, 生成各自的 <code>Makefile</code>. <code>make</code> 默认开启 silent rules, 用 <code>make V=1</code> 看真实命令. newlib 默认开启 multilib, 会为每个 ABI 变体各构建一份库.</p>
+<hr />
+<p>本文档由 deepseek-v4-pro 撰写.</p>
 
 
 

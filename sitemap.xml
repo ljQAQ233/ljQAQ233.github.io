@@ -137,39 +137,71 @@
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>
-         <loc>https://ljqaq233.github.io/extern/newlib/addons/slidev-addon-difflang/</loc>
+         <loc>https://ljqaq233.github.io/extern/labs/addons/slidev-addon-difflang/</loc>
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>
-         <loc>https://ljqaq233.github.io/extern/newlib/addons/slidev-addon-difflang/example/</loc>
+         <loc>https://ljqaq233.github.io/extern/labs/addons/slidev-addon-difflang/example/</loc>
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>
-         <loc>https://ljqaq233.github.io/extern/newlib/elf/elf-01/</loc>
+         <loc>https://ljqaq233.github.io/extern/labs/elf/elf-01/</loc>
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>
-         <loc>https://ljqaq233.github.io/extern/newlib/elf/elf-01/slides/</loc>
+         <loc>https://ljqaq233.github.io/extern/labs/elf/elf-01/slides/</loc>
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>
-         <loc>https://ljqaq233.github.io/extern/newlib/elf/elf-01/slidex/</loc>
+         <loc>https://ljqaq233.github.io/extern/labs/elf/elf-01/slidex/</loc>
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>
-         <loc>https://ljqaq233.github.io/extern/newlib/elf/elf-02/</loc>
+         <loc>https://ljqaq233.github.io/extern/labs/elf/elf-02/</loc>
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>
-         <loc>https://ljqaq233.github.io/extern/newlib/elf/elf-02/slides/</loc>
+         <loc>https://ljqaq233.github.io/extern/labs/elf/elf-02/slides/</loc>
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>
-         <loc>https://ljqaq233.github.io/extern/newlib/elf/elf-03/</loc>
+         <loc>https://ljqaq233.github.io/extern/labs/elf/elf-03/</loc>
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>
-         <loc>https://ljqaq233.github.io/extern/newlib/elf/elf-03/slides/</loc>
+         <loc>https://ljqaq233.github.io/extern/labs/elf/elf-03/slides/</loc>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://ljqaq233.github.io/extern/newlib/</loc>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://ljqaq233.github.io/extern/newlib/porting/</loc>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://ljqaq233.github.io/extern/newlib/start/</loc>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://ljqaq233.github.io/extern/newlib/aigc/autotools/</loc>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://ljqaq233.github.io/extern/newlib/aigc/build/</loc>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://ljqaq233.github.io/extern/newlib/aigc/buildsys/</loc>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://ljqaq233.github.io/extern/newlib/aigc/libc/</loc>
+         <lastmod>2026-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://ljqaq233.github.io/extern/newlib/aigc/overview/</loc>
          <lastmod>2026-11-02</lastmod>
     </url>
     <url>

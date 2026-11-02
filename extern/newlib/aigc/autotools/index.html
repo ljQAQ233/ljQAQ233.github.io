@@ -10,13 +10,13 @@
         <meta name="author" content="maouai233">
       
       
-        <link rel="canonical" href="https://ljqaq233.github.io/extern/newlib/elf/elf-03/">
+        <link rel="canonical" href="https://ljqaq233.github.io/extern/newlib/aigc/autotools/">
       
       
-        <link rel="prev" href="../elf-02/slides/">
+        <link rel="prev" href="../../start/">
       
       
-        <link rel="next" href="slides/">
+        <link rel="next" href="../build/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>statically-linked elf loader - maouai233 的个人网站</title>
+        <title>autoconf / automake 简单入门 - maouai233 的个人网站</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#statically-linked-elf-loader" class="md-skip">
+        <a href="#autoconf-automake" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              statically-linked elf loader
+              autoconf / automake 简单入门
             
           </span>
         </div>
@@ -6003,6 +6003,90 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    newlib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../porting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    porting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -6019,10 +6103,390 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_7_2_1" id="__nav_7_2_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_2_4" id="__nav_7_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    aigc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    aigc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    autoconf / automake 简单入门
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    autoconf / automake 简单入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三个工具各管什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一次构建的完整链路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configureac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        configure.ac 最小骨架
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#makefileam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Makefile.am 最小骨架
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        和 configure 里的变量对接
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#newlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        newlib 里的对应
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        版本要固定
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    如何编译
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buildsys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统组成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    libc 结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3_1" id="__nav_7_3_1_label" tabindex="0">
             
   
   
@@ -6040,8 +6504,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7_2_1">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6069,10 +6533,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_1" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_1_1" id="__nav_7_2_1_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_1_1" id="__nav_7_3_1_1_label" tabindex="0">
             
   
   
@@ -6090,8 +6554,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_1_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_1_1">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6108,7 +6572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-02/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-02/" class="md-nav__link">
         
   
   
@@ -6136,7 +6600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-02/slides/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-02/slides/" class="md-nav__link">
         
   
   
@@ -6169,8 +6633,6 @@
                 
   
   
-    
-  
   
   
     
@@ -6181,14 +6643,14 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_2" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_1_2" id="__nav_7_2_1_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_1_2" id="__nav_7_3_1_2_label" tabindex="0">
             
   
   
@@ -6206,8 +6668,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_1_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7_2_1_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6221,19 +6683,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../labs/elf/elf-03/" class="md-nav__link">
         
   
   
@@ -6249,7 +6702,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -6262,7 +6714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="slides/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-03/slides/" class="md-nav__link">
         
   
   
@@ -6309,10 +6761,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_3" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_1_3" id="__nav_7_2_1_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_1_3" id="__nav_7_3_1_3_label" tabindex="0">
             
   
   
@@ -6330,8 +6782,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_1_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_1_3">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6348,7 +6800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-01/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-01/" class="md-nav__link">
         
   
   
@@ -6376,7 +6828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-01/slides/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-01/slides/" class="md-nav__link">
         
   
   
@@ -6404,7 +6856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elf-01/slidex/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-01/slidex/" class="md-nav__link">
         
   
   
@@ -6459,10 +6911,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_2" id="__nav_7_2_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
             
   
   
@@ -6480,8 +6932,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6509,10 +6961,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2_1" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_2_1" id="__nav_7_2_2_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_2_1" id="__nav_7_3_2_1_label" tabindex="0">
             
   
   
@@ -6530,8 +6982,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_2_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_2_1">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_2_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6548,7 +7000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/slidev-addon-difflang/" class="md-nav__link">
+      <a href="../../../labs/addons/slidev-addon-difflang/" class="md-nav__link">
         
   
   
@@ -6576,7 +7028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/slidev-addon-difflang/example/" class="md-nav__link">
+      <a href="../../../labs/addons/slidev-addon-difflang/example/" class="md-nav__link">
         
   
   
@@ -6648,6 +7100,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三个工具各管什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一次构建的完整链路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configureac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        configure.ac 最小骨架
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#makefileam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Makefile.am 最小骨架
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        和 configure 里的变量对接
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#newlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        newlib 里的对应
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        版本要固定
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -6663,19 +7200,85 @@
 
 
 
-<h1 id="statically-linked-elf-loader">statically-linked elf loader<a class="headerlink" href="#statically-linked-elf-loader" title="Permanent link">&para;</a></h1>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> static-pie elf supported</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> faked, forged initial frame (SysV AMD64 ABI)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> original auxv supported</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> release used resources</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>can load some simple static glibc-compiled programs</strong></li>
-<li>use <code>vecs</code> to test it</li>
-<li>static-pie <code>lua</code> (dev version v5.5)<ul>
-<li><code>make MYCFLAGS="-DLUA_USE_POSIX" MYLIBS="-ldl" MYLDFLAGS="-static-pie" clean all</code></li>
+<h1 id="autoconf-automake">autoconf / automake 简单入门<a class="headerlink" href="#autoconf-automake" title="Permanent link">&para;</a></h1>
+<p>这一篇讲构建脚本怎么生成, 面向没接触过 autotools 的读者. 例子都用这个仓库里的写法, 读完能看懂 <code>configure.ac</code>, <code>Makefile.am</code>, <code>configure.host</code> 三者的关系.</p>
+<h2 id="_1">三个工具各管什么<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Autotools 是一组工具, 核心是三个:</p>
+<ul>
+<li><strong>autoconf</strong> - 读 <code>configure.ac</code>, 生成 <code>configure</code> (一个 shell 脚本). 它的工作是检测系统环境: 有没有某个编译器, 有没有某个头文件, 类型多大.</li>
+<li><strong>automake</strong> - 读 <code>Makefile.am</code>, 生成 <code>Makefile.in</code> (一个 makefile 模板). 它的工作是展开 <code>xxx_SOURCES</code> 这类简写, 补全依赖规则, 生成 <code>make install</code>, <code>make clean</code> 等标准目标.</li>
+<li><strong>aclocal</strong> - 收集 <code>*.m4</code> 宏文件, 生成 <code>aclocal.m4</code>, 供 autoconf 使用. 项目自己的宏通常放在 <code>acinclude.m4</code>, 由 aclocal 一并收进来.</li>
 </ul>
-</li>
+<p><code>autoreconf</code> 是一个包装脚本, 按正确顺序调用上面这些工具, 一步到位重新生成所有产物.</p>
+<h2 id="_2">一次构建的完整链路<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>configure.ac  --autoconf--&gt;  configure
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>Makefile.am   --automake--&gt;  Makefile.in
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>                             |
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>                             v
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>              configure  +  Makefile.in  --&gt;  Makefile  (运行时生成)
+</code></pre></div></td></tr></table></div>
+<p>也就是说, 维护者写的是 <code>configure.ac</code> 和 <code>Makefile.am</code>, 提交进仓库的是 <code>configure</code> 和 <code>Makefile.in</code>. 最终用户跑 <code>./configure</code> 时才结合两者生成能用的 <code>Makefile</code>.</p>
+<h2 id="configureac">configure.ac 最小骨架<a class="headerlink" href="#configureac" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>AC_INIT([foo], [1.0])
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>AC_CONFIG_SRCDIR([src/main.c])
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>AC_PROG_CC
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>AC_CONFIG_FILES([Makefile])
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>AC_OUTPUT
+</code></pre></div></td></tr></table></div>
+<p>几个要素:</p>
+<ul>
+<li><code>AC_INIT</code> - 包名和版本</li>
+<li><code>AC_CONFIG_SRCDIR</code> - 用某个源文件确认源码目录对</li>
+<li><code>AC_PROG_CC</code> - 检测 C 编译器, 设置 <code>CC</code> 变量</li>
+<li><code>AC_CONFIG_FILES</code> - 列出要从 <code>*.in</code> 生成的 <code>Makefile</code> 等文件</li>
+<li><code>AC_OUTPUT</code> - 收尾</li>
 </ul>
+<p>自定义宏用 <code>AC_DEFUN([名字], [宏体])</code> 定义, 例如 newlib 的 <code>NEWLIB_CONFIGURE</code>.</p>
+<h2 id="makefileam">Makefile.am 最小骨架<a class="headerlink" href="#makefileam" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nv">bin_PROGRAMS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>hello
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nv">hello_SOURCES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>main.c<span class="w"> </span>util.c
+</code></pre></div></td></tr></table></div>
+<p>约定是 <code>&lt;primary&gt;_&lt;目标&gt;</code> 这种命名:</p>
+<ul>
+<li><code>bin_PROGRAMS</code> - 要安装到 bin 目录的可执行文件</li>
+<li><code>hello_SOURCES</code> - 目标 <code>hello</code> 的源文件列表</li>
+</ul>
+<p>automake 会据此生成编译 <code>hello</code> 的规则, 以及默认的 <code>all</code>, <code>install</code>, <code>clean</code> 等目标. 静态库用 <code>lib_LIBRARIES</code>, 头文件用 <code>include_HEADERS</code>, 以此类推.</p>
+<p>条件编译用 <code>AM_CONDITIONAL</code> 配合 <code>if</code> 块:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="cp">if HAVE_SYS_FOO_DIR</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="cp">include foo/Makefile.inc</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="cp">endif</span>
+</code></pre></div></td></tr></table></div>
+<p><code>if HAVE_SYS_FOO_DIR</code> 的真假由 <code>configure.ac</code> 里的 <code>AM_CONDITIONAL([HAVE_SYS_FOO_DIR], [test ...])</code> 决定. 这就是 newlib 里 <code>HAVE_LIBC_SYS_XXX_DIR</code> 那套条件的来历.</p>
+<h2 id="configure">和 configure 里的变量对接<a class="headerlink" href="#configure" title="Permanent link">&para;</a></h2>
+<p>automake 生成的 <code>Makefile.in</code> 里会留下 <code>@变量@</code> 占位符, <code>configure</code> 运行时把它们替换成实际值. 例如 <code>@CC@</code> 换成编译器路径, <code>@prefix@</code> 换成安装前缀. 所以 <code>configure.host</code> 里设置的 <code>sys_dir</code>, <code>machine_dir</code> 这类变量, 最终都会通过 <code>AC_SUBST</code> 传进 <code>Makefile</code>.</p>
+<h2 id="newlib">newlib 里的对应<a class="headerlink" href="#newlib" title="Permanent link">&para;</a></h2>
+<p>对照这个仓库:</p>
+<ul>
+<li><code>newlib/configure.ac</code> 调 <code>NEWLIB_CONFIGURE</code>, 后者 source <code>newlib/configure.host</code></li>
+<li><code>newlib/configure.host</code> 按目标三元组设置 <code>sys_dir</code>, <code>machine_dir</code>, <code>newlib_cflags</code> 等</li>
+<li><code>newlib/libc/acinclude.m4</code> 里用 <code>m4_foreach_w</code> 为每个 OS/架构目录生成一个 <code>AM_CONDITIONAL</code></li>
+<li><code>newlib/libc/sys/&lt;os&gt;/Makefile.inc</code> 声明该 OS 的 <code>libc_a_SOURCES</code></li>
+</ul>
+<p><code>Makefile.inc</code> 不是 automake 原生概念, 而是 newlib 自己用 <code>include</code> 把源文件清单拆散到各目录的约定.</p>
+<h2 id="_3">版本要固定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>autoconf 和 automake 的新版本会改变生成结果. newlib 明确 pin 在 autoconf 2.69 / automake 1.15.1, 换版本会重写 <code>configure</code> / <code>Makefile.in</code> 产生大量无关 diff, 甚至破坏构建 (automake 1.16 改了 per-target 对象命名). 所以重新生成时务必用对版本:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>autoreconf -f
+</code></pre></div></td></tr></table></div>
+<p>在 <code>newlib/</code> 目录里执行即可.</p>
+<hr />
+<p>本文档由 deepseek-v4-pro 撰写.</p>
 
 
 

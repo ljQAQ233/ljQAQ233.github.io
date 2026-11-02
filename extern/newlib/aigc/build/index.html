@@ -10,28 +10,28 @@
         <meta name="author" content="maouai233">
       
       
-        <link rel="canonical" href="https://ljqaq233.github.io/extern/newlib/elf/elf-03/slides/">
+        <link rel="canonical" href="https://ljqaq233.github.io/extern/newlib/aigc/build/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../autotools/">
       
       
-        <link rel="next" href="../../elf-01/">
+        <link rel="next" href="../buildsys/">
       
       
         
       
       
-      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
-        <title>elf-03 装作操作系统来构建栈吧? - maouai233 的个人网站</title>
+        <title>如何编译 - maouai233 的个人网站</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.57a0d79d.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -50,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../base/css/hr.css">
+      <link rel="stylesheet" href="../../../../base/css/hr.css">
     
-    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#elf-03" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../.." title="maouai233 的个人网站" class="md-header__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+    <a href="../../../.." title="maouai233 的个人网站" class="md-header__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              elf-03 装作操作系统来构建栈吧?
+              如何编译
             
           </span>
         </div>
@@ -173,7 +173,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -194,7 +194,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../diary/" class="md-tabs__link">
+        <a href="../../../../diary/" class="md-tabs__link">
           
   
   
@@ -214,7 +214,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../misc/" class="md-tabs__link">
+        <a href="../../../../misc/" class="md-tabs__link">
           
   
   
@@ -234,7 +234,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../hexo/" class="md-tabs__link">
+        <a href="../../../../hexo/" class="md-tabs__link">
           
   
   
@@ -261,7 +261,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../blog/nixos/gist/" class="md-tabs__link">
+        <a href="../../../../blog/nixos/gist/" class="md-tabs__link">
           
   
   
@@ -282,7 +282,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../website/" class="md-tabs__link">
+      <a href="../../../../website/" class="md-tabs__link">
         
   
   
@@ -314,7 +314,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../../textos-dev/bili/" class="md-tabs__link">
+        <a href="../../../textos-dev/bili/" class="md-tabs__link">
           
   
   
@@ -357,7 +357,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../.." title="maouai233 的个人网站" class="md-nav__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
+    <a href="../../../.." title="maouai233 的个人网站" class="md-nav__button md-logo" aria-label="maouai233 的个人网站" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -375,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -452,7 +452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/" class="md-nav__link">
+      <a href="../../../../diary/" class="md-nav__link">
         
   
   
@@ -480,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2024-summer/" class="md-nav__link">
+      <a href="../../../../diary/2024-summer/" class="md-nav__link">
         
   
   
@@ -508,7 +508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2024-autumn/" class="md-nav__link">
+      <a href="../../../../diary/2024-autumn/" class="md-nav__link">
         
   
   
@@ -536,7 +536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2025-spring/" class="md-nav__link">
+      <a href="../../../../diary/2025-spring/" class="md-nav__link">
         
   
   
@@ -564,7 +564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2025-summer/" class="md-nav__link">
+      <a href="../../../../diary/2025-summer/" class="md-nav__link">
         
   
   
@@ -592,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../diary/2025-autumn/" class="md-nav__link">
+      <a href="../../../../diary/2025-autumn/" class="md-nav__link">
         
   
   
@@ -677,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/" class="md-nav__link">
+      <a href="../../../../misc/" class="md-nav__link">
         
   
   
@@ -705,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/bin86/" class="md-nav__link">
+      <a href="../../../../misc/bin86/" class="md-nav__link">
         
   
   
@@ -733,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/ctags/" class="md-nav__link">
+      <a href="../../../../misc/ctags/" class="md-nav__link">
         
   
   
@@ -761,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/find/" class="md-nav__link">
+      <a href="../../../../misc/find/" class="md-nav__link">
         
   
   
@@ -789,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/linux-bt/" class="md-nav__link">
+      <a href="../../../../misc/linux-bt/" class="md-nav__link">
         
   
   
@@ -817,7 +817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/linux-login/" class="md-nav__link">
+      <a href="../../../../misc/linux-login/" class="md-nav__link">
         
   
   
@@ -845,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/linux-mfs-disk/" class="md-nav__link">
+      <a href="../../../../misc/linux-mfs-disk/" class="md-nav__link">
         
   
   
@@ -873,7 +873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/time-sync/" class="md-nav__link">
+      <a href="../../../../misc/time-sync/" class="md-nav__link">
         
   
   
@@ -901,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/osdev-offline/" class="md-nav__link">
+      <a href="../../../../misc/osdev-offline/" class="md-nav__link">
         
   
   
@@ -929,7 +929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/pacman/" class="md-nav__link">
+      <a href="../../../../misc/pacman/" class="md-nav__link">
         
   
   
@@ -957,7 +957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/dynlibs/" class="md-nav__link">
+      <a href="../../../../misc/dynlibs/" class="md-nav__link">
         
   
   
@@ -985,7 +985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/ncurses/" class="md-nav__link">
+      <a href="../../../../misc/ncurses/" class="md-nav__link">
         
   
   
@@ -1013,7 +1013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../misc/ssh-win/" class="md-nav__link">
+      <a href="../../../../misc/ssh-win/" class="md-nav__link">
         
   
   
@@ -1098,7 +1098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/" class="md-nav__link">
+      <a href="../../../../hexo/" class="md-nav__link">
         
   
   
@@ -1176,7 +1176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/my-2023/" class="md-nav__link">
+      <a href="../../../../hexo/my-2023/" class="md-nav__link">
         
   
   
@@ -1204,7 +1204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/mc-server/" class="md-nav__link">
+      <a href="../../../../hexo/mc-server/" class="md-nav__link">
         
   
   
@@ -1232,7 +1232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/vim-debugs/" class="md-nav__link">
+      <a href="../../../../hexo/vim-debugs/" class="md-nav__link">
         
   
   
@@ -1260,7 +1260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/busybox-svr/" class="md-nav__link">
+      <a href="../../../../hexo/busybox-svr/" class="md-nav__link">
         
   
   
@@ -1288,7 +1288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/uefi-types/" class="md-nav__link">
+      <a href="../../../../hexo/uefi-types/" class="md-nav__link">
         
   
   
@@ -1316,7 +1316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/uefi-macros/" class="md-nav__link">
+      <a href="../../../../hexo/uefi-macros/" class="md-nav__link">
         
   
   
@@ -1344,7 +1344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/uefi-bmp0/" class="md-nav__link">
+      <a href="../../../../hexo/uefi-bmp0/" class="md-nav__link">
         
   
   
@@ -1372,7 +1372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../hexo/uefi-bmp1/" class="md-nav__link">
+      <a href="../../../../hexo/uefi-bmp1/" class="md-nav__link">
         
   
   
@@ -1515,7 +1515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/nixos/gist/" class="md-nav__link">
+      <a href="../../../../blog/nixos/gist/" class="md-nav__link">
         
   
   
@@ -1543,7 +1543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/nixos/fcitx/" class="md-nav__link">
+      <a href="../../../../blog/nixos/fcitx/" class="md-nav__link">
         
   
   
@@ -1629,7 +1629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/gdb/basic/" class="md-nav__link">
+      <a href="../../../../blog/gdb/basic/" class="md-nav__link">
         
   
   
@@ -1657,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/gdb/master/" class="md-nav__link">
+      <a href="../../../../blog/gdb/master/" class="md-nav__link">
         
   
   
@@ -1685,7 +1685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/gdb/vscode/" class="md-nav__link">
+      <a href="../../../../blog/gdb/vscode/" class="md-nav__link">
         
   
   
@@ -1821,7 +1821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/intro/" class="md-nav__link">
+      <a href="../../../../blog/lang/nim/intro/" class="md-nav__link">
         
   
   
@@ -1849,7 +1849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/01/" class="md-nav__link">
+      <a href="../../../../blog/lang/nim/01/" class="md-nav__link">
         
   
   
@@ -1877,7 +1877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/02/" class="md-nav__link">
+      <a href="../../../../blog/lang/nim/02/" class="md-nav__link">
         
   
   
@@ -1905,7 +1905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/03/" class="md-nav__link">
+      <a href="../../../../blog/lang/nim/03/" class="md-nav__link">
         
   
   
@@ -1933,7 +1933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/04/" class="md-nav__link">
+      <a href="../../../../blog/lang/nim/04/" class="md-nav__link">
         
   
   
@@ -1961,7 +1961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/05/" class="md-nav__link">
+      <a href="../../../../blog/lang/nim/05/" class="md-nav__link">
         
   
   
@@ -1989,7 +1989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/06/" class="md-nav__link">
+      <a href="../../../../blog/lang/nim/06/" class="md-nav__link">
         
   
   
@@ -2017,7 +2017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/07/" class="md-nav__link">
+      <a href="../../../../blog/lang/nim/07/" class="md-nav__link">
         
   
   
@@ -2045,7 +2045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/lang/nim/08/" class="md-nav__link">
+      <a href="../../../../blog/lang/nim/08/" class="md-nav__link">
         
   
   
@@ -2139,7 +2139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/bili/005/" class="md-nav__link">
+      <a href="../../../../blog/bili/005/" class="md-nav__link">
         
   
   
@@ -2167,7 +2167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../blog/bili/edk2-liba/" class="md-nav__link">
+      <a href="../../../../blog/bili/edk2-liba/" class="md-nav__link">
         
   
   
@@ -2210,7 +2210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../website/" class="md-nav__link">
+      <a href="../../../../website/" class="md-nav__link">
         
   
   
@@ -2342,7 +2342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/bili/" class="md-nav__link">
+      <a href="../../../textos-dev/bili/" class="md-nav__link">
         
   
   
@@ -2370,7 +2370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/history/" class="md-nav__link">
+      <a href="../../../textos-dev/history/" class="md-nav__link">
         
   
   
@@ -2398,7 +2398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/origin/" class="md-nav__link">
+      <a href="../../../textos-dev/origin/" class="md-nav__link">
         
   
   
@@ -2426,7 +2426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/tidyup/" class="md-nav__link">
+      <a href="../../../textos-dev/tidyup/" class="md-nav__link">
         
   
   
@@ -2554,7 +2554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/runtime/barebone-asmkern/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/runtime/barebone-asmkern/" class="md-nav__link">
         
   
   
@@ -2582,7 +2582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/runtime/bootsrv-mata/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/runtime/bootsrv-mata/" class="md-nav__link">
         
   
   
@@ -2610,7 +2610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/runtime/elf-and-kernel/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/runtime/elf-and-kernel/" class="md-nav__link">
         
   
   
@@ -2696,7 +2696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/core/debug/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/core/debug/" class="md-nav__link">
         
   
   
@@ -2782,7 +2782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/file/close-rm-override/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/file/close-rm-override/" class="md-nav__link">
         
   
   
@@ -2810,7 +2810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/file/info-of-file/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/file/info-of-file/" class="md-nav__link">
         
   
   
@@ -2838,7 +2838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/file/open-rw-wind/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/file/open-rw-wind/" class="md-nav__link">
         
   
   
@@ -2924,7 +2924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/debug/macros/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/debug/macros/" class="md-nav__link">
         
   
   
@@ -2952,7 +2952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/debug/udkscript/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/debug/udkscript/" class="md-nav__link">
         
   
   
@@ -2980,7 +2980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/debug/visual/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/debug/visual/" class="md-nav__link">
         
   
   
@@ -3066,7 +3066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/graphics/bmp-show/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/graphics/bmp-show/" class="md-nav__link">
         
   
   
@@ -3094,7 +3094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/graphics/cls/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/graphics/cls/" class="md-nav__link">
         
   
   
@@ -3122,7 +3122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/graphics/intro-example/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/graphics/intro-example/" class="md-nav__link">
         
   
   
@@ -3150,7 +3150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/graphics/logo-show/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/graphics/logo-show/" class="md-nav__link">
         
   
   
@@ -3178,7 +3178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/graphics/operations/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/graphics/operations/" class="md-nav__link">
         
   
   
@@ -3206,7 +3206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/graphics/resolution/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/graphics/resolution/" class="md-nav__link">
         
   
   
@@ -3292,7 +3292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/protocol/protocol/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/protocol/protocol/" class="md-nav__link">
         
   
   
@@ -3320,7 +3320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/protocol/sfs/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/protocol/sfs/" class="md-nav__link">
         
   
   
@@ -3348,7 +3348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/protocol/struct/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/protocol/struct/" class="md-nav__link">
         
   
   
@@ -3434,7 +3434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/boot/config/config/" class="md-nav__link">
+      <a href="../../../textos-dev/boot/config/config/" class="md-nav__link">
         
   
   
@@ -3528,7 +3528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/lang/buffer/" class="md-nav__link">
+      <a href="../../../textos-dev/lang/buffer/" class="md-nav__link">
         
   
   
@@ -3556,7 +3556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/lang/errno/" class="md-nav__link">
+      <a href="../../../textos-dev/lang/errno/" class="md-nav__link">
         
   
   
@@ -3584,7 +3584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/lang/static-assert/" class="md-nav__link">
+      <a href="../../../textos-dev/lang/static-assert/" class="md-nav__link">
         
   
   
@@ -3612,7 +3612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/lang/vaargs/" class="md-nav__link">
+      <a href="../../../textos-dev/lang/vaargs/" class="md-nav__link">
         
   
   
@@ -3690,7 +3690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/lang/sysv/call/" class="md-nav__link">
+      <a href="../../../textos-dev/lang/sysv/call/" class="md-nav__link">
         
   
   
@@ -3784,7 +3784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/debug/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/debug/" class="md-nav__link">
         
   
   
@@ -3812,7 +3812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/organization/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/organization/" class="md-nav__link">
         
   
   
@@ -3840,7 +3840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/pagetable/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/pagetable/" class="md-nav__link">
         
   
   
@@ -3868,7 +3868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/params/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/params/" class="md-nav__link">
         
   
   
@@ -3946,7 +3946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/device/clock/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/device/clock/" class="md-nav__link">
         
   
   
@@ -3974,7 +3974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/device/console/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/device/console/" class="md-nav__link">
         
   
   
@@ -4002,7 +4002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/device/ctrl-tty/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/device/ctrl-tty/" class="md-nav__link">
         
   
   
@@ -4030,7 +4030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/device/lai/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/device/lai/" class="md-nav__link">
         
   
   
@@ -4058,7 +4058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/device/serial/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/device/serial/" class="md-nav__link">
         
   
   
@@ -4086,7 +4086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/device/xyz%20fpu/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/device/xyz%20fpu/" class="md-nav__link">
         
   
   
@@ -4172,7 +4172,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/multiproc/mycpu/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/multiproc/mycpu/" class="md-nav__link">
         
   
   
@@ -4258,7 +4258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/memory/glob-desc-tab/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/memory/glob-desc-tab/" class="md-nav__link">
         
   
   
@@ -4286,7 +4286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/memory/kernel-heap/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/memory/kernel-heap/" class="md-nav__link">
         
   
   
@@ -4314,7 +4314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/memory/kernel-remap/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/memory/kernel-remap/" class="md-nav__link">
         
   
   
@@ -4342,7 +4342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/memory/virt-mem-map/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/memory/virt-mem-map/" class="md-nav__link">
         
   
   
@@ -4428,7 +4428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/interrupt/apic-acpi/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/interrupt/apic-acpi/" class="md-nav__link">
         
   
   
@@ -4456,7 +4456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/interrupt/apic-timer/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/interrupt/apic-timer/" class="md-nav__link">
         
   
   
@@ -4484,7 +4484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/interrupt/intr-x86/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/interrupt/intr-x86/" class="md-nav__link">
         
   
   
@@ -4570,7 +4570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/graphics/basic/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/graphics/basic/" class="md-nav__link">
         
   
   
@@ -4598,7 +4598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/graphics/font/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/graphics/font/" class="md-nav__link">
         
   
   
@@ -4626,7 +4626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/graphics/vga-acs/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/graphics/vga-acs/" class="md-nav__link">
         
   
   
@@ -4654,7 +4654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/graphics/vga-basic/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/graphics/vga-basic/" class="md-nav__link">
         
   
   
@@ -4740,7 +4740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/network/arp/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/network/arp/" class="md-nav__link">
         
   
   
@@ -4768,7 +4768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/network/e1000/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/network/e1000/" class="md-nav__link">
         
   
   
@@ -4796,7 +4796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/network/tcp/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/network/tcp/" class="md-nav__link">
         
   
   
@@ -4882,7 +4882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/filesystem/Api/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/filesystem/Api/" class="md-nav__link">
         
   
   
@@ -4910,7 +4910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/filesystem/analysis-01/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/filesystem/analysis-01/" class="md-nav__link">
         
   
   
@@ -4938,7 +4938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/filesystem/analysis-02/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/filesystem/analysis-02/" class="md-nav__link">
         
   
   
@@ -4966,7 +4966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/filesystem/pipe/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/filesystem/pipe/" class="md-nav__link">
         
   
   
@@ -4994,7 +4994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/filesystem/vfs-and-fat32/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/filesystem/vfs-and-fat32/" class="md-nav__link">
         
   
   
@@ -5022,7 +5022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/filesystem/%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/filesystem/%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81/" class="md-nav__link">
         
   
   
@@ -5050,7 +5050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/filesystem/%E7%9B%AE%E5%BD%95%E8%AF%BB%E5%8F%96/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/filesystem/%E7%9B%AE%E5%BD%95%E8%AF%BB%E5%8F%96/" class="md-nav__link">
         
   
   
@@ -5136,7 +5136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/task/task/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/task/task/" class="md-nav__link">
         
   
   
@@ -5222,7 +5222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/userspace/elf/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/userspace/elf/" class="md-nav__link">
         
   
   
@@ -5250,7 +5250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/userspace/rights/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/userspace/rights/" class="md-nav__link">
         
   
   
@@ -5278,7 +5278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/userspace/syscall/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/userspace/syscall/" class="md-nav__link">
         
   
   
@@ -5306,7 +5306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/userspace/user-ids-rights/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/userspace/user-ids-rights/" class="md-nav__link">
         
   
   
@@ -5334,7 +5334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/userspace/user-manager/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/userspace/user-manager/" class="md-nav__link">
         
   
   
@@ -5362,7 +5362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/kernel/userspace/userspace/" class="md-nav__link">
+      <a href="../../../textos-dev/kernel/userspace/userspace/" class="md-nav__link">
         
   
   
@@ -5456,7 +5456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/bug-syscall/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/bug-syscall/" class="md-nav__link">
         
   
   
@@ -5484,7 +5484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/kern-performance/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/kern-performance/" class="md-nav__link">
         
   
   
@@ -5512,7 +5512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/qemu-fw/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/qemu-fw/" class="md-nav__link">
         
   
   
@@ -5540,7 +5540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/qemu-rtc/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/qemu-rtc/" class="md-nav__link">
         
   
   
@@ -5618,7 +5618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/fs/minix1/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/fs/minix1/" class="md-nav__link">
         
   
   
@@ -5646,7 +5646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/fs/minix_d/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/fs/minix_d/" class="md-nav__link">
         
   
   
@@ -5674,7 +5674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/fs/minix_i/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/fs/minix_i/" class="md-nav__link">
         
   
   
@@ -5702,7 +5702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/fs/minix_s/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/fs/minix_s/" class="md-nav__link">
         
   
   
@@ -5788,7 +5788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/make/subdir/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/make/subdir/" class="md-nav__link">
         
   
   
@@ -5874,7 +5874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/fp/float/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/fp/float/" class="md-nav__link">
         
   
   
@@ -5902,7 +5902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../textos-dev/misc/fp/tofloat/" class="md-nav__link">
+      <a href="../../../textos-dev/misc/fp/tofloat/" class="md-nav__link">
         
   
   
@@ -6003,6 +6003,90 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    newlib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../porting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    porting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -6019,10 +6103,407 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_7_2_1" id="__nav_7_2_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_2_4" id="__nav_7_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    aigc
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    aigc
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autotools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    autoconf / automake 简单入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    如何编译
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    如何编译
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前置条件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本步骤
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用选项
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具体例子
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="具体例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        嵌入式 newlib
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cygwin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cygwin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        textos (本地特例)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buildsys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建系统组成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../libc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    libc 结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3_1" id="__nav_7_3_1_label" tabindex="0">
             
   
   
@@ -6040,8 +6521,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7_2_1">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6069,10 +6550,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_1" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_1_1" id="__nav_7_2_1_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_1_1" id="__nav_7_3_1_1_label" tabindex="0">
             
   
   
@@ -6090,8 +6571,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_1_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_1_1">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6108,7 +6589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../elf-02/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-02/" class="md-nav__link">
         
   
   
@@ -6136,7 +6617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../elf-02/slides/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-02/slides/" class="md-nav__link">
         
   
   
@@ -6169,8 +6650,6 @@
                 
   
   
-    
-  
   
   
     
@@ -6181,14 +6660,14 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_2" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_1_2" id="__nav_7_2_1_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_1_2" id="__nav_7_3_1_2_label" tabindex="0">
             
   
   
@@ -6206,8 +6685,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_1_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7_2_1_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6224,7 +6703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../labs/elf/elf-03/" class="md-nav__link">
         
   
   
@@ -6249,35 +6728,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    elf-03 装作操作系统来构建栈吧?
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../labs/elf/elf-03/slides/" class="md-nav__link">
         
   
   
@@ -6293,157 +6747,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#elf-03" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        elf-03 装作操作系统来构建栈吧?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#layout-center" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        layout: center
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        栈的初始状态.
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#layout-two-cols" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        layout: two-cols
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="layout: two-cols">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-put-it-in-a-nutshell" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        To put it in a nutshell
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        栈对齐
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#auxv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        更新 auxv
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bss" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        老生常谈的 .bss
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        效果
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="效果">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#layout-center_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        layout: center
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#thanks-for-watching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Thanks for watching!
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -6475,10 +6778,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_3" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_1_3" id="__nav_7_2_1_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_1_3" id="__nav_7_3_1_3_label" tabindex="0">
             
   
   
@@ -6496,8 +6799,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_1_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_1_3">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_1_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6514,7 +6817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../elf-01/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-01/" class="md-nav__link">
         
   
   
@@ -6542,7 +6845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../elf-01/slides/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-01/slides/" class="md-nav__link">
         
   
   
@@ -6570,7 +6873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../elf-01/slidex/" class="md-nav__link">
+      <a href="../../../labs/elf/elf-01/slidex/" class="md-nav__link">
         
   
   
@@ -6625,10 +6928,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_2" id="__nav_7_2_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
             
   
   
@@ -6646,8 +6949,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6675,10 +6978,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2_1" >
         
           
-          <label class="md-nav__link" for="__nav_7_2_2_1" id="__nav_7_2_2_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3_2_1" id="__nav_7_3_2_1_label" tabindex="0">
             
   
   
@@ -6696,8 +6999,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_2_2_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2_2_1">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3_2_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -6714,7 +7017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/slidev-addon-difflang/" class="md-nav__link">
+      <a href="../../../labs/addons/slidev-addon-difflang/" class="md-nav__link">
         
   
   
@@ -6742,7 +7045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/slidev-addon-difflang/example/" class="md-nav__link">
+      <a href="../../../labs/addons/slidev-addon-difflang/example/" class="md-nav__link">
         
   
   
@@ -6811,6 +7114,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -6819,93 +7124,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#elf-03" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        elf-03 装作操作系统来构建栈吧?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#layout-center" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        layout: center
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        栈的初始状态.
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#layout-two-cols" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        layout: two-cols
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="layout: two-cols">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-put-it-in-a-nutshell" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        To put it in a nutshell
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        栈对齐
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#auxv" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        更新 auxv
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bss" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        老生常谈的 .bss
+        前置条件
       
     </span>
   </a>
@@ -6916,19 +7138,63 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        效果
+        基本步骤
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="效果">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用选项
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具体例子
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="具体例子">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#layout-center_1" class="md-nav__link">
+  <a href="#newlib" class="md-nav__link">
     <span class="md-ellipsis">
       
-        layout: center
+        嵌入式 newlib
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cygwin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cygwin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        textos (本地特例)
       
     </span>
   </a>
@@ -6941,10 +7207,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#thanks-for-watching" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Thanks for watching!
+        测试
       
     </span>
   </a>
@@ -6968,578 +7234,94 @@
 
 
 
-<h2 id="elf-03">elf-03 装作操作系统来构建栈吧?<a class="headerlink" href="#elf-03" title="Permanent link">&para;</a></h2>
-<hr />
-<blockquote>
-<p>The System V Application Binary Interface is a set of specifications that detail <strong>calling conventions</strong>, <strong>object file formats</strong>, <strong>executable file formats</strong>, dynamic linking semantics, and much more for systems that complies with the X/Open Common Application Environment Specification and the System V Interface Definition. It is today the standard ABI used by the major Unix operating systems such as Linux, the BSD systems, and many others. The Executable and Linkable Format (ELF) is part of the System V ABI. -- wiki.osdev.org</p>
-<p>System V 应用程序二进制接口是一套规范, 详细说明了符合 X/Open 通用应用环境规范和 System V 接口定义的系统上的 <strong>调用约定</strong>, <strong>目标文件格式</strong>, <strong>可执行文件格式</strong>, 动态链接语义以及其他诸多内容. 如今, 它是 Linux, BSD 系统以及许多其他主流 Unix 操作系统所使用的标准 ABI. ELF 是 System V ABI 的一部分</p>
-</blockquote>
-<p>平常我们使用的 寄存器, <code>rdi</code> <code>rsi</code> <code>rdx</code> <code>rcx</code> 代表 第 1, 2, 3, 4 个参数... 以及 syscall 传参约定, caller/callee 保存寄存器的规则, 是 <strong>SysV ABI (AMD64 ver.)</strong> 规定的</p>
-<p>以及 动态链接器 (ldso) 的 部分加载规则 / 重定位规则: </p>
+<h1 id="_1">如何编译<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>这一篇讲怎么把这个仓库编译出来. 构建一律在源码树之外进行, 也就是另建一个 build 目录, 不要在源码目录里跑 <code>make</code>.</p>
+<h2 id="_2">前置条件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>编译 newlib 需要一个能生成目标代码的 C 编译器和 binutils. 常见做法是先有一套交叉工具链 (比如 <code>arm-none-eabi-gcc</code>), 或者用 <code>--with-cross-bootstrap</code> 让 newlib 用宿主工具链自举.</p>
+<p>编译 Cygwin 还需要:</p>
 <ul>
-<li><code>R_X86_64_COPY</code></li>
-<li>
-<p><code>R_X86_64_JUMP_SLOT</code></p>
-</li>
-<li>
-<p><a href="https://wiki.osdev.org/System_V_ABI">System V ABI - osdev.org</a></p>
-</li>
-<li><a href="https://gitlab.com/x86-psABIs/x86-64-ABI/">AMD64 SysV ABI - gitlab.com</a></li>
+<li>mingw-w64 交叉工具链 (除非用 <code>--with-cross-bootstrap</code>)</li>
+<li><code>docbook2texi</code> 和 <code>xmlto</code> (生成手册页, 或用 <code>--disable-doc</code> 跳过)</li>
 </ul>
-<hr />
-<h2 id="layout-center">layout: center<a class="headerlink" href="#layout-center" title="Permanent link">&para;</a></h2>
-<h2 id="_1">栈的初始状态.<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<hr />
-<p>zoom: 0.7
-layout: default</p>
-<hr />
+<p>如果是从 git 检出的源码, 仓库里可能没有生成好的 <code>configure</code>. 先补齐:</p>
 <ul>
-<li><code>Figure 3.9: Initial Process Stack</code></li>
+<li>newlib: 在 <code>newlib/</code> 里跑 <code>autoreconf</code> (autoconf 2.69 + automake 1.15.1)</li>
+<li>Cygwin: 在 <code>winsup/</code> 里跑 <code>./autogen.sh</code></li>
 </ul>
-<style>
-table {
-  font-size: 1rem;
-}
-th, td {
-  padding: 4px 8px !important;
-}
-</style>
-
-<table>
-<thead>
-<tr>
-<th>Purpose</th>
-<th>Start Address</th>
-<th>Length</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Unspecified</td>
-<td>High Addresses</td>
-<td></td>
-</tr>
-<tr>
-<td>Information block, including argument strings,<br>environment strings, auxiliary information ...</td>
-<td>varies</td>
-<td>Unspecified</td>
-</tr>
-<tr>
-<td>Null auxiliary vector entry</td>
-<td></td>
-<td>1 eightbyte</td>
-</tr>
-<tr>
-<td>Auxiliary vector entries ...</td>
-<td></td>
-<td>2 eightbytes each</td>
-</tr>
-<tr>
-<td>0</td>
-<td></td>
-<td>eightbyte</td>
-</tr>
-<tr>
-<td>Environment pointers ...</td>
-<td></td>
-<td>1 eightbyte each</td>
-</tr>
-<tr>
-<td>0</td>
-<td>8+8*argc+%rsp</td>
-<td>eightbyte</td>
-</tr>
-<tr>
-<td>Argument pointers</td>
-<td>8+%rsp</td>
-<td>argc eightbytes</td>
-</tr>
-<tr>
-<td>Argument count</td>
-<td>%rsp</td>
-<td>eightbyte</td>
-</tr>
-<tr>
-<td>Undefined</td>
-<td>Low Addresses</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Argument strings, environment strings, and the auxiliary information appear in no specific order within the information block and they need not be compactly allocated.</p>
-<p>Only the registers listed below have specified values at process entry:</p>
-<ul>
-<li><code>%rbp</code> — The content of this register is <span v-mark.circle.red="1">unspecified</span> at process initialization time, but the user code should mark the <span v-mark.green="3"> deepest stack frame </span> by <span v-mark.red="2">setting the frame pointer to zero</span>.</li>
-<li><code>%rsp</code> — The stack pointer holds the address of the byte with lowest address which is part of the stack. It is guaranteed to be <span v-mark.circle.red="4">16-byte aligned </span> at process entry.</li>
-<li><code>%rdx</code> — a function pointer that the application should register with <span v-mark.orange="5">atexit (BA_OS)</span>.</li>
-</ul>
-<hr />
-<h2 id="layout-two-cols">layout: two-cols<a class="headerlink" href="#layout-two-cols" title="Permanent link">&para;</a></h2>
-<h3 id="to-put-it-in-a-nutshell">To put it in a nutshell<a class="headerlink" href="#to-put-it-in-a-nutshell" title="Permanent link">&para;</a></h3>
-<p><img alt="" src="../images/stack.drawio.svg" /></p>
-<p>::right::</p>
-<p>````md magic-move
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<p>生成物 newlib 会提交进 git, Cygwin 不会, 细节见 <code>docs/buildsys.md</code>.</p>
+<h2 id="_3">基本步骤<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>mkdir build &amp;&amp; cd build
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>../configure --target=&lt;triple&gt; --prefix=$PWD/install
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>make
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>make install
 </code></pre></div></td></tr></table></div>
+<p><code>--target</code> 决定为哪个三元组构建, <code>--prefix</code> 决定安装位置. 默认 silent rules, 只打印简短进度; 想看真实编译命令用 <code>make V=1</code>, 想并行编译用 <code>make -j$(nproc)</code>.</p>
+<h2 id="_4">常用选项<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>--target=&lt;triple&gt;</code> - 目标三元组, 决定编译哪套库</li>
+<li><code>--prefix=&lt;dir&gt;</code> - 安装前缀</li>
+<li><code>--disable-doc</code> - 不生成文档, 省掉 docbook/xmlto 依赖</li>
+<li><code>--with-cross-bootstrap</code> - 用宿主工具链自举, 不需要预先的交叉工具链</li>
+<li><code>--enable-multilib</code> / <code>--disable-multilib</code> - 是否为每个 ABI 变体各构建一份 (newlib 默认开启)</li>
+</ul>
+<h2 id="_5">具体例子<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="newlib">嵌入式 newlib<a class="headerlink" href="#newlib" title="Permanent link">&para;</a></h3>
+<p>以一个裸机目标为例, 需要预先有该目标的 gcc/binutils:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
-<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[]);</span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>mkdir build &amp;&amp; cd build
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>../configure --target=arm-none-eabi --prefix=$PWD/install
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>make
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>make install
 </code></pre></div></td></tr></table></div>
+<p>产物是 <code>install/arm-none-eabi/lib/</code> 下的 <code>libc.a</code>, <code>libm.a</code> 和配套头文件.</p>
+<h3 id="cygwin">Cygwin<a class="headerlink" href="#cygwin" title="Permanent link">&para;</a></h3>
+<p>Cygwin 只支持 <code>x86_64-pc-cygwin</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[]);</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">envp</span><span class="p">[]);</span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>mkdir build &amp;&amp; cd build
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>../configure --target=x86_64-pc-cygwin --prefix=$PWD/install --disable-doc
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>make
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>make install
 </code></pre></div></td></tr></table></div>
+<p>产物主要是 <code>x86_64-pc-cygwin/winsup/cygwin/cygwin1.dll</code> 和对应的导入库.</p>
+<h3 id="textos">textos (本地特例)<a class="headerlink" href="#textos" title="Permanent link">&para;</a></h3>
+<p>这个仓库本地支持一个 <code>x86_64-unknown-textos</code> 目标, 它不需要交叉工具链, 只要把宿主 gcc/binutils 软链到目标前缀即可:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
 <span class="normal"><a href="#__codelineno-3-2">2</a></span>
 <span class="normal"><a href="#__codelineno-3-3">3</a></span>
-<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[]);</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[],</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">envp</span><span class="p">[]);</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">getauxval</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>for t in gcc cc g++ ar as ld ranlib nm objcopy objdump strip readelf; do
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>  ln -sf "$(which $t)" /path/to/tc/bin/x86_64-unknown-textos-$t
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>done
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>PATH=/path/to/tc/bin:$PATH ../configure --target=x86_64-unknown-textos --prefix=$PWD/install
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>make
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-4-10">10</a></span>
-<span class="normal"><a href="#__codelineno-4-11">11</a></span>
-<span class="normal"><a href="#__codelineno-4-12">12</a></span>
-<span class="normal"><a href="#__codelineno-4-13">13</a></span>
-<span class="normal"><a href="#__codelineno-4-14">14</a></span>
-<span class="normal"><a href="#__codelineno-4-15">15</a></span>
-<span class="normal"><a href="#__codelineno-4-16">16</a></span>
-<span class="normal"><a href="#__codelineno-4-17">17</a></span>
-<span class="normal"><a href="#__codelineno-4-18">18</a></span>
-<span class="normal"><a href="#__codelineno-4-19">19</a></span>
-<span class="normal"><a href="#__codelineno-4-20">20</a></span>
-<span class="normal"><a href="#__codelineno-4-21">21</a></span>
-<span class="normal"><a href="#__codelineno-4-22">22</a></span>
-<span class="normal"><a href="#__codelineno-4-23">23</a></span>
-<span class="normal"><a href="#__codelineno-4-24">24</a></span>
-<span class="normal"><a href="#__codelineno-4-25">25</a></span>
-<span class="normal"><a href="#__codelineno-4-26">26</a></span>
-<span class="normal"><a href="#__codelineno-4-27">27</a></span>
-<span class="normal"><a href="#__codelineno-4-28">28</a></span>
-<span class="normal"><a href="#__codelineno-4-29">29</a></span>
-<span class="normal"><a href="#__codelineno-4-30">30</a></span>
-<span class="normal"><a href="#__codelineno-4-31">31</a></span>
-<span class="normal"><a href="#__codelineno-4-32">32</a></span>
-<span class="normal"><a href="#__codelineno-4-33">33</a></span>
-<span class="normal"><a href="#__codelineno-4-34">34</a></span>
-<span class="normal"><a href="#__codelineno-4-35">35</a></span>
-<span class="normal"><a href="#__codelineno-4-36">36</a></span>
-<span class="normal"><a href="#__codelineno-4-37">37</a></span>
-<span class="normal"><a href="#__codelineno-4-38">38</a></span>
-<span class="normal"><a href="#__codelineno-4-39">39</a></span>
-<span class="normal"><a href="#__codelineno-4-40">40</a></span>
-<span class="normal"><a href="#__codelineno-4-41">41</a></span>
-<span class="normal"><a href="#__codelineno-4-42">42</a></span>
-<span class="normal"><a href="#__codelineno-4-43">43</a></span>
-<span class="normal"><a href="#__codelineno-4-44">44</a></span>
-<span class="normal"><a href="#__codelineno-4-45">45</a></span>
-<span class="normal"><a href="#__codelineno-4-46">46</a></span>
-<span class="normal"><a href="#__codelineno-4-47">47</a></span>
-<span class="normal"><a href="#__codelineno-4-48">48</a></span>
-<span class="normal"><a href="#__codelineno-4-49">49</a></span>
-<span class="normal"><a href="#__codelineno-4-50">50</a></span>
-<span class="normal"><a href="#__codelineno-4-51">51</a></span>
-<span class="normal"><a href="#__codelineno-4-52">52</a></span>
-<span class="normal"><a href="#__codelineno-4-53">53</a></span>
-<span class="normal"><a href="#__codelineno-4-54">54</a></span>
-<span class="normal"><a href="#__codelineno-4-55">55</a></span>
-<span class="normal"><a href="#__codelineno-4-56">56</a></span>
-<span class="normal"><a href="#__codelineno-4-57">57</a></span>
-<span class="normal"><a href="#__codelineno-4-58">58</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>***
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a>```c
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a>// long *sp;
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a>long argc = sp[0];
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a>char **argv = (void *)&amp;sp[1];
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a>char **envp = (void *)&amp;sp[1 + argc + 1];
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a>```
-<a id="__codelineno-4-9" name="__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10"></a>因为是 `NUL-terminated`
-<a id="__codelineno-4-11" name="__codelineno-4-11"></a>
-<a id="__codelineno-4-12" name="__codelineno-4-12"></a>```c
-<a id="__codelineno-4-13" name="__codelineno-4-13"></a>const void **auxv = (const void **)envp;
-<a id="__codelineno-4-14" name="__codelineno-4-14"></a>while (*auxv++);
-<a id="__codelineno-4-15" name="__codelineno-4-15"></a>```
-<a id="__codelineno-4-16" name="__codelineno-4-16"></a>
-<a id="__codelineno-4-17" name="__codelineno-4-17"></a>---
-<a id="__codelineno-4-18" name="__codelineno-4-18"></a>
-<a id="__codelineno-4-19" name="__codelineno-4-19"></a>&lt;v-clicks&gt;
-<a id="__codelineno-4-20" name="__codelineno-4-20"></a>
-<a id="__codelineno-4-21" name="__codelineno-4-21"></a>构造栈之前想想用什么区域来作为栈吧!
-<a id="__codelineno-4-22" name="__codelineno-4-22"></a>
-<a id="__codelineno-4-23" name="__codelineno-4-23"></a>栈是一块 可读可写 的内存区域
-<a id="__codelineno-4-24" name="__codelineno-4-24"></a>
-<a id="__codelineno-4-25" name="__codelineno-4-25"></a>```c
-<a id="__codelineno-4-26" name="__codelineno-4-26"></a>long stack[stack_size];
-<a id="__codelineno-4-27" name="__codelineno-4-27"></a>```
-<a id="__codelineno-4-28" name="__codelineno-4-28"></a>
-<a id="__codelineno-4-29" name="__codelineno-4-29"></a>```c
-<a id="__codelineno-4-30" name="__codelineno-4-30"></a>long *stack = malloc(stack_size);
-<a id="__codelineno-4-31" name="__codelineno-4-31"></a>```
-<a id="__codelineno-4-32" name="__codelineno-4-32"></a>
-<a id="__codelineno-4-33" name="__codelineno-4-33"></a>如果使用现有的栈呢?
-<a id="__codelineno-4-34" name="__codelineno-4-34"></a>
-<a id="__codelineno-4-35" name="__codelineno-4-35"></a>这就是一个比较 HACK 的方式了
-<a id="__codelineno-4-36" name="__codelineno-4-36"></a>
-<a id="__codelineno-4-37" name="__codelineno-4-37"></a>&lt;/v-clicks&gt;
-<a id="__codelineno-4-38" name="__codelineno-4-38"></a>
-<a id="__codelineno-4-39" name="__codelineno-4-39"></a>---
-<a id="__codelineno-4-40" name="__codelineno-4-40"></a>
-<a id="__codelineno-4-41" name="__codelineno-4-41"></a>## 使用现有栈作为栈
-<a id="__codelineno-4-42" name="__codelineno-4-42"></a>
-<a id="__codelineno-4-43" name="__codelineno-4-43"></a>&lt;v-clicks&gt;
-<a id="__codelineno-4-44" name="__codelineno-4-44"></a>
-<a id="__codelineno-4-45" name="__codelineno-4-45"></a>libc 的启动方式:
-<a id="__codelineno-4-46" name="__codelineno-4-46"></a>
-<a id="__codelineno-4-47" name="__codelineno-4-47"></a>````md magic-move
-<a id="__codelineno-4-48" name="__codelineno-4-48"></a>```c
-<a id="__codelineno-4-49" name="__codelineno-4-49"></a>-&gt; _start (`crt1.o`)
-<a id="__codelineno-4-50" name="__codelineno-4-50"></a>-&gt; __libc_start_xxx
-<a id="__codelineno-4-51" name="__codelineno-4-51"></a>```c
-<a id="__codelineno-4-52" name="__codelineno-4-52"></a>-&gt; _start (`crt1.o`)
-<a id="__codelineno-4-53" name="__codelineno-4-53"></a>-&gt; __libc_start_xxx (`xxx.so`)
-<a id="__codelineno-4-54" name="__codelineno-4-54"></a>```
-<a id="__codelineno-4-55" name="__codelineno-4-55"></a>```c
-<a id="__codelineno-4-56" name="__codelineno-4-56"></a>-&gt; _start (`crt1.o`) -&gt; 最先接触到 sp
-<a id="__codelineno-4-57" name="__codelineno-4-57"></a>-&gt; __libc_start_xxx (`xxx.so`)
-<a id="__codelineno-4-58" name="__codelineno-4-58"></a>```
-</code></pre></div></td></tr></table></div></p>
-<p>那就劫持 <code>_start</code>!</p>
+<p>注意这个目标的 <code>configure</code> / <code>Makefile.in</code> 没有提交, 要先在 <code>newlib/</code> 里 <code>autoreconf</code>.</p>
+<h2 id="_6">测试<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>newlib 的测试在顶层 build 目录里跑:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>make check-target-newlib
+</code></pre></div></td></tr></table></div>
+<p>需要 <code>DEJAGNU</code> 指向一个定义了 <code>target_list</code> 的 <code>site.exp</code>, 细节见 <code>newlib/README</code>.</p>
+<p>Cygwin 的测试只能在 Windows 上原生运行 (不支持交叉测试), 且需要 <code>cygserver</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
-<span class="normal"><a href="#__codelineno-5-2">2</a></span>
-<span class="normal"><a href="#__codelineno-5-3">3</a></span>
-<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>-e entry
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a>--entry=entry
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a>    Specify that the program entry point is entry.  The argument is interpreted by the linker;
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a>    the GNU linker accepts either a symbol name or an address.
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>cd &lt;build&gt;/x86_64-pc-cygwin/winsup
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>make check
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
-<span class="normal"><a href="#__codelineno-6-2">2</a></span>
-<span class="normal"><a href="#__codelineno-6-3">3</a></span>
-<span class="normal"><a href="#__codelineno-6-4">4</a></span>
-<span class="normal"><a href="#__codelineno-6-5">5</a></span>
-<span class="normal"><a href="#__codelineno-6-6">6</a></span>
-<span class="normal"><a href="#__codelineno-6-7">7</a></span>
-<span class="normal"><a href="#__codelineno-6-8">8</a></span>
-<span class="normal"><a href="#__codelineno-6-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">initial_sp</span><span class="p">;</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="c1">// -Wl,-e,mystart</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1">// do hijack</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="k">asm</span><span class="p">(</span><span class="s">"  .text</span><span class="se">\n</span><span class="s">"</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="s">"  .globl mystart</span><span class="se">\n</span><span class="s">"</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">    </span><span class="s">"mystart:</span><span class="se">\n</span><span class="s">"</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="s">"  movq %rsp, initial_sp(%rip)</span><span class="se">\n</span><span class="s">"</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">    </span><span class="s">"  jmp _start</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-</code></pre></div></td></tr></table></div>
-<p></v-clicks></p>
+<p>只编译测试程序不运行用 <code>make -C winsup/testsuite check_programs</code>, 挑单个测试用 <code>make check TESTS="winsup.api/ltp/umask03"</code>. 测试退出码 0 为通过, 77 为跳过.</p>
 <hr />
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span>
-<span class="normal"><a href="#__codelineno-7-3">3</a></span>
-<span class="normal"><a href="#__codelineno-7-4">4</a></span>
-<span class="normal"><a href="#__codelineno-7-5">5</a></span>
-<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"initial_sp = %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">initial_sp</span><span class="p">);</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"  argc = %ld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">initial_sp</span><span class="p">));</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"  prog = %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="p">,</span><span class="w"> </span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">initial_sp</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">  </span><span class="p">...</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
-<span class="normal"><a href="#__codelineno-8-2">2</a></span>
-<span class="normal"><a href="#__codelineno-8-3">3</a></span>
-<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>$ ./elf.out asm.out 
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a>initial_sp = 0x7ffdda605680
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a>  argc = 2
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a>  prog = ./elf.out
-</code></pre></div></td></tr></table></div>
-<hr />
-<h2 id="_2">栈对齐<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p><v-clicks></p>
-<ul>
-<li>
-<p><code>x86_64</code> <code>SysV ABI</code> 要求 16 字节对齐</p>
-</li>
-<li>
-<p>在 <code>call</code> 时要求 调用方 16 字节对齐</p>
-</li>
-<li>
-<p>简而言之 <code>xmm</code> 寄存器组</p>
-</li>
-</ul>
-<p></v-clicks></p>
-<hr />
-<h2 id="auxv">更新 auxv<a class="headerlink" href="#auxv" title="Permanent link">&para;</a></h2>
-<p>````md magic-move
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-9-10">10</a></span>
-<span class="normal"><a href="#__codelineno-9-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="w">  </span><span class="c1">// auxv overlay</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">auxv_ov</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_PHDR</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="p">,</span><span class="w"> </span><span class="n">pmapself</span><span class="p">),</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_PHENT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ehdr</span><span class="o">-&gt;</span><span class="n">e_phentsize</span><span class="p">,</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_PHNUM</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ehdr</span><span class="o">-&gt;</span><span class="n">e_phnum</span><span class="p">,</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_FLAGS</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_BASE</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="p">,</span><span class="w"> </span><span class="n">virt</span><span class="p">),</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_ENTRY</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">),</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_NOTELF</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_EXECFN</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="w">  </span><span class="p">};</span>
-</code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-10-10">10</a></span>
-<span class="normal"><a href="#__codelineno-10-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="w">  </span><span class="c1">// auxv overlay</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">auxv_ov</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_PHDR</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="p">,</span><span class="w"> </span><span class="n">pmapself</span><span class="p">),</span><span class="w"> </span><span class="c1">// program header 地址</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_PHENT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ehdr</span><span class="o">-&gt;</span><span class="n">e_phentsize</span><span class="p">,</span><span class="w">   </span><span class="c1">//</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_PHNUM</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ehdr</span><span class="o">-&gt;</span><span class="n">e_phnum</span><span class="p">,</span><span class="w">       </span><span class="c1">//</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_FLAGS</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">                   </span><span class="c1">// 自己看</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_BASE</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="p">,</span><span class="w"> </span><span class="n">virt</span><span class="p">),</span><span class="w">     </span><span class="c1">// elf 映射基地址</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_ENTRY</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">),</span><span class="w">   </span><span class="c1">// elf 入口地址</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_NOTELF</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">                  </span><span class="c1">// elf 而不是 a.out</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="w">      </span><span class="p">[</span><span class="n">AT_EXECFN</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cast</span><span class="p">(</span><span class="kt">long</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="c1">// elf filename (丢给 execve 的路径)</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">  </span><span class="p">};</span>
-</code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-11-10">10</a></span>
-<span class="normal"><a href="#__codelineno-11-11">11</a></span>
-<span class="normal"><a href="#__codelineno-11-12">12</a></span>
-<span class="normal"><a href="#__codelineno-11-13">13</a></span>
-<span class="normal"><a href="#__codelineno-11-14">14</a></span>
-<span class="normal"><a href="#__codelineno-11-15">15</a></span>
-<span class="normal"><a href="#__codelineno-11-16">16</a></span>
-<span class="normal"><a href="#__codelineno-11-17">17</a></span>
-<span class="normal"><a href="#__codelineno-11-18">18</a></span>
-<span class="normal"><a href="#__codelineno-11-19">19</a></span>
-<span class="normal"><a href="#__codelineno-11-20">20</a></span>
-<span class="normal"><a href="#__codelineno-11-21">21</a></span>
-<span class="normal"><a href="#__codelineno-11-22">22</a></span>
-<span class="normal"><a href="#__codelineno-11-23">23</a></span>
-<span class="normal"><a href="#__codelineno-11-24">24</a></span>
-<span class="normal"><a href="#__codelineno-11-25">25</a></span>
-<span class="normal"><a href="#__codelineno-11-26">26</a></span>
-<span class="normal"><a href="#__codelineno-11-27">27</a></span>
-<span class="normal"><a href="#__codelineno-11-28">28</a></span>
-<span class="normal"><a href="#__codelineno-11-29">29</a></span>
-<span class="normal"><a href="#__codelineno-11-30">30</a></span>
-<span class="normal"><a href="#__codelineno-11-31">31</a></span>
-<span class="normal"><a href="#__codelineno-11-32">32</a></span>
-<span class="normal"><a href="#__codelineno-11-33">33</a></span>
-<span class="normal"><a href="#__codelineno-11-34">34</a></span>
-<span class="normal"><a href="#__codelineno-11-35">35</a></span>
-<span class="normal"><a href="#__codelineno-11-36">36</a></span>
-<span class="normal"><a href="#__codelineno-11-37">37</a></span>
-<span class="normal"><a href="#__codelineno-11-38">38</a></span>
-<span class="normal"><a href="#__codelineno-11-39">39</a></span>
-<span class="normal"><a href="#__codelineno-11-40">40</a></span>
-<span class="normal"><a href="#__codelineno-11-41">41</a></span>
-<span class="normal"><a href="#__codelineno-11-42">42</a></span>
-<span class="normal"><a href="#__codelineno-11-43">43</a></span>
-<span class="normal"><a href="#__codelineno-11-44">44</a></span>
-<span class="normal"><a href="#__codelineno-11-45">45</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>### program header 地址
-<a id="__codelineno-11-2" name="__codelineno-11-2"></a>
-<a id="__codelineno-11-3" name="__codelineno-11-3"></a>&gt; 主要给 dynamic linker (ldso) 使用, 简而言之:
-<a id="__codelineno-11-4" name="__codelineno-11-4"></a>&gt;
-<a id="__codelineno-11-5" name="__codelineno-11-5"></a>&gt; OS 加载 一个可执行程序 的时候, 将 ldso 与 elf 一起加载进内存, 之后跳转到 ldso 入口.
-<a id="__codelineno-11-6" name="__codelineno-11-6"></a>&gt;
-<a id="__codelineno-11-7" name="__codelineno-11-7"></a>&gt; ldso 可以不用再次读取 elf, 而是依照 auxv 来 重定位/动态链接
-<a id="__codelineno-11-8" name="__codelineno-11-8"></a>
-<a id="__codelineno-11-9" name="__codelineno-11-9"></a>---
-<a id="__codelineno-11-10" name="__codelineno-11-10"></a>
-<a id="__codelineno-11-11" name="__codelineno-11-11"></a>### 但是
-<a id="__codelineno-11-12" name="__codelineno-11-12"></a>
-<a id="__codelineno-11-13" name="__codelineno-11-13"></a>`[AT_PHDR]` 本质是一个指针. 指向 何处?
-<a id="__codelineno-11-14" name="__codelineno-11-14"></a>
-<a id="__codelineno-11-15" name="__codelineno-11-15"></a>&lt;v-switch&gt;
-<a id="__codelineno-11-16" name="__codelineno-11-16"></a>
-<a id="__codelineno-11-17" name="__codelineno-11-17"></a>&lt;template #1-3&gt;
-<a id="__codelineno-11-18" name="__codelineno-11-18"></a>
-<a id="__codelineno-11-19" name="__codelineno-11-19"></a>- 许多 elf 都会将其 `Ehdr` 与 `Phdr` 放入 `PT_LOAD`
-<a id="__codelineno-11-20" name="__codelineno-11-20"></a>
-<a id="__codelineno-11-21" name="__codelineno-11-21"></a>````md magic-move {at: '2'}
-<a id="__codelineno-11-22" name="__codelineno-11-22"></a>```c
-<a id="__codelineno-11-23" name="__codelineno-11-23"></a>  void *pmapself = 0;
-<a id="__codelineno-11-24" name="__codelineno-11-24"></a>  for (int i = 0; i &lt; ehdr-&gt;e_phnum; i++) {
-<a id="__codelineno-11-25" name="__codelineno-11-25"></a>    Elf64_Phdr *phdr = cast(Elf64_Phdr *, phdrs + i * ehdr-&gt;e_phentsize);
-<a id="__codelineno-11-26" name="__codelineno-11-26"></a>    if (phdr-&gt;p_type != PT_LOAD)
-<a id="__codelineno-11-27" name="__codelineno-11-27"></a>      continue;
-<a id="__codelineno-11-28" name="__codelineno-11-28"></a>    ...
-<a id="__codelineno-11-29" name="__codelineno-11-29"></a>  }
-<a id="__codelineno-11-30" name="__codelineno-11-30"></a>```
-<a id="__codelineno-11-31" name="__codelineno-11-31"></a>```c
-<a id="__codelineno-11-32" name="__codelineno-11-32"></a>  void *pmapself = 0;
-<a id="__codelineno-11-33" name="__codelineno-11-33"></a>  for (int i = 0; i &lt; ehdr-&gt;e_phnum; i++) {
-<a id="__codelineno-11-34" name="__codelineno-11-34"></a>    Elf64_Phdr *phdr = cast(Elf64_Phdr *, phdrs + i * ehdr-&gt;e_phentsize);
-<a id="__codelineno-11-35" name="__codelineno-11-35"></a>    if (phdr-&gt;p_type != PT_LOAD)
-<a id="__codelineno-11-36" name="__codelineno-11-36"></a>      continue;
-<a id="__codelineno-11-37" name="__codelineno-11-37"></a>    // the phdr includes phdr itself, set pmapself
-<a id="__codelineno-11-38" name="__codelineno-11-38"></a>    if (phdr-&gt;p_offset &lt;= ehdr-&gt;e_phoff &amp;&amp;
-<a id="__codelineno-11-39" name="__codelineno-11-39"></a>        phdr-&gt;p_offset + phdr-&gt;p_filesz &gt;=
-<a id="__codelineno-11-40" name="__codelineno-11-40"></a>            ehdr-&gt;e_phoff + ehdr-&gt;e_phentsize * ehdr-&gt;e_phnum)
-<a id="__codelineno-11-41" name="__codelineno-11-41"></a>      pmapself = virt + phdr-&gt;p_vaddr              // va
-<a id="__codelineno-11-42" name="__codelineno-11-42"></a>                 + ehdr-&gt;e_phoff - phdr-&gt;p_offset; // distance to seg start
-<a id="__codelineno-11-43" name="__codelineno-11-43"></a>    ...
-<a id="__codelineno-11-44" name="__codelineno-11-44"></a>  }
-<a id="__codelineno-11-45" name="__codelineno-11-45"></a>```
-</code></pre></div></td></tr></table></div></p>
-<p></template></p>
-<p><template #3></p>
-<ul>
-<li>
-<p>许多 elf 都会将其 <code>Ehdr</code> 与 <code>Phdr</code> 放入 <code>PT_LOAD</code></p>
-</li>
-<li>
-<p>对于 没有被覆盖 的 <strong>可以</strong> 选择做 workaround</p>
-</li>
-</ul>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-12-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pmapself</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">off</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">align_dn</span><span class="p">(</span><span class="n">ehdr</span><span class="o">-&gt;</span><span class="n">e_phoff</span><span class="p">,</span><span class="w"> </span><span class="n">PAGE_SIZE</span><span class="p">);</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">align_up</span><span class="p">(</span><span class="n">off</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ehdr</span><span class="o">-&gt;</span><span class="n">e_phentsize</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ehdr</span><span class="o">-&gt;</span><span class="n">e_phnum</span><span class="p">,</span><span class="w"> </span><span class="n">PAGE_SIZE</span><span class="p">);</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">sz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">off</span><span class="p">;</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">    </span><span class="n">pmapself</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mmap</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">sz</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="p">,</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">off</span><span class="p">);</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">pmapself</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MAP_FAILED</span><span class="p">);</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"external AT_PHDR used = %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">pmapself</span><span class="p">);</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"internal AT_PHDR used = %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">pmapself</span><span class="p">);</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">  </span><span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-<p></template></p>
-<p></v-switch></p>
-<hr />
-<h2 id="bss">老生常谈的 .bss<a class="headerlink" href="#bss" title="Permanent link">&para;</a></h2>
-<p><v-clicks></p>
-<ul>
-<li>
-<p>未写入 elf 但是必须初始化为 0 的数据部分</p>
-</li>
-<li>
-<p><code>.bss</code> 可读可写</p>
-</li>
-<li>
-<p><code>.bss</code> 体现在 文件中大小与内存中大小的 差值</p>
-</li>
-</ul>
-<!--
-1. 可写的部分就具有成为 .bss 的风险 (?)
-2. 这里就是它们差值的体现
-3. 最后补全文件中可能不存在的页面, 也就是超出 fsize 的页面
--->
-
-<p><code>md magic-move
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
-<span class="normal"><a href="#__codelineno-13-2">2</a></span>
-<span class="normal"><a href="#__codelineno-13-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prot</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">PROT_WRITE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">  </span><span class="p">...</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
-<span class="normal"><a href="#__codelineno-14-2">2</a></span>
-<span class="normal"><a href="#__codelineno-14-3">3</a></span>
-<span class="normal"><a href="#__codelineno-14-4">4</a></span>
-<span class="normal"><a href="#__codelineno-14-5">5</a></span>
-<span class="normal"><a href="#__codelineno-14-6">6</a></span>
-<span class="normal"><a href="#__codelineno-14-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prot</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">PROT_WRITE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">  </span><span class="c1">// clear bss</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">bss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">virt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phdr</span><span class="o">-&gt;</span><span class="n">p_vaddr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phdr</span><span class="o">-&gt;</span><span class="n">p_filesz</span><span class="p">;</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">bss_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">virt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mend</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bss</span><span class="p">;</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"  clearing bss %p - %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">bss</span><span class="p">,</span><span class="w"> </span><span class="n">bss</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bss_size</span><span class="p">);</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">  </span><span class="n">memset</span><span class="p">(</span><span class="n">bss</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">bss_size</span><span class="p">);</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-15-10">10</a></span>
-<span class="normal"><a href="#__codelineno-15-11">11</a></span>
-<span class="normal"><a href="#__codelineno-15-12">12</a></span>
-<span class="normal"><a href="#__codelineno-15-13">13</a></span>
-<span class="normal"><a href="#__codelineno-15-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prot</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">PROT_WRITE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">msize</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">fsize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">    </span><span class="c1">// create remained mapping for zero-padded pages</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">exsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fsize</span><span class="p">;</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">expages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mmap</span><span class="p">(</span><span class="n">exp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fsize</span><span class="p">,</span><span class="w"> </span><span class="n">exsize</span><span class="p">,</span><span class="w"> </span><span class="n">prot</span><span class="p">,</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">                         </span><span class="n">MAP_PRIVATE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MAP_FIXED</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MAP_ANON</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">expages</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">MAP_FAILED</span><span class="p">);</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">  </span><span class="c1">// clear bss</span>
-<a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">bss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">virt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phdr</span><span class="o">-&gt;</span><span class="n">p_vaddr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phdr</span><span class="o">-&gt;</span><span class="n">p_filesz</span><span class="p">;</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">bss_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">virt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mend</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bss</span><span class="p">;</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">"  clearing bss %p - %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">bss</span><span class="p">,</span><span class="w"> </span><span class="n">bss</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bss_size</span><span class="p">);</span>
-<a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="w">  </span><span class="n">memset</span><span class="p">(</span><span class="n">bss</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">bss_size</span><span class="p">);</span>
-<a id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="p">}</span>
-</code></pre></div></td></tr></table></div></code></p>
-<p></v-clicks></p>
-<hr />
-<h1 id="_3">效果<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
-<ul>
-<li><strong>can load some simple static glibc-compiled programs</strong></li>
-<li>use <code>vecs</code> to test it</li>
-<li>static-pie <code>lua</code> (dev version v5.5)<ul>
-<li><code>make MYCFLAGS="-DLUA_USE_POSIX" MYLIBS="-ldl" MYLDFLAGS="-static-pie" clean all</code></li>
-</ul>
-</li>
-</ul>
-<hr />
-<h2 id="layout-center_1">layout: center<a class="headerlink" href="#layout-center_1" title="Permanent link">&para;</a></h2>
-<h1 id="thanks-for-watching">Thanks for watching!<a class="headerlink" href="#thanks-for-watching" title="Permanent link">&para;</a></h1>
+<p>本文档由 deepseek-v4-pro 撰写.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -7583,12 +7365,12 @@ th, td {
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["content.code.copy", "content.code.annotate", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
-        <script src="../../../../../base/js/mathjax.js"></script>
+        <script src="../../../../base/js/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
